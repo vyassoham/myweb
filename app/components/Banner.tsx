@@ -51,10 +51,10 @@ export default function Banner(): React.JSX.Element {
               Available for Collaboration
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-6">
               <h1 className="text-5xl md:text-7xl lg:text-9xl font-black font-display text-white tracking-tighter leading-[0.9]">
                 SOHAM <br />
-                <span className="block mt-2 h-[1.1em] relative">
+                <span className="block mt-2 relative" style={{ minHeight: '1.1em', height: '1.2em' }}>
                   <AnimatePresence mode="wait">
                     <motion.span
                       key={ROLES[roleIndex]}
@@ -62,7 +62,7 @@ export default function Banner(): React.JSX.Element {
                       animate={{ y: 0, opacity: 1 }}
                       exit={{ y: -40, opacity: 0 }}
                       transition={{ duration: 0.5, ease: "anticipate" }}
-                      className="absolute left-0 right-0 lg:left-0 text-brand-gradient"
+                      className="absolute left-0 right-0 lg:left-0 text-brand-gradient whitespace-nowrap overflow-hidden"
                     >
                       {ROLES[roleIndex]}
                     </motion.span>
