@@ -63,9 +63,9 @@ export default function Stats(): React.JSX.Element {
                 const visitorId = localStorage.getItem('visitor_id');
                 const today = new Date().toISOString().split('T')[0];
                 const lastVisitDate = localStorage.getItem('last_visit_date');
-                const NAMESPACE = "soham-lol-v2";
-                const TOTAL_KEY = "total_visits";
-                const TODAY_KEY = `visits_${today}`;
+                const NAMESPACE = "soham-final-v4";
+                const TOTAL_KEY = "total_hits";
+                const TODAY_KEY = `hits_${today}`;
 
                 // Generate unique visitor ID if not exists
                 if (!visitorId) {
@@ -171,8 +171,9 @@ export default function Stats(): React.JSX.Element {
         <section id="stats" className="section">
             <div className="container">
                 <div className="section-header">
-                    <h2 className="section-header__title">Live Dashboard</h2>
+                    <h2 className="section-header__title">Elite System Dashboard</h2>
                 </div>
+
 
                 <div className="grid grid--3 gap-6">
                     {stats.map((stat, idx) => (
