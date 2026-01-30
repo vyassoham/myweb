@@ -1,109 +1,143 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { ExternalLink, Github, ArrowUpRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  link?: string;
-}
-
-const featuredProjects: Project[] = [
+const PROJECTS = [
   {
     id: 1,
-    title: "NeuraWeb – Futuristic AI Website Landing Design",
-    description: "A sleek, dark-themed AI-powered landing page concept built in Figma. Designed for modern startups and futuristic digital products, it features glowing neon visuals, immersive UI, and a dynamic tone. The design encapsulates the cutting-edge possibilities of AI and tech, offering a glimpse into the future of online experiences for tech-forward companies.",
-    link: "https://www.figma.com/community/file/1441377868897233703/ai-website-landing-design",
+    title: "Quantum Dashboard",
+    category: "Full Stack Development",
+    stack: ["Next.js", "Redis", "Apache Kafka", "D3.js"],
+    description: "A high-performance real-time data visualization dashboard capable of processing 10k events per second.",
+    problem: "Existing solutions couldn't handle the data velocity required for high-frequency trading analytics.",
+    solution: "Built a custom event-mesh using Kafka and a reactive frontend that batches DOM updates.",
     image: "/projects/project-1.png",
+    link: "#",
+    github: "#",
   },
   {
     id: 2,
-    title: "Apple Vision Pro – HR Software Design",
-    description: "A futuristic HR software concept designed for Apple Vision Pro, built in Figma to reimagine attendance, leave tracking, and employee experience - all in one immersive interface.",
-   link: "https://www.figma.com/community/file/1371824014208363481/apple-vision-pro-hr-software-design",
+    title: "CyberLink Platform",
+    category: "Product Design & Security",
+    stack: ["TypeScript", "WebRTC", "PostgreSQL", "AES-256"],
+    description: "An end-to-end encrypted messaging platform featuring a modern glassmorphism UI.",
+    problem: "Privacy-focused apps often compromise on user experience and visual aesthetic.",
+    solution: "Implemented the double-ratchet algorithm within a stunning, frameless desktop experience.",
     image: "/projects/project-2.png",
-  },
+    link: "#",
+    github: "#",
+  }
 ];
 
 export default function Projects(): React.JSX.Element {
   return (
-    <section id="lab" className="py-20 px-6">
-      <div className="container mx-auto max-w-7xl">
-        {featuredProjects.map((project, index) => {
-          const isEven = index % 2 === 1;
-          
-          return (
-            <div key={project.id} className="mb-20 last:mb-0">
-              <div className={`relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center ${
-                isEven ? "lg:grid-flow-dense" : ""
-              }`}>
-                {/* Text Content */}
-                <div className={`${isEven ? "lg:col-start-2" : ""}`}>
-                  <p className="text-purple-400 text-lg lg:text-xl mb-2 font-medium">
-                    Featured Project
-                  </p>
-                  <h3 className="text-3xl lg:text-4xl font-bold text-white mb-6">
-                    {project.title}
-                  </h3>
-                  {/* Description Card - extends over image */}
-                  <div className="relative z-10 mb-6">
-                    <div className={`bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-md rounded-2xl p-6 lg:p-8 border border-white/10 shadow-lg ${
-                      isEven ? "lg:ml-[-20%]" : "lg:w-[calc(100%+20%)]"
-                    }`}>
-                      <p className="text-white/90 text-base lg:text-lg leading-relaxed">
-                        {project.description}
-                      </p>
-                    </div>
-                  </div>
-                  {/* Website link */}
-                  {project.link && (
-                    <div className="flex gap-4">
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-white hover:text-purple-400 transition-colors duration-200"
-                        aria-label="Visit project website"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="w-6 h-6"
-                        >
-                          <circle cx="12" cy="12" r="10" />
-                          <line x1="2" y1="12" x2="22" y2="12" />
-                          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                        </svg>
-                      </a>
-                    </div>
-                  )}
+    <section id="lab" className="section-padding">
+      <div className="container mx-auto max-w-6xl px-6">
+        <div className="flex flex-col items-center text-center mb-24 space-y-4">
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-brand-purple font-black text-sm uppercase tracking-[0.3em]"
+          >
+            Curated Works
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-4xl md:text-7xl font-black font-display tracking-tight"
+          >
+            Where Code <br className="hidden md:block" /> Meets <span className="text-white/40">Magic</span>
+          </motion.h2>
+        </div>
+
+        <div className="space-y-32">
+          {PROJECTS.map((project, index) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              className={cn(
+                "flex flex-col items-center gap-12 lg:gap-20",
+                index % 2 === 1 ? "lg:flex-row-reverse" : "lg:flex-row"
+              )}
+            >
+              {/* Project Visual */}
+              <div className="flex-1 w-full group relative aspect-[16/10] rounded-[2.5rem] overflow-hidden glass border-white/10 shadow-3xl">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-brand-dark/20 group-hover:bg-transparent transition-colors duration-500" />
+
+                {/* Hover Quick Link */}
+                <motion.div
+                  className="absolute top-8 right-8"
+                  whileHover={{ scale: 1.1 }}
+                >
+                  <a
+                    href={project.link}
+                    className="w-14 h-14 rounded-full bg-white text-brand-dark flex items-center justify-center shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity"
+                  >
+                    <ArrowUpRight className="w-6 h-6" />
+                  </a>
+                </motion.div>
+              </div>
+
+              {/* Project Info */}
+              <div className="flex-1 space-y-8 text-center lg:text-left">
+                <div className="space-y-4">
+                  <span className="px-4 py-1.5 rounded-full glass-pill text-brand-purple text-[10px] font-black uppercase tracking-widest">
+                    {project.category}
+                  </span>
+                  <h3 className="text-4xl md:text-5xl font-black font-display text-white tracking-tight">{project.title}</h3>
                 </div>
 
-                {/* Image Content */}
-                <div className={`${isEven ? "lg:col-start-1 lg:row-start-1" : ""}`}>
-                  <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-slate-950 p-2 lg:p-3 shadow-2xl">
-                    <div className="relative w-full h-full rounded-lg overflow-hidden">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        sizes="(max-width: 1024px) 100vw, 50vw"
-                        className="object-cover"
-                      />
-                    </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
+                  <div className="space-y-2">
+                    <h4 className="text-white font-bold uppercase tracking-widest text-[10px] opacity-40">Problem</h4>
+                    <p className="text-white/70 leading-relaxed">{project.problem}</p>
+                  </div>
+                  <div className="space-y-2">
+                    <h4 className="text-white font-bold uppercase tracking-widest text-[10px] opacity-40">Solution</h4>
+                    <p className="text-white/70 leading-relaxed">{project.solution}</p>
                   </div>
                 </div>
+
+                <div className="flex flex-wrap gap-2 pt-2 justify-center lg:justify-start">
+                  {project.stack.map(tech => (
+                    <span
+                      key={tech}
+                      className="text-[10px] font-bold text-white/40 uppercase tracking-widest px-3 py-1 border border-white/5 rounded-lg"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex items-center justify-center lg:justify-start gap-6 pt-4">
+                  <a href={project.link} className="flex items-center gap-2 text-white font-black hover:text-brand-purple transition-colors text-sm uppercase tracking-widest">
+                    <ExternalLink className="w-4 h-4" />
+                    Live Demo
+                  </a>
+                  <a href={project.github} className="flex items-center gap-2 text-white/50 font-black hover:text-white transition-colors text-sm uppercase tracking-widest">
+                    <Github className="w-4 h-4" />
+                    Source
+                  </a>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
 }
-

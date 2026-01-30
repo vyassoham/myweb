@@ -1,55 +1,49 @@
 import type { Metadata, Viewport } from "next";
-import { Poppins } from "next/font/google";
+import { Inter, Outfit } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next"
 
 import "./globals.css";
 
-const poppins = Poppins({
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-poppins",
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Soham - Software Engineer & Full Stack Developer",
-  description: "A passionate Software Engineer and Full Stack Developer. Creating meaningful and delightful digital products. Focused on building scalable and user-centric applications.",
+  title: "Soham | Full Stack Developer & AI Innovator",
+  description: "Worldwide personal portfolio of Soham, a world-class UI/UX designer and senior frontend engineer. Crafting cinematic digital experiences that blend deep technical skill with premium design taste.",
   keywords: [
     "Soham",
     "Software Engineer",
     "Full Stack Developer",
-    "Frontend Developer",
-    "React Developer",
+    "UI/UX Designer",
     "Next.js Developer",
-    "Web Designer",
+    "AI Enthusiast",
     "Portfolio",
   ],
-  authors: [{ name: "Soham" }],
-  creator: "Soham",
-  publisher: "Soham",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://soham.lol",
-    title: "Soham - Software Engineer & Full Stack Developer",
-    description: "A passionate Software Engineer and Full Stack Developer. Creating meaningful and delightful digital products.",
+    title: "Soham | Full Stack Developer & AI Innovator",
+    description: "Cinematic portfolio of a world-class engineer and designer.",
     siteName: "Soham Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Soham - Software Engineer & Full Stack Developer",
-    description: "A passionate Software Engineer and Full Stack Developer.",
+    title: "Soham | Full Stack Developer & AI Innovator",
+    description: "Cinematic portfolio of a world-class engineer and designer.",
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 };
 
@@ -57,6 +51,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
+  themeColor: "#0a0118",
 };
 
 export default function RootLayout({
@@ -65,13 +60,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="canonical" href="https://soham.lol" />
-      </head>
+    <html lang="en" className="dark">
       <body
-        className={`${poppins.variable} font-sans antialiased`}
+        className={`${inter.variable} ${outfit.variable} font-sans antialiased`}
       >
+        <div className="mesh-bg" />
         {children}
         <Analytics />
       </body>

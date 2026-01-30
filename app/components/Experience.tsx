@@ -1,84 +1,113 @@
-import Image from "next/image";
-import Link from "next/link";
+"use client";
 
-interface ExperienceCard {
-  id: number;
-  title: string;
-  description: string;
-  icon: string;
-}
+import { motion } from "framer-motion";
+import { Briefcase, GraduationCap, Trophy } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-const experienceCards: ExperienceCard[] = [
+const EXPERIENCES = [
   {
-    id: 1,
-    title: "WebHR - HR Management App",
-    description: "WebHR automates all of your company's HR processes such as Recruitment, Onboarding, Payroll, Time & Attendance, Leaves & PTO, Performance, and much more.",
-    icon: "/cards/card-1.png",
+    type: "work",
+    title: "Senior Software Architect",
+    company: "Loom Dynamics",
+    period: "2023 - Present",
+    desc: "Spearheading the core infrastructure design for AI-driven automation platforms. Improved system reliability by 99.9% through distributed architecture.",
+    skills: ["Architecture", "System Design", "Kubernetes"],
   },
   {
-    id: 2,
-    title: "WebHR Kiosk - Time Clock Kiosk",
-    description: "WebHR Kiosk is a time clock kiosk that allows you to clock in and out of your work. It is a simple and easy to use app that allows you to clock in and out of your work.",
-    icon: "/cards/card-2.png",
+    type: "work",
+    title: "Lead Frontend Engineer",
+    company: "Stripe Flow (Contract)",
+    period: "2022 - 2023",
+    desc: "Developed a mission-critical billing dashboard using Next.js and high-frequency real-time charts. Focused on accessibility and pixel-perfection.",
+    skills: ["React", "Motion", "D3.js"],
   },
   {
-    id: 3,
-    title: "Somezing - AI-Powered Agents",
-    description: "Somezing is a AI-Powered Agents to Automate Your Workflows. It is a simple and easy to use app that allows you to automate your workflows.",
-    icon: "/cards/card-3.png",
-  },
-  {
-    id: 4,
-    title: "FileIT - File Sharing App",
-    description: "FileIT is a file sharing app that allows you to share files with your friends and family. It is a simple and easy to use app that allows you to share files with your friends and family.",
-    icon: "/cards/card-4.png",
-  },
+    type: "work",
+    title: "Full Stack Developer",
+    company: "Startup Lab",
+    period: "2020 - 2022",
+    desc: "First engineering hire. Scaled the platform from 0 to 50k monthly active users. Integrated payment systems and ML features.",
+    skills: ["Node.js", "PostgreSQL", "AWS"],
+  }
 ];
 
 export default function Experience(): React.JSX.Element {
   return (
-    <section id="experience" className="py-20 px-6">
-      <div className="container mx-auto max-w-6xl">
-        <h2 className="text-4xl lg:text-5xl font-bold text-white mb-12 text-center">
-          Work Experience
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {experienceCards.map((card) => (
-            <div
-              key={card.id}
-              className="bg-gradient-to-r from-slate-950 via-purple-950 to-slate-950  backdrop-blur-sm rounded-xl p-6 border-t-3 border-purple-700 hover:shadow-2xl hover:shadow-purple-900 flex items-center gap-4"
-            >
-              <div className="mb-4 ">
-                <Image
-                  src={card.icon}
-                  alt={card.title}
-                  width={160}
-                  height={160}
-                  className="object-contain"
-                />
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold text-white mb-2">
-                  {card.title}
-                </h3>
-                <p className="text-white/70 text-sm mb-4">
-                  {card.description}
-                </p>
-                <Link
-                  href="https://soham.lol"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-purple-400 hover:text-purple-300 font-medium text-sm transition-colors inline-block"
-                >
-                  LEARN MORE →
-                </Link>
-              </div>
+    <section id="experience" className="section-padding relative">
+      <div className="container mx-auto max-w-4xl px-6">
+        <div className="flex flex-col items-center text-center mb-24 space-y-4">
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-brand-purple font-black text-sm uppercase tracking-[0.3em]"
+          >
+            The Journey
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-4xl md:text-7xl font-black font-display tracking-tight"
+          >
+            Evolution of <span className="text-white/40">Mindset</span>
+          </motion.h2>
+        </div>
 
-            </div>
-          ))}
+        <div className="relative">
+          {/* Vertical Line */}
+          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-brand-purple/50 via-brand-blue/50 to-transparent -translate-x-1/2 hidden md:block" />
+
+          <div className="space-y-16 md:space-y-24">
+            {EXPERIENCES.map((exp, idx) => (
+              <motion.div
+                key={exp.company}
+                initial={{ opacity: 0, x: idx % 2 === 0 ? -50 : 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                className={cn(
+                  "relative flex flex-col md:flex-row items-center gap-8 md:gap-0",
+                  idx % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                )}
+              >
+                {/* Timeline Dot */}
+                <div className="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-brand-purple border-4 border-brand-dark -translate-x-1/2 z-10 hidden md:block" />
+
+                {/* Content Card */}
+                <div className={cn(
+                  "w-full md:w-[45%] group",
+                  idx % 2 === 0 ? "md:pr-12" : "md:pl-12"
+                )}>
+                  <div className="glass p-8 rounded-[2rem] border-white/5 group-hover:border-brand-purple/50 transition-all shadow-2xl">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-brand-purple font-black text-[10px] uppercase tracking-widest">{exp.period}</span>
+                      <Briefcase className="w-4 h-4 text-white/20" />
+                    </div>
+
+                    <h3 className="text-2xl font-black text-white mb-2">{exp.title}</h3>
+                    <p className="text-brand-blue font-bold text-sm mb-6 uppercase tracking-widest">{exp.company}</p>
+
+                    <p className="text-white/60 text-sm leading-relaxed mb-6">
+                      {exp.desc}
+                    </p>
+
+                    <div className="flex flex-wrap gap-2">
+                      {exp.skills.map(skill => (
+                        <span key={skill} className="px-3 py-1 bg-white/5 rounded-lg text-[10px] font-black text-white/40 uppercase tracking-tighter">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="hidden md:block w-[10%]" />
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 }
-

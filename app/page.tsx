@@ -1,17 +1,21 @@
+"use client";
+
 import Header from "./components/Header";
 import Banner from "./components/Banner";
 import Experience from "./components/Experience";
 import About from "./components/About";
 import Projects from "./components/Projects";
+import Skills from "./components/Skills";
 import Footer from "./components/Footer";
 
 export default function Home(): React.JSX.Element {
   return (
-    <main className="min-h-screen bg-[#110720] text-white">
+    <main className="min-h-screen">
       <Header />
       <Banner />
-      <Experience />
       <About />
+      <Skills />
+      <Experience />
       <Projects />
       <Footer />
     </main>

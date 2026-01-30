@@ -1,150 +1,152 @@
 "use client";
 
-import Image from "next/image";
 import { useState, useEffect } from "react";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, Download, MousePointer2 } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+const ROLES = [
+  "Full Stack Developer",
+  "UI/UX Designer",
+  "AI Enthusiast",
+  "Problem Solver",
+  "Innovator",
+];
 
 export default function Banner(): React.JSX.Element {
-  const texts = ["Software Engineer", "Full Stack Developer", "Mobile App Developer"];
-  const [currentTextIndex, setCurrentTextIndex] = useState(0);
-  const [displayedText, setDisplayedText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [typingSpeed, setTypingSpeed] = useState(100);
+  const [roleIndex, setRoleIndex] = useState(0);
 
   useEffect(() => {
-    const currentText = texts[currentTextIndex];
+    const interval = setInterval(() => {
+      setRoleIndex((prev) => (prev + 1) % ROLES.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
-    if (!isDeleting) {
-      // Typing effect
-      if (displayedText.length < currentText.length) {
-        const timeout = setTimeout(() => {
-          setDisplayedText(currentText.slice(0, displayedText.length + 1));
-        }, typingSpeed);
-        return () => clearTimeout(timeout);
-      } else {
-        // Finished typing, wait before deleting
-        const timeout = setTimeout(() => {
-          setIsDeleting(true);
-          setTypingSpeed(50); // Faster deletion
-        }, 2000);
-        return () => clearTimeout(timeout);
-      }
-    } else {
-      // Deleting effect
-      if (displayedText.length > 0) {
-        const timeout = setTimeout(() => {
-          setDisplayedText(currentText.slice(0, displayedText.length - 1));
-        }, typingSpeed);
-        return () => clearTimeout(timeout);
-      } else {
-        // Finished deleting, move to next text
-        setIsDeleting(false);
-        setTypingSpeed(100); // Reset typing speed
-        setCurrentTextIndex((prev) => (prev + 1) % texts.length);
-      }
-    }
-  }, [displayedText, isDeleting, currentTextIndex, texts, typingSpeed]);
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center pt-20 px-6"
+      className="relative min-h-screen flex items-center justify-center pt-24 pb-12 px-6 overflow-hidden"
     >
-      <div className="container mx-auto max-w-6xl">
-        <div className="flex flex-col lg:flex-row items-center ">
-          {/* Left side - Text content */}
-          {/* Right side - Character image */}
-          <div className="flex justify-center lg:justify-end relative w-full lg:w-auto">
-            <div className="relative top-10">
-              {/* Mobile: Hello text positioned on top of image */}
-              <div className="lg:hidden  -top-150 z-10">
-                <div className="relative inline-block ">
-                  <Image
-                    src="/assets/arrow.png"
-                    alt="Arrow pointer"
-                    width={80}
-                    height={80}
-                    className="absolute top-5 rotate-z-280"
-                    style={{ width: "auto", height: "auto" }}
-                  />
-                  <div className="relative">
-                    <p className="text-white text-lg whitespace-nowrap">
-                      Hello! I Am{" "}
-                      <span className="text-purple-400">Soham</span>
-                    </p>
+      {/* Decorative Glows */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-purple/20 blur-[150px] animate-pulse rounded-full pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-brand-blue/10 blur-[150px] animate-pulse rounded-full pointer-events-none" />
+
+      <div className="container mx-auto max-w-7xl relative z-10">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-24">
+
+          {/* Left Content */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="flex-1 text-center lg:text-left space-y-8"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill text-brand-purple text-xs font-bold tracking-widest uppercase">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-purple opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-purple"></span>
+              </span>
+              Available for Collaboration
+            </div>
+
+            <div className="space-y-4">
+              <h1 className="text-5xl md:text-7xl lg:text-9xl font-black font-display text-white tracking-tighter leading-[0.9]">
+                SOHAM <br />
+                <span className="block mt-2 h-[1.1em] relative">
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={ROLES[roleIndex]}
+                      initial={{ y: 40, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ y: -40, opacity: 0 }}
+                      transition={{ duration: 0.5, ease: "anticipate" }}
+                      className="absolute left-0 right-0 lg:left-0 text-brand-gradient"
+                    >
+                      {ROLES[roleIndex]}
+                    </motion.span>
+                  </AnimatePresence>
+                </span>
+              </h1>
+            </div>
+
+            <p className="text-lg md:text-xl text-white/60 max-w-xl mx-auto lg:mx-0 font-sans leading-relaxed text-balance">
+              Architecting the future through pixel-perfect code and cinematic design systems.
+              Converting complex ideas into unforgettable digital masterpieces.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                href="#lab"
+                className="group w-full sm:w-auto px-8 py-4 bg-white text-brand-dark font-black rounded-2xl flex items-center justify-center gap-2 transition-all shadow-xl shadow-white/10"
+              >
+                View Labs
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </motion.a>
+
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                href="/resume.pdf"
+                className="w-full sm:w-auto px-8 py-4 glass text-white font-black rounded-2xl flex items-center justify-center gap-2 hover:bg-white/5 transition-all"
+              >
+                <Download className="w-5 h-5" />
+                Resume
+              </motion.a>
+            </div>
+          </motion.div>
+
+          {/* Right Visual */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+            className="flex-1 relative w-full max-w-2xl aspect-square lg:aspect-[4/5]"
+          >
+            <div className="absolute inset-0 bg-brand-purple/20 blur-[100px] rounded-full animate-float" />
+
+            <div className="relative w-full h-full rounded-3xl overflow-hidden glass border-white/10 shadow-3xl transform hover:scale-[1.02] transition-transform duration-700">
+              <Image
+                src="/assets/hero.png"
+                alt="Soham Visual"
+                fill
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
+
+              <div className="absolute bottom-8 left-8 right-8">
+                <div className="glass p-6 rounded-2xl border-white/5 space-y-2">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-brand-purple/20 border border-brand-purple/30 flex items-center justify-center overflow-hidden">
+                      <MousePointer2 className="w-5 h-5 text-brand-purple" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-bold text-sm">Interactive Portfolio</h4>
+                      <p className="text-white/40 text-xs">V2.0 Crafted in 2026</p>
+                    </div>
                   </div>
-                  <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-t-8 border-t-white/10"></div>
                 </div>
               </div>
-              <Image
-                src="/assets/me.png"
-                alt="Soham - Software Engineer and Developer"
-                width={300}
-                height={300}
-                className=" max-w-md absolute"
-                style={{ width: "auto", height: "auto" }}
-                priority
-              />
-              <Image
-                src="/assets/me-glow.png"
-                alt="Soham - Software Engineer and Developer"
-                width={300}
-                height={300}
-                className="max-w-md "
-                style={{ width: "auto", height: "auto" }}
-                priority
-              />
             </div>
-          </div>
-          <div className="flex-1 space-y-6 text-center lg:text-left">
-            {/* Desktop: Hello text in original position */}
-            <div className="hidden lg:inline-block relative">
-              <Image
-                src="/assets/arrow.png"
-                alt="Arrow pointer"
-                width={100}
-                height={100}
-                className="absolute "
-                style={{ left: "-100px", top: "-50px", width: "auto", height: "auto" }}
-              />
-              <div style={{ bottom: 40, position: "relative" }}>
-                <p className="text-white text-lg">
-                  Hello! I Am{" "}
-                  <span className="text-purple-400">Soham</span>
-                </p>
-              </div>
-              <div className="absolute -bottom-2 left-8 w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-t-8 border-t-white/10"></div>
-            </div>
-            <div className="">
-              <p className="text-2xl"> A Designer who </p>
-              <h1 className="text-5xl tracking-tight lg:text-7xl font-semibold text-white leading-tight">
-                Judges a book
-                <br /> by its{" "}
-                <span className="relative inline-block">
-                  <Image src="/assets/circle.png" alt="Circle" width={200} height={200} className="absolute mt-2" />
-                  <span className="bg-gradient-to-r from-violet-600 via-violet-400 to-violet-600 bg-clip-text text-transparent">
-                    cover
-                  </span>
-                </span>
-                ...
-              </h1>
-              <p className="text-md text-white/80">
-                Because if the cover does not impress you what else can?
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="space-y-3 pt-15 text-center lg:text-left">
-          <p className="text-5xl text-white font-bold">
-            I&apos;m a {displayedText}
-            <span className="animate-pulse">|</span>
-          </p>
-          <p className="text-lg lg:text-xl text-white/90 tracking-wide flex flex-wrap items-center justify-center lg:justify-start gap-2">
-            <span>Currently, I&apos;m focused on building scalable web solutions and exploring AI integrations.</span>
-          </p>
-          <p className="text-lg text-white/80 max-w-2xl mt-15 mx-auto lg:mx-0">
-            A passionate Software Engineer with a knack for creating intuitive and performant digital experiences. I specialize in React, Next.js, and crafting high-quality code.
-          </p>
+          </motion.div>
         </div>
       </div>
+
+      {/* Mouse Follower Indicator */}
+      <motion.div
+        animate={{ y: [0, 10, 0] }}
+        transition={{ repeat: Infinity, duration: 2 }}
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 opacity-30"
+      >
+        <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center pt-2">
+          <div className="w-1.5 h-1.5 bg-white rounded-full" />
+        </div>
+        <span className="text-[10px] uppercase font-bold tracking-widest">Scroll</span>
+      </motion.div>
     </section>
   );
 }
