@@ -1,32 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", var(--font-poppins), sans-serif;
-  --font-display: "Outfit", var(--font-poppins), sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui;
+  --font-display: "Outfit", ui-sans-serif, system-ui;
 
   --color-brand-purple: #8b5cf6;
   --color-brand-blue: #3b82f6;
-  --color-brand-dark: #0a0118;
+  --color-brand-dark: #070110;
+  --color-brand-glass: rgba(255, 255, 255, 0.03);
 }
 
 :root {
-  --background: #0a0118;
+  --background: #070110;
   --foreground: #ffffff;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-  background: var(--background);
-}
-
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
   overflow-x: hidden;
@@ -36,108 +26,88 @@ body {
 /* Cinematic Mesh Background */
 .mesh-bg {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   z-index: -1;
   background:
     radial-gradient(circle at 0% 0%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
     radial-gradient(circle at 100% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 0% 100%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
-  background-color: var(--background);
+    radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+  background-color: #070110;
 }
 
 .mesh-bg::after {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-  opacity: 0.05;
+  opacity: 0.03;
   pointer-events: none;
+  filter: contrast(150%) brightness(150%);
 }
 
 /* Glassmorphism */
 .glass {
   background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
 }
 
 .glass-pill {
   background: rgba(139, 92, 246, 0.1);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(139, 92, 246, 0.2);
 }
 
-/* Typography */
-.text-balance {
-  text-wrap: balance;
-}
-
-.text-gradient {
-  background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.7) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
+/* Typography Gradient */
 .text-brand-gradient {
-  background: linear-gradient(to right, #8b5cf6, #3b82f6);
+  background: linear-gradient(135deg, #fff 30%, #a78bfa 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* Layout Utilities */
+/* Section Utilities */
 .section-padding {
-  padding-top: 8rem;
-  padding-bottom: 8rem;
+  padding: 8rem 0;
 }
 
 @media (max-width: 768px) {
   .section-padding {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+    padding: 5rem 0;
   }
 }
 
-/* Scrollbar */
+/* Enhanced Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0118;
+  background: #070110;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(139, 92, 246, 0.3);
-  border-radius: 10px;
+  background: linear-gradient(to bottom, #8b5cf6, #3b82f6);
+  border-radius: 20px;
+  border: 3px solid #070110;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(139, 92, 246, 0.5);
-}
-
-/* Animations */
+/* Floating Animation */
 @keyframes float {
-  0% {
-    transform: translateY(0px);
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0);
   }
 
   50% {
-    transform: translateY(-20px);
-  }
-
-  100% {
-    transform: translateY(0px);
+    transform: translateY(-20px) rotate(1deg);
   }
 }
 
 .animate-float {
-  animation: float 6s ease-in-out infinite;
+  animation: float 8s ease-in-out infinite;
 }
