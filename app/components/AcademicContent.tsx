@@ -130,38 +130,6 @@ export default function AcademicContent(): React.JSX.Element {
                 </div>
             </section>
 
-            {/* 4. Publications / Writing */}
-            <section id="writing" className="scroll-mt-24">
-                <h2 className="text-4xl font-bold mb-12 pb-4 border-b border-gray-200 dark:border-gray-800">Recent Posts</h2>
-                <div className="space-y-10">
-                    {[
-                        {
-                            title: "Optimizing React Rendering Performance",
-                            date: "Oct 24, 2026",
-                            readTime: "5 min read",
-                            summary: "A deep dive into React concurrent mode and how to optimize large component trees."
-                        },
-                        {
-                            title: "Building Resilient Microservices",
-                            date: "Sep 15, 2026",
-                            readTime: "8 min read",
-                            summary: "Patterns and practices for building fault-tolerant distributed systems using Go."
-                        }
-                    ].map((post, idx) => (
-                        <div key={idx} className="group cursor-pointer">
-                            <h3 className="text-2xl font-bold mb-3 group-hover:text-blue-600 transition-colors">{post.title}</h3>
-                            <div className="flex items-center gap-4 text-sm text-slate-500 mb-4 font-medium">
-                                <span>{post.date}</span>
-                                <span>•</span>
-                                <span>{post.readTime}</span>
-                            </div>
-                            <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl">
-                                {post.summary}
-                            </p>
-                        </div>
-                    ))}
-                </div>
-            </section>
 
         </main>
     );

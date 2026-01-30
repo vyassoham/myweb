@@ -4,11 +4,8 @@ import { motion } from "framer-motion";
 import { Search, Moon, Sun } from "lucide-react";
 
 const NAV_LINKS = [
-    { name: "Bio", href: "#about" },
     { name: "Experience", href: "#experience" },
     { name: "Projects", href: "#projects" },
-    { name: "Writing", href: "#writing" },
-    { name: "Teaching", href: "#teaching" },
 ];
 
 export default function AcademicNavbar(): React.JSX.Element {
