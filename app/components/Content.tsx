@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Calendar, Building, ArrowUpRight } from "lucide-react";
 
 const EXPERIENCES = [
@@ -54,29 +53,6 @@ const PROJECTS = [
     }
 ];
 
-// Animation variants
-const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.1
-        }
-    }
-};
-
-const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: {
-            duration: 0.4,
-            ease: [0, 0, 0.2, 1]
-        }
-    }
-};
-
 export default function Content(): React.JSX.Element {
     return (
         <>
@@ -87,18 +63,12 @@ export default function Content(): React.JSX.Element {
                         <h2 className="section-header__title">Experience</h2>
                     </div>
 
-                    <motion.div
-                        className="flex flex-col gap-8"
-                        variants={containerVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, margin: "-50px" }}
-                    >
+                    <div className="flex flex-col gap-8">
                         {EXPERIENCES.map((job, idx) => (
-                            <motion.article
+                            <article
                                 key={idx}
-                                className="card card--accent"
-                                variants={itemVariants}
+                                className="card card--accent animate-fade-in-up"
+                                style={{ animationDelay: `${idx * 0.1}s` }}
                             >
                                 <div className="grid md:grid-cols-3 gap-8">
                                     {/* Meta */}
@@ -124,9 +94,9 @@ export default function Content(): React.JSX.Element {
                                         </div>
                                     </div>
                                 </div>
-                            </motion.article>
+                            </article>
                         ))}
-                    </motion.div>
+                    </div>
                 </div>
             </section>
 
@@ -137,19 +107,13 @@ export default function Content(): React.JSX.Element {
                         <h2 className="section-header__title">Featured Projects</h2>
                     </div>
 
-                    <motion.div
-                        className="grid grid--2 gap-6"
-                        variants={containerVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, margin: "-50px" }}
-                    >
+                    <div className="grid grid--2 gap-6">
                         {PROJECTS.map((project, idx) => (
-                            <motion.a
+                            <a
                                 key={idx}
                                 href={project.href}
-                                className="card card--accent group"
-                                variants={itemVariants}
+                                className="card card--accent group animate-fade-in-up"
+                                style={{ animationDelay: `${idx * 0.1}s` }}
                             >
                                 <div className="flex items-start justify-between mb-4">
                                     <h3 className="text-xl font-bold group-hover:text-[var(--accent)] transition-colors">
@@ -159,9 +123,9 @@ export default function Content(): React.JSX.Element {
                                 </div>
                                 <p className="leading-relaxed mb-6">{project.description}</p>
                                 <code className="text-sm">{project.stack}</code>
-                            </motion.a>
+                            </a>
                         ))}
-                    </motion.div>
+                    </div>
                 </div>
             </section>
         </>
