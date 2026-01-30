@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Inter, Outfit, Fira_Code } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next"
+import MatrixRain from "./components/MatrixRain";
 
 import "./globals.css";
 
@@ -16,30 +17,37 @@ const outfit = Outfit({
   display: "swap",
 });
 
+const firaCode = Fira_Code({
+  subsets: ["latin"],
+  variable: "--font-fira-code",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "Soham | Full Stack Developer & AI Innovator",
-  description: "Worldwide personal portfolio of Soham, a world-class UI/UX designer and senior frontend engineer. Crafting cinematic digital experiences that blend deep technical skill with premium design taste.",
+  title: "Soham | Cyber Security Specialist & Full Stack Developer",
+  description: "Elite cybersecurity professional and full-stack developer. Penetration testing, exploit development, and cutting-edge web technologies.",
   keywords: [
     "Soham",
-    "Software Engineer",
+    "Cybersecurity",
+    "Penetration Testing",
     "Full Stack Developer",
-    "UI/UX Designer",
-    "Next.js Developer",
-    "AI Enthusiast",
+    "Ethical Hacker",
+    "Bug Bounty Hunter",
+    "Network Security",
     "Portfolio",
   ],
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://soham.lol",
-    title: "Soham | Full Stack Developer & AI Innovator",
-    description: "Cinematic portfolio of a world-class engineer and designer.",
-    siteName: "Soham Portfolio",
+    title: "Soham | Cyber Security Specialist",
+    description: "Elite cybersecurity arsenal and full-stack development portfolio.",
+    siteName: "Soham Cyber Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Soham | Full Stack Developer & AI Innovator",
-    description: "Cinematic portfolio of a world-class engineer and designer.",
+    title: "Soham | Cyber Security Specialist",
+    description: "Elite cybersecurity arsenal and full-stack development portfolio.",
   },
   robots: {
     index: true,
@@ -51,7 +59,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#0a0118",
+  themeColor: "#00ff41",
 };
 
 export default function RootLayout({
@@ -62,9 +70,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${inter.variable} ${outfit.variable} font-sans antialiased`}
+        className={`${inter.variable} ${outfit.variable} ${firaCode.variable} font-sans antialiased`}
       >
-        <div className="mesh-bg" />
+        <MatrixRain />
+        <div className="cyber-bg" />
         {children}
         <Analytics />
       </body>
