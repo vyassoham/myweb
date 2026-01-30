@@ -1,18 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { Terminal } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Header(): React.JSX.Element {
   return (
     <header className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-5xl">
-      <nav className="cyber-glass py-4 px-8 rounded-none flex items-center justify-between border-cyber-green/20 shadow-2xl">
+      <nav className="glass py-4 px-8 rounded-2xl flex items-center justify-between shadow-2xl">
         <Link
           href="/"
-          className="group flex items-center gap-2"
+          className="group"
         >
-          <Terminal className="w-6 h-6 text-cyber-green animate-pulse" />
-          <span className="text-2xl font-black font-mono text-cyber-glow tracking-tighter glitch" data-text="SOHAM">
+          <span className="text-2xl font-black font-display bg-gradient-to-r from-violet-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent tracking-tighter">
             SOHAM
           </span>
         </Link>
@@ -20,41 +19,41 @@ export default function Header(): React.JSX.Element {
           <li>
             <Link
               href="#home"
-              className="text-cyber-green/70 hover:text-cyber-green transition-colors text-xs font-mono font-bold uppercase tracking-widest"
+              className="text-white/70 hover:text-white transition-colors text-sm font-semibold"
             >
-              [HOME]
+              Home
             </Link>
           </li>
           <li>
             <Link
               href="#tools"
-              className="text-cyber-blue/70 hover:text-cyber-blue transition-colors text-xs font-mono font-bold uppercase tracking-widest"
+              className="text-white/70 hover:text-white transition-colors text-sm font-semibold"
             >
-              [ARSENAL]
+              Tools
             </Link>
           </li>
           <li>
             <Link
               href="#experience"
-              className="text-cyber-green/70 hover:text-cyber-green transition-colors text-xs font-mono font-bold uppercase tracking-widest"
+              className="text-white/70 hover:text-white transition-colors text-sm font-semibold"
             >
-              [WORK]
+              Work
             </Link>
           </li>
           <li>
             <Link
               href="#lab"
-              className="text-cyber-green/70 hover:text-cyber-green transition-colors text-xs font-mono font-bold uppercase tracking-widest"
+              className="text-white/70 hover:text-white transition-colors text-sm font-semibold"
             >
-              [PROJECTS]
+              Projects
             </Link>
           </li>
           <li>
             <Link
               href="#contact"
-              className="px-4 py-2 bg-black border border-cyber-green text-cyber-green rounded-none text-xs font-mono font-black uppercase hover:bg-cyber-green hover:text-black transition-all"
+              className="px-6 py-2.5 bg-gradient-to-r from-violet-600 to-blue-600 text-white rounded-xl text-sm font-bold hover:shadow-lg hover:shadow-violet-500/50 transition-all transform hover:-translate-y-0.5"
             >
-              {'>'} CONTACT
+              Contact
             </Link>
           </li>
         </ul>
