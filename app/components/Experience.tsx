@@ -58,20 +58,20 @@ export default function Experience(): React.JSX.Element {
                 />
               </div>
               <div>
-              <h3 className="text-xl font-semibold text-white mb-2">
-                {card.title}
-              </h3>
-              <p className="text-white/70 text-sm mb-4">
-                {card.description}
-              </p>
-              <Link
-                href="https://ibiimemon.com/lab"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-purple-400 hover:text-purple-300 font-medium text-sm transition-colors inline-block"
-              >
-                LEARN MORE →
-              </Link>
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  {card.title}
+                </h3>
+                <p className="text-white/70 text-sm mb-4">
+                  {card.description}
+                </p>
+                <Link
+                  href="https://soham.lol"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-purple-400 hover:text-purple-300 font-medium text-sm transition-colors inline-block"
+                >
+                  LEARN MORE →
+                </Link>
               </div>
 
             </div>

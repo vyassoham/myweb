@@ -12,34 +12,33 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Ibrahim Memon - Software Engineer & UI/UX Designer",
-  description: "A self-taught UI/UX designer and Software Engineer at WebHR. Creating meaningful and delightful digital products that balance user needs and business goals. 3+ years of industry experience.",
+  title: "Soham - Software Engineer & Full Stack Developer",
+  description: "A passionate Software Engineer and Full Stack Developer. Creating meaningful and delightful digital products. Focused on building scalable and user-centric applications.",
   keywords: [
-    "Ibrahim Memon",
+    "Soham",
     "Software Engineer",
-    "UI/UX Designer",
+    "Full Stack Developer",
     "Frontend Developer",
     "React Developer",
     "Next.js Developer",
     "Web Designer",
-    "WebHR Engineer",
     "Portfolio",
   ],
-  authors: [{ name: "Ibrahim Memon" }],
-  creator: "Ibrahim Memon",
-  publisher: "Ibrahim Memon",
+  authors: [{ name: "Soham" }],
+  creator: "Soham",
+  publisher: "Soham",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://ibiimemon.com",
-    title: "Ibrahim Memon - Software Engineer & UI/UX Designer",
-    description: "A self-taught UI/UX designer and Software Engineer at WebHR. Creating meaningful and delightful digital products.",
-    siteName: "Ibrahim Memon Portfolio",
+    url: "https://soham.lol",
+    title: "Soham - Software Engineer & Full Stack Developer",
+    description: "A passionate Software Engineer and Full Stack Developer. Creating meaningful and delightful digital products.",
+    siteName: "Soham Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ibrahim Memon - Software Engineer & UI/UX Designer",
-    description: "A self-taught UI/UX designer and Software Engineer at WebHR.",
+    title: "Soham - Software Engineer & Full Stack Developer",
+    description: "A passionate Software Engineer and Full Stack Developer.",
   },
   robots: {
     index: true,
@@ -68,7 +67,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="canonical" href="https://ibiimemon.com" />
+        <link rel="canonical" href="https://soham.lol" />
       </head>
       <body
         className={`${poppins.variable} font-sans antialiased`}
