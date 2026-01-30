@@ -5,14 +5,14 @@ import { Calendar, Building, ArrowUpRight } from "lucide-react";
 
 export default function AcademicContent(): React.JSX.Element {
     return (
-        <main className="space-y-40 pb-20">
+        <div className="max-w-6xl mx-auto px-6 py-16 space-y-24">
 
-            {/* Biography moved to Hero */}
-
-            {/* 2. Experience Section */}
-            <section id="experience" className="scroll-mt-24">
-                <h2 className="text-4xl font-bold mb-12 pb-4 border-b border-gray-200 dark:border-gray-800">Experience</h2>
-                <div className="space-y-12">
+            {/* Experience Section */}
+            <section id="experience">
+                <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-12">
+                    Experience
+                </h2>
+                <div className="space-y-8">
                     {[
                         {
                             role: "Senior Software Architect",
@@ -42,35 +42,33 @@ export default function AcademicContent(): React.JSX.Element {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: idx * 0.1 }}
-                            className="academic-card group relative overflow-hidden"
+                            className="professional-card p-8"
                         >
-                            {/* Accent Glow */}
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 blur-3xl rounded-full -mr-16 -mt-16 group-hover:bg-blue-500/10 transition-colors" />
-
-                            <div className="flex flex-col md:flex-row gap-8 relative z-10">
-                                <div className="md:w-1/3">
-                                    <div className="space-y-3">
-                                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700">
-                                            <Calendar className="w-3 h-3" />
-                                            {job.period}
-                                        </div>
-                                        <h4 className="text-lg font-bold text-blue-600 dark:text-blue-400 flex items-center gap-2">
-                                            <Building className="w-4 h-4" />
-                                            {job.company}
-                                        </h4>
+                            <div className="flex flex-col md:flex-row gap-8">
+                                <div className="md:w-1/3 space-y-3">
+                                    <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 text-sm font-bold rounded-lg">
+                                        <Calendar className="w-4 h-4" />
+                                        {job.period}
                                     </div>
+                                    <h4 className="text-lg font-bold text-blue-600 dark:text-blue-400 flex items-center gap-2">
+                                        <Building className="w-5 h-5" />
+                                        {job.company}
+                                    </h4>
                                 </div>
 
-                                <div className="md:w-2/3 border-t md:border-t-0 md:border-l border-slate-100 dark:border-slate-800 pt-6 md:pt-0 md:pl-8">
-                                    <h3 className="text-2xl font-black mb-4 group-hover:text-blue-600 transition-colors tracking-tight">
+                                <div className="md:w-2/3 md:border-l md:border-slate-200 dark:md:border-slate-700 md:pl-8">
+                                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
                                         {job.role}
                                     </h3>
-                                    <p className="text-slate-600 dark:text-slate-300 mb-6 leading-relaxed text-lg">
+                                    <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
                                         {job.desc}
                                     </p>
                                     <div className="flex flex-wrap gap-2">
                                         {job.tags.map(tag => (
-                                            <span key={tag} className="px-3 py-1 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 text-xs font-bold rounded-md border border-slate-200 dark:border-slate-700 uppercase tracking-tighter">
+                                            <span
+                                                key={tag}
+                                                className="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold rounded-md"
+                                            >
                                                 {tag}
                                             </span>
                                         ))}
@@ -82,10 +80,12 @@ export default function AcademicContent(): React.JSX.Element {
                 </div>
             </section>
 
-            {/* 3. Projects Section */}
-            <section id="projects" className="scroll-mt-24">
-                <h2 className="text-4xl font-bold mb-12 pb-4 border-b border-gray-200 dark:border-gray-800">Featured Projects</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Projects Section */}
+            <section id="projects">
+                <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-12">
+                    Featured Projects
+                </h2>
+                <div className="grid md:grid-cols-2 gap-6">
                     {[
                         {
                             title: "Quantum Dashboard",
@@ -96,7 +96,7 @@ export default function AcademicContent(): React.JSX.Element {
                         {
                             title: "CyberLink Platform",
                             desc: "End-to-end encrypted messaging platform with double-ratchet algorithm.",
-                            stack: "TypeScript, WebRTC, PostageSQL",
+                            stack: "TypeScript, WebRTC, PostgreSQL",
                             link: "#"
                         },
                         {
@@ -112,25 +112,28 @@ export default function AcademicContent(): React.JSX.Element {
                             link: "#"
                         }
                     ].map((project, idx) => (
-                        <a href={project.link} key={idx} className="block group">
-                            <div className="academic-card h-full hover:border-blue-500 transition-colors p-8">
-                                <div className="flex justify-between items-start mb-6">
-                                    <h3 className="text-xl font-bold group-hover:text-blue-600 transition-colors">{project.title}</h3>
-                                    <ArrowUpRight className="w-5 h-5 text-slate-400 group-hover:text-blue-500" />
-                                </div>
-                                <p className="text-slate-600 dark:text-slate-300 text-base mb-6 leading-relaxed">
-                                    {project.desc}
-                                </p>
-                                <div className="text-sm font-mono text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800/50 inline-block px-3 py-1 rounded">
-                                    {project.stack}
-                                </div>
+                        <a
+                            href={project.link}
+                            key={idx}
+                            className="block professional-card p-8 group"
+                        >
+                            <div className="flex justify-between items-start mb-4">
+                                <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                                    {project.title}
+                                </h3>
+                                <ArrowUpRight className="w-5 h-5 text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
+                            </div>
+                            <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                                {project.desc}
+                            </p>
+                            <div className="text-sm font-mono text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800/50 inline-block px-3 py-1.5 rounded-md">
+                                {project.stack}
                             </div>
                         </a>
                     ))}
                 </div>
             </section>
 
-
-        </main>
+        </div>
     );
 }

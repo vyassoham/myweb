@@ -1,7 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Search, Moon, Sun } from "lucide-react";
+import { Search, Moon } from "lucide-react";
 
 const NAV_LINKS = [
     { name: "Experience", href: "#experience" },
@@ -10,30 +9,34 @@ const NAV_LINKS = [
 
 export default function AcademicNavbar(): React.JSX.Element {
     return (
-        <nav className="flex items-center justify-between py-4 px-8 border-b border-gray-100 dark:border-gray-800">
-            <div className="text-xl font-black tracking-tighter">
-                Soham Vyas
-            </div>
+        <nav className="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-700">
+            <div className="max-w-6xl mx-auto px-6 py-4">
+                <div className="flex items-center justify-between">
+                    <div className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">
+                        Soham Vyas
+                    </div>
 
-            <div className="hidden md:flex items-center gap-8">
-                {NAV_LINKS.map((link) => (
-                    <a
-                        key={link.name}
-                        href={link.href}
-                        className="text-sm font-semibold text-slate-500 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition-colors"
-                    >
-                        {link.name}
-                    </a>
-                ))}
-            </div>
+                    <div className="hidden md:flex items-center gap-8">
+                        {NAV_LINKS.map((link) => (
+                            <a
+                                key={link.name}
+                                href={link.href}
+                                className="text-sm font-medium text-slate-600 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 transition-colors"
+                            >
+                                {link.name}
+                            </a>
+                        ))}
+                    </div>
 
-            <div className="flex items-center gap-4 text-slate-400">
-                <button className="p-2 hover:text-blue-600 transition-colors">
-                    <Search className="w-5 h-5" />
-                </button>
-                <button className="p-2 hover:text-blue-600 transition-colors">
-                    <Moon className="w-5 h-5" />
-                </button>
+                    <div className="flex items-center gap-3">
+                        <button className="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">
+                            <Search className="w-5 h-5" />
+                        </button>
+                        <button className="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">
+                            <Moon className="w-5 h-5" />
+                        </button>
+                    </div>
+                </div>
             </div>
         </nav>
     );

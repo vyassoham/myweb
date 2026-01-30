@@ -2,34 +2,18 @@
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui;
-  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
-  --font-mono: "JetBrains Mono", monospace;
-
-  --color-academic-bg: #ffffff;
-  --color-academic-bg-soft: #f8f9fa;
-  --color-academic-text: #1f2937;
-  --color-academic-text-light: #6b7280;
-  --color-academic-primary: #2563eb;
-  /* Royal Blue */
-  --color-academic-border: #e5e7eb;
+  --font-display: "Inter", ui-sans-serif, system-ui;
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #1f2937;
+  --background: #f8fafc;
+  --foreground: #0f172a;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0f172a;
-    /* Slate 900 */
-    --foreground: #f1f5f9;
-    /* Slate 100 */
-    --color-academic-bg: #0f172a;
-    --color-academic-bg-soft: #1e293b;
-    --color-academic-text: #f1f5f9;
-    --color-academic-text-light: #94a3b8;
-    --color-academic-border: #334155;
+    --foreground: #f8fafc;
   }
 }
 
@@ -40,91 +24,68 @@
 }
 
 body {
-  background-color: var(--background);
+  background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
   line-height: 1.6;
   user-select: none;
-  /* Security measure: prevent text selection */
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Typography Overrides */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-sans);
+  font-family: var(--font-display);
   font-weight: 700;
   letter-spacing: -0.025em;
+  line-height: 1.2;
 }
 
-/* Links */
-a {
-  text-decoration: none;
-  transition: color 0.2s ease;
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
 }
 
-a:hover {
-  text-decoration: none;
-}
-
-/* Container */
-.academic-container {
-  max-width: 1280px;
-  /* Slightly wider */
-  margin: 0 auto;
-  padding: 2rem;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 4rem;
-  /* Initial gap increased */
-}
-
-@media (min-width: 1024px) {
-  .academic-container {
-    grid-template-columns: 380px 1fr;
-    /* Sidebar slightly wider to match gap */
-    gap: 6rem;
-    /* Much wider gap between sidebar and content */
-    padding: 5rem 3rem;
-    /* More vertical and horizontal padding */
-  }
-}
-
-/* Card Styles */
-.academic-card {
-  background: var(--background);
-  border: 1px solid var(--color-academic-border);
+/* Professional Card Styles */
+.professional-card {
+  background: white;
+  border: 1px solid #e2e8f0;
   border-radius: 16px;
-  /* Softer corners */
-  padding: 2rem;
-  /* Increased internal padding */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
   transition: all 0.2s ease;
 }
 
-.academic-card:hover {
+.professional-card:hover {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
-  box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.1);
-  /* Softer, deeper shadow */
-  border-color: var(--color-academic-primary);
 }
 
-/* Sidebar Styles */
-.sidebar {
-  position: relative;
-}
-
-@media (min-width: 1024px) {
-  .sidebar {
-    position: sticky;
-    top: 5rem;
-    /* More breathing room from top of screen */
-    height: fit-content;
+@media (prefers-color-scheme: dark) {
+  .professional-card {
+    background: #1e293b;
+    border-color: #334155;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
   }
+
+  .professional-card:hover {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Remove Tailwind's default focus rings for cleaner look */
+*:focus {
+  outline: none;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
 }
