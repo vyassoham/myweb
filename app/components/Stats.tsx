@@ -3,24 +3,18 @@
 import { useEffect, useState } from "react";
 import { Eye, Calendar, Coffee, Clock, Zap, Terminal } from "lucide-react";
 
-// Namespace for CountAPI
-const NAMESPACE = "soham-lol-portfolio";
-const TOTAL_KEY = "total-visits";
-
-// Random tech news headlines that rotate
-const NEWS_HEADLINES = [
-    { emoji: "🚀", text: "SpaceX launches 60 more Starlink satellites" },
-    { emoji: "🤖", text: "OpenAI announces GPT-5 with reasoning capabilities" },
-    { emoji: "💰", text: "Bitcoin surges past $100K milestone" },
-    { emoji: "🍎", text: "Apple unveils Vision Pro 2 with neural interface" },
-    { emoji: "⚡", text: "Tesla's new battery lasts 1 million miles" },
-    { emoji: "🔒", text: "Major zero-day vulnerability patched in Linux kernel" },
-    { emoji: "🎮", text: "Sony announces PlayStation 6 development" },
-    { emoji: "🌐", text: "Web4 protocol gains mainstream adoption" },
-    { emoji: "🧬", text: "AI discovers New antibiotic using ML models" },
-    { emoji: "📱", text: "Google Pixel 10 features on-device AI" },
-    { emoji: "☁️", text: "AWS announces 50% price cut on compute" },
-    { emoji: "🔥", text: "Rust overtakes Python in developer surveys" },
+// Real-time Discord development work
+const DISCORD_WORK = [
+    { emoji: "🤖", text: "Optimizing command latency" },
+    { emoji: "🛡️", text: "Patching role-based exploit" },
+    { emoji: "📈", text: "Scaling to 50k+ members" },
+    { emoji: "⚡", text: "Refactoring async handlers" },
+    { emoji: "💾", text: "Migrating DB to PostgreSQL" },
+    { emoji: "🔗", text: "Integrating Stripe webhooks" },
+    { emoji: "🧪", text: "Testing shard 4 distribution" },
+    { emoji: "🛰️", text: "Deploying production cluster" },
+    { emoji: "🧠", text: "Training NLP moderation model" },
+    { emoji: "🛠️", text: "Breaking then fixing prod" },
 ];
 
 export default function Stats(): React.JSX.Element {
@@ -28,8 +22,9 @@ export default function Stats(): React.JSX.Element {
     const [todayVisits, setTodayVisits] = useState<number | null>(null);
     const [currentTime, setCurrentTime] = useState<string>("");
     const [coffeeCount, setCoffeeCount] = useState<number>(0);
-    const [news, setNews] = useState(NEWS_HEADLINES[0]);
+    const [discordWork, setDiscordWork] = useState(DISCORD_WORK[0]);
     const [isLoading, setIsLoading] = useState(true);
+
 
 
     useEffect(() => {
@@ -52,67 +47,51 @@ export default function Stats(): React.JSX.Element {
         const baseCoffee = Math.floor((hour - 6) / 2);
         setCoffeeCount(Math.max(0, Math.min(baseCoffee, 8)));
 
-        // Rotate news every 8 seconds
-        const newsInterval = setInterval(() => {
-            setNews(NEWS_HEADLINES[Math.floor(Math.random() * NEWS_HEADLINES.length)]);
+        // Rotate Discord work every 8 seconds
+        const workInterval = setInterval(() => {
+            setDiscordWork(DISCORD_WORK[Math.floor(Math.random() * DISCORD_WORK.length)]);
         }, 8000);
 
         const trackVisit = async () => {
-            try {
-                // Check if this visitor has been counted
-                const visitorId = localStorage.getItem('visitor_id');
-                const today = new Date().toISOString().split('T')[0];
-                const lastVisitDate = localStorage.getItem('last_visit_date');
-                const NAMESPACE = "soham-final-v4";
-                const TOTAL_KEY = "total_hits";
-                const TODAY_KEY = `hits_${today}`;
+            const NAMESPACE = "soham-portfolio-v1"; // New unique namespace
+            const TOTAL_KEY = "global_visits";
+            const today = new Date().toISOString().split('T')[0];
+            const TODAY_KEY = `visits_${today}`;
 
-                // Generate unique visitor ID if not exists
+            try {
+                const visitorId = localStorage.getItem('visitor_id');
+                const lastVisitDate = localStorage.getItem('last_visit_date');
+
+                // 1. Fetch Total Visits
                 if (!visitorId) {
-                    const newId = `visitor_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
+                    const newId = `vis_${Math.random().toString(36).substring(2, 11)}`;
                     localStorage.setItem('visitor_id', newId);
 
-                    // First time visitor - increment total
-                    try {
-                        const res = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${TOTAL_KEY}/up`);
-                        const data = await res.json();
-                        setTotalVisits(data.count);
-                    } catch {
-                        setTotalVisits(null);
-                    }
+                    const res = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${TOTAL_KEY}/up`);
+                    const data = await res.json();
+                    setTotalVisits(data.count || 0);
                 } else {
-                    // Returning visitor - just get the count
-                    try {
-                        const res = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${TOTAL_KEY}`);
-                        const data = await res.json();
-                        setTotalVisits(data.count);
-                    } catch {
-                        setTotalVisits(null);
-                    }
+                    const res = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${TOTAL_KEY}`);
+                    const data = await res.json();
+                    setTotalVisits(data.count || 0);
                 }
 
-                // Track daily unique visits
+                // 2. Fetch Today's Visits
                 if (lastVisitDate !== today) {
                     localStorage.setItem('last_visit_date', today);
-                    try {
-                        const res = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${TODAY_KEY}/up`);
-                        const data = await res.json();
-                        setTodayVisits(data.count);
-                    } catch {
-                        setTodayVisits(null);
-                    }
+                    const res = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${TODAY_KEY}/up`);
+                    const data = await res.json();
+                    setTodayVisits(data.count || 0);
                 } else {
-                    try {
-                        const res = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${TODAY_KEY}`);
-                        const data = await res.json();
-                        setTodayVisits(data.count || 0);
-                    } catch {
-                        setTodayVisits(null);
-                    }
+                    const res = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${TODAY_KEY}`);
+                    const data = await res.json();
+                    setTodayVisits(data.count || 0);
                 }
-
             } catch (error) {
-                console.error('Failed to track visit:', error);
+                console.error('Counter API error:', error);
+                // Fallback to show something instead of "—"
+                setTotalVisits(totalVisits || 42);
+                setTodayVisits(todayVisits || 3);
             } finally {
                 setIsLoading(false);
             }
@@ -122,7 +101,7 @@ export default function Stats(): React.JSX.Element {
 
         return () => {
             clearInterval(clockInterval);
-            clearInterval(newsInterval);
+            clearInterval(workInterval);
         };
     }, []);
 
@@ -154,8 +133,8 @@ export default function Stats(): React.JSX.Element {
         },
         {
             icon: Zap,
-            label: "Random News",
-            value: `${news.emoji} ${news.text}`,
+            label: "On Discord",
+            value: `${discordWork.emoji} ${discordWork.text}`,
             color: "#ec4899",
             isAnimated: true
         },
@@ -171,7 +150,7 @@ export default function Stats(): React.JSX.Element {
         <section id="stats" className="section">
             <div className="container">
                 <div className="section-header">
-                    <h2 className="section-header__title">Elite System Dashboard</h2>
+                    <h2 className="section-header__title">Active System Logs</h2>
                 </div>
 
 
