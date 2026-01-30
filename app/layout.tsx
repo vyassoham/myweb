@@ -62,9 +62,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${inter.variable} ${outfit.variable} font-sans antialiased`}
+        className={`${inter.variable} ${outfit.variable} font-sans antialiased text-slate-900 dark:text-slate-100 bg-slate-50 dark:bg-slate-900`}
       >
-        <div className="premium-bg" />
         {children}
         <Analytics />
       </body>
