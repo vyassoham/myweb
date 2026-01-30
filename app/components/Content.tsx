@@ -4,25 +4,18 @@ import { Calendar, Building, ArrowUpRight } from "lucide-react";
 
 const EXPERIENCES = [
     {
-        role: "Senior Software Architect",
-        company: "Loom Dynamics",
-        period: "2023 - Present",
-        description: "Spearheading the core infrastructure design for AI-driven automation platforms. Improved system reliability by 99.9% through distributed architecture.",
-        tags: ["System Architecture", "AI", "Leadership"]
+        role: "Student & Developer",
+        company: "IIT Jodhpur — Data Science Focus",
+        period: "2024 - Present",
+        description: "Pursuing rigorous technical coursework in data science, programming, and system design. Built real-world tools using Python, C, R, and SQL, focusing on automation, Discord bots, and scalable logic flows.",
+        tags: ["Python", "C", "SQL", "Automation"]
     },
     {
-        role: "Lead Frontend Engineer",
-        company: "Stripe Flow (Contract)",
-        period: "2022 - 2023",
-        description: "Developed a mission-critical billing dashboard using Next.js and high-frequency real-time charts. Focused on accessibility and pixel-perfection.",
-        tags: ["React", "Performance", "D3.js"]
-    },
-    {
-        role: "Full Stack Developer",
-        company: "Startup Lab",
-        period: "2020 - 2022",
-        description: "First engineering hire. Scaled the platform from 0 to 50k monthly active users. Integrated payment systems and ML features.",
-        tags: ["Growth", "Full Stack", "AWS"]
+        role: "Self-Directed Technical Projects",
+        company: "Independent Research & Development",
+        period: "Ongoing",
+        description: "Built multi-phase software systems with modular architecture and real-time data processing. Developed Streamlit-based interfaces for data visualization and practiced rigorous system thinking.",
+        tags: ["System Thinking", "Streamlit", "Data Pipelines"]
     }
 ];
 
