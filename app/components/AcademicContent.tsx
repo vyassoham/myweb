@@ -49,31 +49,48 @@ export default function AcademicContent(): React.JSX.Element {
                             tags: ["Growth", "Full Stack", "AWS"]
                         }
                     ].map((job, idx) => (
-                        <div key={idx} className="group flex flex-col md:flex-row gap-4 md:gap-8">
-                            <div className="md:w-1/4 pt-1">
-                                <span className="text-sm font-bold text-slate-500 dark:text-slate-400 flex items-center gap-2">
-                                    <Calendar className="w-4 h-4" />
-                                    {job.period}
-                                </span>
-                                <span className="text-sm font-semibold text-blue-600 dark:text-blue-400 flex items-center gap-2 mt-1">
-                                    <Building className="w-4 h-4" />
-                                    {job.company}
-                                </span>
-                            </div>
-                            <div className="md:w-3/4">
-                                <h3 className="text-xl font-bold mb-2 group-hover:text-blue-600 transition-colors">{job.role}</h3>
-                                <p className="text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
-                                    {job.desc}
-                                </p>
-                                <div className="flex flex-wrap gap-2">
-                                    {job.tags.map(tag => (
-                                        <span key={tag} className="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 text-xs rounded border border-gray-200 dark:border-gray-700">
-                                            {tag}
-                                        </span>
-                                    ))}
+                        <motion.div
+                            key={idx}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: idx * 0.1 }}
+                            className="academic-card group relative overflow-hidden"
+                        >
+                            {/* Accent Glow */}
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 blur-3xl rounded-full -mr-16 -mt-16 group-hover:bg-blue-500/10 transition-colors" />
+
+                            <div className="flex flex-col md:flex-row gap-8 relative z-10">
+                                <div className="md:w-1/3">
+                                    <div className="space-y-3">
+                                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700">
+                                            <Calendar className="w-3 h-3" />
+                                            {job.period}
+                                        </div>
+                                        <h4 className="text-lg font-bold text-blue-600 dark:text-blue-400 flex items-center gap-2">
+                                            <Building className="w-4 h-4" />
+                                            {job.company}
+                                        </h4>
+                                    </div>
+                                </div>
+
+                                <div className="md:w-2/3 border-t md:border-t-0 md:border-l border-slate-100 dark:border-slate-800 pt-6 md:pt-0 md:pl-8">
+                                    <h3 className="text-2xl font-black mb-4 group-hover:text-blue-600 transition-colors tracking-tight">
+                                        {job.role}
+                                    </h3>
+                                    <p className="text-slate-600 dark:text-slate-300 mb-6 leading-relaxed text-lg">
+                                        {job.desc}
+                                    </p>
+                                    <div className="flex flex-wrap gap-2">
+                                        {job.tags.map(tag => (
+                                            <span key={tag} className="px-3 py-1 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 text-xs font-bold rounded-md border border-slate-200 dark:border-slate-700 uppercase tracking-tighter">
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </section>
