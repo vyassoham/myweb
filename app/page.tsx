@@ -3,6 +3,7 @@
 import Navigation from "./components/Navigation";
 import Hero from "./components/Hero";
 import Content from "./components/Content";
+import Stats from "./components/Stats";
 import Footer from "./components/Footer";
 import SecurityLayer from "./components/SecurityLayer";
 
@@ -15,6 +16,7 @@ export default function Home(): React.JSX.Element {
         <main>
           <Hero />
           <Content />
+          <Stats />
         </main>
         <Footer />
       </div>
