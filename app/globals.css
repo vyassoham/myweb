@@ -70,19 +70,24 @@ a:hover {
 
 /* Container */
 .academic-container {
-  max-width: 1200px;
+  max-width: 1280px;
+  /* Slightly wider */
   margin: 0 auto;
   padding: 2rem;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 3rem;
+  gap: 4rem;
+  /* Initial gap increased */
 }
 
 @media (min-width: 1024px) {
   .academic-container {
-    grid-template-columns: 350px 1fr;
-    /* Sidebar | Content */
-    padding: 4rem 2rem;
+    grid-template-columns: 380px 1fr;
+    /* Sidebar slightly wider to match gap */
+    gap: 6rem;
+    /* Much wider gap between sidebar and content */
+    padding: 5rem 3rem;
+    /* More vertical and horizontal padding */
   }
 }
 
@@ -90,15 +95,18 @@ a:hover {
 .academic-card {
   background: var(--background);
   border: 1px solid var(--color-academic-border);
-  border-radius: 12px;
-  padding: 1.5rem;
+  border-radius: 16px;
+  /* Softer corners */
+  padding: 2rem;
+  /* Increased internal padding */
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   transition: all 0.2s ease;
 }
 
 .academic-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.1);
+  /* Softer, deeper shadow */
   border-color: var(--color-academic-primary);
 }
 
@@ -110,7 +118,8 @@ a:hover {
 @media (min-width: 1024px) {
   .sidebar {
     position: sticky;
-    top: 4rem;
+    top: 5rem;
+    /* More breathing room from top of screen */
     height: fit-content;
   }
 }

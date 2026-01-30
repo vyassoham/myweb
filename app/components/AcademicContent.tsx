@@ -5,14 +5,14 @@ import { Calendar, Building, ArrowUpRight } from "lucide-react";
 
 export default function AcademicContent(): React.JSX.Element {
     return (
-        <main className="space-y-12">
+        <main className="space-y-24 pb-20"> {/* Greatly increased vertical spacing */}
 
             {/* 1. About Section */}
-            <section id="about">
-                <h2 className="text-3xl font-bold mb-6 pb-2 border-b border-gray-200 dark:border-gray-800">Biography</h2>
-                <div className="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed">
-                    <p className="mb-4">
-                        I am a Senior Software Architect with a passion for building scalable, high-performance web applications.
+            <section id="about" className="scroll-mt-24">
+                <h2 className="text-4xl font-bold mb-10 pb-4 border-b border-gray-200 dark:border-gray-800">Biography</h2>
+                <div className="prose dark:prose-invert max-w-none text-lg text-slate-700 dark:text-slate-300 leading-8">
+                    <p className="mb-6">
+                        I am a <span className="font-semibold text-slate-900 dark:text-white">Senior Software Architect</span> with a passion for building scalable, high-performance web applications.
                         Currently, I focus on distributed systems and AI-driven automation platforms.
                     </p>
                     <p>
@@ -23,9 +23,9 @@ export default function AcademicContent(): React.JSX.Element {
             </section>
 
             {/* 2. Experience Section */}
-            <section id="experience">
-                <h2 className="text-3xl font-bold mb-8 pb-2 border-b border-gray-200 dark:border-gray-800">Experience</h2>
-                <div className="space-y-8">
+            <section id="experience" className="scroll-mt-24">
+                <h2 className="text-4xl font-bold mb-12 pb-4 border-b border-gray-200 dark:border-gray-800">Experience</h2>
+                <div className="space-y-12">
                     {[
                         {
                             role: "Senior Software Architect",
@@ -79,9 +79,9 @@ export default function AcademicContent(): React.JSX.Element {
             </section>
 
             {/* 3. Projects Section */}
-            <section id="projects">
-                <h2 className="text-3xl font-bold mb-8 pb-2 border-b border-gray-200 dark:border-gray-800">Featured Projects</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <section id="projects" className="scroll-mt-24">
+                <h2 className="text-4xl font-bold mb-12 pb-4 border-b border-gray-200 dark:border-gray-800">Featured Projects</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {[
                         {
                             title: "Quantum Dashboard",
@@ -109,15 +109,15 @@ export default function AcademicContent(): React.JSX.Element {
                         }
                     ].map((project, idx) => (
                         <a href={project.link} key={idx} className="block group">
-                            <div className="academic-card h-full hover:border-blue-500 transition-colors">
-                                <div className="flex justify-between items-start mb-4">
-                                    <h3 className="text-lg font-bold group-hover:text-blue-600 transition-colors">{project.title}</h3>
-                                    <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-blue-500" />
+                            <div className="academic-card h-full hover:border-blue-500 transition-colors p-8">
+                                <div className="flex justify-between items-start mb-6">
+                                    <h3 className="text-xl font-bold group-hover:text-blue-600 transition-colors">{project.title}</h3>
+                                    <ArrowUpRight className="w-5 h-5 text-slate-400 group-hover:text-blue-500" />
                                 </div>
-                                <p className="text-slate-600 dark:text-slate-300 text-sm mb-4 leading-relaxed">
+                                <p className="text-slate-600 dark:text-slate-300 text-base mb-6 leading-relaxed">
                                     {project.desc}
                                 </p>
-                                <div className="text-xs font-mono text-slate-500 dark:text-slate-400">
+                                <div className="text-sm font-mono text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800/50 inline-block px-3 py-1 rounded">
                                     {project.stack}
                                 </div>
                             </div>
@@ -127,9 +127,9 @@ export default function AcademicContent(): React.JSX.Element {
             </section>
 
             {/* 4. Publications / Writing */}
-            <section id="writing">
-                <h2 className="text-3xl font-bold mb-8 pb-2 border-b border-gray-200 dark:border-gray-800">Recent Posts</h2>
-                <div className="space-y-6">
+            <section id="writing" className="scroll-mt-24">
+                <h2 className="text-4xl font-bold mb-12 pb-4 border-b border-gray-200 dark:border-gray-800">Recent Posts</h2>
+                <div className="space-y-10">
                     {[
                         {
                             title: "Optimizing React Rendering Performance",
@@ -145,13 +145,13 @@ export default function AcademicContent(): React.JSX.Element {
                         }
                     ].map((post, idx) => (
                         <div key={idx} className="group cursor-pointer">
-                            <h3 className="text-xl font-bold mb-2 group-hover:text-blue-600 transition-colors">{post.title}</h3>
-                            <div className="flex items-center gap-4 text-xs text-slate-500 mb-3">
+                            <h3 className="text-2xl font-bold mb-3 group-hover:text-blue-600 transition-colors">{post.title}</h3>
+                            <div className="flex items-center gap-4 text-sm text-slate-500 mb-4 font-medium">
                                 <span>{post.date}</span>
                                 <span>•</span>
                                 <span>{post.readTime}</span>
                             </div>
-                            <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                            <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl">
                                 {post.summary}
                             </p>
                         </div>
