@@ -1,49 +1,77 @@
 "use client";
 
-import Image from "next/image";
+import { motion } from "framer-motion";
+
+const STATS = [
+  { label: "Years Experience", value: "3+" },
+  { label: "Projects Completed", value: "50+" },
+];
 
 export default function About(): React.JSX.Element {
   return (
-    <section id="about" className="py-32 px-6">
-      <div className="container mx-auto max-w-6xl">
-        <div className="glass p-12 lg:p-20 rounded-[3rem] border border-white/10 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-purple-600/10 blur-[100px] rounded-full"></div>
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-600/10 blur-[100px] rounded-full"></div>
+    <section id="about" className="section-padding relative">
+      <div className="container mx-auto max-w-6xl px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="glass-card p-12 lg:p-16 rounded-3xl"
+        >
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
 
-          <div className="flex flex-col lg:flex-row items-center gap-16 relative z-10">
-            <div className="flex-1 space-y-8">
-              <h2 className="text-5xl lg:text-6xl font-black text-white tracking-tighter">
-                Engineering with <br />
-                <span className="text-purple-400">Human Focus.</span>
+            {/* Left: Content */}
+            <div className="space-y-6">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black font-display tracking-tight text-white">
+                Building with
+                <br />
+                <span className="text-gradient">Purpose & Precision</span>
               </h2>
-              <p className="text-xl text-white/70 leading-relaxed">
-                I believe that technology is only as good as the problems it solves.
-                My approach combines logical precision with a deep understanding of user psychology
-                to create software that is both powerful and intuitive.
+
+              <p className="text-lg text-white/70 leading-relaxed">
+                I believe technology should solve real problems elegantly. My approach combines
+                technical excellence with deep user empathy to create software that's both
+                powerful and intuitive.
               </p>
+
+              {/* Stats */}
               <div className="grid grid-cols-2 gap-6 pt-4">
-                <div className="space-y-2">
-                  <span className="text-3xl font-black text-white tracking-tight">3+</span>
-                  <p className="text-white/50 text-sm font-bold uppercase tracking-widest">Years Experience</p>
-                </div>
-                <div className="space-y-2">
-                  <span className="text-3xl font-black text-white tracking-tight">50+</span>
-                  <p className="text-white/50 text-sm font-bold uppercase tracking-widest">Projects Done</p>
-                </div>
+                {STATS.map((stat, idx) => (
+                  <motion.div
+                    key={stat.label}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.1 + 0.3, duration: 0.5 }}
+                    className="space-y-1"
+                  >
+                    <p className="text-4xl font-black text-white">{stat.value}</p>
+                    <p className="text-sm text-white/50 uppercase tracking-wider font-semibold">
+                      {stat.label}
+                    </p>
+                  </motion.div>
+                ))}
               </div>
             </div>
 
-            <div className="flex-1 w-full">
-              <Image
+            {/* Right: Image/Illustration */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2, duration: 0.7 }}
+              className="relative aspect-square lg:aspect-auto lg:h-full min-h-[300px]"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-violet-500/20 to-blue-500/20 blur-3xl rounded-full" />
+              <img
                 src="/assets/illustration.png"
                 alt="Architecture"
-                width={800}
-                height={800}
-                className="w-full h-auto opacity-80"
+                className="relative w-full h-full object-contain opacity-80 mix-blend-luminosity"
               />
-            </div>
+            </motion.div>
+
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

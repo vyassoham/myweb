@@ -3,15 +3,13 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Download, MousePointer2 } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { ArrowRight, Download } from "lucide-react";
 
 const ROLES = [
   "Full Stack Developer",
   "UI/UX Designer",
-  "AI Enthusiast",
   "Problem Solver",
-  "Innovator",
+  "Tech Innovator",
 ];
 
 export default function Banner(): React.JSX.Element {
@@ -27,125 +25,149 @@ export default function Banner(): React.JSX.Element {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center pt-24 pb-12 px-6 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center pt-32 pb-20 px-6"
     >
-      {/* Decorative Glows */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-purple/20 blur-[150px] animate-pulse rounded-full pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-brand-blue/10 blur-[150px] animate-pulse rounded-full pointer-events-none" />
+      {/* Background Glows */}
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-violet-600/20 blur-[120px] rounded-full pointer-events-none animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-blue-600/15 blur-[120px] rounded-full pointer-events-none animate-pulse" />
 
-      <div className="container mx-auto max-w-7xl relative z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-24">
+      {/* Content Container - PERFECTLY CENTERED */}
+      <div className="w-full max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
 
-          {/* Left Content */}
+          {/* Left: Text Content */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="flex-1 text-center lg:text-left space-y-8"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="space-y-8 text-center lg:text-left"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill text-brand-purple text-xs font-bold tracking-widest uppercase">
+            {/* Status Badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-500/20 mx-auto lg:mx-0"
+            >
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-purple opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-purple"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-violet-400" />
               </span>
-              Available for Collaboration
-            </div>
+              <span className="text-violet-300 text-xs font-semibold uppercase tracking-wider">
+                Available for Collaboration
+              </span>
+            </motion.div>
 
-            <div className="space-y-6">
-              <h1 className="text-5xl md:text-7xl lg:text-9xl font-black font-display text-white tracking-tighter leading-[0.9]">
-                SOHAM <br />
-                <span className="block mt-2 relative" style={{ minHeight: '1.1em', height: '1.2em' }}>
-                  <AnimatePresence mode="wait">
-                    <motion.span
-                      key={ROLES[roleIndex]}
-                      initial={{ y: 40, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      exit={{ y: -40, opacity: 0 }}
-                      transition={{ duration: 0.5, ease: "anticipate" }}
-                      className="absolute left-0 right-0 lg:left-0 text-brand-gradient whitespace-nowrap overflow-hidden"
-                    >
-                      {ROLES[roleIndex]}
-                    </motion.span>
-                  </AnimatePresence>
-                </span>
+            {/* Main Heading with Animated Role */}
+            <div className="space-y-4">
+              <h1 className="text-6xl md:text-7xl lg:text-8xl font-black font-display text-white tracking-tight leading-none">
+                SOHAM
               </h1>
+
+              {/* Animated Role - FIXED HEIGHT */}
+              <div className="relative h-20 md:h-24 lg:h-28 overflow-hidden">
+                <AnimatePresence mode="wait">
+                  <motion.h2
+                    key={roleIndex}
+                    initial={{ y: 100, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -100, opacity: 0 }}
+                    transition={{
+                      duration: 0.5,
+                      ease: [0.22, 1, 0.36, 1]
+                    }}
+                    className="absolute inset-0 text-5xl md:text-6xl lg:text-7xl font-black font-display bg-gradient-to-r from-violet-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent"
+                  >
+                    {ROLES[roleIndex]}
+                  </motion.h2>
+                </AnimatePresence>
+              </div>
             </div>
 
-            <p className="text-lg md:text-xl text-white/60 max-w-xl mx-auto lg:mx-0 font-sans leading-relaxed text-balance">
-              Architecting the future through pixel-perfect code and cinematic design systems.
-              Converting complex ideas into unforgettable digital masterpieces.
-            </p>
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.7 }}
+              className="text-lg md:text-xl text-white/70 max-w-2xl leading-relaxed mx-auto lg:mx-0"
+            >
+              Building beautiful, scalable, and secure web applications that solve real problems.
+              Turning complex challenges into elegant digital solutions.
+            </motion.p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-              <motion.a
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+            >
+              <a
                 href="#lab"
-                className="group w-full sm:w-auto px-8 py-4 bg-white text-brand-dark font-black rounded-2xl flex items-center justify-center gap-2 transition-all shadow-xl shadow-white/10"
+                className="group px-8 py-4 bg-gradient-to-r from-violet-600 to-blue-600 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:shadow-2xl hover:shadow-violet-500/50 transition-all duration-300 hover:-translate-y-1"
               >
-                View Labs
+                View Projects
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </motion.a>
-
-              <motion.a
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              </a>
+              <a
                 href="/resume.pdf"
-                className="w-full sm:w-auto px-8 py-4 glass text-white font-black rounded-2xl flex items-center justify-center gap-2 hover:bg-white/5 transition-all"
+                className="px-8 py-4 glass-card text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:bg-white/10 transition-all duration-300"
               >
                 <Download className="w-5 h-5" />
                 Resume
-              </motion.a>
-            </div>
+              </a>
+            </motion.div>
           </motion.div>
 
-          {/* Right Visual */}
+          {/* Right: Hero Image */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-            className="flex-1 relative w-full max-w-2xl aspect-square lg:aspect-[4/5]"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="relative w-full max-w-xl mx-auto"
           >
-            <div className="absolute inset-0 bg-brand-purple/20 blur-[100px] rounded-full animate-float" />
+            <div className="aspect-square relative">
+              {/* Glow behind image */}
+              <div className="absolute inset-0 bg-gradient-to-br from-violet-500/30 to-blue-500/30 blur-3xl rounded-full animate-pulse" />
 
-            <div className="relative w-full h-full rounded-3xl overflow-hidden glass border-white/10 shadow-3xl transform hover:scale-[1.02] transition-transform duration-700">
-              <Image
-                src="/assets/hero.png"
-                alt="Soham Visual"
-                fill
-                className="object-cover"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
+              {/* Image Container */}
+              <div className="relative glass-card rounded-3xl overflow-hidden border-white/10 group hover:border-violet-500/30 transition-all duration-500">
+                <Image
+                  src="/assets/hero.png"
+                  alt="Soham"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
-              <div className="absolute bottom-8 left-8 right-8">
-                <div className="glass p-6 rounded-2xl border-white/5 space-y-2">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-brand-purple/20 border border-brand-purple/30 flex items-center justify-center overflow-hidden">
-                      <MousePointer2 className="w-5 h-5 text-brand-purple" />
-                    </div>
-                    <div>
-                      <h4 className="text-white font-bold text-sm">Interactive Portfolio</h4>
-                      <p className="text-white/40 text-xs">V2.0 Crafted in 2026</p>
-                    </div>
-                  </div>
+                {/* Floating Badge */}
+                <div className="absolute bottom-6 left-6 right-6 glass p-4 rounded-2xl">
+                  <p className="text-white font-bold text-sm">Portfolio V2.0</p>
+                  <p className="text-white/60 text-xs">Crafted with Next.js 15</p>
                 </div>
               </div>
             </div>
           </motion.div>
+
         </div>
       </div>
 
-      {/* Mouse Follower Indicator */}
+      {/* Scroll Indicator */}
       <motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 2 }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 opacity-30"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 1 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2"
       >
-        <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center pt-2">
-          <div className="w-1.5 h-1.5 bg-white rounded-full" />
+        <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center pt-2">
+          <motion.div
+            animate={{ y: [0, 12, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            className="w-1.5 h-1.5 bg-white/40 rounded-full"
+          />
         </div>
-        <span className="text-[10px] uppercase font-bold tracking-widest">Scroll</span>
+        <span className="text-white/30 text-xs uppercase tracking-widest">Scroll</span>
       </motion.div>
     </section>
   );
