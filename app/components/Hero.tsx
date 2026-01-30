@@ -50,10 +50,10 @@ export default function Hero(): React.JSX.Element {
                                 (he/him)
                             </p>
                             <h2 className="text-xl text-accent font-bold mb-1">
-                                Senior Software Architect
+                                Tech-Driven Student & Developer
                             </h2>
                             <p className="text-secondary font-medium">
-                                Loom Dynamics
+                                Python • C • Security • Data Science
                             </p>
                         </div>
 
@@ -88,13 +88,11 @@ export default function Hero(): React.JSX.Element {
                                 <Briefcase className="w-6 h-6" />
                             </div>
                             <h3 className="text-2xl font-bold mb-4">Professional Summary</h3>
-                            <p className="text-lg leading-relaxed mb-4">
-                                I am a <strong>Senior Software Architect</strong> specializing in building robust, AI-driven automation systems. With over a decade of experience in distributed computing and high-performance infrastructure, I lead teams to deliver scalable solutions.
-                            </p>
                             <p className="text-lg leading-relaxed">
-                                Outside of work, I&apos;m passionate about open-source contribution and mentoring the next generation of engineers.
+                                I&apos;m <strong>Soham Vyas</strong>, a technology-driven student with a strong foundation in programming, data science, and systems thinking. I work primarily with <strong>Python, C, R, and SQL</strong>, and enjoy building logic-heavy projects ranging from automation and bots to data-centric applications. My interests span artificial intelligence, cybersecurity, and low-level system understanding, with a focus on learning how complex technologies work from the inside out. I&apos;m continuously experimenting, learning, and shipping projects that strengthen both theoretical depth and practical impact.
                             </p>
                         </div>
+
 
                         {/* Education */}
                         <div className="animate-fade-in-up delay-3">
