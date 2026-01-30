@@ -102,19 +102,38 @@ export default function Hero(): React.JSX.Element {
                                 </div>
                                 <h3 className="text-2xl font-bold">Education</h3>
                             </div>
-                            <div className="grid grid-cols-2 gap-4">
-                                <div className="card card--subtle">
-                                    <div className="badge badge--accent mb-4">PhD</div>
-                                    <h4 className="font-bold mb-1">PhD Computer Science</h4>
-                                    <p className="text-sm text-muted">Stanford University</p>
+
+                            <div className="card card--subtle">
+                                <div className="flex justify-between items-start mb-4">
+                                    <div>
+                                        <div className="badge badge--accent mb-2">Ongoing</div>
+                                        <h4 className="text-xl font-bold">Bachelor of Science – Data Science</h4>
+                                        <p className="text-accent font-medium">Indian Institute of Technology (IIT) Jodhpur</p>
+                                    </div>
                                 </div>
-                                <div className="card card--subtle">
-                                    <div className="badge badge--accent mb-4">MS</div>
-                                    <h4 className="font-bold mb-1">MS Computer Science</h4>
-                                    <p className="text-sm text-muted">Carnegie Mellon</p>
+
+                                <div className="grid md:grid-cols-2 gap-6 mt-6">
+                                    <div>
+                                        <h5 className="text-sm font-bold uppercase tracking-wider text-muted mb-3">Key Focus Areas</h5>
+                                        <ul className="text-sm space-y-2 text-secondary">
+                                            <li className="flex items-center gap-2">• Programming & Computational Thinking</li>
+                                            <li className="flex items-center gap-2">• Statistics & Mathematics</li>
+                                            <li className="flex items-center gap-2">• Data Analysis & Modeling</li>
+                                            <li className="flex items-center gap-2">• Foundations of AI & ML</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h5 className="text-sm font-bold uppercase tracking-wider text-muted mb-3">Highlights</h5>
+                                        <ul className="text-sm space-y-2 text-secondary">
+                                            <li className="flex items-center gap-2">• Rigorous industry-aligned curriculum</li>
+                                            <li className="flex items-center gap-2">• Emphasis on problem-solving</li>
+                                            <li className="flex items-center gap-2">• Parallel project development</li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
                 </div>
