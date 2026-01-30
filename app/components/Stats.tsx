@@ -3,55 +3,92 @@
 import { useEffect, useState } from "react";
 import { Eye, TrendingUp, Calendar } from "lucide-react";
 
+// Namespace for CountAPI
+const NAMESPACE = "soham-lol-portfolio";
+const TOTAL_KEY = "total-visits";
+
 export default function Stats(): React.JSX.Element {
-    const [totalVisits, setTotalVisits] = useState<number>(0);
-    const [todayVisits, setTodayVisits] = useState<number>(0);
+    const [totalVisits, setTotalVisits] = useState<number | null>(null);
+    const [todayVisits, setTodayVisits] = useState<number | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        // Get today's date key
-        const today = new Date().toISOString().split('T')[0];
-        const todayKey = `visits_${today}`;
+        const trackVisit = async () => {
+            try {
+                // Check if this visitor has been counted
+                const visitorId = localStorage.getItem('visitor_id');
+                const today = new Date().toISOString().split('T')[0];
+                const lastVisitDate = localStorage.getItem('last_visit_date');
 
-        // Increment total visits
-        const storedTotal = localStorage.getItem('total_visits');
-        const newTotal = storedTotal ? parseInt(storedTotal, 10) + 1 : 1;
-        localStorage.setItem('total_visits', newTotal.toString());
-        setTotalVisits(newTotal);
+                // Generate unique visitor ID if not exists
+                if (!visitorId) {
+                    const newId = `visitor_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
+                    localStorage.setItem('visitor_id', newId);
 
-        // Increment today's visits
-        const storedToday = localStorage.getItem(todayKey);
-        const newToday = storedToday ? parseInt(storedToday, 10) + 1 : 1;
-        localStorage.setItem(todayKey, newToday.toString());
-        setTodayVisits(newToday);
-
-        // Clean up old daily keys (keep only last 7 days)
-        const sevenDaysAgo = new Date();
-        sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-        for (let i = 0; i < localStorage.length; i++) {
-            const key = localStorage.key(i);
-            if (key && key.startsWith('visits_')) {
-                const dateStr = key.replace('visits_', '');
-                if (new Date(dateStr) < sevenDaysAgo) {
-                    localStorage.removeItem(key);
+                    // First time visitor - increment total
+                    try {
+                        const totalRes = await fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${TOTAL_KEY}`);
+                        const totalData = await totalRes.json();
+                        setTotalVisits(totalData.value);
+                    } catch {
+                        // Fallback if API fails
+                        setTotalVisits(null);
+                    }
+                } else {
+                    // Returning visitor - just get the count without incrementing
+                    try {
+                        const totalRes = await fetch(`https://api.countapi.xyz/get/${NAMESPACE}/${TOTAL_KEY}`);
+                        const totalData = await totalRes.json();
+                        setTotalVisits(totalData.value);
+                    } catch {
+                        setTotalVisits(null);
+                    }
                 }
-            }
-        }
 
-        setIsLoading(false);
+                // Track daily unique visits
+                const todayKey = `today-visits-${today}`;
+                if (lastVisitDate !== today) {
+                    // New day for this visitor - increment today's count
+                    localStorage.setItem('last_visit_date', today);
+                    try {
+                        const todayRes = await fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${todayKey}`);
+                        const todayData = await todayRes.json();
+                        setTodayVisits(todayData.value);
+                    } catch {
+                        setTodayVisits(null);
+                    }
+                } else {
+                    // Already visited today - just get count
+                    try {
+                        const todayRes = await fetch(`https://api.countapi.xyz/get/${NAMESPACE}/${todayKey}`);
+                        const todayData = await todayRes.json();
+                        setTodayVisits(todayData.value || 0);
+                    } catch {
+                        setTodayVisits(null);
+                    }
+                }
+
+            } catch (error) {
+                console.error('Failed to track visit:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        trackVisit();
     }, []);
 
     const stats = [
         {
             icon: Eye,
-            label: "Total Visits",
-            value: totalVisits.toLocaleString(),
+            label: "Unique Visitors",
+            value: totalVisits !== null ? totalVisits.toLocaleString() : "—",
             color: "var(--accent)"
         },
         {
             icon: Calendar,
-            label: "Visits Today",
-            value: todayVisits.toLocaleString(),
+            label: "Today's Visitors",
+            value: todayVisits !== null ? todayVisits.toLocaleString() : "—",
             color: "var(--success)"
         },
         {
@@ -101,7 +138,7 @@ export default function Stats(): React.JSX.Element {
 
                 <div className="mt-8 text-center">
                     <p className="text-sm text-muted">
-                        Statistics are stored locally in your browser. Each unique browser session counts as one visit.
+                        Each unique visitor is counted once. Refreshing the page does not add to the count.
                     </p>
                 </div>
             </div>
