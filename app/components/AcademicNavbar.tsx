@@ -9,10 +9,10 @@ const NAV_LINKS = [
 
 export default function AcademicNavbar(): React.JSX.Element {
     return (
-        <nav className="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-700">
+        <nav className="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-xl border-b border-slate-700">
             <div className="max-w-6xl mx-auto px-6 py-4">
                 <div className="flex items-center justify-between">
-                    <div className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">
+                    <div className="text-xl font-bold tracking-tight text-white">
                         Soham Vyas
                     </div>
 
@@ -21,7 +21,7 @@ export default function AcademicNavbar(): React.JSX.Element {
                             <a
                                 key={link.name}
                                 href={link.href}
-                                className="text-sm font-medium text-slate-600 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 transition-colors"
+                                className="text-sm font-medium text-slate-300 hover:text-blue-400 transition-colors"
                             >
                                 {link.name}
                             </a>
@@ -29,10 +29,10 @@ export default function AcademicNavbar(): React.JSX.Element {
                     </div>
 
                     <div className="flex items-center gap-3">
-                        <button className="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">
+                        <button className="p-2 text-slate-400 hover:text-white transition-colors rounded-lg hover:bg-slate-800">
                             <Search className="w-5 h-5" />
                         </button>
-                        <button className="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">
+                        <button className="p-2 text-slate-400 hover:text-white transition-colors rounded-lg hover:bg-slate-800">
                             <Moon className="w-5 h-5" />
                         </button>
                     </div>

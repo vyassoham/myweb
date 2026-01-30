@@ -1,32 +1,19 @@
 @import "tailwindcss";
 
-@theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui;
-  --font-display: "Inter", ui-sans-serif, system-ui;
-}
-
-:root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0f172a;
-    --foreground: #f8fafc;
-  }
-}
-
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
+  background-color: #0f172a;
+  color: #f8fafc;
+  font-family: ui-sans-serif, system-ui, sans-serif;
   line-height: 1.6;
   user-select: none;
   -webkit-user-select: none;
@@ -42,44 +29,11 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-display);
   font-weight: 700;
   letter-spacing: -0.025em;
   line-height: 1.2;
 }
 
-/* Smooth Scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Professional Card Styles */
-.professional-card {
-  background: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 16px;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
-  transition: all 0.2s ease;
-}
-
-.professional-card:hover {
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
-}
-
-@media (prefers-color-scheme: dark) {
-  .professional-card {
-    background: #1e293b;
-    border-color: #334155;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
-  }
-
-  .professional-card:hover {
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
-  }
-}
-
-/* Remove Tailwind's default focus rings for cleaner look */
 *:focus {
   outline: none;
 }

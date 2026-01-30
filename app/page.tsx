@@ -9,14 +9,14 @@ export default function Home(): React.JSX.Element {
   return (
     <>
       <SecurityLayer />
-      <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
+      <div className="min-h-screen bg-slate-900">
         <Navbar />
         <Hero />
         <Content />
 
-        <footer className="border-t border-slate-200 dark:border-slate-700 py-8 mt-24">
+        <footer className="border-t border-slate-700 py-8 mt-24">
           <div className="max-w-6xl mx-auto px-6 text-center">
-            <p className="text-slate-500 dark:text-slate-400 text-sm">
+            <p className="text-slate-400 text-sm">
               © 2026 Soham Vyas. Built with Next.js & Tailwind CSS.
             </p>
           </div>

@@ -9,7 +9,7 @@ export default function AcademicContent(): React.JSX.Element {
 
             {/* Experience Section */}
             <section id="experience">
-                <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-12">
+                <h2 className="text-4xl font-bold text-white mb-12">
                     Experience
                 </h2>
                 <div className="space-y-8">
@@ -42,32 +42,32 @@ export default function AcademicContent(): React.JSX.Element {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: idx * 0.1 }}
-                            className="professional-card p-8"
+                            className="bg-slate-800 border border-slate-700 rounded-2xl p-8 shadow-lg hover:border-blue-500/50 transition-all"
                         >
                             <div className="flex flex-col md:flex-row gap-8">
                                 <div className="md:w-1/3 space-y-3">
-                                    <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 text-sm font-bold rounded-lg">
+                                    <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-600/20 text-blue-300 text-sm font-bold rounded-lg">
                                         <Calendar className="w-4 h-4" />
                                         {job.period}
                                     </div>
-                                    <h4 className="text-lg font-bold text-blue-600 dark:text-blue-400 flex items-center gap-2">
+                                    <h4 className="text-lg font-bold text-blue-400 flex items-center gap-2">
                                         <Building className="w-5 h-5" />
                                         {job.company}
                                     </h4>
                                 </div>
 
-                                <div className="md:w-2/3 md:border-l md:border-slate-200 dark:md:border-slate-700 md:pl-8">
-                                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+                                <div className="md:w-2/3 md:border-l md:border-slate-700 md:pl-8">
+                                    <h3 className="text-2xl font-bold text-white mb-4">
                                         {job.role}
                                     </h3>
-                                    <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                                    <p className="text-lg text-slate-300 leading-relaxed mb-6">
                                         {job.desc}
                                     </p>
                                     <div className="flex flex-wrap gap-2">
                                         {job.tags.map(tag => (
                                             <span
                                                 key={tag}
-                                                className="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold rounded-md"
+                                                className="px-3 py-1 bg-slate-700 text-slate-300 text-xs font-semibold rounded-md"
                                             >
                                                 {tag}
                                             </span>
@@ -82,7 +82,7 @@ export default function AcademicContent(): React.JSX.Element {
 
             {/* Projects Section */}
             <section id="projects">
-                <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-12">
+                <h2 className="text-4xl font-bold text-white mb-12">
                     Featured Projects
                 </h2>
                 <div className="grid md:grid-cols-2 gap-6">
@@ -115,18 +115,18 @@ export default function AcademicContent(): React.JSX.Element {
                         <a
                             href={project.link}
                             key={idx}
-                            className="block professional-card p-8 group"
+                            className="block bg-slate-800 border border-slate-700 rounded-2xl p-8 shadow-lg group hover:border-blue-500/50 transition-all"
                         >
                             <div className="flex justify-between items-start mb-4">
-                                <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                                <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">
                                     {project.title}
                                 </h3>
-                                <ArrowUpRight className="w-5 h-5 text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
+                                <ArrowUpRight className="w-5 h-5 text-slate-400 group-hover:text-blue-400 transition-colors" />
                             </div>
-                            <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                            <p className="text-slate-300 leading-relaxed mb-6">
                                 {project.desc}
                             </p>
-                            <div className="text-sm font-mono text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800/50 inline-block px-3 py-1.5 rounded-md">
+                            <div className="text-sm font-mono text-slate-400 bg-slate-700/50 inline-block px-3 py-1.5 rounded-md">
                                 {project.stack}
                             </div>
                         </a>

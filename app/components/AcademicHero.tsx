@@ -17,25 +17,25 @@ export default function AcademicHero(): React.JSX.Element {
                                     src="/assets/hero.png"
                                     alt="Soham Vyas"
                                     fill
-                                    className="object-cover rounded-full shadow-xl"
+                                    className="object-cover rounded-full shadow-xl border-4 border-slate-700"
                                     priority
                                 />
-                                <div className="absolute bottom-2 right-2 w-6 h-6 bg-green-500 rounded-full border-4 border-white dark:border-slate-900" />
+                                <div className="absolute bottom-2 right-2 w-6 h-6 bg-green-500 rounded-full border-4 border-slate-900" />
                             </div>
                         </div>
 
                         <div className="space-y-3">
-                            <h1 className="text-5xl font-black text-slate-900 dark:text-white">
+                            <h1 className="text-5xl font-black text-white">
                                 Soham Vyas
                             </h1>
-                            <p className="text-sm text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider">
+                            <p className="text-sm text-slate-400 font-medium uppercase tracking-wider">
                                 (he/him)
                             </p>
                             <div className="pt-2">
-                                <h2 className="text-xl font-bold text-blue-600 dark:text-blue-400 mb-1">
+                                <h2 className="text-xl font-bold text-blue-400 mb-1">
                                     Senior Software Architect
                                 </h2>
-                                <p className="text-slate-600 dark:text-slate-300 font-medium">
+                                <p className="text-slate-300 font-medium">
                                     Loom Dynamics
                                 </p>
                             </div>
@@ -54,7 +54,7 @@ export default function AcademicHero(): React.JSX.Element {
                                 href="https://github.com/vyassoham"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-11 h-11 rounded-full bg-gray-900 hover:bg-gray-800 dark:bg-white dark:hover:bg-gray-100 flex items-center justify-center text-white dark:text-gray-900 transition-all hover:scale-110 shadow-md"
+                                className="w-11 h-11 rounded-full bg-white hover:bg-gray-100 flex items-center justify-center text-gray-900 transition-all hover:scale-110 shadow-md"
                                 title="GitHub"
                             >
                                 <Github className="w-5 h-5" />
@@ -72,7 +72,7 @@ export default function AcademicHero(): React.JSX.Element {
                                 href="https://twitter.com/vyassoham"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-11 h-11 rounded-full bg-black hover:bg-gray-800 flex items-center justify-center text-white transition-all hover:scale-110 shadow-md"
+                                className="w-11 h-11 rounded-full bg-black hover:bg-gray-800 flex items-center justify-center text-white transition-all hover:scale-110 shadow-md border border-slate-700"
                                 title="Twitter/X"
                             >
                                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -93,21 +93,21 @@ export default function AcademicHero(): React.JSX.Element {
                     {/* Right: Summary & Education */}
                     <div className="space-y-10">
                         {/* Professional Summary */}
-                        <div className="professional-card p-8">
+                        <div className="bg-slate-800 border border-slate-700 rounded-2xl p-8 shadow-lg">
                             <div className="flex items-center gap-3 mb-6">
-                                <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center">
-                                    <Briefcase className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                                <div className="w-12 h-12 rounded-xl bg-blue-600/20 flex items-center justify-center">
+                                    <Briefcase className="w-6 h-6 text-blue-400" />
                                 </div>
-                                <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
+                                <h3 className="text-2xl font-bold text-white">
                                     Professional Summary
                                 </h3>
                             </div>
-                            <div className="prose dark:prose-invert max-w-none">
-                                <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-                                    I am a <strong>Senior Software Architect</strong> specializing in building robust, AI-driven automation systems. With over a decade of experience in distributed computing and high-performance infrastructure, I lead teams to deliver scalable solutions.
+                            <div>
+                                <p className="text-lg text-slate-300 leading-relaxed mb-4">
+                                    I am a <strong className="text-white">Senior Software Architect</strong> specializing in building robust, AI-driven automation systems. With over a decade of experience in distributed computing and high-performance infrastructure, I lead teams to deliver scalable solutions.
                                 </p>
-                                <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-                                    Outside of work, I'm passionate about open-source contribution and mentoring the next generation of engineers.
+                                <p className="text-lg text-slate-300 leading-relaxed">
+                                    Outside of work, I&apos;m passionate about open-source contribution and mentoring the next generation of engineers.
                                 </p>
                             </div>
                         </div>
@@ -115,33 +115,33 @@ export default function AcademicHero(): React.JSX.Element {
                         {/* Education */}
                         <div>
                             <div className="flex items-center gap-3 mb-6">
-                                <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center">
-                                    <GraduationCap className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                                <div className="w-12 h-12 rounded-xl bg-blue-600/20 flex items-center justify-center">
+                                    <GraduationCap className="w-6 h-6 text-blue-400" />
                                 </div>
-                                <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
+                                <h3 className="text-2xl font-bold text-white">
                                     Education
                                 </h3>
                             </div>
                             <div className="grid sm:grid-cols-2 gap-4">
-                                <div className="professional-card p-6">
+                                <div className="bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-lg">
                                     <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center mb-4 font-bold text-sm">
                                         PhD
                                     </div>
-                                    <h4 className="font-bold text-slate-900 dark:text-white mb-1">
+                                    <h4 className="font-bold text-white mb-1">
                                         PhD Computer Science
                                     </h4>
-                                    <p className="text-sm text-slate-500 dark:text-slate-400">
+                                    <p className="text-sm text-slate-400">
                                         Stanford University
                                     </p>
                                 </div>
-                                <div className="professional-card p-6">
+                                <div className="bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-lg">
                                     <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center mb-4 font-bold text-sm">
                                         MS
                                     </div>
-                                    <h4 className="font-bold text-slate-900 dark:text-white mb-1">
+                                    <h4 className="font-bold text-white mb-1">
                                         MS Computer Science
                                     </h4>
-                                    <p className="text-sm text-slate-500 dark:text-slate-400">
+                                    <p className="text-sm text-slate-400">
                                         Carnegie Mellon
                                     </p>
                                 </div>
