@@ -5,22 +5,9 @@ import { Calendar, Building, ArrowUpRight } from "lucide-react";
 
 export default function AcademicContent(): React.JSX.Element {
     return (
-        <main className="space-y-40 pb-20"> {/* Massively increased vertical spacing for better separation */}
+        <main className="space-y-40 pb-20">
 
-            {/* 1. About Section */}
-            <section id="about" className="scroll-mt-24">
-                <h2 className="text-4xl font-bold mb-10 pb-4 border-b border-gray-200 dark:border-gray-800">Biography</h2>
-                <div className="prose dark:prose-invert max-w-none text-lg text-slate-700 dark:text-slate-300 leading-8">
-                    <p className="mb-6">
-                        I am a <span className="font-semibold text-slate-900 dark:text-white">Senior Software Architect</span> with a passion for building scalable, high-performance web applications.
-                        Currently, I focus on distributed systems and AI-driven automation platforms.
-                    </p>
-                    <p>
-                        My research interests include distributed computing, machine learning infrastructure, and human-computer interaction.
-                        I advocate for clean code, accessible design, and open-source contribution.
-                    </p>
-                </div>
-            </section>
+            {/* Biography moved to Hero */}
 
             {/* 2. Experience Section */}
             <section id="experience" className="scroll-mt-24">
