@@ -7,20 +7,20 @@ import { Eye, Calendar, Coffee, Clock, Zap, Terminal } from "lucide-react";
 const NAMESPACE = "soham-lol-portfolio";
 const TOTAL_KEY = "total-visits";
 
-// Fun activities/moods that rotate
-const ACTIVITIES = [
-    { emoji: "🔥", text: "Shipping code" },
-    { emoji: "🧠", text: "Debugging life" },
-    { emoji: "☕", text: "Sipping coffee" },
-    { emoji: "🚀", text: "Deploying magic" },
-    { emoji: "💡", text: "Having ideas" },
-    { emoji: "🎮", text: "Procrastinating" },
-    { emoji: "🌙", text: "Night coding" },
-    { emoji: "⚡", text: "In the zone" },
-    { emoji: "🔮", text: "Predicting bugs" },
-    { emoji: "🎯", text: "Crushing goals" },
-    { emoji: "🤖", text: "Training AI" },
-    { emoji: "🛠️", text: "Breaking prod" },
+// Random tech news headlines that rotate
+const NEWS_HEADLINES = [
+    { emoji: "🚀", text: "SpaceX launches 60 more Starlink satellites" },
+    { emoji: "🤖", text: "OpenAI announces GPT-5 with reasoning capabilities" },
+    { emoji: "💰", text: "Bitcoin surges past $100K milestone" },
+    { emoji: "🍎", text: "Apple unveils Vision Pro 2 with neural interface" },
+    { emoji: "⚡", text: "Tesla's new battery lasts 1 million miles" },
+    { emoji: "🔒", text: "Major zero-day vulnerability patched in Linux kernel" },
+    { emoji: "🎮", text: "Sony announces PlayStation 6 development" },
+    { emoji: "🌐", text: "Web4 protocol gains mainstream adoption" },
+    { emoji: "🧬", text: "AI discovers New antibiotic using ML models" },
+    { emoji: "📱", text: "Google Pixel 10 features on-device AI" },
+    { emoji: "☁️", text: "AWS announces 50% price cut on compute" },
+    { emoji: "🔥", text: "Rust overtakes Python in developer surveys" },
 ];
 
 export default function Stats(): React.JSX.Element {
@@ -28,8 +28,9 @@ export default function Stats(): React.JSX.Element {
     const [todayVisits, setTodayVisits] = useState<number | null>(null);
     const [currentTime, setCurrentTime] = useState<string>("");
     const [coffeeCount, setCoffeeCount] = useState<number>(0);
-    const [activity, setActivity] = useState(ACTIVITIES[0]);
+    const [news, setNews] = useState(NEWS_HEADLINES[0]);
     const [isLoading, setIsLoading] = useState(true);
+
 
     useEffect(() => {
         // Update clock every second
@@ -51,58 +52,65 @@ export default function Stats(): React.JSX.Element {
         const baseCoffee = Math.floor((hour - 6) / 2);
         setCoffeeCount(Math.max(0, Math.min(baseCoffee, 8)));
 
-        // Rotate activity every 5 seconds
-        const activityInterval = setInterval(() => {
-            setActivity(ACTIVITIES[Math.floor(Math.random() * ACTIVITIES.length)]);
-        }, 5000);
+        // Rotate news every 8 seconds
+        const newsInterval = setInterval(() => {
+            setNews(NEWS_HEADLINES[Math.floor(Math.random() * NEWS_HEADLINES.length)]);
+        }, 8000);
 
-        // Track visits
         const trackVisit = async () => {
             try {
+                // Check if this visitor has been counted
                 const visitorId = localStorage.getItem('visitor_id');
                 const today = new Date().toISOString().split('T')[0];
                 const lastVisitDate = localStorage.getItem('last_visit_date');
+                const NAMESPACE = "soham-lol-v2";
+                const TOTAL_KEY = "total_visits";
+                const TODAY_KEY = `visits_${today}`;
 
+                // Generate unique visitor ID if not exists
                 if (!visitorId) {
                     const newId = `visitor_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
                     localStorage.setItem('visitor_id', newId);
 
+                    // First time visitor - increment total
                     try {
-                        const totalRes = await fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${TOTAL_KEY}`);
-                        const totalData = await totalRes.json();
-                        setTotalVisits(totalData.value);
+                        const res = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${TOTAL_KEY}/up`);
+                        const data = await res.json();
+                        setTotalVisits(data.count);
                     } catch {
                         setTotalVisits(null);
                     }
                 } else {
+                    // Returning visitor - just get the count
                     try {
-                        const totalRes = await fetch(`https://api.countapi.xyz/get/${NAMESPACE}/${TOTAL_KEY}`);
-                        const totalData = await totalRes.json();
-                        setTotalVisits(totalData.value);
+                        const res = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${TOTAL_KEY}`);
+                        const data = await res.json();
+                        setTotalVisits(data.count);
                     } catch {
                         setTotalVisits(null);
                     }
                 }
 
-                const todayKey = `today-visits-${today}`;
+                // Track daily unique visits
                 if (lastVisitDate !== today) {
                     localStorage.setItem('last_visit_date', today);
                     try {
-                        const todayRes = await fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${todayKey}`);
-                        const todayData = await todayRes.json();
-                        setTodayVisits(todayData.value);
+                        const res = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${TODAY_KEY}/up`);
+                        const data = await res.json();
+                        setTodayVisits(data.count);
                     } catch {
                         setTodayVisits(null);
                     }
                 } else {
                     try {
-                        const todayRes = await fetch(`https://api.countapi.xyz/get/${NAMESPACE}/${todayKey}`);
-                        const todayData = await todayRes.json();
-                        setTodayVisits(todayData.value || 0);
+                        const res = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${TODAY_KEY}`);
+                        const data = await res.json();
+                        setTodayVisits(data.count || 0);
                     } catch {
                         setTodayVisits(null);
                     }
                 }
+
             } catch (error) {
                 console.error('Failed to track visit:', error);
             } finally {
@@ -114,7 +122,7 @@ export default function Stats(): React.JSX.Element {
 
         return () => {
             clearInterval(clockInterval);
-            clearInterval(activityInterval);
+            clearInterval(newsInterval);
         };
     }, []);
 
@@ -146,8 +154,8 @@ export default function Stats(): React.JSX.Element {
         },
         {
             icon: Zap,
-            label: "Currently",
-            value: `${activity.emoji} ${activity.text}`,
+            label: "Random News",
+            value: `${news.emoji} ${news.text}`,
             color: "#ec4899",
             isAnimated: true
         },

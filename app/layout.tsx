@@ -42,8 +42,12 @@ export const metadata: Metadata = {
     description: "Building secure, scalable, and beautiful web applications.",
   },
   robots: {
-    index: true,
-    follow: true,
+    index: false,
+    follow: false,
+    noarchive: true,
+    nosnippet: true,
+    noimageindex: true,
+    notranslate: true,
   },
 };
 
