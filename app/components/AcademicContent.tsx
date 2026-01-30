@@ -5,7 +5,7 @@ import { Calendar, Building, ArrowUpRight } from "lucide-react";
 
 export default function AcademicContent(): React.JSX.Element {
     return (
-        <main className="space-y-24 pb-20"> {/* Greatly increased vertical spacing */}
+        <main className="space-y-40 pb-20"> {/* Massively increased vertical spacing for better separation */}
 
             {/* 1. About Section */}
             <section id="about" className="scroll-mt-24">
