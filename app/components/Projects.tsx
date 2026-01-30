@@ -34,8 +34,8 @@ const PROJECTS = [
 
 export default function Projects(): React.JSX.Element {
   return (
-    <section id="lab" className="section-padding">
-      <div className="container mx-auto max-w-6xl px-6">
+    <section id="lab" className="section-padding w-full">
+      <div className="container px-6">
         <div className="flex flex-col items-center text-center mb-24 space-y-4">
           <motion.span
             initial={{ opacity: 0, y: 20 }}

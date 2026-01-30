@@ -43,8 +43,8 @@ export default function Terminal(): React.JSX.Element {
     }, []);
 
     return (
-        <section className="section-padding relative">
-            <div className="container mx-auto max-w-4xl px-6">
+        <section className="section-padding relative w-full">
+            <div className="container max-w-4xl px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}

@@ -9,8 +9,8 @@ const STATS = [
 
 export default function About(): React.JSX.Element {
   return (
-    <section id="about" className="section-padding relative">
-      <div className="container mx-auto max-w-6xl px-6">
+    <section id="about" className="section-padding relative w-full">
+      <div className="container px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

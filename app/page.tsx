@@ -15,8 +15,8 @@ export default function Home(): React.JSX.Element {
   return (
     <>
       <SecurityLayer />
-      <main className="min-h-screen relative z-10">
-        <Header />
+      <Header />
+      <main className="w-full flex flex-col items-center min-h-screen relative z-10 overflow-x-hidden pt-20">
         <Banner />
         <About />
         <Skills />

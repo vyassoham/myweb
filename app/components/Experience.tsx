@@ -33,8 +33,8 @@ const EXPERIENCES = [
 
 export default function Experience(): React.JSX.Element {
   return (
-    <section id="experience" className="section-padding relative">
-      <div className="container mx-auto max-w-4xl px-6">
+    <section id="experience" className="section-padding relative w-full">
+      <div className="container px-6">
         <div className="flex flex-col items-center text-center mb-24 space-y-4">
           <motion.span
             initial={{ opacity: 0, y: 20 }}

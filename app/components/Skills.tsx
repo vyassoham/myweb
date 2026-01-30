@@ -37,8 +37,8 @@ const SKILL_CATEGORIES = [
 
 export default function Skills(): React.JSX.Element {
     return (
-        <section id="skills" className="section-padding relative">
-            <div className="container mx-auto max-w-6xl px-6">
+        <section id="skills" className="section-padding relative w-full">
+            <div className="container px-6">
                 <div className="flex flex-col items-center text-center mb-20 space-y-4">
                     <motion.span
                         initial={{ opacity: 0, y: 20 }}

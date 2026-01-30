@@ -21,12 +21,11 @@
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
-  background: var(--background);
-}
-
+html,
 body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
@@ -37,6 +36,19 @@ body {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 /* Prevent image dragging */
@@ -77,43 +89,14 @@ a {
   pointer-events: none;
 }
 
-/* Container - PERFECT CENTERING */
+/* Container Utility */
 .container {
   width: 100%;
+  max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-}
-
-@media (min-width: 640px) {
-  .container {
-    max-width: 640px;
-  }
-}
-
-@media (min-width: 768px) {
-  .container {
-    max-width: 768px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    max-width: 1024px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .container {
-    max-width: 1280px;
-  }
-}
-
-@media (min-width: 1536px) {
-  .container {
-    max-width: 1536px;
-  }
 }
 
 /* Glass Morphism - Refined */

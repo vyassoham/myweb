@@ -50,8 +50,8 @@ const TOOLS = [
 
 export default function ToolsArsenal(): React.JSX.Element {
     return (
-        <section id="tools" className="section-padding relative">
-            <div className="container mx-auto max-w-6xl px-6">
+        <section id="tools" className="section-padding relative w-full">
+            <div className="container px-6">
                 {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}

@@ -25,14 +25,14 @@ export default function Banner(): React.JSX.Element {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center pt-32 pb-20 px-6"
+      className="relative min-h-screen flex items-center justify-center pt-32 pb-20 px-6 w-full"
     >
       {/* Background Glows */}
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-violet-600/20 blur-[120px] rounded-full pointer-events-none animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-blue-600/15 blur-[120px] rounded-full pointer-events-none animate-pulse" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-violet-600/20 blur-[120px] rounded-full pointer-events-none animate-pulse" />
+      <div className="absolute bottom-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-blue-600/15 blur-[120px] rounded-full pointer-events-none animate-pulse" />
 
       {/* Content Container - PERFECTLY CENTERED */}
-      <div className="w-full max-w-7xl mx-auto">
+      <div className="container px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
 
           {/* Left: Text Content */}

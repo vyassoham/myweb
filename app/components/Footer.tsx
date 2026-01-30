@@ -5,10 +5,10 @@ import { Github, Instagram, Linkedin, Mail, ExternalLink } from "lucide-react";
 
 export default function Footer(): React.JSX.Element {
   return (
-    <footer id="contact" className="py-20 px-6 relative overflow-hidden">
+    <footer id="contact" className="py-20 px-6 relative overflow-hidden w-full flex justify-center">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-      <div className="container mx-auto max-w-6xl">
+      <div className="container">
         <div className="flex flex-col items-center text-center space-y-12">
           <div className="space-y-4">
             <h2 className="text-4xl md:text-6xl font-black font-display tracking-tight text-white">
