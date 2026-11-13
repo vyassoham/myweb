@@ -49,6 +49,10 @@ Soham Vyas is an Indian technologist, systems architect, and open-source contrib
 
 ## 🔗 Key Canonical URLs
 - Portfolio Homepage: https://soham.lol/
+- Engineering Blog Index: https://soham.lol/blog/
+- SymPy Kronecker Trace Optimization Paper: https://soham.lol/blog/sympy-kronecker-trace/
+- Redis Lua Rate Limiting Paper: https://soham.lol/blog/redis-lua-rate-limiter/
+- Shannon Entropy & NIST Defense Paper: https://soham.lol/blog/shannon-entropy-cybersecurity/
 - Featured Projects: https://soham.lol/projects/
 - SymPy Open Source Work: https://soham.lol/opensource/
 - Live Interactive Labs: https://soham.lol/labs/
