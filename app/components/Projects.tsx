@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Github, ArrowUpRight, Star, Sparkles, ChevronDown, ChevronUp, Layers, CheckCircle } from "lucide-react";
 import TiltCard from "./TiltCard";
 import ScrollReveal from "./ScrollReveal";
+import NeuralAudioPreview from "./NeuralAudioPreview";
 
 type ProjectCategory = "all" | "systems" | "ai" | "data";
 
@@ -246,6 +247,9 @@ export default function Projects(): React.JSX.Element {
               <p className="text-zinc-300 text-xs sm:text-sm leading-relaxed mb-4">
                 {project.description}
               </p>
+
+              {/* Neural TTS Interactive Voice Preview */}
+              {project.id === "neural-tts" && <NeuralAudioPreview />}
 
               {/* Architectural Highlights */}
               <div className="space-y-1.5 mb-4 py-3 border-y border-white/[0.05]">

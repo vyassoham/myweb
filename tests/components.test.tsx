@@ -16,6 +16,7 @@ import InteractivePlayground from '../app/components/InteractivePlayground';
 import CommandPalette from '../app/components/CommandPalette';
 import InteractiveBackground from '../app/components/InteractiveBackground';
 import InteractiveCoffee from '../app/components/InteractiveCoffee';
+import NeuralAudioPreview from '../app/components/NeuralAudioPreview';
 import ThemeToggle, { applyTheme, getInitialTheme } from '../app/components/ThemeToggle';
 import TiltCard from '../app/components/TiltCard';
 import ScrollProgress from '../app/components/ScrollProgress';
@@ -156,6 +157,18 @@ describe('myweb Top 1% Portfolio Test Suite', () => {
             expect(screen.getByText('MediPro')).not.toBeNull();
             expect(screen.getByText('Soham Crypto Tracker')).not.toBeNull();
             expect(screen.getByText('SocialLogger')).not.toBeNull();
+            expect(screen.getByText('Interactive Neural Speech Demo')).not.toBeNull();
+        });
+
+        test('NeuralAudioPreview renders and toggles playback state', () => {
+            render(<NeuralAudioPreview />);
+            expect(screen.getByText('Interactive Neural Speech Demo')).not.toBeNull();
+            expect(screen.getByText('24kHz HiFi-GAN')).not.toBeNull();
+            const playBtn = screen.getByLabelText(/Play voice sample/i);
+            expect(playBtn).not.toBeNull();
+            fireEvent.click(playBtn);
+            // Toggle stop
+            fireEvent.click(playBtn);
         });
     });
 
