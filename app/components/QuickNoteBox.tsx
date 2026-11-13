@@ -108,19 +108,19 @@ export default function QuickNoteBox(): React.JSX.Element {
             {/* Console Header */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-5 border-b border-white/[0.06]">
               <div>
-                <div className="inline-flex items-center gap-1.5 text-indigo-400 font-mono text-xs uppercase tracking-wider mb-1">
+                <div className="inline-flex items-center gap-1.5 text-indigo-400 text-xs font-medium mb-1">
                   <Sparkles className="w-3.5 h-3.5" />
                   <span>In-Browser Dispatch Console</span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+                <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
                   Send a Direct Quick Note
                 </h3>
                 <p className="text-xs sm:text-sm text-zinc-400 mt-1">
-                  No mail app required. Draft and dispatch directly to <code className="text-emerald-400">hello@soham.lol</code>.
+                  No mail app required. Draft and dispatch directly to <code className="text-emerald-400 font-mono text-xs">hello@soham.lol</code>.
                 </p>
               </div>
 
-              <div className="flex items-center gap-2 text-[11px] font-mono text-zinc-400 bg-white/[0.03] border border-white/[0.06] px-3 py-1.5 rounded-xl w-fit">
+              <div className="flex items-center gap-2 text-xs font-medium text-zinc-400 bg-white/[0.03] border border-white/[0.06] px-3 py-1.5 rounded-xl w-fit">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 <span>Checker</span>
               </div>
@@ -128,7 +128,7 @@ export default function QuickNoteBox(): React.JSX.Element {
 
             {/* Error Notification */}
             {error && (
-              <div className="mb-5 p-3 rounded-xl bg-red-950/30 border border-red-500/30 text-red-300 text-xs flex items-center gap-2 font-mono">
+              <div className="mb-5 p-3 rounded-xl bg-red-950/30 border border-red-500/30 text-red-300 text-xs flex items-center gap-2 font-normal">
                 <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
                 <span>{error}</span>
               </div>
@@ -137,7 +137,7 @@ export default function QuickNoteBox(): React.JSX.Element {
             <form onSubmit={handleSubmit} className="space-y-5">
               {/* Quick Topic Chips */}
               <div>
-                <label className="block text-xs font-mono text-zinc-300 font-semibold mb-2 flex items-center gap-1.5">
+                <label className="block text-xs font-medium text-zinc-300 mb-2 flex items-center gap-1.5">
                   <Tag className="w-3.5 h-3.5 text-indigo-400" />
                   <span>Select Inquiry Topic</span>
                 </label>
@@ -147,7 +147,7 @@ export default function QuickNoteBox(): React.JSX.Element {
                       key={t}
                       type="button"
                       onClick={() => setTopic(t)}
-                      className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all cursor-pointer ${
+                      className={`px-3 py-1.5 rounded-xl text-xs font-medium transition-all cursor-pointer ${
                         topic === t
                           ? "bg-indigo-600 text-white border border-indigo-400/50 shadow-md shadow-indigo-600/30 font-semibold"
                           : "bg-white/[0.04] text-zinc-400 hover:text-zinc-200 border border-white/[0.06] hover:bg-white/[0.08]"
@@ -164,7 +164,7 @@ export default function QuickNoteBox(): React.JSX.Element {
                 <div>
                   <label
                     htmlFor="contact-name"
-                    className="block text-xs font-mono text-zinc-300 font-semibold mb-1.5 flex items-center gap-1.5"
+                    className="block text-xs font-medium text-zinc-300 mb-1.5 flex items-center gap-1.5"
                   >
                     <User className="w-3.5 h-3.5 text-indigo-400" />
                     <span>Your Name / Organization</span>
@@ -175,14 +175,14 @@ export default function QuickNoteBox(): React.JSX.Element {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="e.g. Dr. Leslie Lamport / Engineering Recruiter"
-                    className="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-white/[0.08] focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-white placeholder-zinc-500 text-xs sm:text-sm outline-none transition-all font-mono"
+                    className="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-white/[0.08] focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-white placeholder-zinc-500 text-xs sm:text-sm outline-none transition-all font-sans"
                   />
                 </div>
 
                 <div>
                   <label
                     htmlFor="contact-email"
-                    className="block text-xs font-mono text-zinc-300 font-semibold mb-1.5 flex items-center gap-1.5"
+                    className="block text-xs font-medium text-zinc-300 mb-1.5 flex items-center gap-1.5"
                   >
                     <Mail className="w-3.5 h-3.5 text-indigo-400" />
                     <span>Your Contact Email</span>
@@ -193,7 +193,7 @@ export default function QuickNoteBox(): React.JSX.Element {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="e.g. recruiter@company.com"
-                    className="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-white/[0.08] focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-white placeholder-zinc-500 text-xs sm:text-sm outline-none transition-all font-mono"
+                    className="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-white/[0.08] focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-white placeholder-zinc-500 text-xs sm:text-sm outline-none transition-all font-sans"
                   />
                 </div>
               </div>
@@ -202,7 +202,7 @@ export default function QuickNoteBox(): React.JSX.Element {
               <div>
                 <label
                   htmlFor="contact-message"
-                  className="block text-xs font-mono text-zinc-300 font-semibold mb-1.5 flex items-center gap-1.5"
+                  className="block text-xs font-medium text-zinc-300 mb-1.5 flex items-center gap-1.5"
                 >
                   <MessageSquare className="w-3.5 h-3.5 text-indigo-400" />
                   <span>Message &amp; Brief Description</span>
@@ -219,14 +219,14 @@ export default function QuickNoteBox(): React.JSX.Element {
 
               {/* Submit Action Bar */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
-                <p className="text-[11px] text-zinc-500 font-mono">
+                <p className="text-xs text-zinc-500 font-normal">
                   Guaranteed sub-24h response time from IIT Jodhpur.
                 </p>
 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-semibold text-xs sm:text-sm transition-all shadow-lg shadow-indigo-600/30 hover:scale-[1.01] active:scale-[0.99] cursor-pointer shrink-0"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-medium text-xs sm:text-sm transition-all shadow-lg shadow-indigo-600/30 hover:scale-[1.01] active:scale-[0.99] cursor-pointer shrink-0"
                 >
                   {isSubmitting ? (
                     <>
@@ -251,25 +251,25 @@ export default function QuickNoteBox(): React.JSX.Element {
             </div>
 
             <div>
-              <h3 className="text-2xl font-extrabold text-white mb-1">
+              <h3 className="text-2xl font-bold text-white mb-1">
                 Note Dispatched Successfully!
               </h3>
-              <p className="text-zinc-300 text-xs sm:text-sm max-w-md mx-auto leading-relaxed">
-                Thank you, <strong>{name}</strong>. Your note regarding <em>&ldquo;{topic}&rdquo;</em> has been routed directly to <code className="text-emerald-400">hello@soham.lol</code>.
+              <p className="text-zinc-300 text-xs sm:text-sm max-w-md mx-auto leading-relaxed font-normal">
+                Thank you, <strong>{name}</strong>. Your note regarding <em>&ldquo;{topic}&rdquo;</em> has been routed directly to <code className="text-emerald-400 font-mono text-xs">hello@soham.lol</code>.
               </p>
             </div>
 
             {/* Reference Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-black/50 border border-white/[0.08] text-xs font-mono text-zinc-300">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-black/50 border border-white/[0.08] text-xs text-zinc-300 font-normal">
               <Clock className="w-3.5 h-3.5 text-indigo-400" />
-              <span>Reference Tracking: <strong>{refId}</strong></span>
+              <span>Reference Tracking: <strong className="font-mono text-indigo-300">{refId}</strong></span>
             </div>
 
             {/* Actions */}
             <div className="flex flex-wrap items-center justify-center gap-3 pt-3">
               <button
                 onClick={copyDraft}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] text-xs font-mono text-zinc-200 transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] text-xs font-medium text-zinc-200 transition-colors cursor-pointer"
               >
                 {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
                 <span>{copied ? "Draft Copied!" : "Copy Note Draft"}</span>
@@ -277,7 +277,7 @@ export default function QuickNoteBox(): React.JSX.Element {
 
               <button
                 onClick={handleReset}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 border border-indigo-500/30 text-xs font-mono text-indigo-300 transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 border border-indigo-500/30 text-xs font-medium text-indigo-300 transition-colors cursor-pointer"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 <span>Send Another Note</span>

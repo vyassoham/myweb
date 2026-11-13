@@ -79,7 +79,7 @@ export default function Hero(): React.JSX.Element {
                 />
               </div>
               <div>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-2">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-2">
                   Soham Vyas
                 </h1>
                 <div className="h-8 flex items-center">
@@ -207,7 +207,7 @@ export default function Hero(): React.JSX.Element {
                   <GraduationCap className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold tracking-wide uppercase bg-violet-500/20 text-violet-300 mb-1">
+                  <div className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-medium bg-violet-500/15 text-violet-300 mb-1">
                     Ongoing
                   </div>
                   <h3 className="text-base font-bold text-white">
@@ -221,7 +221,7 @@ export default function Hero(): React.JSX.Element {
 
               <div className="space-y-3 pt-3 border-t border-white/[0.06] text-xs">
                 <div>
-                  <span className="font-semibold text-zinc-200 block mb-1 uppercase tracking-wider text-[10px] text-zinc-400">
+                  <span className="font-medium text-zinc-400 block mb-1.5 text-xs">
                     Core Rigor &amp; Coursework
                   </span>
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-zinc-300">

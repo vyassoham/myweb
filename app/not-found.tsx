@@ -130,13 +130,13 @@ export default function NotFound(): React.JSX.Element {
 
       <div className="max-w-2xl w-full z-10 flex flex-col items-center text-center">
         {/* Error Badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs font-mono font-semibold mb-4">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs font-medium mb-4">
           <ShieldAlert className="w-3.5 h-3.5" />
           <span>HTTP 404 · ROUTE_UNDEFINED</span>
         </div>
 
         {/* Big Code Heading */}
-        <h1 className="text-6xl sm:text-7xl font-extrabold font-mono tracking-tight text-white mb-2">
+        <h1 className="text-6xl sm:text-7xl font-bold font-mono tracking-tight text-white mb-2">
           4<span className="text-amber-400">0</span>4
         </h1>
 
@@ -151,14 +151,14 @@ export default function NotFound(): React.JSX.Element {
             &ldquo;{currentQuoteObj.quote}&rdquo;
           </p>
           <div className="mt-2.5 flex flex-col items-center justify-center">
-            <span className="text-xs font-mono text-amber-400 font-semibold">
+            <span className="text-xs text-amber-400 font-medium">
               — {currentQuoteObj.author}
             </span>
-            <span className="text-[11px] font-mono text-zinc-400 mt-0.5">
+            <span className="text-xs text-zinc-400 mt-0.5 font-normal">
               {currentQuoteObj.role}
             </span>
           </div>
-          <span className="text-[10px] font-mono text-zinc-500 block mt-2 opacity-60">
+          <span className="text-xs text-zinc-500 block mt-2 opacity-70 font-normal">
             (click card to cycle famous coder quotes ↻)
           </span>
         </div>

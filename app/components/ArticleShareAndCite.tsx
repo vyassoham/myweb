@@ -69,7 +69,7 @@ export default function ArticleShareAndCite({
       <div className="p-6 rounded-2xl bg-gradient-to-br from-indigo-950/30 via-zinc-900/60 to-zinc-950 border border-indigo-500/25">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
           <div>
-            <div className="inline-flex items-center gap-1.5 text-indigo-400 font-mono text-xs uppercase tracking-wider mb-1">
+            <div className="inline-flex items-center gap-1.5 text-indigo-400 text-xs font-medium mb-1">
               <Share2 className="w-3.5 h-3.5" />
               <span>Share &amp; Discuss This Paper</span>
             </div>
@@ -132,15 +132,15 @@ export default function ArticleShareAndCite({
         {/* Academic Citation Box */}
         <div className="pt-5 border-t border-white/[0.08]">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
-            <div className="flex items-center gap-2 text-xs font-mono text-zinc-300">
+            <div className="flex items-center gap-2 text-xs font-medium text-zinc-300">
               <Quote className="w-3.5 h-3.5 text-emerald-400" />
-              <span className="font-semibold">Academic Citation &amp; Reference</span>
+              <span>Academic Citation &amp; Reference</span>
             </div>
 
-            <div className="flex items-center gap-2 text-xs font-mono">
+            <div className="flex items-center gap-2 text-xs font-medium">
               <button
                 onClick={() => copyToClipboard(textCitation, "text")}
-                className="inline-flex items-center gap-1 text-[11px] px-2.5 py-1 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-zinc-300 hover:text-white transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1 text-xs px-2.5 py-1 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-zinc-300 hover:text-white transition-colors cursor-pointer"
               >
                 {copiedTextCite ? (
                   <Check className="w-3 h-3 text-emerald-400" />
@@ -152,7 +152,7 @@ export default function ArticleShareAndCite({
 
               <button
                 onClick={() => copyToClipboard(bibtex, "bibtex")}
-                className="inline-flex items-center gap-1 text-[11px] px-2.5 py-1 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/25 text-emerald-300 transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1 text-xs px-2.5 py-1 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/25 text-emerald-300 transition-colors cursor-pointer"
               >
                 {copiedBibtex ? (
                   <Check className="w-3 h-3 text-emerald-400" />
@@ -164,14 +164,14 @@ export default function ArticleShareAndCite({
 
               <button
                 onClick={() => setShowBibtex((prev) => !prev)}
-                className="text-[11px] text-zinc-400 hover:text-zinc-200 underline transition-colors cursor-pointer ml-1"
+                className="text-xs text-zinc-400 hover:text-zinc-200 underline transition-colors cursor-pointer ml-1"
               >
                 {showBibtex ? "Hide Code" : "Show BibTeX"}
               </button>
             </div>
           </div>
 
-          <p className="text-xs text-zinc-400 font-mono bg-black/40 p-3 rounded-lg border border-white/[0.05] leading-relaxed select-all">
+          <p className="text-xs text-zinc-300 font-sans bg-black/40 p-3 rounded-lg border border-white/[0.05] leading-relaxed select-all">
             {textCitation}
           </p>
 

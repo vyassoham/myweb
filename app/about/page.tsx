@@ -34,7 +34,7 @@ export default function AboutPage(): React.JSX.Element {
         <div className="max-w-7xl mx-auto px-6 py-2">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-xs font-mono text-zinc-400 hover:text-emerald-400 transition-colors bg-white/[0.03] border border-white/[0.08] px-3.5 py-1.5 rounded-lg"
+            className="inline-flex items-center gap-2 text-xs font-medium text-zinc-400 hover:text-emerald-400 transition-colors bg-white/[0.03] border border-white/[0.08] px-3.5 py-1.5 rounded-lg"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>← Return to Full Portfolio</span>

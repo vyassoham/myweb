@@ -70,11 +70,11 @@ export default function Skills(): React.JSX.Element {
     <section id="skills" className="py-24 px-6 max-w-7xl mx-auto">
       {/* Header */}
       <div className="mb-12">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-semibold uppercase tracking-wider mb-3">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-medium mb-3">
           <Terminal className="w-3.5 h-3.5" />
           <span>Technical Capabilities</span>
         </div>
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
           Tools, Languages &amp; Frameworks
         </h2>
         <p className="text-zinc-400 text-sm sm:text-base mt-2 max-w-2xl">
@@ -95,7 +95,7 @@ export default function Skills(): React.JSX.Element {
               >
                 <div>
                   <div className="flex items-center gap-3.5 mb-4">
-                    <div className="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/[0.1] flex items-center justify-center text-indigo-400 group-hover:scale-110 transition-transform">
+                    <div className="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/[0.1] flex items-center justify-center text-indigo-400 group-hover:scale-105 transition-transform">
                       <Icon className="w-5 h-5" />
                     </div>
                     <div>
@@ -105,7 +105,7 @@ export default function Skills(): React.JSX.Element {
                     </div>
                   </div>
 
-                  <p className="text-xs text-zinc-400 mb-5 leading-relaxed">
+                  <p className="text-xs text-zinc-400 mb-5 leading-relaxed font-normal">
                     {cat.description}
                   </p>
                 </div>
@@ -115,7 +115,7 @@ export default function Skills(): React.JSX.Element {
                   {cat.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="px-2.5 py-1 rounded-lg text-xs font-mono bg-white/[0.04] text-zinc-300 border border-white/[0.06] hover:border-indigo-500/30 transition-colors"
+                      className="px-2.5 py-1 rounded-lg text-xs font-medium bg-white/[0.04] text-zinc-300 border border-white/[0.06] hover:border-indigo-500/30 transition-colors"
                     >
                       {skill}
                     </span>

@@ -120,6 +120,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Human-Crafted Minimalist Typography Rhythm */
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.022em;
+}
+
+p, span, a, button, input, textarea, label {
+  letter-spacing: -0.008em;
+}
+
 /* Beautiful text selection */
 ::selection {
   background-color: rgba(99, 102, 241, 0.4);

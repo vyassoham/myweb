@@ -34,7 +34,7 @@ export default function SymPyKroneckerBlog(): React.JSX.Element {
       <main className="flex-1 pt-32 pb-24">
         <article className="max-w-4xl mx-auto px-6">
           {/* Breadcrumb Navigation */}
-          <div className="flex items-center gap-3 text-xs font-mono text-zinc-400 mb-8">
+          <div className="flex items-center gap-3 text-xs font-medium text-zinc-400 mb-8">
             <Link
               href="/"
               className="hover:text-emerald-400 transition-colors bg-white/[0.03] border border-white/[0.08] px-3 py-1.5 rounded-lg flex items-center gap-1.5"
@@ -53,32 +53,32 @@ export default function SymPyKroneckerBlog(): React.JSX.Element {
           {/* Article Header */}
           <header className="mb-10 pb-8 border-b border-white/[0.08]">
             <div className="flex flex-wrap items-center gap-2.5 mb-4">
-              <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1.5">
+              <span className="px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1.5">
                 <GitPullRequest className="w-3.5 h-3.5" />
                 Upstream SymPy Contribution
               </span>
-              <span className="px-3 py-1 rounded-full text-xs font-mono text-indigo-300 bg-indigo-500/10 border border-indigo-500/20">
+              <span className="px-3 py-1 rounded-full text-xs font-medium text-indigo-300 bg-indigo-500/10 border border-indigo-500/20">
                 GSoC 2027 Preparation
               </span>
-              <span className="px-3 py-1 rounded-full text-xs font-mono text-zinc-400 bg-white/[0.03] border border-white/[0.08]">
+              <span className="px-3 py-1 rounded-full text-xs font-medium text-zinc-400 bg-white/[0.03] border border-white/[0.08]">
                 Computer Algebra &amp; Tensor Math
               </span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight mb-4">
               How I Eliminated <span className="text-rose-400">O(n³)</span> Matrix Expansion in SymPy Kronecker Traces
             </h1>
 
-            <p className="text-lg text-zinc-300 leading-relaxed mb-6">
+            <p className="text-lg text-zinc-300 leading-relaxed mb-6 font-normal">
               A mathematical and algorithmic deep dive into symbolic matrix expressions, Kronecker product tensor algebra, and implementing an exact scalar property in SymPy that avoids catastrophic memory allocation.
             </p>
 
-            <div className="flex flex-wrap items-center gap-6 text-xs font-mono text-zinc-400">
+            <div className="flex flex-wrap items-center gap-6 text-xs text-zinc-400 font-normal">
               <div className="flex items-center gap-2">
                 <div className="w-6 h-6 rounded-full bg-indigo-600 flex items-center justify-center text-white font-bold text-[10px]">
                   SV
                 </div>
-                <span className="text-zinc-200 font-semibold">Soham Vyas</span>
+                <span className="text-zinc-200 font-medium">Soham Vyas</span>
                 <span>· IIT Jodhpur</span>
               </div>
               <div className="flex items-center gap-1.5">

@@ -164,14 +164,14 @@ export default function Projects(): React.JSX.Element {
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-semibold uppercase tracking-wider mb-3">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-medium mb-3">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Real Code · Verified Pushes</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
             Featured Engineering Projects
           </h2>
-          <p className="text-zinc-400 text-sm sm:text-base mt-2 max-w-2xl">
+          <p className="text-zinc-400 text-sm sm:text-base mt-2 max-w-2xl font-normal">
             Every repository here is production-tested, test-backed, and open on GitHub. No dummy mockups or dead links.
           </p>
         </div>

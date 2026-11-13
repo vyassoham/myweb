@@ -35,7 +35,7 @@ export default function KroneckerMathSlider(): React.JSX.Element {
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-4 pb-5 border-b border-white/[0.08]">
         <div>
-          <span className="text-xs font-mono uppercase tracking-widest text-indigo-400 font-semibold flex items-center gap-2">
+          <span className="text-xs font-medium text-indigo-400 flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             Live Mathematical Complexity Simulator
           </span>
@@ -47,9 +47,9 @@ export default function KroneckerMathSlider(): React.JSX.Element {
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => setPreset(10, 10)}
-            className={`px-3 py-1 rounded-lg text-xs font-mono transition-all ${
+            className={`px-3 py-1 rounded-lg text-xs font-medium transition-all ${
               dimN === 10 && dimM === 10
-                ? "bg-indigo-600 text-white font-bold"
+                ? "bg-indigo-600 text-white font-semibold"
                 : "bg-white/[0.05] text-zinc-300 hover:bg-white/[0.1]"
             }`}
           >
@@ -57,9 +57,9 @@ export default function KroneckerMathSlider(): React.JSX.Element {
           </button>
           <button
             onClick={() => setPreset(50, 50)}
-            className={`px-3 py-1 rounded-lg text-xs font-mono transition-all ${
+            className={`px-3 py-1 rounded-lg text-xs font-medium transition-all ${
               dimN === 50 && dimM === 50
-                ? "bg-indigo-600 text-white font-bold"
+                ? "bg-indigo-600 text-white font-semibold"
                 : "bg-white/[0.05] text-zinc-300 hover:bg-white/[0.1]"
             }`}
           >
@@ -67,7 +67,7 @@ export default function KroneckerMathSlider(): React.JSX.Element {
           </button>
           <button
             onClick={() => setPreset(200, 200)}
-            className={`px-3 py-1 rounded-lg text-xs font-mono transition-all ${
+            className={`px-3 py-1 rounded-lg text-xs font-medium transition-all ${
               dimN === 200 && dimM === 200
                 ? "bg-indigo-600 text-white font-bold"
                 : "bg-white/[0.05] text-zinc-300 hover:bg-white/[0.1]"

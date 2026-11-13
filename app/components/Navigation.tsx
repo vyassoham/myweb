@@ -94,7 +94,7 @@ export default function Navigation(): React.JSX.Element {
             <span className="font-bold text-base tracking-tight text-white group-hover:text-indigo-400 transition-colors">
               Soham Vyas
             </span>
-            <span className="text-[11px] text-zinc-400 font-mono flex items-center gap-1.5">
+            <span className="text-[11px] text-zinc-400 flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               soham.lol
             </span>
@@ -111,7 +111,7 @@ export default function Navigation(): React.JSX.Element {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.href)}
-                className={`px-3.5 py-1.5 text-xs uppercase tracking-wider font-semibold rounded-full transition-all ${
+                className={`px-3.5 py-1.5 text-[13px] font-medium rounded-full transition-all ${
                   isActive
                     ? "bg-indigo-600/90 text-white shadow-sm shadow-indigo-600/30"
                     : "text-zinc-400 hover:text-white hover:bg-white/[0.06]"

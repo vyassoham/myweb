@@ -115,14 +115,14 @@ export default function InteractivePlayground(): React.JSX.Element {
     <section id="lab" className="py-24 px-6 max-w-7xl mx-auto">
       {/* Header */}
       <div className="mb-12">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-xs font-semibold uppercase tracking-wider mb-3">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-xs font-medium mb-3">
           <Zap className="w-3.5 h-3.5" />
           <span>Interactive Engineering Lab</span>
         </div>
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
           Live In-Browser System Simulators
         </h2>
-        <p className="text-zinc-400 text-sm sm:text-base mt-2 max-w-2xl">
+        <p className="text-zinc-400 text-sm sm:text-base mt-2 max-w-2xl font-normal">
           Don&apos;t just read code — test it live. These interactive simulators demonstrate the core algorithms behind my top GitHub projects directly in your browser.
         </p>
 
@@ -130,7 +130,7 @@ export default function InteractivePlayground(): React.JSX.Element {
         <div className="flex items-center gap-2 mt-6">
           <button
             onClick={() => setActiveTab("security")}
-            className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-2 ${
+            className={`px-4 py-2 rounded-xl text-xs font-medium transition-all cursor-pointer flex items-center gap-2 ${
               activeTab === "security"
                 ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/30"
                 : "bg-white/[0.04] text-zinc-400 hover:text-white border border-white/[0.06]"
@@ -141,7 +141,7 @@ export default function InteractivePlayground(): React.JSX.Element {
           </button>
           <button
             onClick={() => setActiveTab("ratelimit")}
-            className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-2 ${
+            className={`px-4 py-2 rounded-xl text-xs font-medium transition-all cursor-pointer flex items-center gap-2 ${
               activeTab === "ratelimit"
                 ? "bg-cyan-600 text-white shadow-lg shadow-cyan-600/30"
                 : "bg-white/[0.04] text-zinc-400 hover:text-white border border-white/[0.06]"
