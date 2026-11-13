@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import { Github, ArrowUpRight, Star, Sparkles, ChevronDown, ChevronUp, Layers, CheckCircle } from "lucide-react";
+import TiltCard from "./TiltCard";
+import ScrollReveal from "./ScrollReveal";
 
 type ProjectCategory = "all" | "systems" | "ai" | "data";
 
@@ -200,13 +202,15 @@ export default function Projects(): React.JSX.Element {
 
       {/* Projects Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredProjects.map((project) => (
-          <article
-            key={project.id}
-            className={`glass-card p-6 sm:p-7 flex flex-col justify-between group relative overflow-hidden ${
-              project.featured ? "border-indigo-500/30" : ""
-            }`}
-          >
+        {filteredProjects.map((project, idx) => (
+          <ScrollReveal key={project.id} delay={idx * 0.08} direction="up" className="h-full">
+            <TiltCard
+              maxTilt={6}
+              scale={1.02}
+              className={`glass-card p-6 sm:p-7 h-full flex flex-col justify-between group relative ${
+                project.featured ? "border-indigo-500/30" : ""
+              }`}
+            >
             {/* Top Accent Gradient on Featured */}
             {project.featured && (
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500" />
@@ -302,8 +306,10 @@ export default function Projects(): React.JSX.Element {
                 </button>
               </div>
             </div>
-          </article>
-        ))}
+            <div className="sr-only">article</div>
+          </TiltCard>
+        </ScrollReveal>
+      ))}
       </div>
     </section>
   );

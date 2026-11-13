@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import { GitPullRequest, GitBranch, CheckCircle2, ArrowUpRight, Code, ShieldCheck, Terminal, Calculator } from "lucide-react";
+import TiltCard from "./TiltCard";
+import ScrollReveal from "./ScrollReveal";
 
 interface ContributionItem {
   id: string;
@@ -70,8 +72,9 @@ export default function OpenSource(): React.JSX.Element {
       </div>
 
       {/* Main SymPy Spotlight Card */}
-      <div className="glass-card p-6 sm:p-8 rounded-2xl relative overflow-hidden border-emerald-500/30 mb-8">
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 via-teal-500 to-indigo-500" />
+      <ScrollReveal direction="up">
+        <div className="glass-card p-6 sm:p-8 rounded-2xl relative overflow-hidden border-emerald-500/30 mb-8">
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 via-teal-500 to-indigo-500" />
 
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-white/[0.08]">
           <div className="flex items-center gap-4">
@@ -172,7 +175,8 @@ export default function OpenSource(): React.JSX.Element {
             </div>
           </div>
         </div>
-      </div>
+        </div>
+      </ScrollReveal>
     </section>
   );
 }

@@ -2,6 +2,8 @@
 
 import React from "react";
 import { Code2, Cpu, Server, Database, Layout, Terminal, CheckCircle } from "lucide-react";
+import TiltCard from "./TiltCard";
+import ScrollReveal from "./ScrollReveal";
 
 interface SkillCategory {
   title: string;
@@ -85,39 +87,42 @@ export default function Skills(): React.JSX.Element {
         {SKILL_CATEGORIES.map((cat, idx) => {
           const Icon = cat.icon;
           return (
-            <div
-              key={idx}
-              className="glass-card p-6 sm:p-7 flex flex-col justify-between group"
-            >
-              <div>
-                <div className="flex items-center gap-3.5 mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/[0.1] flex items-center justify-center text-indigo-400 group-hover:scale-110 transition-transform">
-                    <Icon className="w-5 h-5" />
+            <ScrollReveal key={idx} delay={idx * 0.08} direction="up" className="h-full">
+              <TiltCard
+                maxTilt={6}
+                scale={1.02}
+                className="glass-card p-6 sm:p-7 flex flex-col justify-between group h-full"
+              >
+                <div>
+                  <div className="flex items-center gap-3.5 mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/[0.1] flex items-center justify-center text-indigo-400 group-hover:scale-110 transition-transform">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-base text-white group-hover:text-indigo-300 transition-colors">
+                        {cat.title}
+                      </h3>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-bold text-base text-white group-hover:text-indigo-300 transition-colors">
-                      {cat.title}
-                    </h3>
-                  </div>
+
+                  <p className="text-xs text-zinc-400 mb-5 leading-relaxed">
+                    {cat.description}
+                  </p>
                 </div>
 
-                <p className="text-xs text-zinc-400 mb-5 leading-relaxed">
-                  {cat.description}
-                </p>
-              </div>
-
-              {/* Skills Pills */}
-              <div className="flex flex-wrap gap-1.5 pt-3 border-t border-white/[0.05]">
-                {cat.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-2.5 py-1 rounded-lg text-xs font-mono bg-white/[0.04] text-zinc-300 border border-white/[0.06] hover:border-indigo-500/30 transition-colors"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
+                {/* Skills Pills */}
+                <div className="flex flex-wrap gap-1.5 pt-3 border-t border-white/[0.05]">
+                  {cat.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-2.5 py-1 rounded-lg text-xs font-mono bg-white/[0.04] text-zinc-300 border border-white/[0.06] hover:border-indigo-500/30 transition-colors"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </TiltCard>
+            </ScrollReveal>
           );
         })}
       </div>

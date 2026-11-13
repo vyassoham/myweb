@@ -16,6 +16,10 @@ import CommandPalette from '../app/components/CommandPalette';
 import InteractiveBackground from '../app/components/InteractiveBackground';
 import InteractiveCoffee from '../app/components/InteractiveCoffee';
 import ThemeToggle, { applyTheme, getInitialTheme } from '../app/components/ThemeToggle';
+import TiltCard from '../app/components/TiltCard';
+import ScrollProgress from '../app/components/ScrollProgress';
+import ScrollReveal from '../app/components/ScrollReveal';
+import Parallax3DBackground from '../app/components/Parallax3DBackground';
 import NotFound from '../app/not-found';
 import { cn } from '../lib/utils';
 
@@ -342,6 +346,49 @@ describe('myweb Top 1% Portfolio Test Suite', () => {
             applyTheme('dark');
             expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
             expect(document.documentElement.classList.contains('dark')).toBe(true);
+        });
+    });
+
+    // =====================================================================
+    // 🎭 Test 3D Hover & Scroll Dynamics
+    // =====================================================================
+    describe('3D Hover & Scroll Dynamics', () => {
+        test('TiltCard renders content and handles mouse hovering 3D physics', () => {
+            const { container } = render(
+                <TiltCard maxTilt={10}>
+                    <span>3D Content</span>
+                </TiltCard>
+            );
+
+            expect(screen.getByText('3D Content')).not.toBeNull();
+            const card = container.firstChild as HTMLElement;
+
+            // Trigger mouse move to calculate tilt
+            fireEvent.mouseMove(card, { clientX: 100, clientY: 50 });
+            // Trigger mouse leave to reset
+            fireEvent.mouseLeave(card);
+            expect(card.style.transform).toContain('rotateX(0deg)');
+        });
+
+        test('ScrollProgress renders without crashing', () => {
+            const { unmount } = render(<ScrollProgress />);
+            expect(true).toBe(true);
+            unmount();
+        });
+
+        test('ScrollReveal renders wrapped children', () => {
+            render(
+                <ScrollReveal>
+                    <div>Spatial Reveal Item</div>
+                </ScrollReveal>
+            );
+            expect(screen.getByText('Spatial Reveal Item')).not.toBeNull();
+        });
+
+        test('Parallax3DBackground renders without crashing', () => {
+            const { unmount } = render(<Parallax3DBackground />);
+            expect(true).toBe(true);
+            unmount();
         });
     });
 });

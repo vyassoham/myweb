@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Shield, Zap, Sparkles, RefreshCw, AlertTriangle, CheckCircle, Lock, Play, Activity } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 
 export default function InteractivePlayground(): React.JSX.Element {
   const [activeTab, setActiveTab] = useState<"security" | "ratelimit">("security");
@@ -153,7 +154,8 @@ export default function InteractivePlayground(): React.JSX.Element {
       </div>
 
       {/* LAB CONTAINER */}
-      <div className="glass-card p-6 sm:p-8 rounded-2xl border-white/10 relative overflow-hidden bg-[#0d0d14]/90">
+      <ScrollReveal direction="up">
+        <div className="glass-card p-6 sm:p-8 rounded-2xl border-white/10 relative overflow-hidden bg-[#0d0d14]/90">
         {activeTab === "security" ? (
           <div>
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-white/[0.08]">
@@ -348,7 +350,8 @@ export default function InteractivePlayground(): React.JSX.Element {
             </div>
           </div>
         )}
-      </div>
+        </div>
+      </ScrollReveal>
     </section>
   );
 }

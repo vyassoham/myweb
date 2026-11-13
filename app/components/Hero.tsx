@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Download, Mail, ArrowUpRight, GraduationCap, Briefcase, GitPullRequest, ShieldCheck, Sparkles, Code2 } from "lucide-react";
+import TiltCard from "./TiltCard";
 
 // Social Icons
 const GithubIcon = () => (
@@ -174,7 +175,7 @@ export default function Hero(): React.JSX.Element {
           {/* Right Column: Cards (Professional Summary & Education) */}
           <div className="lg:col-span-5 flex flex-col gap-6">
             {/* Professional Summary Card */}
-            <div className="glass-card p-6 sm:p-7 relative overflow-hidden">
+            <TiltCard maxTilt={5} scale={1.015} className="glass-card p-6 sm:p-7 relative">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-xl bg-indigo-500/15 border border-indigo-500/25 flex items-center justify-center text-indigo-400">
                   <Briefcase className="w-5 h-5" />
@@ -197,10 +198,10 @@ export default function Hero(): React.JSX.Element {
                   <span>Atomic Systems (Lua)</span>
                 </div>
               </div>
-            </div>
+            </TiltCard>
 
             {/* Education Card */}
-            <div className="glass-card p-6 sm:p-7 relative overflow-hidden">
+            <TiltCard maxTilt={5} scale={1.015} className="glass-card p-6 sm:p-7 relative">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-xl bg-violet-500/15 border border-violet-500/25 flex items-center justify-center text-violet-400">
                   <GraduationCap className="w-5 h-5" />
@@ -243,7 +244,7 @@ export default function Hero(): React.JSX.Element {
                   </ul>
                 </div>
               </div>
-            </div>
+            </TiltCard>
           </div>
         </div>
       </div>
