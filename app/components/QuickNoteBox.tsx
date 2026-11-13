@@ -122,7 +122,7 @@ export default function QuickNoteBox(): React.JSX.Element {
 
               <div className="flex items-center gap-2 text-[11px] font-mono text-zinc-400 bg-white/[0.03] border border-white/[0.06] px-3 py-1.5 rounded-xl w-fit">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>IIT Jodhpur Gateway Active</span>
+                <span>Checker</span>
               </div>
             </div>
 
