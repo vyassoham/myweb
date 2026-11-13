@@ -24,6 +24,7 @@ import TiltCard from '../app/components/TiltCard';
 import ScrollProgress from '../app/components/ScrollProgress';
 import ScrollReveal from '../app/components/ScrollReveal';
 import Parallax3DBackground from '../app/components/Parallax3DBackground';
+import CustomCursor from '../app/components/CustomCursor';
 import NotFound from '../app/not-found';
 import { cn } from '../lib/utils';
 
@@ -446,6 +447,22 @@ describe('myweb Top 1% Portfolio Test Suite', () => {
 
         test('Parallax3DBackground renders without crashing', () => {
             const { unmount } = render(<Parallax3DBackground />);
+            expect(true).toBe(true);
+            unmount();
+        });
+
+        test('CustomCursor renders without crashing and handles mouse interactions', () => {
+            const { unmount } = render(<CustomCursor />);
+            
+            // Dispatch mouse events to test interactions
+            act(() => {
+                window.dispatchEvent(new MouseEvent('mousemove', { clientX: 200, clientY: 300 }));
+                window.dispatchEvent(new MouseEvent('mousedown'));
+                window.dispatchEvent(new MouseEvent('mouseup'));
+                document.dispatchEvent(new MouseEvent('mouseleave'));
+                document.dispatchEvent(new MouseEvent('mouseenter'));
+            });
+
             expect(true).toBe(true);
             unmount();
         });

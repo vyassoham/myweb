@@ -53,7 +53,7 @@ export default function TiltCard({
     const diffY = Math.abs(targetY.current - currentY.current);
     const diffS = Math.abs(targetScale.current - currentScale.current);
 
-    if (isHovered.current || diffX > 0.02 || diffY > 0.02 || diffS > 0.001) {
+    if (diffX > 0.02 || diffY > 0.02 || diffS > 0.001) {
       rafRef.current = requestAnimationFrame(animate);
     } else {
       rafRef.current = 0;
