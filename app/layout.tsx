@@ -201,6 +201,14 @@ const jsonLd = {
         {
           "@type": "SiteNavigationElement",
           "position": 5,
+          "name": "Engineering Blog & Technical Publications",
+          "description":
+            "Deep-dive articles on SymPy Kronecker traces, distributed rate limiting, and cryptographic entropy.",
+          "url": "https://soham.lol/blog/",
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 6,
           "name": "Technical Skills & Architecture",
           "description":
             "Languages, distributed systems, deep learning frameworks, and infrastructure tools.",
@@ -208,7 +216,7 @@ const jsonLd = {
         },
         {
           "@type": "SiteNavigationElement",
-          "position": 6,
+          "position": 7,
           "name": "Contact & Social Profiles",
           "description":
             "Direct communication channels, email, GitHub, LinkedIn, and Twitter.",
