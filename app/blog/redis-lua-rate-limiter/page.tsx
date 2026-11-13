@@ -5,6 +5,7 @@ import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
 import InteractiveBackground from "../../components/InteractiveBackground";
 import CommandPalette from "../../components/CommandPalette";
+import ArticleShareAndCite from "../../components/ArticleShareAndCite";
 
 export const metadata: Metadata = {
   title: "Distributed Sliding-Window Rate Limiting with Atomic Redis Lua | Soham Vyas",
@@ -187,6 +188,13 @@ end`}</code></pre>
               </Link>
             </div>
           </footer>
+
+          <ArticleShareAndCite
+            title="High-Throughput Distributed Rate Limiting with Atomic Redis Lua Scripts"
+            slug="redis-lua-rate-limiter"
+            date="Nov 2026"
+            description="Engineering deep dive into race-condition-free distributed rate limiters, Redis ZSET sliding windows, and microsecond atomic Lua execution."
+          />
         </article>
       </main>
 

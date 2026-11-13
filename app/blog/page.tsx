@@ -5,7 +5,6 @@ import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import InteractiveBackground from "../components/InteractiveBackground";
 import CommandPalette from "../components/CommandPalette";
-import ScrollProgress from "../components/ScrollProgress";
 import TiltCard from "../components/TiltCard";
 import ScrollReveal from "../components/ScrollReveal";
 
@@ -75,7 +74,6 @@ const ARTICLES: Article[] = [
 export default function BlogIndex(): React.JSX.Element {
   return (
     <div className="min-h-screen flex flex-col bg-[#07070a] text-slate-100 relative">
-      <ScrollProgress />
       <InteractiveBackground />
       <CommandPalette />
       <Navigation />

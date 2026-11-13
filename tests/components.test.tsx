@@ -17,6 +17,7 @@ import CommandPalette from '../app/components/CommandPalette';
 import InteractiveBackground from '../app/components/InteractiveBackground';
 import InteractiveCoffee from '../app/components/InteractiveCoffee';
 import NeuralAudioPreview from '../app/components/NeuralAudioPreview';
+import ArticleShareAndCite from '../app/components/ArticleShareAndCite';
 import ThemeToggle, { applyTheme, getInitialTheme } from '../app/components/ThemeToggle';
 import TiltCard from '../app/components/TiltCard';
 import ScrollProgress from '../app/components/ScrollProgress';
@@ -419,6 +420,38 @@ describe('myweb Top 1% Portfolio Test Suite', () => {
             const { unmount } = render(<Parallax3DBackground />);
             expect(true).toBe(true);
             unmount();
+        });
+    });
+
+    // =====================================================================
+    // 📖 Test ArticleShareAndCite Component
+    // =====================================================================
+    describe('ArticleShareAndCite component', () => {
+        test('renders share buttons, academic citation and handles copying', () => {
+            render(
+                <ArticleShareAndCite
+                    title="How I Eliminated O(n³) Matrix Expansion in SymPy Kronecker Traces"
+                    slug="sympy-kronecker-trace"
+                />
+            );
+
+            expect(screen.getByText('Share & Discuss This Paper')).not.toBeNull();
+            expect(screen.getByText('Share on X')).not.toBeNull();
+            expect(screen.getByText('LinkedIn')).not.toBeNull();
+            expect(screen.getByText('Academic Citation & Reference')).not.toBeNull();
+
+            // Toggle BibTeX code view
+            const showBtn = screen.getByText('Show BibTeX');
+            fireEvent.click(showBtn);
+            expect(screen.getByText(/@article\{vyas2026/)).not.toBeNull();
+
+            // Copy link button click
+            const copyLinkBtn = screen.getByText('Copy Link');
+            fireEvent.click(copyLinkBtn);
+
+            // Copy BibTeX click
+            const copyBibtexBtn = screen.getByText('Copy BibTeX');
+            fireEvent.click(copyBibtexBtn);
         });
     });
 });

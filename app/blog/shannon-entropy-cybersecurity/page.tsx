@@ -5,6 +5,7 @@ import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
 import InteractiveBackground from "../../components/InteractiveBackground";
 import CommandPalette from "../../components/CommandPalette";
+import ArticleShareAndCite from "../../components/ArticleShareAndCite";
 
 export const metadata: Metadata = {
   title: "Shannon Information Entropy & NIST 800-63B Defense | Soham Vyas",
@@ -160,6 +161,13 @@ export default function ShannonEntropyBlog(): React.JSX.Element {
               </Link>
             </div>
           </footer>
+
+          <ArticleShareAndCite
+            title="Quantifying Cryptographic Strength: Shannon Entropy & NIST 800-63B"
+            slug="shannon-entropy-cybersecurity"
+            date="Nov 2026"
+            description="Combining Claude Shannon's 1948 mathematical information theory with NIST password guidelines to detect hardcoded secrets."
+          />
         </article>
       </main>
 

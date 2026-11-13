@@ -6,6 +6,7 @@ import Footer from "../../components/Footer";
 import InteractiveBackground from "../../components/InteractiveBackground";
 import CommandPalette from "../../components/CommandPalette";
 import KroneckerMathSlider from "../../components/KroneckerMathSlider";
+import ArticleShareAndCite from "../../components/ArticleShareAndCite";
 
 export const metadata: Metadata = {
   title: "How I Eliminated O(n³) Matrix Expansion in SymPy Kronecker Traces | Soham Vyas",
@@ -267,6 +268,13 @@ def _eval_trace(self):
               </Link>
             </div>
           </footer>
+
+          <ArticleShareAndCite
+            title="How I Eliminated O(n³) Matrix Expansion in SymPy Kronecker Traces"
+            slug="sympy-kronecker-trace"
+            date="Nov 2026"
+            description="Engineering deep dive into symbolic matrix expressions, Kronecker product tensor algebra, and upstream optimizations in SymPy."
+          />
         </article>
       </main>
 

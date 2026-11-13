@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Outfit } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import ScrollProgress from "./components/ScrollProgress";
 import "./globals.css";
 
 const inter = Inter({
@@ -267,6 +268,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${outfit.variable} font-sans antialiased bg-[#07070a] text-slate-100 min-h-screen`}
       >
+        <ScrollProgress />
         {children}
         <Analytics />
       </body>
