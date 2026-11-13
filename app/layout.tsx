@@ -124,6 +124,10 @@ const jsonLd = {
       "url": "https://soham.lol",
       "image": "https://soham.lol/assets/hero.png",
       "jobTitle": "AI Systems Engineer & Open Source Contributor",
+      "description":
+        "Undergraduate researcher and engineer in Data Science & Artificial Intelligence at IIT Jodhpur, systems developer, and SymPy open source contributor.",
+      "disambiguatingDescription":
+        "18-year-old computer scientist and systems engineer at the Indian Institute of Technology (IIT) Jodhpur, known for SymPy linear algebra optimizations and distributed rate limiting architectures.",
       "worksFor": {
         "@type": "EducationalOrganization",
         "name": "Indian Institute of Technology Jodhpur",
