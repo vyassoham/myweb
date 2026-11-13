@@ -86,6 +86,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  verification: {
+    google: "google787667f481678cdc",
+  },
 };
 
 export const viewport: Viewport = {
@@ -221,6 +224,7 @@ export default function RootLayout({
     <html lang="en" className="dark scroll-smooth">
       <head>
         <link rel="canonical" href="https://soham.lol/" />
+        <meta name="google-site-verification" content="google787667f481678cdc" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
