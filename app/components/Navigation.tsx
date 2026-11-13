@@ -10,7 +10,7 @@ const NAV_LINKS = [
   { name: "Projects", href: "#projects" },
   { name: "Labs", href: "#lab" },
   { name: "Open Source", href: "#opensource" },
-  { name: "Blog", href: "/blog/" },
+  { name: "Research", href: "#research" },
   { name: "Skills", href: "#skills" },
   { name: "Contact", href: "#contact" },
 ];
@@ -26,7 +26,7 @@ export default function Navigation(): React.JSX.Element {
       setScrolled(window.scrollY > 20);
 
       // Scrollspy calculation
-      const sections = ["about", "projects", "lab", "opensource", "skills", "contact"];
+      const sections = ["about", "projects", "lab", "opensource", "research", "skills", "contact"];
       const scrollPos = window.scrollY + 200;
 
       for (let i = sections.length - 1; i >= 0; i--) {

@@ -6,6 +6,7 @@ import Hero from "./components/Hero";
 import Projects from "./components/Projects";
 import InteractivePlayground from "./components/InteractivePlayground";
 import OpenSource from "./components/OpenSource";
+import FeaturedResearch from "./components/FeaturedResearch";
 import Skills from "./components/Skills";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
@@ -38,6 +39,7 @@ export default function Home(): React.JSX.Element {
         <Projects />
         <InteractivePlayground />
         <OpenSource />
+        <FeaturedResearch />
         <Skills />
         <Contact />
       </main>

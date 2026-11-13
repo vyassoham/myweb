@@ -8,6 +8,7 @@ import Navigation from '../app/components/Navigation';
 import Hero from '../app/components/Hero';
 import Projects from '../app/components/Projects';
 import OpenSource from '../app/components/OpenSource';
+import FeaturedResearch from '../app/components/FeaturedResearch';
 import Skills from '../app/components/Skills';
 import Contact from '../app/components/Contact';
 import SecurityLayer from '../app/components/SecurityLayer';
@@ -91,6 +92,7 @@ describe('myweb Top 1% Portfolio Test Suite', () => {
             expect(screen.getAllByText('Projects').length).toBeGreaterThan(0);
             expect(screen.getAllByText('Labs').length).toBeGreaterThan(0);
             expect(screen.getAllByText('Open Source').length).toBeGreaterThan(0);
+            expect(screen.getAllByText('Research').length).toBeGreaterThan(0);
             expect(screen.getAllByText('Skills').length).toBeGreaterThan(0);
             expect(screen.getAllByText('Contact').length).toBeGreaterThan(0);
         });
@@ -214,6 +216,21 @@ describe('myweb Top 1% Portfolio Test Suite', () => {
             expect(screen.getAllByText(/KroneckerProduct\.trace\(\)/).length).toBeGreaterThan(0);
             expect(screen.getAllByText(/MatrixUnit\.trace\(\)/).length).toBeGreaterThan(0);
             expect(screen.getByText('GSoC 2027 Candidate')).not.toBeNull();
+        });
+    });
+
+    // =====================================================================
+    // 📚 Test FeaturedResearch Component
+    // =====================================================================
+    describe('FeaturedResearch component', () => {
+        test('renders SymPy Kronecker trace spotlight and research articles', () => {
+            render(<FeaturedResearch />);
+            
+            expect(screen.getByText('Latest Engineering Research')).not.toBeNull();
+            expect(screen.getByText(/How I Eliminated O\(n³\) Matrix Expansion/i)).not.toBeNull();
+            expect(screen.getByText(/Atomic Redis Lua/i)).not.toBeNull();
+            expect(screen.getByText(/Shannon Entropy/i)).not.toBeNull();
+            expect(screen.getByText(/Complexity: O\(n³\) → O\(1\)/i)).not.toBeNull();
         });
     });
 

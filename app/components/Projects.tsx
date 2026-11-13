@@ -283,15 +283,26 @@ export default function Projects(): React.JSX.Element {
               </div>
 
               <div className="flex items-center justify-between pt-2 border-t border-white/[0.04]">
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-400 group-hover:text-indigo-300 transition-colors"
-                >
-                  <Github className="w-3.5 h-3.5" />
-                  <span>Repository</span>
-                </a>
+                <div className="flex items-center gap-2">
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-400 group-hover:text-indigo-300 transition-colors"
+                  >
+                    <Github className="w-3.5 h-3.5" />
+                    <span>Repository</span>
+                  </a>
+                  {(project.id === "cybersecurity-risk-analyzer" || project.id === "ai-rate-limiter-shield") && (
+                    <a
+                      href="#lab"
+                      className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20 text-emerald-400 text-[11px] font-mono font-semibold transition-all"
+                    >
+                      <Sparkles className="w-3 h-3" />
+                      <span>Live Lab</span>
+                    </a>
+                  )}
+                </div>
 
                 <button
                   onClick={() => toggleExpand(project.id)}
