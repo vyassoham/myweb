@@ -11,9 +11,12 @@ import OpenSource from '../app/components/OpenSource';
 import Skills from '../app/components/Skills';
 import Contact from '../app/components/Contact';
 import SecurityLayer from '../app/components/SecurityLayer';
+import InteractivePlayground from '../app/components/InteractivePlayground';
+import CommandPalette from '../app/components/CommandPalette';
+import InteractiveBackground from '../app/components/InteractiveBackground';
 import { cn } from '../lib/utils';
 
-describe('myweb Portfolio Test Suite', () => {
+describe('myweb Top 1% Portfolio Test Suite', () => {
 
     // =====================================================================
     // 🛠️ Test cn Utility
@@ -79,6 +82,7 @@ describe('myweb Portfolio Test Suite', () => {
             expect(screen.getAllByText('Soham Vyas').length).toBeGreaterThan(0);
             expect(screen.getAllByText('About').length).toBeGreaterThan(0);
             expect(screen.getAllByText('Projects').length).toBeGreaterThan(0);
+            expect(screen.getAllByText('Labs').length).toBeGreaterThan(0);
             expect(screen.getAllByText('Open Source').length).toBeGreaterThan(0);
             expect(screen.getAllByText('Skills').length).toBeGreaterThan(0);
             expect(screen.getAllByText('Contact').length).toBeGreaterThan(0);
@@ -147,6 +151,52 @@ describe('myweb Portfolio Test Suite', () => {
     });
 
     // =====================================================================
+    // 🧪 Test InteractivePlayground Component (Live Simulators)
+    // =====================================================================
+    describe('InteractivePlayground component', () => {
+        test('renders simulators and performs real-time calculations', () => {
+            render(<InteractivePlayground />);
+            
+            expect(screen.getByText('Live In-Browser System Simulators')).not.toBeNull();
+            expect(screen.getByText(/Cybersecurity Entropy Lab/)).not.toBeNull();
+            expect(screen.getByText(/Atomic Rate Limiter/)).not.toBeNull();
+
+            // Switch to rate limiter lab
+            const rateLimitTab = screen.getByText(/Atomic Rate Limiter/);
+            act(() => {
+                fireEvent.click(rateLimitTab);
+            });
+
+            // Find send request button and click
+            const fireButton = screen.getByText(/Send API Request/);
+            expect(fireButton).not.toBeNull();
+            act(() => {
+                fireEvent.click(fireButton);
+            });
+
+            expect(screen.getByText(/Authorized \(200\)/)).not.toBeNull();
+        });
+    });
+
+    // =====================================================================
+    // 🔍 Test CommandPalette Component (Ctrl+K)
+    // =====================================================================
+    describe('CommandPalette component', () => {
+        test('renders trigger button and opens modal on click', () => {
+            render(<CommandPalette />);
+            
+            const trigger = screen.getByTitle('Open Command Palette (Ctrl+K)');
+            expect(trigger).not.toBeNull();
+
+            act(() => {
+                fireEvent.click(trigger);
+            });
+
+            expect(screen.getByPlaceholderText(/Type a command/i)).not.toBeNull();
+        });
+    });
+
+    // =====================================================================
     // 🌐 Test OpenSource Component
     // =====================================================================
     describe('OpenSource component', () => {
@@ -208,10 +258,16 @@ describe('myweb Portfolio Test Suite', () => {
     });
 
     // =====================================================================
-    // 🛡️ Test SecurityLayer Component
+    // 🎨 Test InteractiveBackground & SecurityLayer
     // =====================================================================
-    describe('SecurityLayer component', () => {
-        test('renders without crashing', () => {
+    describe('Supporting Components', () => {
+        test('InteractiveBackground renders without crashing', () => {
+            const { unmount } = render(<InteractiveBackground />);
+            expect(true).toBe(true);
+            unmount();
+        });
+
+        test('SecurityLayer renders without crashing', () => {
             const { unmount } = render(<SecurityLayer />);
             expect(true).toBe(true);
             unmount();

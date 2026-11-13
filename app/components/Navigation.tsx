@@ -2,11 +2,12 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { Mail, Github, Check, Copy, Menu, X, FileText } from "lucide-react";
+import { Mail, Github, Check, Copy, Menu, X, FileText, Sparkles } from "lucide-react";
 
 const NAV_LINKS = [
   { name: "About", href: "#about" },
   { name: "Projects", href: "#projects" },
+  { name: "Labs", href: "#lab" },
   { name: "Open Source", href: "#opensource" },
   { name: "Skills", href: "#skills" },
   { name: "Contact", href: "#contact" },
@@ -23,7 +24,7 @@ export default function Navigation(): React.JSX.Element {
       setScrolled(window.scrollY > 20);
 
       // Scrollspy calculation
-      const sections = ["about", "projects", "opensource", "skills", "contact"];
+      const sections = ["about", "projects", "lab", "opensource", "skills", "contact"];
       const scrollPos = window.scrollY + 200;
 
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -56,7 +57,7 @@ export default function Navigation(): React.JSX.Element {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled
           ? "bg-[#07070a]/90 backdrop-blur-xl border-b border-white/[0.08] shadow-lg shadow-black/40 py-3"
           : "bg-transparent py-5"
