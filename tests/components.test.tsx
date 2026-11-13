@@ -14,6 +14,8 @@ import SecurityLayer from '../app/components/SecurityLayer';
 import InteractivePlayground from '../app/components/InteractivePlayground';
 import CommandPalette from '../app/components/CommandPalette';
 import InteractiveBackground from '../app/components/InteractiveBackground';
+import InteractiveCoffee from '../app/components/InteractiveCoffee';
+import NotFound from '../app/not-found';
 import { cn } from '../lib/utils';
 
 describe('myweb Top 1% Portfolio Test Suite', () => {
@@ -271,6 +273,37 @@ describe('myweb Top 1% Portfolio Test Suite', () => {
             const { unmount } = render(<SecurityLayer />);
             expect(true).toBe(true);
             unmount();
+        });
+    });
+
+    // =====================================================================
+    // ☕ Test InteractiveCoffee Component
+    // =====================================================================
+    describe('InteractiveCoffee component', () => {
+        test('renders coffee mug and handles sipping interaction', () => {
+            render(<InteractiveCoffee />);
+            const sipButton = screen.getByText(/Click to Sip/i);
+            expect(sipButton).not.toBeNull();
+            expect(screen.getByText(/0 sips · 0mg/i)).not.toBeNull();
+
+            // Click to take a sip
+            fireEvent.click(sipButton);
+            expect(screen.getByText(/1 sips · 65mg/i)).not.toBeNull();
+            expect(screen.getByText(/\+65mg Caffeine Ingested!/i)).not.toBeNull();
+        });
+    });
+
+    // =====================================================================
+    // 🚫 Test 404 NotFound Page
+    // =====================================================================
+    describe('NotFound 404 page', () => {
+        test('renders 404 heading, authentic famous quotes, and interactive terminal', () => {
+            render(<NotFound />);
+            expect(screen.getByText(/ROUTE_UNDEFINED/i)).not.toBeNull();
+            expect(screen.getByText(/Linus Torvalds/i)).not.toBeNull();
+            expect(screen.getByText(/Talk is cheap. Show me the code./i)).not.toBeNull();
+            expect(screen.getByText(/Return to Portfolio/i)).not.toBeNull();
+            expect(screen.getByPlaceholderText(/type 'home'/i)).not.toBeNull();
         });
     });
 });
