@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { name: "Projects", href: "#projects" },
   { name: "Labs", href: "#lab" },
   { name: "Open Source", href: "#opensource" },
+  { name: "Blog", href: "/blog/" },
   { name: "Skills", href: "#skills" },
   { name: "Contact", href: "#contact" },
 ];

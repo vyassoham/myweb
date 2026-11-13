@@ -84,6 +84,28 @@ export default function CommandPalette(): React.JSX.Element | null {
       action: () => scrollToSection("opensource"),
     },
     {
+      id: "nav-blog",
+      category: "Navigation",
+      title: "Engineering Publications & Blog",
+      subtitle: "Deep-dive articles on SymPy, Redis Lua, and Shannon Entropy",
+      icon: FileText,
+      action: () => {
+        setIsOpen(false);
+        window.location.href = "/blog/";
+      },
+    },
+    {
+      id: "blog-kronecker",
+      category: "Interactive Labs",
+      title: "Interactive Math Slider: SymPy Kronecker Trace",
+      subtitle: "Eliminating O(n³) matrix expansion live demo",
+      icon: Calculator,
+      action: () => {
+        setIsOpen(false);
+        window.location.href = "/blog/sympy-kronecker-trace/";
+      },
+    },
+    {
       id: "nav-skills",
       category: "Navigation",
       title: "Technical Skills Matrix",
