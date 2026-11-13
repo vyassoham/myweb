@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { GitPullRequest, GitBranch, CheckCircle2, ArrowUpRight, Code, ShieldCheck, Terminal, Calculator } from "lucide-react";
-import TiltCard from "./TiltCard";
 import ScrollReveal from "./ScrollReveal";
 
 interface ContributionItem {

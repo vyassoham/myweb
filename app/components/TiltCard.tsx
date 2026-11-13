@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useCallback } from "react";
+import React, { useRef, useCallback, useEffect } from "react";
 
 interface TiltCardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
@@ -13,74 +13,157 @@ interface TiltCardProps extends React.HTMLAttributes<HTMLDivElement> {
 export default function TiltCard({
   children,
   className = "",
-  maxTilt = 7,
+  maxTilt = 6,
   glare = true,
-  scale = 1.015,
+  scale = 1.018,
+  style,
   ...props
 }: TiltCardProps): React.JSX.Element {
   const cardRef = useRef<HTMLDivElement | null>(null);
-  const [transformStyle, setTransformStyle] = useState<string>("");
-  const [glarePosition, setGlarePosition] = useState<{ x: number; y: number; opacity: number }>({
-    x: 50,
-    y: 50,
-    opacity: 0,
-  });
-  const [isHovered, setIsHovered] = useState(false);
+  const glareRef = useRef<HTMLDivElement | null>(null);
+  const rectRef = useRef<DOMRect | null>(null);
+  const rafRef = useRef<number>(0);
+
+  // Smooth lerp coordinates
+  const currentX = useRef(0);
+  const currentY = useRef(0);
+  const targetX = useRef(0);
+  const targetY = useRef(0);
+  const currentScale = useRef(1);
+  const targetScale = useRef(1);
+  const isHovered = useRef(false);
+
+  const animate = useCallback(() => {
+    const card = cardRef.current;
+    if (!card) return;
+
+    // Linear interpolation for buttery smooth 60/120fps motion
+    const ease = 0.12;
+    currentX.current += (targetX.current - currentX.current) * ease;
+    currentY.current += (targetY.current - currentY.current) * ease;
+    currentScale.current += (targetScale.current - currentScale.current) * ease;
+
+    const rotX = currentX.current.toFixed(2);
+    const rotY = currentY.current.toFixed(2);
+    const sc = currentScale.current.toFixed(3);
+
+    card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(${sc}, ${sc}, ${sc})`;
+
+    const diffX = Math.abs(targetX.current - currentX.current);
+    const diffY = Math.abs(targetY.current - currentY.current);
+    const diffS = Math.abs(targetScale.current - currentScale.current);
+
+    if (isHovered.current || diffX > 0.02 || diffY > 0.02 || diffS > 0.001) {
+      rafRef.current = requestAnimationFrame(animate);
+    } else {
+      rafRef.current = 0;
+    }
+  }, []);
+
+  const handleMouseEnter = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      const card = cardRef.current;
+      if (!card) return;
+
+      isHovered.current = true;
+      card.style.transition = "none";
+
+      // Cache the untransformed bounding rect on entry to prevent coordinate feedback jitter
+      rectRef.current = card.getBoundingClientRect();
+      targetScale.current = scale;
+
+      if (!rafRef.current) {
+        rafRef.current = requestAnimationFrame(animate);
+      }
+    },
+    [scale, animate]
+  );
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       const card = cardRef.current;
       if (!card) return;
 
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+      // Use cached static rect captured on mouseEnter
+      const rect = rectRef.current || card.getBoundingClientRect();
+      if (!rect || rect.width === 0 || rect.height === 0) return;
+
+      const x = Math.max(0, Math.min(rect.width, e.clientX - rect.left));
+      const y = Math.max(0, Math.min(rect.height, e.clientY - rect.top));
 
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
 
-      // Calculate tilt angles (-maxTilt to +maxTilt)
-      const rotateX = ((y - centerY) / centerY) * -maxTilt;
-      const rotateY = ((x - centerX) / centerX) * maxTilt;
+      // Target rotation angles (-maxTilt to +maxTilt)
+      targetX.current = ((y - centerY) / centerY) * -maxTilt;
+      targetY.current = ((x - centerX) / centerX) * maxTilt;
+      targetScale.current = scale;
 
-      setTransformStyle(
-        `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(${scale}, ${scale}, ${scale})`
-      );
+      // Update holographic spotlight glare directly via style
+      const glareEl = glareRef.current;
+      if (glareEl && glare) {
+        const glareX = ((x / rect.width) * 100).toFixed(1);
+        const glareY = ((y / rect.height) * 100).toFixed(1);
+        glareEl.style.opacity = "0.22";
+        glareEl.style.background = `radial-gradient(circle 320px at ${glareX}% ${glareY}%, rgba(99, 102, 241, 0.35), transparent 75%)`;
+      }
 
-      // Spotlight glare coordinates in percentages
-      if (glare) {
-        setGlarePosition({
-          x: (x / rect.width) * 100,
-          y: (y / rect.height) * 100,
-          opacity: 0.18,
-        });
+      if (!rafRef.current) {
+        rafRef.current = requestAnimationFrame(animate);
       }
     },
-    [maxTilt, glare, scale]
+    [maxTilt, scale, glare, animate]
   );
 
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
+  const handleMouseLeave = useCallback(() => {
+    const card = cardRef.current;
+    if (!card) return;
 
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    setTransformStyle("perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)");
-    setGlarePosition((prev) => ({ ...prev, opacity: 0 }));
-  };
+    isHovered.current = false;
+    rectRef.current = null;
+    targetX.current = 0;
+    targetY.current = 0;
+    targetScale.current = 1;
+    currentX.current = 0;
+    currentY.current = 0;
+    currentScale.current = 1;
+
+    // Smooth spring reset on exit
+    card.style.transition = "transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)";
+    card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
+
+    const glareEl = glareRef.current;
+    if (glareEl) {
+      glareEl.style.opacity = "0";
+    }
+
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = 0;
+    }
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
+    };
+  }, []);
 
   return (
     <div
       ref={cardRef}
-      onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
+      onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
-        transform: transformStyle,
         transformStyle: "preserve-3d",
-        transition: isHovered
-          ? "transform 0.12s ease-out"
-          : "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
+        transform: "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)",
+        willChange: "transform",
+        backfaceVisibility: "hidden",
+        WebkitBackfaceVisibility: "hidden",
+        ...style,
       }}
       className={`relative overflow-hidden will-change-transform ${className}`}
       {...props}
@@ -88,15 +171,11 @@ export default function TiltCard({
       {/* 3D Holographic Spotlight Glare */}
       {glare && (
         <div
-          className="pointer-events-none absolute inset-0 z-10 transition-opacity duration-300"
-          style={{
-            opacity: glarePosition.opacity,
-            background: `radial-gradient(circle 280px at ${glarePosition.x}% ${glarePosition.y}%, rgba(99, 102, 241, 0.35), transparent 75%)`,
-          }}
+          ref={glareRef}
+          className="pointer-events-none absolute inset-0 z-20 opacity-0 transition-opacity duration-300"
           aria-hidden="true"
         />
       )}
-
       {children}
     </div>
   );
