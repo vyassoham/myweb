@@ -7,7 +7,7 @@
  */
 
 :root {
-  /* Color Palette */
+  /* Color Palette - Cyberpunk Obsidian (Dark) */
   --bg-primary: #07070a;
   --bg-secondary: #0d0d14;
   --bg-elevated: #13131e;
@@ -38,6 +38,10 @@
   --border-strong: rgba(255, 255, 255, 0.18);
   --border-accent: rgba(99, 102, 241, 0.4);
 
+  /* Component Surfaces */
+  --card-bg: rgba(19, 19, 30, 0.65);
+  --card-bg-hover: rgba(26, 26, 40, 0.85);
+
   /* Typography */
   --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-display: var(--font-outfit), sans-serif;
@@ -45,6 +49,48 @@
 
   /* Layout */
   --container-max: 1240px;
+}
+
+/* ============================================================================
+ * SWISS MINIMALIST LIGHT THEME TOKENS
+ * ============================================================================
+ */
+html.light,
+:root[data-theme="light"] {
+  /* Color Palette - Swiss Minimalist Light */
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-elevated: #ffffff;
+  --bg-surface: #f1f5f9;
+  --bg-hover: #e2e8f0;
+
+  /* Text Scale */
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --text-disabled: #94a3b8;
+
+  /* Accent Gradients & Colors */
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
+  --accent-light: #6366f1;
+  --accent-violet: #7c3aed;
+  --accent-cyan: #0891b2;
+  --accent-emerald: #059669;
+
+  --accent-glow: rgba(79, 70, 229, 0.12);
+  --cyan-glow: rgba(8, 145, 178, 0.12);
+  --violet-glow: rgba(124, 58, 237, 0.12);
+
+  /* Border Scale */
+  --border-subtle: rgba(15, 23, 42, 0.05);
+  --border-default: rgba(15, 23, 42, 0.09);
+  --border-strong: rgba(15, 23, 42, 0.18);
+  --border-accent: rgba(79, 70, 229, 0.4);
+
+  /* Component Surfaces */
+  --card-bg: rgba(255, 255, 255, 0.92);
+  --card-bg-hover: #ffffff;
 }
 
 /* ============================================================================
@@ -116,7 +162,7 @@ body {
 }
 
 .glass-card {
-  background: rgba(19, 19, 30, 0.65);
+  background: var(--card-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border-default);
@@ -125,10 +171,10 @@ body {
 }
 
 .glass-card:hover {
-  background: rgba(26, 26, 40, 0.85);
+  background: var(--card-bg-hover);
   border-color: var(--border-strong);
   transform: translateY(-2px);
-  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5), 0 0 25px -5px var(--accent-glow);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.3), 0 0 25px -5px var(--accent-glow);
 }
 
 .glow-pill {
@@ -154,4 +200,170 @@ body {
     linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 40px 40px;
+}
+
+/* ============================================================================
+ * LIGHT MODE ADAPTIVE UTILITIES & COMPONENT SPECIFICATIONS
+ * ============================================================================
+ */
+
+html.light {
+  color-scheme: light;
+}
+
+html.light body,
+html.light .min-h-screen,
+html.light [class*="bg-[#07070a]"],
+html.light [class*="bg-[#030712]"] {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Navigation & Header in Light Mode */
+html.light header[class*="bg-[#07070a]/90"],
+html.light header.scrolled-header {
+  background-color: rgba(255, 255, 255, 0.88) !important;
+  border-bottom-color: rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04) !important;
+}
+
+html.light header .md\:hidden[class*="bg-[#07070a]"] {
+  background-color: rgba(255, 255, 255, 0.98) !important;
+  border-bottom-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+/* Footer in Light Mode */
+html.light footer[class*="bg-[#07070a]"],
+html.light footer {
+  background-color: #ffffff !important;
+  border-top-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+/* Glass cards in Light Mode */
+html.light .glass-card {
+  background: var(--card-bg) !important;
+  border-color: var(--border-default) !important;
+  box-shadow: 0 2px 12px -2px rgba(15, 23, 42, 0.04) !important;
+}
+
+html.light .glass-card:hover {
+  background: var(--card-bg-hover) !important;
+  border-color: var(--border-strong) !important;
+  box-shadow: 0 12px 30px -8px rgba(15, 23, 42, 0.08), 0 0 20px -4px rgba(79, 70, 229, 0.12) !important;
+}
+
+/* Typography in Light Mode */
+html.light .text-white,
+html.light h1,
+html.light h2,
+html.light h3,
+html.light h4 {
+  color: #0f172a !important;
+}
+
+html.light .text-zinc-100,
+html.light .text-zinc-200,
+html.light .text-zinc-300,
+html.light .text-slate-100,
+html.light .text-slate-200 {
+  color: #334155 !important;
+}
+
+html.light .text-zinc-400,
+html.light .text-slate-400 {
+  color: #64748b !important;
+}
+
+html.light .text-zinc-500,
+html.light .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+html.light .text-indigo-300 {
+  color: #4338ca !important;
+}
+
+html.light .text-indigo-400 {
+  color: #4f46e5 !important;
+}
+
+html.light .text-amber-300,
+html.light .text-amber-400 {
+  color: #b45309 !important;
+}
+
+html.light .text-emerald-400 {
+  color: #059669 !important;
+}
+
+/* Pill / badge containers in Light Mode */
+html.light [class*="bg-white/[0.03]"],
+html.light [class*="bg-white/[0.04]"],
+html.light [class*="bg-white/[0.05]"],
+html.light [class*="bg-white/[0.06]"],
+html.light [class*="bg-white/[0.08]"],
+html.light [class*="bg-white/[0.1]"] {
+  background-color: rgba(15, 23, 42, 0.04) !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+  color: #334155 !important;
+}
+
+html.light [class*="border-white/"] {
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+/* Elevated cards, panels & modals in Light Mode */
+html.light [class*="bg-zinc-900"],
+html.light [class*="bg-zinc-950"],
+html.light [class*="bg-[#0d0d14]"],
+html.light [class*="bg-[#13131e]"],
+html.light [class*="bg-[#1a1a28]"] {
+  background-color: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+  color: #0f172a !important;
+}
+
+/* Retain sleekness of interactive code terminals and the coffee mug in both modes */
+html.light .code-terminal,
+html.light [class*="soham@iitj"],
+html.light [data-preserve-dark="true"],
+html.light .interactive-coffee-mug {
+  background-color: #0b0f17 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #e2e8f0 !important;
+}
+
+html.light .gradient-text {
+  background: linear-gradient(135deg, #0f172a 0%, #334155 50%, #475569 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+html.light .gradient-accent-text {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #0284c7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+html.light .bg-tech-grid {
+  background-image: 
+    linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+}
+
+html.light ::selection {
+  background-color: rgba(99, 102, 241, 0.25);
+  color: #0f172a;
+}
+
+html.light ::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+
+html.light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }

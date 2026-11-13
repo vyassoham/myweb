@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Search, X, ArrowRight, ExternalLink, FileText, Mail, Github, Terminal, Calculator, ShieldCheck, Sparkles, Code2 } from "lucide-react";
+import { Search, X, ArrowRight, ExternalLink, FileText, Mail, Github, Terminal, Calculator, ShieldCheck, Sparkles, Code2, Sun, Moon } from "lucide-react";
+import { applyTheme } from "./ThemeToggle";
 
 interface CommandItem {
   id: string;
@@ -120,6 +121,18 @@ export default function CommandPalette(): React.JSX.Element | null {
       subtitle: "Direct email, GitHub, LinkedIn, and campus details",
       icon: Mail,
       action: () => scrollToSection("contact"),
+    },
+    {
+      id: "action-theme",
+      category: "Quick Actions",
+      title: "Toggle Light / Dark Theme",
+      subtitle: "Switch between Cyberpunk Obsidian Dark and Crisp Swiss Light mode",
+      icon: Sun,
+      action: () => {
+        setIsOpen(false);
+        const isLight = document.documentElement.classList.contains("light");
+        applyTheme(isLight ? "dark" : "light");
+      },
     },
     {
       id: "action-copy-email",

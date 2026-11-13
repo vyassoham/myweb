@@ -55,6 +55,16 @@ export default function InteractiveBackground(): React.JSX.Element {
       height = canvas.height = window.innerHeight;
     };
 
+    let isLight = typeof document !== "undefined" && document.documentElement.classList.contains("light");
+
+    const handleThemeChange = (e: Event) => {
+      const customEvent = e as CustomEvent<{ theme: "dark" | "light" }>;
+      if (customEvent.detail?.theme) {
+        isLight = customEvent.detail.theme === "light";
+      }
+    };
+
+    window.addEventListener("theme-change", handleThemeChange);
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
     window.addEventListener("resize", handleResize, { passive: true });
 
@@ -76,7 +86,7 @@ export default function InteractiveBackground(): React.JSX.Element {
         // Particle point
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(99, 102, 241, 0.4)";
+        ctx.fillStyle = isLight ? "rgba(79, 70, 229, 0.45)" : "rgba(99, 102, 241, 0.4)";
         ctx.fill();
 
         // Connect nearby particles
@@ -90,8 +100,10 @@ export default function InteractiveBackground(): React.JSX.Element {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
-            const alpha = (1 - dist / 110) * 0.18;
-            ctx.strokeStyle = `rgba(139, 92, 246, ${alpha})`;
+            const alpha = (1 - dist / 110) * (isLight ? 0.14 : 0.18);
+            ctx.strokeStyle = isLight
+              ? `rgba(99, 102, 241, ${alpha})`
+              : `rgba(139, 92, 246, ${alpha})`;
             ctx.lineWidth = 0.6;
             ctx.stroke();
           }
@@ -106,8 +118,10 @@ export default function InteractiveBackground(): React.JSX.Element {
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
           ctx.lineTo(mouseX, mouseY);
-          const alpha = (1 - mouseDist / 140) * 0.25;
-          ctx.strokeStyle = `rgba(6, 182, 212, ${alpha})`;
+          const alpha = (1 - mouseDist / 140) * (isLight ? 0.22 : 0.25);
+          ctx.strokeStyle = isLight
+            ? `rgba(14, 165, 233, ${alpha})`
+            : `rgba(6, 182, 212, ${alpha})`;
           ctx.lineWidth = 0.8;
           ctx.stroke();
         }
@@ -119,6 +133,7 @@ export default function InteractiveBackground(): React.JSX.Element {
     render();
 
     return () => {
+      window.removeEventListener("theme-change", handleThemeChange);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", handleResize);
       cancelAnimationFrame(animationFrameId);

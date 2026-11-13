@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Mail, Github, Check, Copy, Menu, X, FileText, Sparkles } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 const NAV_LINKS = [
   { name: "About", href: "#about" },
@@ -124,6 +125,9 @@ export default function Navigation(): React.JSX.Element {
 
         {/* Desktop Actions */}
         <div className="hidden md:flex items-center gap-2.5">
+          {/* Light / Dark Mode Theme Switcher */}
+          <ThemeToggle />
+
           <button
             onClick={copyEmail}
             className="inline-flex items-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-lg bg-white/[0.05] border border-white/[0.1] text-zinc-200 hover:bg-white/[0.1] hover:text-white transition-all cursor-pointer"
@@ -159,14 +163,17 @@ export default function Navigation(): React.JSX.Element {
           </a>
         </div>
 
-        {/* Mobile Hamburger Toggle */}
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 text-zinc-300 hover:text-white"
-          aria-label="Toggle Navigation"
-        >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        {/* Mobile Header Right: Theme Toggle & Hamburger */}
+        <div className="flex md:hidden items-center gap-2">
+          <ThemeToggle />
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2 text-zinc-300 hover:text-white"
+            aria-label="Toggle Navigation"
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Drawer Menu */}

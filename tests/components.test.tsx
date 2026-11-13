@@ -15,6 +15,7 @@ import InteractivePlayground from '../app/components/InteractivePlayground';
 import CommandPalette from '../app/components/CommandPalette';
 import InteractiveBackground from '../app/components/InteractiveBackground';
 import InteractiveCoffee from '../app/components/InteractiveCoffee';
+import ThemeToggle, { applyTheme, getInitialTheme } from '../app/components/ThemeToggle';
 import NotFound from '../app/not-found';
 import { cn } from '../lib/utils';
 
@@ -304,6 +305,43 @@ describe('myweb Top 1% Portfolio Test Suite', () => {
             expect(screen.getByText(/Talk is cheap. Show me the code./i)).not.toBeNull();
             expect(screen.getByText(/Return to Portfolio/i)).not.toBeNull();
             expect(screen.getByPlaceholderText(/type 'home'/i)).not.toBeNull();
+        });
+    });
+
+    // =====================================================================
+    // 🌓 Test ThemeToggle Component & Theme Engine
+    // =====================================================================
+    describe('ThemeToggle component & Theme Engine', () => {
+        test('renders theme toggle button and toggles between light and dark mode', () => {
+            // Reset to dark mode
+            applyTheme('dark');
+            expect(document.documentElement.classList.contains('dark')).toBe(true);
+
+            render(<ThemeToggle />);
+            const button = screen.getByRole('button', { name: /switch to light mode/i });
+            expect(button).not.toBeNull();
+
+            // Toggle to Light Mode
+            fireEvent.click(button);
+            expect(document.documentElement.classList.contains('light')).toBe(true);
+            expect(document.documentElement.classList.contains('dark')).toBe(false);
+            expect(localStorage.getItem('theme')).toBe('light');
+
+            // Toggle back to Dark Mode
+            fireEvent.click(button);
+            expect(document.documentElement.classList.contains('dark')).toBe(true);
+            expect(document.documentElement.classList.contains('light')).toBe(false);
+            expect(localStorage.getItem('theme')).toBe('dark');
+        });
+
+        test('applyTheme directly configures classes, attributes and events', () => {
+            applyTheme('light');
+            expect(document.documentElement.getAttribute('data-theme')).toBe('light');
+            expect(document.documentElement.classList.contains('light')).toBe(true);
+
+            applyTheme('dark');
+            expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
+            expect(document.documentElement.classList.contains('dark')).toBe(true);
         });
     });
 });

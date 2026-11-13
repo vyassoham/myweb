@@ -27,7 +27,9 @@ window.document.removeEventListener = function(type: string, listener: any, opti
 globalThis.window = window as any;
 globalThis.document = window.document as any;
 globalThis.navigator = window.navigator as any;
+globalThis.localStorage = window.localStorage as any;
 globalThis.Event = window.Event as any;
+globalThis.CustomEvent = window.CustomEvent as any;
 globalThis.MouseEvent = window.MouseEvent as any;
 globalThis.KeyboardEvent = window.KeyboardEvent as any;
 
