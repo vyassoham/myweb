@@ -11,6 +11,7 @@ import OpenSource from '../app/components/OpenSource';
 import FeaturedResearch from '../app/components/FeaturedResearch';
 import Skills from '../app/components/Skills';
 import Contact from '../app/components/Contact';
+import QuickNoteBox from '../app/components/QuickNoteBox';
 import SecurityLayer from '../app/components/SecurityLayer';
 import InteractivePlayground from '../app/components/InteractivePlayground';
 import CommandPalette from '../app/components/CommandPalette';
@@ -270,13 +271,40 @@ describe('myweb Top 1% Portfolio Test Suite', () => {
     // 📬 Test Contact Component
     // =====================================================================
     describe('Contact component', () => {
-        test('renders contact channels and email', () => {
+        test('renders contact channels, email and quick note console', () => {
             render(<Contact />);
             
             expect(screen.getByText(/Let's Build Something Significant/i)).not.toBeNull();
             expect(screen.getAllByText('hello@soham.lol').length).toBeGreaterThan(0);
             expect(screen.getByText('@vyassoham')).not.toBeNull();
             expect(screen.getByText('/in/vyassoham')).not.toBeNull();
+            expect(screen.getByText('Send a Direct Quick Note')).not.toBeNull();
+        });
+
+        test('QuickNoteBox validates input and handles dispatch workflow', () => {
+            const { container } = render(<QuickNoteBox />);
+            
+            expect(screen.getByText('Send a Direct Quick Note')).not.toBeNull();
+            expect(screen.getByText('GSoC 2027 Mentorship')).not.toBeNull();
+
+            const form = container.querySelector('form')!;
+            fireEvent.submit(form);
+
+            // Validation error when empty
+            expect(screen.getByText(/Please enter your name/i)).not.toBeNull();
+
+            // Fill inputs
+            fireEvent.change(screen.getByPlaceholderText(/Dr\. Leslie Lamport/i), {
+                target: { value: 'Ada Lovelace' },
+            });
+            fireEvent.change(screen.getByPlaceholderText(/recruiter@company\.com/i), {
+                target: { value: 'ada@computing.org' },
+            });
+            fireEvent.change(screen.getByPlaceholderText(/Tell me about your research proposal/i), {
+                target: { value: 'Excited about your SymPy Kronecker optimizations.' },
+            });
+
+            fireEvent.submit(form);
         });
     });
 

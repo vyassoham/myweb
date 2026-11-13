@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Mail, Github, Linkedin, MapPin, Check, Copy, ArrowUpRight, MessageSquare, Send } from "lucide-react";
 import TiltCard from "./TiltCard";
 import ScrollReveal from "./ScrollReveal";
+import QuickNoteBox from "./QuickNoteBox";
 
 export default function Contact(): React.JSX.Element {
   const [copied, setCopied] = useState(false);
@@ -137,6 +138,9 @@ export default function Contact(): React.JSX.Element {
           </TiltCard>
         </ScrollReveal>
       </div>
+
+      {/* In-Browser Quick Dispatch Console */}
+      <QuickNoteBox />
     </section>
   );
 }
