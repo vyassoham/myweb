@@ -39,6 +39,8 @@ export default function CommandPalette(): React.JSX.Element | null {
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.location.href = `/#${id}`;
     }
   };
 
