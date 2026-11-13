@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Outfit } from "next/font/google";
-import { Analytics } from "@vercel/analytics/next"
-
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const inter = Inter({
@@ -17,37 +16,52 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Soham | Full Stack Developer & Security Specialist",
-  description: "Elite full-stack developer specializing in secure, scalable web applications and modern technologies.",
+  metadataBase: new URL("https://soham.lol"),
+  title: "Soham Vyas | AI Systems Engineer & Open Source Contributor",
+  description:
+    "Portfolio of Soham Vyas — BS in Data Science & AI at IIT Jodhpur. Building production-grade AI security, rate limiters, neural speech pipelines, and contributing to SymPy (GSoC 2027).",
   keywords: [
-    "Soham",
-    "Full Stack Developer",
-    "Web Security",
-    "React Developer",
-    "Next.js",
-    "TypeScript",
+    "Soham Vyas",
+    "IIT Jodhpur",
+    "Data Science",
+    "AI Engineer",
+    "Machine Learning",
+    "SymPy",
+    "GSoC 2027",
+    "Python",
+    "FastAPI",
+    "Redis",
     "Portfolio",
+    "soham.lol",
   ],
+  authors: [{ name: "Soham Vyas", url: "https://soham.lol" }],
+  creator: "Soham Vyas",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://soham.lol",
-    title: "Soham | Full Stack Developer",
-    description: "Building secure, scalable, and beautiful web applications.",
-    siteName: "Soham Portfolio",
+    title: "Soham Vyas | AI Systems Engineer & Open Source Contributor",
+    description:
+      "BS in Data Science & AI @ IIT Jodhpur. Systems engineer building production AI rate limiters, neural TTS, and contributing to SymPy.",
+    siteName: "Soham Vyas Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Soham | Full Stack Developer",
-    description: "Building secure, scalable, and beautiful web applications.",
+    title: "Soham Vyas | AI Systems Engineer",
+    description:
+      "BS in Data Science & AI @ IIT Jodhpur. Building production-grade systems and contributing to SymPy.",
+    creator: "@vyassoham",
   },
   robots: {
-    index: false,
-    follow: false,
-    noarchive: true,
-    nosnippet: true,
-    noimageindex: true,
-    notranslate: true,
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
@@ -55,7 +69,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#8b5cf6",
+  themeColor: "#07070a",
 };
 
 export default function RootLayout({
@@ -64,9 +78,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark scroll-smooth">
       <body
-        className={`${inter.variable} ${outfit.variable} font-sans antialiased text-slate-900 dark:text-slate-100 bg-slate-50 dark:bg-slate-900`}
+        className={`${inter.variable} ${outfit.variable} font-sans antialiased bg-[#07070a] text-slate-100 min-h-screen`}
       >
         {children}
         <Analytics />

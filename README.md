@@ -1,34 +1,70 @@
-# Soham's Portfolio 🚀
+# Soham Vyas — Personal Portfolio ([soham.lol](https://soham.lol)) 🚀
 
-Welcome to my developer portfolio! This project showcases my skills, projects, and experience as a Software Engineer. Built with [Next.js](https://nextjs.org/), [TypeScript](https://www.typescriptlang.org/), and [Tailwind CSS](https://tailwindcss.com). View the [live site](https://soham.lol).
+The official portfolio of **Soham Vyas** — BS in Data Science & AI @ IIT Jodhpur, AI Systems Engineer, and SymPy Open Source Contributor.
 
-# Features 🎉
+Live Production URL: **[https://soham.lol](https://soham.lol)**
 
-The whole [portfolio](https://soham.lol) is a React-based single page app built with Next.js in TypeScript, using only statically generated pages.
+---
 
-- **Modern Design**: Beautiful, dark-themed UI with purple gradient accents
-- **Animated Typing Effect**: Dynamic text animation in the hero section that cycles through roles
-- **Responsive Layout**: Fully responsive design that works seamlessly on all devices
-- **Performance Optimized**: Built with Next.js for optimal performance and SEO
-- **Project Showcase**: Featured projects section with detailed descriptions and links
-- **Smooth Animations**: Engaging user experience with smooth transitions and effects
+## 🏗️ Architecture & Stack
 
-# ✨ Development
+- **Framework**: [Next.js 16](https://nextjs.org/) (Turbopack, Static HTML Export)
+- **Runtime & Package Manager**: [Bun](https://bun.sh/)
+- **UI & Styling**: [React 19](https://react.dev/), [Tailwind CSS v4](https://tailwindcss.com/), [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Testing**: Bun native test runner + `@testing-library/react` + `happy-dom` (12/12 passing unit tests)
+- **Hosting & CI/CD**: GitHub Actions automated static export to GitHub Pages with custom apex domain `soham.lol`
+
+---
+
+## 🌟 Sections & Highlights
+
+1. **Hero & Identity**: Animated role carousel, IIT Jodhpur academic credentials, professional summary, and direct social links.
+2. **Featured Engineering Projects**: Showcases real, test-verified repositories:
+   - **`Cybersecurity-Risk-Analyzer`** (⭐ 22 Stars): Real-time password cracking time calculator and interactive risk scoring.
+   - **`ai-rate-limiter-shield`**: Production API gateway rate limiter with atomic Lua sliding window in Redis and Isolation Forest ML.
+   - **`SchemaGuard`**: Universal automated data schema & quality validation engine across CSV, Excel, JSON, and PDF (25/25 tests).
+   - **`neural-tts`**: Modular Python speech synthesis with acoustic model, neural vocoder, and audio DSP.
+   - **`MediPro`**: Desktop medical intelligence suite with offline SQLite and Tesseract OCR prescription scanning.
+   - **`soham-crypto-tracker`**: Real-time cryptocurrency tracker via CoinGecko API and Plotly.
+   - **`SocialLogger`**: AI-powered social media management SaaS with Gemini AI analytics.
+3. **Open Source Core (SymPy)**: Detailed breakdown of contributions to SymPy's matrix expressions engine (`KroneckerProduct.trace()` and `MatrixUnit.trace()`) in preparation for GSoC 2027.
+4. **Skills Matrix**: Categorized technical capabilities across Languages, AI/ML, Backend, Data Engineering, Frontend, and DevOps.
+5. **Contact & Network**: 1-click email copy button (`hello@soham.lol`), GitHub, LinkedIn, and campus details.
+
+---
+
+## 🛠️ Local Development & Testing
 
 ```bash
+# Clone the repository
 git clone https://github.com/vyassoham/myweb.git
+cd myweb
 
-cd myweb/
+# Install dependencies with Bun
+bun install
 
-npm i
+# Run the automated test suite
+bun test
 
-npm run dev
+# Start the development server
+bun dev
+
+# Build the production static export
+bun run build
 ```
 
-# 🚚 Deployment
+---
 
-This project is automatically deployed to GitHub Pages using GitHub Actions. Every push to the `main` branch triggers a build and deploy to the custom domain [soham.lol](https://soham.lol).
+## 🚀 Automated Deployment
 
-# 🏛 License
+Every push to `main` triggers `.github/workflows/deploy.yml` which executes:
+1. `bun test` (verifies all components and utils)
+2. `bun run build` (generates optimized static HTML in `out/`)
+3. Deploys directly to the `gh-pages` branch with CNAME `soham.lol`
 
-© {new Date().getFullYear()} Soham.
+---
+
+## 📜 License
+
+MIT © Soham Vyas
