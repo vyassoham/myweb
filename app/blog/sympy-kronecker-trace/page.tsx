@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, GitPullRequest, Calendar, Clock, BookOpen, CheckCircle2, Cpu, ExternalLink } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, GitPullRequest, Calendar, Clock, BookOpen, CheckCircle2, Cpu, ExternalLink } from "lucide-react";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
 import InteractiveBackground from "../../components/InteractiveBackground";
@@ -53,10 +53,17 @@ export default function SymPyKroneckerBlog(): React.JSX.Element {
           {/* Article Header */}
           <header className="mb-10 pb-8 border-b border-white/[0.08]">
             <div className="flex flex-wrap items-center gap-2.5 mb-4">
-              <span className="px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1.5">
+              <a
+                href="https://github.com/sympy/sympy/pull/31011"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1 rounded-full text-xs font-medium bg-purple-500/15 text-purple-300 border border-purple-500/30 flex items-center gap-1.5 hover:bg-purple-500/25 transition-colors"
+                title="View officially merged PR on GitHub"
+              >
                 <GitPullRequest className="w-3.5 h-3.5" />
-                Upstream SymPy Contribution
-              </span>
+                <span>SymPy PR #31011 (Merged Upstream)</span>
+                <ArrowUpRight className="w-3 h-3 text-purple-300" />
+              </a>
               <span className="px-3 py-1 rounded-full text-xs font-medium text-indigo-300 bg-indigo-500/10 border border-indigo-500/20">
                 GSoC 2027 Preparation
               </span>

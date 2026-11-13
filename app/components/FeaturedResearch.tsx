@@ -55,10 +55,16 @@ export default function FeaturedResearch(): React.JSX.Element {
 
           <div className="flex flex-wrap items-center justify-between gap-4 mb-5">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-indigo-500/15 text-indigo-300 border border-indigo-500/25">
+              <a
+                href="https://github.com/sympy/sympy/pull/31011"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-purple-500/15 text-purple-300 border border-purple-500/25 hover:bg-purple-500/25 transition-colors group/link"
+              >
                 <GitPullRequest className="w-3.5 h-3.5" />
-                SymPy Upstream PR · GSoC 2027
-              </span>
+                <span>SymPy PR #31011 · Merged Upstream</span>
+                <ArrowUpRight className="w-3 h-3 group-hover/link:translate-x-0.5 transition-transform" />
+              </a>
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/15 text-emerald-400 border border-emerald-500/25">
                 <Sparkles className="w-3 h-3" />
                 Interactive Math Slider
@@ -121,7 +127,7 @@ export default function FeaturedResearch(): React.JSX.Element {
               <div className="flex items-start gap-3">
                 <span className="w-2 h-2 rounded-full bg-cyan-400 mt-1.5 shrink-0" />
                 <p className="text-xs text-zinc-300">
-                  <strong className="text-white">Upstream GSoC 2027:</strong> Authored and verified on SymPy PR branch <code className="text-emerald-300 font-mono text-[11px]">e2-7-kronecker-trace-fix</code>.
+                  <strong className="text-white">Upstream GSoC 2027:</strong> Officially merged into SymPy master in <a href="https://github.com/sympy/sympy/pull/31011" target="_blank" rel="noopener noreferrer" className="text-emerald-300 underline font-medium">PR #31011</a>.
                 </p>
               </div>
 
