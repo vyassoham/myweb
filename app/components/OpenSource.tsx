@@ -1,23 +1,44 @@
 "use client";
 
-import React from "react";
-import { GitPullRequest, GitBranch, CheckCircle2, ArrowUpRight, BookOpen, Cpu, ShieldCheck } from "lucide-react";
+import React, { useState } from "react";
+import { GitPullRequest, GitBranch, CheckCircle2, ArrowUpRight, Code, ShieldCheck, Terminal, Calculator } from "lucide-react";
 
-const CONTRIBUTIONS = [
+interface ContributionItem {
+  id: string;
+  title: string;
+  module: string;
+  branch: string;
+  mathExpression: string;
+  beforeFix: string;
+  afterFix: string;
+  description: string;
+  impact: string;
+  verification: string;
+}
+
+const CONTRIBUTIONS: ContributionItem[] = [
   {
+    id: "kronecker",
     title: "KroneckerProduct.trace() Evaluation Fix",
     module: "sympy.matrices.expressions.kronecker",
     branch: "e2-7-kronecker-trace-fix",
+    mathExpression: "tr(A ⊗ B) = tr(A) · tr(B)",
+    beforeFix: "Trace(KroneckerProduct(A, B)) -> returned unsimplified Trace expression",
+    afterFix: "Trace(KroneckerProduct(A, B)).doit() -> correctly simplifies to Mul(Trace(A), Trace(B))",
     description:
-      "Resolved trace computation anomaly where trace of Kronecker products (A ⊗ B) did not correctly evaluate to tr(A) · tr(B) across symbolic dimension bounds.",
+      "Resolved trace computation anomaly where trace of Kronecker products (A ⊗ B) did not automatically evaluate to tr(A) · tr(B) across symbolic dimension bounds.",
     impact:
       "Ensures exact algebraic simplification for quantum mechanics and multidimensional matrix calculus.",
     verification: "test_matexpr.py passed (100% verified)",
   },
   {
+    id: "matrixunit",
     title: "MatrixUnit.trace() Canonical Implementation",
     module: "sympy.matrices.expressions.matexpr",
     branch: "e3-6-matrixunit-trace-fix",
+    mathExpression: "tr(E_{i,j}) = δ_{i,j}",
+    beforeFix: "Trace(MatrixUnit(n, n, i, j)) -> evaluated to opaque generic trace",
+    afterFix: "Trace(MatrixUnit(n, n, i, j)).doit() -> evaluates to canonical KroneckerDelta(i, j)",
     description:
       "Implemented canonical trace evaluation for MatrixUnit elementary matrices, evaluating to KroneckerDelta(i, j) when row and column indices match on square matrices.",
     impact:
@@ -27,6 +48,11 @@ const CONTRIBUTIONS = [
 ];
 
 export default function OpenSource(): React.JSX.Element {
+  const [selectedContrib, setSelectedContrib] = useState<string>("kronecker");
+
+  const activeItem =
+    CONTRIBUTIONS.find((c) => c.id === selectedContrib) || CONTRIBUTIONS[0];
+
   return (
     <section id="opensource" className="py-24 px-6 max-w-7xl mx-auto">
       {/* Header */}
@@ -39,7 +65,7 @@ export default function OpenSource(): React.JSX.Element {
           SymPy &amp; Mathematical Systems
         </h2>
         <p className="text-zinc-400 text-sm sm:text-base mt-2 max-w-2xl">
-          Active contributor to <strong>SymPy</strong> — the symbolic mathematics library used by millions of researchers, scientists, and engineers worldwide. Preparing targeted contributions for <strong>Google Summer of Code (GSoC) 2027</strong>.
+          Active contributor to <strong>SymPy</strong> — the foundational Python library for symbolic mathematics used worldwide. Developing upstream algorithmic fixes for <strong>Google Summer of Code (GSoC) 2027</strong>.
         </p>
       </div>
 
@@ -81,10 +107,15 @@ export default function OpenSource(): React.JSX.Element {
 
         {/* Contribution Details Grid */}
         <div className="grid md:grid-cols-2 gap-6 pt-6">
-          {CONTRIBUTIONS.map((item, idx) => (
+          {CONTRIBUTIONS.map((item) => (
             <div
-              key={idx}
-              className="p-5 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:border-emerald-500/30 transition-all flex flex-col justify-between"
+              key={item.id}
+              onClick={() => setSelectedContrib(item.id)}
+              className={`p-5 rounded-xl border transition-all cursor-pointer flex flex-col justify-between ${
+                selectedContrib === item.id
+                  ? "bg-emerald-500/[0.08] border-emerald-500/50 shadow-lg shadow-emerald-500/10"
+                  : "bg-white/[0.02] border-white/[0.06] hover:border-emerald-500/30"
+              }`}
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-2">
@@ -99,16 +130,47 @@ export default function OpenSource(): React.JSX.Element {
 
                 <h4 className="text-base font-bold text-white mb-1.5">{item.title}</h4>
                 <p className="text-xs font-mono text-zinc-400 mb-3">{item.module}</p>
-                <p className="text-xs text-zinc-300 leading-relaxed mb-3">
+                <p className="text-xs text-zinc-300 leading-relaxed mb-4">
                   {item.description}
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-white/[0.04] text-[11px] text-zinc-400 flex items-center justify-between">
-                <span>Impact: {item.impact}</span>
+              <div className="pt-3 border-t border-white/[0.05] text-[11px] text-zinc-400 flex items-center justify-between">
+                <span className="font-mono text-emerald-300">{item.mathExpression}</span>
+                <span className="text-xs text-indigo-400 hover:underline">Inspect Proof →</span>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Mathematical Proof & Algebraic Inspector Box */}
+        <div className="mt-6 p-5 rounded-xl bg-black/40 border border-emerald-500/20">
+          <div className="flex items-center justify-between gap-3 mb-3 pb-3 border-b border-white/[0.06]">
+            <div className="flex items-center gap-2">
+              <Calculator className="w-4 h-4 text-emerald-400" />
+              <span className="text-xs font-bold uppercase tracking-wider text-white">
+                Algebraic Transformation Inspector: {activeItem.title}
+              </span>
+            </div>
+            <span className="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">
+              {activeItem.verification}
+            </span>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-4 text-xs font-mono">
+            <div className="p-3 rounded-lg bg-red-950/20 border border-red-500/20 text-red-200">
+              <span className="text-[10px] uppercase font-bold text-red-400 block mb-1">
+                Before Fix (Legacy Behavior):
+              </span>
+              <p className="text-zinc-400 leading-relaxed">{activeItem.beforeFix}</p>
+            </div>
+            <div className="p-3 rounded-lg bg-emerald-950/20 border border-emerald-500/20 text-emerald-200">
+              <span className="text-[10px] uppercase font-bold text-emerald-400 block mb-1">
+                After Fix (Verified PR Implementation):
+              </span>
+              <p className="text-emerald-300 leading-relaxed">{activeItem.afterFix}</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { Github, ArrowUpRight, Star, Shield, Cpu, Database, Activity, Sparkles, Terminal } from "lucide-react";
+import { Github, ArrowUpRight, Star, Sparkles, ChevronDown, ChevronUp, Layers, CheckCircle } from "lucide-react";
 
 type ProjectCategory = "all" | "systems" | "ai" | "data";
 
@@ -16,6 +15,7 @@ interface Project {
   stars?: number;
   featured?: boolean;
   highlights: string[];
+  architectureDetails: string;
 }
 
 const PROJECTS: Project[] = [
@@ -34,6 +34,8 @@ const PROJECTS: Project[] = [
       "Dynamic risk score computation with actionable mitigations",
       "Over 22 stars on GitHub with community adoption",
     ],
+    architectureDetails:
+      "Modular Python engine implementing Shannon entropy calculations alongside NIST password security standards. Provides instant risk recommendations using state-driven Streamlit reactive forms.",
   },
   {
     id: "ai-rate-limiter-shield",
@@ -50,6 +52,8 @@ const PROJECTS: Project[] = [
       "Unsupervised Isolation Forest ML for zero-day attack identification",
       "8/8 test suite with offline fakeredis verification",
     ],
+    architectureDetails:
+      "Single-turn atomic sliding window prevents race conditions under distributed traffic. Unsupervised scikit-learn Isolation Forest identifies outlier request velocity patterns without database roundtrips.",
   },
   {
     id: "schemaguard",
@@ -66,6 +70,8 @@ const PROJECTS: Project[] = [
       "Automated tabular anomaly detection & schema drift alerts",
       "Production-grade CLI and programmatic Python SDK",
     ],
+    architectureDetails:
+      "Custom parser abstraction layers normalize heterogeneous datasets into standardized schema definitions, testing column types, regex invariants, and missingness metrics with sub-second latency.",
   },
   {
     id: "neural-tts",
@@ -81,6 +87,8 @@ const PROJECTS: Project[] = [
       "Custom audio digital signal processing (DSP) algorithms",
       "Multi-speaker voice synthesis capability",
     ],
+    architectureDetails:
+      "Separates text-to-phoneme conversion, spectrogram prediction, and time-domain neural vocoding for modular fine-tuning, latency optimization, and custom speaker embedding.",
   },
   {
     id: "medipro",
@@ -96,6 +104,8 @@ const PROJECTS: Project[] = [
       "Offline SQLite relational database with ISO-8601 datetime support",
       "20/20 test suite verifying OCR, scheduling, and database integrity",
     ],
+    architectureDetails:
+      "Employs platform-agnostic binary path discovery on Windows/POSIX, relational SQLite schema indexed by active ingredients, and local OCR preprocessing with OpenCV filters.",
   },
   {
     id: "crypto-tracker",
@@ -111,6 +121,8 @@ const PROJECTS: Project[] = [
       "Interactive multi-timeframe Plotly candlestick & line charts",
       "Verified with automated Streamlit AppTest framework",
     ],
+    architectureDetails:
+      "Integrates transient cache middleware to minimize outbound CoinGecko API quota usage, backed by comprehensive unit tests asserting error recoveries and data parsing.",
   },
   {
     id: "sociallogger",
@@ -126,11 +138,18 @@ const PROJECTS: Project[] = [
       "Unified multi-platform distribution engine",
       "Glassmorphic analytics dashboard with engagement metrics",
     ],
+    architectureDetails:
+      "Leverages Google Gemini models for tone-adaptive caption generation, queued background dispatchers for scheduled publishing, and analytics ingestion pipelines.",
   },
 ];
 
 export default function Projects(): React.JSX.Element {
   const [filter, setFilter] = useState<ProjectCategory>("all");
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+
+  const toggleExpand = (id: string) => {
+    setExpandedId((prev) => (prev === id ? null : id));
+  };
 
   const filteredProjects =
     filter === "all"
@@ -181,7 +200,7 @@ export default function Projects(): React.JSX.Element {
 
       {/* Projects Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredProjects.map((project, idx) => (
+        {filteredProjects.map((project) => (
           <article
             key={project.id}
             className={`glass-card p-6 sm:p-7 flex flex-col justify-between group relative overflow-hidden ${
@@ -225,7 +244,7 @@ export default function Projects(): React.JSX.Element {
               </p>
 
               {/* Architectural Highlights */}
-              <div className="space-y-1.5 mb-5 py-3 border-y border-white/[0.05]">
+              <div className="space-y-1.5 mb-4 py-3 border-y border-white/[0.05]">
                 {project.highlights.map((highlight, hIdx) => (
                   <div key={hIdx} className="flex items-start gap-2 text-xs text-zinc-400">
                     <span className="text-indigo-400 mt-0.5 font-bold">•</span>
@@ -233,9 +252,20 @@ export default function Projects(): React.JSX.Element {
                   </div>
                 ))}
               </div>
+
+              {/* Expandable Architecture Drawer */}
+              {expandedId === project.id && (
+                <div className="mb-4 p-3.5 rounded-xl bg-indigo-950/20 border border-indigo-500/20 text-xs text-zinc-300 leading-relaxed">
+                  <div className="flex items-center gap-1.5 text-indigo-300 font-bold mb-1">
+                    <Layers className="w-3.5 h-3.5" />
+                    <span>Deep Architecture Notes:</span>
+                  </div>
+                  <p>{project.architectureDetails}</p>
+                </div>
+              )}
             </div>
 
-            {/* Footer: Tech Tags & GitHub Link */}
+            {/* Footer: Tech Tags & Expand Button */}
             <div>
               <div className="flex flex-wrap gap-1.5 mb-4">
                 {project.tech.map((t) => (
@@ -248,15 +278,29 @@ export default function Projects(): React.JSX.Element {
                 ))}
               </div>
 
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs font-semibold text-indigo-400 group-hover:text-indigo-300 transition-colors"
-              >
-                <Github className="w-3.5 h-3.5" />
-                <span>github.com/vyassoham/{project.id}</span>
-              </a>
+              <div className="flex items-center justify-between pt-2 border-t border-white/[0.04]">
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-400 group-hover:text-indigo-300 transition-colors"
+                >
+                  <Github className="w-3.5 h-3.5" />
+                  <span>Repository</span>
+                </a>
+
+                <button
+                  onClick={() => toggleExpand(project.id)}
+                  className="inline-flex items-center gap-1 text-[11px] text-zinc-400 hover:text-white transition-colors cursor-pointer"
+                >
+                  <span>{expandedId === project.id ? "Less" : "Architecture"}</span>
+                  {expandedId === project.id ? (
+                    <ChevronUp className="w-3.5 h-3.5" />
+                  ) : (
+                    <ChevronDown className="w-3.5 h-3.5" />
+                  )}
+                </button>
+              </div>
             </div>
           </article>
         ))}

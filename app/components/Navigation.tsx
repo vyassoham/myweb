@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { Mail, Github, Check, Copy, Menu, X, FileText, ExternalLink } from "lucide-react";
+import { Mail, Github, Check, Copy, Menu, X, FileText } from "lucide-react";
 
 const NAV_LINKS = [
   { name: "About", href: "#about" },
@@ -16,11 +16,25 @@ export default function Navigation(): React.JSX.Element {
   const [copied, setCopied] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("about");
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+
+      // Scrollspy calculation
+      const sections = ["about", "projects", "opensource", "skills", "contact"];
+      const scrollPos = window.scrollY + 200;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sections[i]);
+        if (el && el.offsetTop <= scrollPos) {
+          setActiveSection(sections[i]);
+          break;
+        }
+      }
     };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -44,7 +58,7 @@ export default function Navigation(): React.JSX.Element {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#07070a]/85 backdrop-blur-md border-b border-white/[0.08] shadow-lg shadow-black/30 py-3"
+          ? "bg-[#07070a]/90 backdrop-blur-xl border-b border-white/[0.08] shadow-lg shadow-black/40 py-3"
           : "bg-transparent py-5"
       }`}
     >
@@ -78,18 +92,26 @@ export default function Navigation(): React.JSX.Element {
           </div>
         </a>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-1 bg-white/[0.03] border border-white/[0.06] rounded-full px-4 py-1.5 backdrop-blur-md">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={(e) => handleLinkClick(e, link.href)}
-              className="px-3.5 py-1.5 text-xs uppercase tracking-wider font-medium text-zinc-300 hover:text-white rounded-full hover:bg-white/[0.06] transition-all"
-            >
-              {link.name}
-            </a>
-          ))}
+        {/* Desktop Navigation Links with Active Scrollspy Glow */}
+        <nav className="hidden md:flex items-center gap-1 bg-white/[0.03] border border-white/[0.06] rounded-full px-3.5 py-1.5 backdrop-blur-md">
+          {NAV_LINKS.map((link) => {
+            const sectionKey = link.href.replace("#", "");
+            const isActive = activeSection === sectionKey;
+            return (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={(e) => handleLinkClick(e, link.href)}
+                className={`px-3.5 py-1.5 text-xs uppercase tracking-wider font-semibold rounded-full transition-all ${
+                  isActive
+                    ? "bg-indigo-600/90 text-white shadow-sm shadow-indigo-600/30"
+                    : "text-zinc-400 hover:text-white hover:bg-white/[0.06]"
+                }`}
+              >
+                {link.name}
+              </a>
+            );
+          })}
         </nav>
 
         {/* Desktop Actions */}
@@ -141,7 +163,7 @@ export default function Navigation(): React.JSX.Element {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#07070a]/95 border-b border-white/[0.1] backdrop-blur-2xl px-6 py-6 flex flex-col gap-4">
+        <div className="md:hidden bg-[#07070a]/98 border-b border-white/[0.1] backdrop-blur-2xl px-6 py-6 flex flex-col gap-4">
           <nav className="flex flex-col gap-2">
             {NAV_LINKS.map((link) => (
               <a

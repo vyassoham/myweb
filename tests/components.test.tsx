@@ -154,8 +154,8 @@ describe('myweb Portfolio Test Suite', () => {
             render(<OpenSource />);
             
             expect(screen.getByText('SymPy & Mathematical Systems')).not.toBeNull();
-            expect(screen.getByText(/KroneckerProduct\.trace\(\)/)).not.toBeNull();
-            expect(screen.getByText(/MatrixUnit\.trace\(\)/)).not.toBeNull();
+            expect(screen.getAllByText(/KroneckerProduct\.trace\(\)/).length).toBeGreaterThan(0);
+            expect(screen.getAllByText(/MatrixUnit\.trace\(\)/).length).toBeGreaterThan(0);
             expect(screen.getByText('GSoC 2027 Candidate')).not.toBeNull();
         });
     });

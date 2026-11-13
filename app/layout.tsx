@@ -72,6 +72,34 @@ export const viewport: Viewport = {
   themeColor: "#07070a",
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Soham Vyas",
+  url: "https://soham.lol",
+  jobTitle: "AI Systems Engineer & Open Source Contributor",
+  alumniOf: {
+    "@type": "EducationalOrganization",
+    name: "Indian Institute of Technology (IIT) Jodhpur",
+  },
+  knowsAbout: [
+    "Artificial Intelligence",
+    "Machine Learning",
+    "Distributed Systems",
+    "Computer Algebra",
+    "SymPy",
+    "FastAPI",
+    "Python",
+    "Redis",
+    "C++",
+  ],
+  sameAs: [
+    "https://github.com/vyassoham",
+    "https://linkedin.com/in/vyassoham",
+    "https://twitter.com/vyassoham",
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -79,6 +107,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark scroll-smooth">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         className={`${inter.variable} ${outfit.variable} font-sans antialiased bg-[#07070a] text-slate-100 min-h-screen`}
       >
