@@ -78,7 +78,7 @@ export default function Hero(): React.JSX.Element {
           </div>
           <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-zinc-300 text-xs">
             <GraduationCap className="w-3.5 h-3.5 text-indigo-400" />
-            <span>IIT Jodhpur · BS Data Science &amp; AI</span>
+            <span>IIT Jodhpur · Bachelor of Science (Hons) in Data Science &amp; AI</span>
           </div>
         </div>
 
@@ -107,7 +107,7 @@ export default function Hero(): React.JSX.Element {
 
             {/* Narrative Summary */}
             <p className="text-zinc-300 text-base sm:text-lg leading-relaxed mb-6">
-              I&apos;m <strong>Soham Vyas</strong>, a technology-driven student and developer based in Rajasthan, India, pursuing a Bachelor of Science in Data Science &amp; AI at the <strong>Indian Institute of Technology (IIT) Jodhpur</strong>. I build production-grade systems — atomic Lua rate limiters, ML anomaly detection pipelines, neural TTS engines, and desktop medical intelligence — and contribute to mathematical algorithms in <strong>SymPy</strong>.
+              I&apos;m <strong>Soham Vyas</strong>, a technology-driven student and developer based in Rajasthan, India, pursuing a Bachelor of Science (Hons) in Data Science &amp; AI at the <strong>Indian Institute of Technology (IIT) Jodhpur</strong>. I build production-grade systems — atomic Lua rate limiters, ML anomaly detection pipelines, neural TTS engines, and desktop medical intelligence — and contribute to mathematical algorithms in <strong>SymPy</strong>.
             </p>
 
             {/* Key CTAs */}
@@ -217,7 +217,7 @@ export default function Hero(): React.JSX.Element {
                     Ongoing
                   </div>
                   <h3 className="text-base font-bold text-white">
-                    Bachelor of Science – Data Science
+                    Bachelor of Science (Hons) in Data Science &amp; AI
                   </h3>
                   <p className="text-xs text-indigo-300 font-medium">
                     Indian Institute of Technology (IIT) Jodhpur

@@ -98,6 +98,12 @@ def test_llms_txt():
     assert "#31010" in text
     assert "#31011" in text
     assert "https://www.soham.lol" in text
+    assert "Bachelor of Science (Hons)" in text, "Bachelor of Science (Hons) missing in llms.txt"
+    assert "B.Tech" not in text, "Found conflicting B.Tech in llms.txt"
+    with open(llms_full_path, "r", encoding="utf-8") as f:
+        full_text = f.read()
+    assert "Bachelor of Science (Hons)" in full_text, "Bachelor of Science (Hons) missing in llms-full.txt"
+    assert "B.Tech" not in full_text, "Found conflicting B.Tech in llms-full.txt"
     print("✓ llms.txt and llms-full.txt verified with accurate credentials and canonical URLs")
 
 if __name__ == "__main__":

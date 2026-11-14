@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s | Soham Vyas — IIT Jodhpur",
   },
   description:
-    "Official portfolio of Soham Vyas, BS in Data Science & Artificial Intelligence at the Indian Institute of Technology (IIT) Jodhpur. Building production-grade AI systems, atomic rate limiters, cybersecurity analyzers, and SymPy (GSoC 2027) matrix logic.",
+    "Official portfolio of Soham Vyas, Bachelor of Science (Hons) in Data Science & Artificial Intelligence student at the Indian Institute of Technology (IIT) Jodhpur. Building production-grade AI systems, atomic rate limiters, cybersecurity analyzers, and SymPy (GSoC 2027) matrix logic.",
   keywords: [
     "Soham Vyas",
     "Soham Vyas IIT",
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     url: "https://www.soham.lol/",
     title: "Soham Vyas — IIT Jodhpur | AI Systems Engineer & Open Source Contributor",
     description:
-      "Official portfolio of Soham Vyas, BS in Data Science & AI at IIT Jodhpur. Building production AI systems, rate limiters, neural speech pipelines, and SymPy computer algebra contributions.",
+      "Official portfolio of Soham Vyas, Bachelor of Science (Hons) in Data Science & AI at IIT Jodhpur. Building production AI systems, rate limiters, neural speech pipelines, and SymPy computer algebra contributions.",
     siteName: "Soham Vyas | IIT Jodhpur Portfolio",
     images: [
       {
@@ -79,7 +79,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Soham Vyas — IIT Jodhpur | AI Systems Engineer & Open Source Contributor",
     description:
-      "BS in Data Science & AI @ IIT Jodhpur. Building production-grade systems and contributing to SymPy.",
+      "Bachelor of Science (Hons) in Data Science & AI @ IIT Jodhpur. Building production-grade systems and contributing to SymPy.",
     images: ["https://www.soham.lol/assets/og-image.png"],
     creator: "@Soham_Vyas_",
   },
@@ -115,7 +115,7 @@ const jsonLd = {
       "url": "https://www.soham.lol/",
       "name": "Soham Vyas — IIT Jodhpur | Official Portfolio",
       "description":
-        "Official portfolio of Soham Vyas, BS in Data Science & AI at the Indian Institute of Technology (IIT) Jodhpur.",
+        "Official portfolio of Soham Vyas, Bachelor of Science (Hons) in Data Science & AI at the Indian Institute of Technology (IIT) Jodhpur.",
       "publisher": { "@id": "https://www.soham.lol/#person" },
       "inLanguage": "en-US",
     },
@@ -145,7 +145,7 @@ const jsonLd = {
       "hasCredential": [
         {
           "@type": "EducationalOccupationalCredential",
-          "name": "Bachelor of Science in Data Science & Artificial Intelligence (In Progress)",
+          "name": "Bachelor of Science (Hons) in Data Science & Artificial Intelligence (In Progress)",
           "credentialCategory": "degree",
           "recognizedBy": {
             "@type": "CollegeOrUniversity",
@@ -208,7 +208,7 @@ const jsonLd = {
           "position": 4,
           "name": "About Soham Vyas (IIT Jodhpur)",
           "description":
-            "Academic background, BS in Data Science & AI at Indian Institute of Technology Jodhpur.",
+            "Academic background, Bachelor of Science (Hons) in Data Science & AI at Indian Institute of Technology Jodhpur.",
           "url": "https://www.soham.lol/about/",
         },
         {

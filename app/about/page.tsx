@@ -124,7 +124,7 @@ export default function AboutPage(): React.JSX.Element {
               Engineering Foundations &amp; Research Focus
             </h1>
             <p className="text-zinc-400 text-base sm:text-lg max-w-3xl leading-relaxed">
-              I am an undergraduate studying <strong>Data Science &amp; Artificial Intelligence</strong> at the <strong>Indian Institute of Technology Jodhpur</strong>. My technical focus lies at the intersection of symbolic computational algebra, high-throughput distributed systems, and reproducible software engineering.
+              I am an undergraduate pursuing a <strong>Bachelor of Science (Hons) in Data Science &amp; Artificial Intelligence</strong> at the <strong>Indian Institute of Technology Jodhpur</strong>. My technical focus lies at the intersection of symbolic computational algebra, high-throughput distributed systems, and reproducible software engineering.
             </p>
           </div>
 

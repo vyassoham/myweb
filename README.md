@@ -1,6 +1,6 @@
 # Soham Vyas — Personal Portfolio ([soham.lol](https://soham.lol)) 🚀
 
-The official portfolio of **Soham Vyas** — BS in Data Science & AI @ IIT Jodhpur, AI Systems Engineer, and SymPy Open Source Contributor.
+The official portfolio of **Soham Vyas** — Bachelor of Science (Hons) in Data Science & AI @ IIT Jodhpur, AI Systems Engineer, and SymPy Open Source Contributor.
 
 Live Production URL: **[https://soham.lol](https://soham.lol)**
 

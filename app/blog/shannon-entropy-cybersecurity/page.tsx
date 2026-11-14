@@ -239,7 +239,7 @@ export default function ShannonEntropyBlog(): React.JSX.Element {
               <div>
                 <h4 className="text-base font-bold text-white">Soham Vyas</h4>
                 <p className="text-xs text-zinc-400 mt-1">
-                  BS in Data Science &amp; AI @ IIT Jodhpur · Cybersecurity Author
+                  Bachelor of Science (Hons) in Data Science &amp; AI @ IIT Jodhpur · Cybersecurity Author
                 </p>
               </div>
               <Link

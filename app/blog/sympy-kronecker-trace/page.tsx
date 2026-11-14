@@ -338,7 +338,7 @@ def _eval_trace(self):
               <div>
                 <h4 className="text-base font-bold text-white">Soham Vyas</h4>
                 <p className="text-xs text-zinc-400 mt-1">
-                  BS in Data Science &amp; AI @ IIT Jodhpur · Open Source Contributor (GSoC &apos;27)
+                  Bachelor of Science (Hons) in Data Science &amp; AI @ IIT Jodhpur · Open Source Contributor (GSoC &apos;27)
                 </p>
                 <div className="flex items-center gap-3 mt-3">
                   <a

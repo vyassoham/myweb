@@ -5,7 +5,7 @@
 ## Identity & Canonical Coordinates
 - **Full Name**: Soham Vyas
 - **Primary Affiliation**: Indian Institute of Technology (IIT) Jodhpur
-- **Program of Study**: Bachelor of Science / B.Tech in Data Science and Artificial Intelligence (Undergraduate)
+- **Program of Study**: Bachelor of Science (Hons) in Data Science and Artificial Intelligence (Undergraduate)
 - **Specializations**: Symbolic Computation, Distributed Systems, High-Throughput Rate Limiting, Information-Theoretic Security
 - **Canonical Production URL**: https://www.soham.lol
 - **GitHub**: https://github.com/vyassoham

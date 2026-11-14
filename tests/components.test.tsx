@@ -137,7 +137,7 @@ describe('myweb Top 1% Portfolio Test Suite', () => {
             expect(screen.getByText('Professional Summary')).not.toBeNull();
             expect(screen.getAllByText(/technology-driven student/i).length).toBeGreaterThan(0);
 
-            expect(screen.getByText(/Bachelor of Science – Data Science/i)).not.toBeNull();
+            expect(screen.getAllByText(/Bachelor of Science \(Hons\)/i).length).toBeGreaterThan(0);
             expect(screen.getAllByText(/Indian Institute of Technology \(IIT\) Jodhpur/i).length).toBeGreaterThan(0);
             
             expect(screen.getByText(/Programming & Computational Thinking/)).not.toBeNull();

@@ -266,7 +266,7 @@ end`}</code></pre>
               <div>
                 <h4 className="text-base font-bold text-white">Soham Vyas</h4>
                 <p className="text-xs text-zinc-400 mt-1">
-                  BS in Data Science &amp; AI @ IIT Jodhpur · AI Systems Engineer
+                  Bachelor of Science (Hons) in Data Science &amp; AI @ IIT Jodhpur · AI Systems Engineer
                 </p>
               </div>
               <Link
