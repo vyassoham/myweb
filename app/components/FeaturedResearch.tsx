@@ -120,7 +120,7 @@ export default function FeaturedResearch(): React.JSX.Element {
               <div className="flex items-start gap-3">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 mt-1.5 shrink-0" />
                 <p className="text-xs text-zinc-300">
-                  <strong className="text-white">Zero Memory Blowup:</strong> Prevents expanding millions of matrix elements into RAM when taking traces of Kronecker tensor products.
+                  <strong className="text-white">Avoids Dense Matrix Allocation:</strong> Computes scalar trace factors directly, eliminating explicit tensor product matrix allocation in RAM.
                 </p>
               </div>
 

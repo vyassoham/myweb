@@ -107,7 +107,7 @@ export default function Hero(): React.JSX.Element {
 
             {/* Narrative Summary */}
             <p className="text-zinc-300 text-base sm:text-lg leading-relaxed mb-6">
-              I&apos;m <strong>Soham Vyas</strong>, an 18-year-old technology-driven student and developer based in Rajasthan, India, pursuing a Bachelor of Science in Data Science &amp; AI at the <strong>Indian Institute of Technology (IIT) Jodhpur</strong>. I build production-grade systems — atomic Lua rate limiters, ML anomaly detection pipelines, neural TTS engines, and desktop medical intelligence — and contribute to mathematical algorithms in <strong>SymPy</strong>.
+              I&apos;m <strong>Soham Vyas</strong>, a technology-driven student and developer based in Rajasthan, India, pursuing a Bachelor of Science in Data Science &amp; AI at the <strong>Indian Institute of Technology (IIT) Jodhpur</strong>. I build production-grade systems — atomic Lua rate limiters, ML anomaly detection pipelines, neural TTS engines, and desktop medical intelligence — and contribute to mathematical algorithms in <strong>SymPy</strong>.
             </p>
 
             {/* Key CTAs */}
@@ -197,7 +197,7 @@ export default function Hero(): React.JSX.Element {
               <div className="grid grid-cols-2 gap-3 pt-3 border-t border-white/[0.06] text-xs">
                 <div className="flex items-center gap-2 text-zinc-300">
                   <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>100% Test Coverage</span>
+                  <span>Automated Test Suites</span>
                 </div>
                 <div className="flex items-center gap-2 text-zinc-300">
                   <Code2 className="w-4 h-4 text-cyan-400 shrink-0" />

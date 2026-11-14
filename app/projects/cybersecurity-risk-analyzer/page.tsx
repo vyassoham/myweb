@@ -39,7 +39,7 @@ const projectSchema = {
       "headline": "Cybersecurity Risk Analyzer: Architecture, Shannon Entropy & NIST Defense",
       "name": "Cybersecurity Risk Analyzer",
       "description":
-        "Production-tested cybersecurity risk evaluation engine that assesses digital habits, computes Shannon entropy, and estimates real-time password crack times.",
+        "Test-backed Python cybersecurity risk evaluation engine that assesses digital habits, computes Shannon entropy, and simulates GPU cluster crack times.",
       "programmingLanguage": "Python",
       "codeRepository": "https://github.com/vyassoham/Cybersecurity-Risk-Analyzer",
       "author": { "@id": "https://www.soham.lol/#person" },
@@ -116,7 +116,7 @@ export default function CybersecurityProjectPage(): React.JSX.Element {
             </h1>
 
             <p className="text-lg text-zinc-300 leading-relaxed mb-6 font-normal">
-              A production-ready Python risk evaluation utility that audits credentials and habits using Claude Shannon&apos;s 1948 mathematical information theory, NIST SP 800-63B guidelines, and 100 GH/s GPU brute-force simulation.
+              A test-backed Python risk evaluation utility that audits credentials and habits using Claude Shannon&apos;s 1948 mathematical information theory, NIST SP 800-63B guidelines, and simulated 100 GH/s GPU brute-force modeling.
             </p>
 
             {/* Quick Answer Summary for AI Answer Engines */}
@@ -152,7 +152,7 @@ export default function CybersecurityProjectPage(): React.JSX.Element {
                 Traditional password strength meters rely on superficial heuristic rules—such as requiring one uppercase letter, one digit, and one symbol. These simplistic rules create a false sense of security while encouraging predictable patterns like <code>P@ssword1!</code>.
               </p>
               <p>
-                Modern adversaries utilize dedicated GPU hash cracking rigs (e.g. 8x NVIDIA RTX 4090 clusters) capable of computing upwards of <strong>100 Billion NTLM/MD5 hashes per second (100 GH/s)</strong>. To accurately assess resistance against such attacks, software must model true <em>information-theoretic entropy</em> rather than arbitrary heuristic checklists.
+                Modern adversaries utilize dedicated GPU hash cracking rigs (e.g. 8x NVIDIA RTX 4090 clusters) capable of computing upwards of <strong>100 Billion NTLM/MD5 hashes per second (~100 GH/s, based on published Hashcat benchmark figures)</strong>. To accurately assess resistance against such attacks, software must model true <em>information-theoretic entropy</em> rather than arbitrary heuristic checklists.
               </p>
             </section>
 
@@ -210,7 +210,7 @@ export default function CybersecurityProjectPage(): React.JSX.Element {
               <ul className="list-disc pl-6 space-y-2 text-sm text-zinc-300">
                 <li><strong>Null and Single-Character Strings</strong>: Asserts graceful zero-entropy fallbacks without divide-by-zero exceptions.</li>
                 <li><strong>Repetitive Patterns (e.g. &quot;aaaaaaaa&quot;)</strong>: Asserts penalty application reducing theoretical 38-bit entropy to near-zero practical resistance.</li>
-                <li><strong>Execution Latency</strong>: Benchmarked under Python 3.12 at <strong>&lt;0.45 milliseconds</strong> per evaluation, enabling real-time keystroke reactivity in Streamlit forms.</li>
+                <li><strong>Execution Latency</strong>: Benchmarked on local workstation under Python 3.12 at <strong>&lt;0.45 milliseconds</strong> per single-string evaluation, enabling real-time keystroke reactivity in Streamlit forms.</li>
               </ul>
             </section>
 

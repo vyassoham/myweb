@@ -222,7 +222,7 @@ export default function KroneckerMathSlider(): React.JSX.Element {
           <strong>Key Insight</strong>: Rather than generating the full ({totalDim} × {totalDim}) Kronecker block matrix in memory, the new algorithm applies the tensor trace theorem:
           <span className="font-mono text-emerald-300 ml-1">
             tr(A ⊗ B) = tr(A) · tr(B)
-          </span>. Memory drops from <strong>{memoryFormatted}</strong> to <strong>0 bytes</strong>, and complexity drops from <strong>O(n³)</strong> to <strong>O(1)</strong> symbolic steps!
+          </span>. Expanded matrix memory drops from <strong>{memoryFormatted}</strong> to <strong>negligible scalar metadata</strong>, and evaluation complexity drops from <strong>O(n³)</strong> explicit expansion to <strong>O(1)</strong> symbolic rewrite steps!
         </p>
       </div>
     </div>

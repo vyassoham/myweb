@@ -207,7 +207,7 @@ export default function RateLimiterProjectPage(): React.JSX.Element {
                 4. Performance &amp; Benchmarks
               </h2>
               <p>
-                Benchmarked on a single local Redis 7 instance with a 4-worker FastAPI setup using <code>locust</code> load generator:
+                Benchmarked on a local workstation environment (Redis 7 localhost loopback) with a 4-worker FastAPI setup using <code>locust</code> load generator under concurrent synthetic client requests:
               </p>
               <div className="grid sm:grid-cols-3 gap-4 my-6 not-prose">
                 <div className="p-4 rounded-xl bg-zinc-950/80 border border-white/[0.08] text-center">

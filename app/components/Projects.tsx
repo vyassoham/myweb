@@ -173,7 +173,7 @@ export default function Projects(): React.JSX.Element {
             Featured Engineering Projects
           </h2>
           <p className="text-zinc-400 text-sm sm:text-base mt-2 max-w-2xl font-normal">
-            Every repository here is production-tested, test-backed, and open on GitHub. No dummy mockups or dead links.
+            Every repository here is test-backed, actively maintained, and open on GitHub. No dummy mockups or dead links.
           </p>
         </div>
 
