@@ -21,7 +21,7 @@ export default function ArticleShareAndCite({
   const [copiedTextCite, setCopiedTextCite] = useState(false);
   const [showBibtex, setShowBibtex] = useState(false);
 
-  const canonicalUrl = `https://soham.lol/blog/${slug}/`;
+  const canonicalUrl = `https://www.soham.lol/blog/${slug}/`;
   const citationKey = `vyas2026${slug.replace(/[^a-zA-Z0-9]/g, "").slice(0, 16)}`;
 
   const bibtex = `@article{${citationKey},
@@ -39,7 +39,7 @@ export default function ArticleShareAndCite({
   const copyToClipboard = (text: string, type: "link" | "bibtex" | "text") => {
     try {
       if (typeof navigator !== "undefined" && navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text);
+        navigator.clipboard.writeText(text).catch(() => {});
       }
     } catch (e) {}
 
@@ -55,8 +55,8 @@ export default function ArticleShareAndCite({
     }
   };
 
-  const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-    `"${title}" by @vyassoham (IIT Jodhpur)`
+  const tweetUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(
+    `"${title}" by @Soham_Vyas_ (IIT Jodhpur)`
   )}&url=${encodeURIComponent(canonicalUrl)}`;
 
   const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(

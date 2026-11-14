@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, Calendar, Clock, BookOpen, CheckCircle2, ShieldCheck, Cpu, ExternalLink } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Calendar, Clock, BookOpen, CheckCircle2, ShieldCheck, Cpu, ExternalLink } from "lucide-react";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
 import InteractiveBackground from "../../components/InteractiveBackground";
@@ -10,22 +10,79 @@ import ArticleShareAndCite from "../../components/ArticleShareAndCite";
 export const metadata: Metadata = {
   title: "Shannon Information Entropy & NIST 800-63B Defense | Soham Vyas",
   description:
-    "Mathematical and cryptographic deep dive into calculating information entropy, estimating GPU cluster brute-force time, and automated secret auditing by Soham Vyas.",
+    "Mathematical and cryptographic deep dive into calculating information entropy, estimating GPU cluster brute-force time, and automated secret auditing by Soham Vyas (IIT Jodhpur).",
   alternates: {
-    canonical: "https://soham.lol/blog/shannon-entropy-cybersecurity/",
+    canonical: "https://www.soham.lol/blog/shannon-entropy-cybersecurity/",
   },
+  openGraph: {
+    title: "Shannon Information Entropy & NIST 800-63B Defense | Soham Vyas",
+    description:
+      "Mathematical entropy calculation, NIST guidelines, and GPU brute force estimation by Soham Vyas.",
+    url: "https://www.soham.lol/blog/shannon-entropy-cybersecurity/",
+    images: [{ url: "https://www.soham.lol/assets/og-image.png", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shannon Information Entropy & NIST 800-63B Defense",
+    description: "Cryptographic entropy calculation and NIST defense by Soham Vyas.",
+    images: ["https://www.soham.lol/assets/og-image.png"],
+    creator: "@Soham_Vyas_",
+  },
+};
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://www.soham.lol/blog/shannon-entropy-cybersecurity/#article",
+      "headline": "Quantifying Cryptographic Strength: Shannon Entropy & NIST 800-63B Defense",
+      "description":
+        "How we combined Claude Shannon's 1948 mathematical information theory with NIST password guidelines to detect hardcoded secrets and estimate brute-force resistance against 100 GH/s GPU clusters.",
+      "author": { "@id": "https://www.soham.lol/#person" },
+      "publisher": { "@id": "https://www.soham.lol/#person" },
+      "datePublished": "2026-11-13",
+      "dateModified": "2026-11-14",
+      "mainEntityOfPage": "https://www.soham.lol/blog/shannon-entropy-cybersecurity/",
+      "url": "https://www.soham.lol/blog/shannon-entropy-cybersecurity/",
+      "inLanguage": "en-US",
+      "keywords": [
+        "Cybersecurity",
+        "Shannon Entropy",
+        "Cryptography",
+        "NIST SP 800-63B",
+        "Information Theory",
+        "Python",
+        "IIT Jodhpur",
+        "Soham Vyas",
+      ],
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.soham.lol/blog/shannon-entropy-cybersecurity/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Portfolio", "item": "https://www.soham.lol/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.soham.lol/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Shannon Entropy & NIST Defense", "item": "https://www.soham.lol/blog/shannon-entropy-cybersecurity/" },
+      ],
+    },
+  ],
 };
 
 export default function ShannonEntropyBlog(): React.JSX.Element {
   return (
     <div className="min-h-screen flex flex-col bg-[#07070a] text-slate-100 relative">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <InteractiveBackground />
       <CommandPalette />
       <Navigation />
 
       <main className="flex-1 pt-32 pb-24">
         <article className="max-w-4xl mx-auto px-6">
-          <div className="flex items-center gap-3 text-xs font-medium text-zinc-400 mb-8">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-3 text-xs font-medium text-zinc-400 mb-8">
             <Link
               href="/"
               className="hover:text-emerald-400 transition-colors bg-white/[0.03] border border-white/[0.08] px-3 py-1.5 rounded-lg flex items-center gap-1.5"
@@ -39,7 +96,7 @@ export default function ShannonEntropyBlog(): React.JSX.Element {
             </Link>
             <span>/</span>
             <span className="text-zinc-200 truncate">Shannon Entropy &amp; NIST Defense</span>
-          </div>
+          </nav>
 
           <header className="mb-10 pb-8 border-b border-white/[0.08]">
             <div className="flex flex-wrap items-center gap-2.5 mb-4">
@@ -61,6 +118,11 @@ export default function ShannonEntropyBlog(): React.JSX.Element {
             <p className="text-lg text-zinc-300 leading-relaxed mb-6 font-normal">
               How we combined Claude Shannon&apos;s 1948 mathematical information theory with NIST password guidelines to detect hardcoded secrets and estimate brute-force resistance against 100 GH/s GPU clusters.
             </p>
+
+            {/* Quick Answer Summary for Search & AI Answer Engines */}
+            <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-200 text-sm leading-relaxed mb-6">
+              <strong>Quick Summary / Direct Answer:</strong> Heuristic password complexity rules (e.g. requiring symbols and digits) fail to measure real resistance against modern 100 GH/s GPU cracking rigs. By applying Shannon&apos;s information entropy $E = L \log_2(R)$ alongside NIST SP 800-63B pattern penalties (repetition, sequences, dictionary terms), the Cybersecurity Risk Analyzer computes an exact bit-metric of randomness and projects realistic offline brute-force attack durations.
+            </div>
 
             <div className="flex flex-wrap items-center gap-6 text-xs text-zinc-400 font-normal">
               <div className="flex items-center gap-2">
@@ -134,13 +196,41 @@ export default function ShannonEntropyBlog(): React.JSX.Element {
               <p className="text-xs text-zinc-300 leading-relaxed mb-4">
                 Calculate the exact Shannon entropy, NIST grade, and brute-force time for any token or password in real time.
               </p>
-              <Link
-                href="/labs/"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition-all font-mono"
-              >
-                <span>Launch Interactive Entropy Lab</span>
-                <ArrowLeft className="w-3.5 h-3.5 rotate-180" />
-              </Link>
+              <div className="flex flex-wrap items-center gap-3">
+                <Link
+                  href="/labs/"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition-all font-mono"
+                >
+                  <span>Launch Interactive Entropy Lab</span>
+                  <ArrowLeft className="w-3.5 h-3.5 rotate-180" />
+                </Link>
+                <Link
+                  href="/projects/cybersecurity-risk-analyzer/"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-zinc-200 text-xs border border-white/[0.08] transition-all font-mono"
+                >
+                  <span>View Project Architecture</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-emerald-400" />
+                </Link>
+              </div>
+            </div>
+
+            <h2 className="text-2xl font-bold text-white border-l-4 border-emerald-400 pl-4 my-8">
+              Primary Sources &amp; Security Standards
+            </h2>
+            <div className="space-y-3 text-xs text-zinc-300 not-prose">
+              <div className="p-3.5 rounded-xl bg-zinc-950/80 border border-white/[0.08]">
+                <div className="font-semibold text-white">1. Shannon, C. E. (1948)</div>
+                <div className="text-zinc-400 mt-1"><em>&quot;A Mathematical Theory of Communication&quot;</em>. Bell System Technical Journal, 27(3), 379–423. Foundational formulation of entropy as a measure of information uncertainty.</div>
+              </div>
+              <div className="p-3.5 rounded-xl bg-zinc-950/80 border border-white/[0.08]">
+                <div className="font-semibold text-white">2. NIST Special Publication 800-63B</div>
+                <div className="text-zinc-400 mt-1">Grassi, P. A. et al. (2020). <em>&quot;Digital Identity Guidelines: Authentication and Lifecycle Management&quot;</em>. National Institute of Standards and Technology. Recommendation for length over complexity composition rules.</div>
+              </div>
+              <div className="p-3.5 rounded-xl bg-zinc-950/80 border border-white/[0.08]">
+                <div className="font-semibold text-white">3. Cybersecurity Risk Analyzer Repository</div>
+                <div className="text-zinc-400 mt-1">Soham Vyas. Open-source Python implementation. 22+ Stars on GitHub.</div>
+                <a href="https://github.com/vyassoham/Cybersecurity-Risk-Analyzer" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:underline mt-1 inline-block">https://github.com/vyassoham/Cybersecurity-Risk-Analyzer</a>
+              </div>
             </div>
           </div>
 

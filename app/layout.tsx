@@ -18,7 +18,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://soham.lol"),
+  metadataBase: new URL("https://www.soham.lol"),
   title: {
     default: "Soham Vyas — IIT Jodhpur | AI Systems Engineer & Open Source Contributor",
     template: "%s | Soham Vyas — IIT Jodhpur",
@@ -33,6 +33,7 @@ export const metadata: Metadata = {
     "Soham Vyas Data Science",
     "vyassoham",
     "soham.lol",
+    "www.soham.lol",
     "IIT Jodhpur",
     "Indian Institute of Technology Jodhpur",
     "IIT Jodhpur Data Science",
@@ -47,35 +48,40 @@ export const metadata: Metadata = {
     "FastAPI",
     "Redis",
   ],
-  authors: [{ name: "Soham Vyas", url: "https://soham.lol" }],
+  authors: [{ name: "Soham Vyas", url: "https://www.soham.lol" }],
   creator: "Soham Vyas",
   alternates: {
-    canonical: "https://soham.lol/",
+    canonical: "https://www.soham.lol/",
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://soham.lol",
-    title: "Soham Vyas — IIT Jodhpur | AI Systems Engineer",
+    url: "https://www.soham.lol/",
+    title: "Soham Vyas — IIT Jodhpur | AI Systems Engineer & Open Source Contributor",
     description:
       "Official portfolio of Soham Vyas, BS in Data Science & AI at IIT Jodhpur. Building production AI systems, rate limiters, neural speech pipelines, and SymPy computer algebra contributions.",
     siteName: "Soham Vyas | IIT Jodhpur Portfolio",
     images: [
       {
-        url: "https://soham.lol/assets/thumbnail.png",
+        url: "https://www.soham.lol/assets/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Soham Vyas — IIT Jodhpur | AI Systems Engineer Portfolio",
+        alt: "Soham Vyas — IIT Jodhpur | AI Systems Engineer & Open Source Contributor",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Soham Vyas — IIT Jodhpur | AI Systems Engineer",
+    title: "Soham Vyas — IIT Jodhpur | AI Systems Engineer & Open Source Contributor",
     description:
       "BS in Data Science & AI @ IIT Jodhpur. Building production-grade systems and contributing to SymPy.",
-    images: ["https://soham.lol/assets/thumbnail.png"],
-    creator: "@vyassoham",
+    images: ["https://www.soham.lol/assets/og-image.png"],
+    creator: "@Soham_Vyas_",
   },
   robots: {
     index: true,
@@ -105,17 +111,17 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebSite",
-      "@id": "https://soham.lol/#website",
-      "url": "https://soham.lol/",
+      "@id": "https://www.soham.lol/#website",
+      "url": "https://www.soham.lol/",
       "name": "Soham Vyas — IIT Jodhpur | Official Portfolio",
       "description":
         "Official portfolio of Soham Vyas, BS in Data Science & AI at the Indian Institute of Technology (IIT) Jodhpur.",
-      "publisher": { "@id": "https://soham.lol/#person" },
+      "publisher": { "@id": "https://www.soham.lol/#person" },
       "inLanguage": "en-US",
     },
     {
       "@type": "Person",
-      "@id": "https://soham.lol/#person",
+      "@id": "https://www.soham.lol/#person",
       "name": "Soham Vyas",
       "alternateName": [
         "Soham Vyas IIT",
@@ -123,25 +129,31 @@ const jsonLd = {
         "vyassoham",
         "Soham",
       ],
-      "url": "https://soham.lol",
-      "image": "https://soham.lol/assets/hero.png",
+      "url": "https://www.soham.lol/",
+      "image": "https://www.soham.lol/assets/og-image.png",
       "jobTitle": "AI Systems Engineer & Open Source Contributor",
       "description":
         "Undergraduate researcher and engineer in Data Science & Artificial Intelligence at IIT Jodhpur, systems developer, and SymPy open source contributor.",
       "disambiguatingDescription":
-        "18-year-old computer scientist and systems engineer at the Indian Institute of Technology (IIT) Jodhpur, known for SymPy linear algebra optimizations and distributed rate limiting architectures.",
-      "worksFor": {
-        "@type": "EducationalOrganization",
+        "Undergraduate student in Data Science & Artificial Intelligence at the Indian Institute of Technology (IIT) Jodhpur, specializing in symbolic computing, upstream SymPy matrix algebra optimizations, and distributed systems.",
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
         "name": "Indian Institute of Technology Jodhpur",
         "alternateName": "IIT Jodhpur",
         "url": "https://www.iitj.ac.in/",
       },
-      "alumniOf": {
-        "@type": "EducationalOrganization",
-        "name": "Indian Institute of Technology Jodhpur",
-        "alternateName": "IIT Jodhpur",
-        "url": "https://www.iitj.ac.in/",
-      },
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "Bachelor of Science in Data Science & Artificial Intelligence (In Progress)",
+          "credentialCategory": "degree",
+          "recognizedBy": {
+            "@type": "CollegeOrUniversity",
+            "name": "Indian Institute of Technology Jodhpur",
+            "url": "https://www.iitj.ac.in/",
+          },
+        },
+      ],
       "knowsAbout": [
         "Artificial Intelligence",
         "Machine Learning",
@@ -157,15 +169,14 @@ const jsonLd = {
       ],
       "sameAs": [
         "https://github.com/vyassoham",
-        "https://linkedin.com/in/vyassoham",
-        "https://twitter.com/vyassoham",
-        "https://x.com/vyassoham",
+        "https://www.linkedin.com/in/vyassoham/",
+        "https://x.com/Soham_Vyas_",
         "https://leetcode.com/u/vyassoham/",
       ],
     },
     {
       "@type": "ItemList",
-      "@id": "https://soham.lol/#sitelinks",
+      "@id": "https://www.soham.lol/#sitelinks",
       "name": "Portfolio Navigation & Google Sitelinks",
       "itemListElement": [
         {
@@ -174,7 +185,7 @@ const jsonLd = {
           "name": "Featured Engineering Projects",
           "description":
             "Production-grade AI systems, rate limiters, cybersecurity analyzers, and speech pipelines built by Soham Vyas.",
-          "url": "https://soham.lol/projects/",
+          "url": "https://www.soham.lol/projects/",
         },
         {
           "@type": "SiteNavigationElement",
@@ -182,7 +193,7 @@ const jsonLd = {
           "name": "SymPy Open Source (GSoC 2027)",
           "description":
             "Upstream contributions to SymPy computer algebra system by Soham Vyas at IIT Jodhpur.",
-          "url": "https://soham.lol/opensource/",
+          "url": "https://www.soham.lol/opensource/",
         },
         {
           "@type": "SiteNavigationElement",
@@ -190,7 +201,7 @@ const jsonLd = {
           "name": "Interactive Engineering Labs",
           "description":
             "Live client-side cybersecurity entropy calculator and atomic Lua rate limiter simulator.",
-          "url": "https://soham.lol/labs/",
+          "url": "https://www.soham.lol/labs/",
         },
         {
           "@type": "SiteNavigationElement",
@@ -198,7 +209,7 @@ const jsonLd = {
           "name": "About Soham Vyas (IIT Jodhpur)",
           "description":
             "Academic background, BS in Data Science & AI at Indian Institute of Technology Jodhpur.",
-          "url": "https://soham.lol/about/",
+          "url": "https://www.soham.lol/about/",
         },
         {
           "@type": "SiteNavigationElement",
@@ -206,7 +217,7 @@ const jsonLd = {
           "name": "Engineering Blog & Technical Publications",
           "description":
             "Deep-dive articles on SymPy Kronecker traces, distributed rate limiting, and cryptographic entropy.",
-          "url": "https://soham.lol/blog/",
+          "url": "https://www.soham.lol/blog/",
         },
         {
           "@type": "SiteNavigationElement",
@@ -214,15 +225,15 @@ const jsonLd = {
           "name": "Technical Skills & Architecture",
           "description":
             "Languages, distributed systems, deep learning frameworks, and infrastructure tools.",
-          "url": "https://soham.lol/#skills",
+          "url": "https://www.soham.lol/#skills",
         },
         {
           "@type": "SiteNavigationElement",
           "position": 7,
-          "name": "Contact & Social Profiles",
+          "name": "Contact & Social Channels",
           "description":
-            "Direct communication channels, email, GitHub, LinkedIn, and Twitter.",
-          "url": "https://soham.lol/contact/",
+            "Direct communication channels, email, GitHub, LinkedIn, and X.",
+          "url": "https://www.soham.lol/contact/",
         },
       ],
     },
@@ -237,7 +248,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
       <head>
-        <link rel="canonical" href="https://soham.lol/" />
         <meta name="google-site-verification" content="google787667f481678cdc" />
         <script
           dangerouslySetInnerHTML={{

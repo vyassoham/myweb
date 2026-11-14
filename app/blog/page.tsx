@@ -13,15 +13,45 @@ export const metadata: Metadata = {
   description:
     "In-depth engineering articles on computer algebra optimization, SymPy Kronecker traces, distributed Redis Lua rate limiters, and cryptographic Shannon entropy by Soham Vyas.",
   alternates: {
-    canonical: "https://soham.lol/blog/",
+    canonical: "https://www.soham.lol/blog/",
   },
   openGraph: {
     title: "Engineering Blog | Soham Vyas — IIT Jodhpur",
     description:
       "Mathematical and systems engineering deep dives by Soham Vyas at IIT Jodhpur.",
-    url: "https://soham.lol/blog/",
-    images: [{ url: "https://soham.lol/assets/thumbnail.png", width: 1200, height: 630 }],
+    url: "https://www.soham.lol/blog/",
+    images: [{ url: "https://www.soham.lol/assets/og-image.png", width: 1200, height: 630 }],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Engineering Blog | Soham Vyas — IIT Jodhpur",
+    description: "Mathematical and systems engineering deep dives by Soham Vyas.",
+    images: ["https://www.soham.lol/assets/og-image.png"],
+    creator: "@Soham_Vyas_",
+  },
+};
+
+const blogIndexSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "https://www.soham.lol/blog/#webpage",
+      "url": "https://www.soham.lol/blog/",
+      "name": "Engineering Blog & Technical Publications | Soham Vyas",
+      "description":
+        "In-depth technical publications on computational algebra, distributed systems, and cryptographic entropy by Soham Vyas at IIT Jodhpur.",
+      "isPartOf": { "@id": "https://www.soham.lol/#website" },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "@id": "https://www.soham.lol/blog/#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Portfolio", "item": "https://www.soham.lol/" },
+          { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.soham.lol/blog/" },
+        ],
+      },
+    },
+  ],
 };
 
 interface Article {
@@ -74,6 +104,10 @@ const ARTICLES: Article[] = [
 export default function BlogIndex(): React.JSX.Element {
   return (
     <div className="min-h-screen flex flex-col bg-[#07070a] text-slate-100 relative">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogIndexSchema) }}
+      />
       <InteractiveBackground />
       <CommandPalette />
       <Navigation />
@@ -81,7 +115,7 @@ export default function BlogIndex(): React.JSX.Element {
       <main className="flex-1 pt-32 pb-24">
         <div className="max-w-5xl mx-auto px-6">
           {/* Header */}
-          <div className="flex items-center gap-3 text-xs font-medium text-zinc-400 mb-8">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-3 text-xs font-medium text-zinc-400 mb-8">
             <Link
               href="/"
               className="hover:text-emerald-400 transition-colors bg-white/[0.03] border border-white/[0.08] px-3 py-1.5 rounded-lg flex items-center gap-1.5"
@@ -89,7 +123,9 @@ export default function BlogIndex(): React.JSX.Element {
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>← Return to Full Portfolio</span>
             </Link>
-          </div>
+            <span>/</span>
+            <span className="text-zinc-200">Engineering Publications</span>
+          </nav>
 
           <div className="mb-12">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-medium mb-3">
@@ -99,92 +135,71 @@ export default function BlogIndex(): React.JSX.Element {
             <h1 className="text-3xl sm:text-5xl font-bold text-white tracking-tight mb-4">
               Engineering Deep-Dives
             </h1>
-            <p className="text-base sm:text-lg text-zinc-300 max-w-2xl leading-relaxed font-normal">
-              Exhaustive architectural writeups on computer algebra optimization, distributed systems concurrency, and cryptographic entropy written by <strong>Soham Vyas</strong> (IIT Jodhpur).
+            <p className="text-zinc-400 text-base sm:text-lg max-w-2xl leading-relaxed">
+              Rigorous writeups on algorithmic complexity optimizations, distributed systems concurrency primitives, and cryptographic defense authored by <strong>Soham Vyas</strong> (IIT Jodhpur).
             </p>
           </div>
 
-          {/* Featured Article Banner */}
-          {ARTICLES.filter((a) => a.featured).map((article) => (
-            <ScrollReveal key={article.slug} direction="up" className="mb-12">
-              <TiltCard maxTilt={4} scale={1.01} className="block group p-8 rounded-3xl bg-gradient-to-br from-indigo-950/40 via-zinc-900/90 to-zinc-950 border border-indigo-500/30 hover:border-indigo-400/60 shadow-2xl shadow-indigo-950/40">
-                <Link href={`/blog/${article.slug}/`} className="block">
-                  <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
-                    <div className="flex items-center gap-2">
-                      <span className="px-3 py-1 rounded-full text-xs font-medium bg-indigo-500/15 text-indigo-300 border border-indigo-500/25">
-                        Featured Publication
-                      </span>
-                      {article.hasInteractiveSlider && (
-                        <span className="px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/15 text-emerald-400 border border-emerald-500/25 flex items-center gap-1.5">
-                          <Sparkles className="w-3 h-3" />
-                          Interactive Math Slider Inside
-                        </span>
-                      )}
-                    </div>
-                    <div className="flex items-center gap-4 text-xs font-normal text-zinc-400">
-                      <span className="flex items-center gap-1">
-                        <Calendar className="w-3.5 h-3.5" /> {article.date}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Clock className="w-3.5 h-3.5" /> {article.readTime}
-                      </span>
-                    </div>
-                  </div>
-
-                  <h2 className="text-2xl sm:text-3xl font-bold text-white group-hover:text-indigo-300 transition-colors tracking-tight mb-3">
-                    {article.title}
-                  </h2>
-
-                  <p className="text-zinc-300 text-sm sm:text-base leading-relaxed mb-6 font-normal">
-                    {article.description}
-                  </p>
-
-                  <div className="flex items-center gap-2 text-xs font-medium text-emerald-400 group-hover:translate-x-1 transition-transform">
-                    <span>Read Full Article &amp; Launch Interactive Simulator</span>
-                    <ArrowUpRight className="w-4 h-4" />
-                  </div>
-                </Link>
-              </TiltCard>
-            </ScrollReveal>
-          ))}
-
-          {/* Remaining Articles Grid */}
-          <div className="grid md:grid-cols-2 gap-6">
-            {ARTICLES.filter((a) => !a.featured).map((article, idx) => {
+          {/* Articles List */}
+          <div className="space-y-6">
+            {ARTICLES.map((article, idx) => {
               const Icon = article.icon;
               return (
-                <ScrollReveal key={article.slug} delay={idx * 0.1} direction="up" className="h-full">
-                  <TiltCard maxTilt={5} scale={1.02} className="h-full p-6 rounded-2xl bg-zinc-900/60 border border-white/[0.08] hover:border-indigo-500/40 hover:bg-zinc-900/90 flex flex-col justify-between group">
-                    <Link
-                      href={`/blog/${article.slug}/`}
-                      className="flex flex-col justify-between h-full"
+                <ScrollReveal key={article.slug} delay={idx * 0.08} direction="up">
+                  <Link href={`/blog/${article.slug}/`} className="block group">
+                    <TiltCard
+                      maxTilt={4}
+                      scale={1.01}
+                      className="glass-card p-6 sm:p-8 transition-all hover:border-indigo-500/40 relative overflow-hidden"
                     >
-                      <div>
-                        <div className="flex items-center justify-between text-xs text-zinc-400 mb-3 font-normal">
-                          <span className="px-2.5 py-0.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-zinc-300 font-medium">
+                      {article.featured && (
+                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-500" />
+                      )}
+
+                      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-4">
+                        <div className="flex flex-wrap items-center gap-2 text-xs font-medium">
+                          <span className="px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 flex items-center gap-1.5">
+                            <Icon className="w-3.5 h-3.5" />
                             {article.category}
                           </span>
-                          <span>{article.readTime}</span>
+                          {article.hasInteractiveSlider && (
+                            <span className="px-2 py-0.5 rounded-md bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 text-[11px] font-mono">
+                              Interactive Simulator Included
+                            </span>
+                          )}
                         </div>
 
-                        <h3 className="text-lg font-bold text-white group-hover:text-indigo-400 transition-colors mb-2">
-                          {article.title}
-                        </h3>
-
-                        <p className="text-xs text-zinc-400 leading-relaxed line-clamp-3 mb-6 font-normal">
-                          {article.description}
-                        </p>
+                        <div className="flex items-center gap-4 text-xs text-zinc-500 shrink-0 font-normal">
+                          <div className="flex items-center gap-1">
+                            <Calendar className="w-3.5 h-3.5" />
+                            <span>{article.date}</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <Clock className="w-3.5 h-3.5" />
+                            <span>{article.readTime}</span>
+                          </div>
+                        </div>
                       </div>
 
-                      <div className="flex items-center justify-between pt-4 border-t border-white/[0.06] text-xs">
-                        <span className="text-zinc-500">{article.date}</span>
-                        <span className="text-indigo-400 font-medium group-hover:translate-x-1 transition-transform flex items-center gap-1">
-                          <span>Read deep dive</span>
-                          <ArrowUpRight className="w-3.5 h-3.5" />
+                      <h2 className="text-xl sm:text-2xl font-bold text-white group-hover:text-indigo-300 transition-colors tracking-tight mb-3">
+                        {article.title}
+                      </h2>
+
+                      <p className="text-zinc-400 text-sm leading-relaxed mb-6 font-normal">
+                        {article.description}
+                      </p>
+
+                      <div className="flex items-center justify-between pt-4 border-t border-white/[0.06] text-xs font-semibold text-indigo-400 group-hover:text-indigo-300">
+                        <span className="inline-flex items-center gap-1">
+                          Read Technical Publication
+                          <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                        </span>
+                        <span className="text-[11px] font-mono text-zinc-500">
+                          Soham Vyas · IIT Jodhpur
                         </span>
                       </div>
-                    </Link>
-                  </TiltCard>
+                    </TiltCard>
+                  </Link>
                 </ScrollReveal>
               );
             })}

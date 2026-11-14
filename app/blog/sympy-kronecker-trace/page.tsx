@@ -13,20 +13,71 @@ export const metadata: Metadata = {
   description:
     "Engineering deep dive into symbolic matrix expressions, Kronecker product tensor algebra, and upstream optimizations in SymPy by Soham Vyas (IIT Jodhpur).",
   alternates: {
-    canonical: "https://soham.lol/blog/sympy-kronecker-trace/",
+    canonical: "https://www.soham.lol/blog/sympy-kronecker-trace/",
   },
   openGraph: {
     title: "How I Eliminated O(n³) Matrix Expansion in SymPy Kronecker Traces",
     description:
       "Deep-dive engineering post: Reducing Kronecker product trace complexity from O(n³) to O(1) in SymPy computer algebra library.",
-    url: "https://soham.lol/blog/sympy-kronecker-trace/",
-    images: [{ url: "https://soham.lol/assets/thumbnail.png", width: 1200, height: 630 }],
+    url: "https://www.soham.lol/blog/sympy-kronecker-trace/",
+    images: [{ url: "https://www.soham.lol/assets/og-image.png", width: 1200, height: 630 }],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "How I Eliminated O(n³) Matrix Expansion in SymPy Kronecker Traces",
+    description: "SymPy Kronecker product trace complexity optimization from O(n³) to O(1) by Soham Vyas.",
+    images: ["https://www.soham.lol/assets/og-image.png"],
+    creator: "@Soham_Vyas_",
+  },
+};
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://www.soham.lol/blog/sympy-kronecker-trace/#article",
+      "headline": "How I Eliminated O(n³) Matrix Expansion in SymPy Kronecker Traces",
+      "description":
+        "Engineering deep dive into symbolic matrix expressions, Kronecker product tensor algebra, and implementing an exact scalar property in SymPy that avoids catastrophic memory allocation ahead of GSoC 2027.",
+      "author": { "@id": "https://www.soham.lol/#person" },
+      "publisher": { "@id": "https://www.soham.lol/#person" },
+      "datePublished": "2026-11-13",
+      "dateModified": "2026-11-14",
+      "mainEntityOfPage": "https://www.soham.lol/blog/sympy-kronecker-trace/",
+      "url": "https://www.soham.lol/blog/sympy-kronecker-trace/",
+      "inLanguage": "en-US",
+      "keywords": [
+        "SymPy",
+        "Kronecker Product",
+        "Matrix Trace",
+        "Computer Algebra",
+        "Linear Algebra",
+        "Python",
+        "GSoC 2027",
+        "IIT Jodhpur",
+        "Soham Vyas",
+      ],
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.soham.lol/blog/sympy-kronecker-trace/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Portfolio", "item": "https://www.soham.lol/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.soham.lol/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "SymPy Kronecker Trace", "item": "https://www.soham.lol/blog/sympy-kronecker-trace/" },
+      ],
+    },
+  ],
 };
 
 export default function SymPyKroneckerBlog(): React.JSX.Element {
   return (
     <div className="min-h-screen flex flex-col bg-[#07070a] text-slate-100 relative">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <InteractiveBackground />
       <CommandPalette />
       <Navigation />
@@ -34,7 +85,7 @@ export default function SymPyKroneckerBlog(): React.JSX.Element {
       <main className="flex-1 pt-32 pb-24">
         <article className="max-w-4xl mx-auto px-6">
           {/* Breadcrumb Navigation */}
-          <div className="flex items-center gap-3 text-xs font-medium text-zinc-400 mb-8">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-3 text-xs font-medium text-zinc-400 mb-8">
             <Link
               href="/"
               className="hover:text-emerald-400 transition-colors bg-white/[0.03] border border-white/[0.08] px-3 py-1.5 rounded-lg flex items-center gap-1.5"
@@ -48,7 +99,7 @@ export default function SymPyKroneckerBlog(): React.JSX.Element {
             </Link>
             <span>/</span>
             <span className="text-zinc-200 truncate">SymPy Kronecker Trace</span>
-          </div>
+          </nav>
 
           {/* Article Header */}
           <header className="mb-10 pb-8 border-b border-white/[0.08]">
@@ -79,6 +130,11 @@ export default function SymPyKroneckerBlog(): React.JSX.Element {
             <p className="text-lg text-zinc-300 leading-relaxed mb-6 font-normal">
               A mathematical and algorithmic deep dive into symbolic matrix expressions, Kronecker product tensor algebra, and implementing an exact scalar property in SymPy that avoids catastrophic memory allocation.
             </p>
+
+            {/* Quick Answer Summary for Search & AI Answer Engines */}
+            <div className="p-4 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-200 text-sm leading-relaxed mb-6">
+              <strong>Quick Summary / Direct Answer:</strong> In SymPy, computing the trace of a Kronecker product tr(A &otimes; B) previously forced explicit block matrix expansion, consuming O(n&sup3;m&sup3;) time and gigabytes of memory. In SymPy PR #31011 (merged into master), Soham Vyas implemented exact scalar trace decomposition: tr(A &otimes; B) = tr(A) &middot; tr(B). This reduces computation complexity to O(1) symbolic steps while strictly enforcing square dimension checks on factor matrices.
+            </div>
 
             <div className="flex flex-wrap items-center gap-6 text-xs text-zinc-400 font-normal">
               <div className="flex items-center gap-2">
@@ -235,6 +291,41 @@ def _eval_trace(self):
 
             <div className="p-4 rounded-xl bg-emerald-950/20 border border-emerald-500/20 text-emerald-300 font-mono text-xs my-6">
               ✓ Ran 150+ SymPy matrix expression tests across Python 3.10, 3.11, 3.12, and 3.13 — 0 regressions, all green!
+            </div>
+
+            <h2 className="text-2xl font-bold text-white border-l-4 border-cyan-400 pl-4 my-8">
+              7. Primary Sources &amp; Academic References
+            </h2>
+            <div className="space-y-3 text-xs text-zinc-300 not-prose">
+              <div className="p-3.5 rounded-xl bg-zinc-950/80 border border-white/[0.08]">
+                <div className="font-semibold text-white">1. SymPy Pull Request #31011 (Upstream Master)</div>
+                <div className="text-zinc-400 mt-1">Soham Vyas. <em>&quot;Fix complexity and dispatch for KroneckerProduct.trace()&quot;</em>. Merged into SymPy repository.</div>
+                <a href="https://github.com/sympy/sympy/pull/31011" target="_blank" rel="noopener noreferrer" className="text-purple-300 hover:underline mt-1 inline-block">https://github.com/sympy/sympy/pull/31011</a>
+              </div>
+              <div className="p-3.5 rounded-xl bg-zinc-950/80 border border-white/[0.08]">
+                <div className="font-semibold text-white">2. SymPy Pull Request #31010 (MatrixUnit Canonical Trace)</div>
+                <div className="text-zinc-400 mt-1">Soham Vyas. <em>&quot;Implement canonical KroneckerDelta evaluation for MatrixUnit.trace()&quot;</em>. Merged into SymPy repository.</div>
+                <a href="https://github.com/sympy/sympy/pull/31010" target="_blank" rel="noopener noreferrer" className="text-purple-300 hover:underline mt-1 inline-block">https://github.com/sympy/sympy/pull/31010</a>
+              </div>
+              <div className="p-3.5 rounded-xl bg-zinc-950/80 border border-white/[0.08]">
+                <div className="font-semibold text-white">3. Matrix Analysis Standard Reference</div>
+                <div className="text-zinc-400 mt-1">Horn, R. A., &amp; Johnson, C. R. (1991). <em>Topics in Matrix Analysis</em>. Cambridge University Press. Section 4.2: Kronecker Products &amp; Trace Identity.</div>
+              </div>
+            </div>
+
+            {/* Internal Cross-Linking to Related Work */}
+            <div className="p-6 rounded-2xl bg-indigo-950/20 border border-indigo-500/20 mt-8 not-prose">
+              <h3 className="text-sm font-bold text-white mb-2">Explore Related Engineering Systems</h3>
+              <div className="grid sm:grid-cols-2 gap-3 text-xs">
+                <Link href="/opensource/" className="text-indigo-300 hover:text-indigo-200 flex items-center justify-between p-2 rounded-lg bg-white/[0.02]">
+                  <span>SymPy Open Source Portfolio</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </Link>
+                <Link href="/projects/ai-rate-limiter-shield/" className="text-cyan-300 hover:text-cyan-200 flex items-center justify-between p-2 rounded-lg bg-white/[0.02]">
+                  <span>AI Rate Limiter Shield Architecture</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
             </div>
           </div>
 
