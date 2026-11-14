@@ -31,3 +31,12 @@ for s in scripts:
         print(f"✓ Clean: {s}")
 
 print(f"\nTotal scripts with old claims: {bad_count}")
+
+print("\n=== LIVE HOMEPAGE AUDIT ===")
+print("Contains '18-year-old'?", "18-year-old" in html)
+print("Contains '100% Test Coverage'?", "100% Test Coverage" in html)
+print("Contains 'production-tested'?", "production-tested" in html)
+print("Contains 'Zero Memory Blowup'?", "Zero Memory Blowup" in html)
+print("Contains 'Automated Test Suites'?", "Automated Test Suites" in html)
+print("Contains 'Avoids Dense Matrix Allocation'?", "Avoids Dense Matrix Allocation" in html)
+
