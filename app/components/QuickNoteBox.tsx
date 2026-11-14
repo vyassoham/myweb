@@ -220,7 +220,7 @@ export default function QuickNoteBox(): React.JSX.Element {
               {/* Submit Action Bar */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
                 <p className="text-xs text-zinc-500 font-normal">
-                  Guaranteed sub-24h response time from IIT Jodhpur.
+                  I will reach you in 24 hours.
                 </p>
 
                 <button

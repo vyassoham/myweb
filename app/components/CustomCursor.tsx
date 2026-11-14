@@ -11,9 +11,7 @@ export default function CustomCursor(): React.JSX.Element | null {
 
   // Position tracking using refs to avoid re-renders on every mouse move
   const mousePos = useRef({ x: -100, y: -100 });
-  const ringPos = useRef({ x: -100, y: -100 });
-  const dotRef = useRef<HTMLDivElement | null>(null);
-  const ringRef = useRef<HTMLDivElement | null>(null);
+  const cursorRef = useRef<HTMLDivElement | null>(null);
   const shockwaveRef = useRef<HTMLDivElement | null>(null);
   const rafId = useRef<number | null>(null);
 
@@ -47,12 +45,12 @@ export default function CustomCursor(): React.JSX.Element | null {
       mousePos.current.y = e.clientY;
       if (!isVisible) setIsVisible(true);
 
-      // Instantly position the central metallic pinpoint dot
-      if (dotRef.current) {
-        dotRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+      // Instant 1:1 hardware-accelerated tracking at tip (0, 0)
+      if (cursorRef.current) {
+        cursorRef.current.style.transform = `translate3d(${e.clientX - 1}px, ${e.clientY - 1}px, 0)`;
       }
 
-      // Check hovered element
+      // Check hovered element for interactive feedback
       const target = e.target as HTMLElement | null;
       if (target) {
         const isClickable = Boolean(
@@ -89,37 +87,11 @@ export default function CustomCursor(): React.JSX.Element | null {
       setIsVisible(true);
     };
 
-    // Smooth inertia lerp loop for the metallic outer reticle ring
-    let lastX = -100;
-    let lastY = -100;
-
-    const render = () => {
-      const targetX = mousePos.current.x;
-      const targetY = mousePos.current.y;
-
-      // Inertia interpolation (lerp factor 0.18 for metallic gyro feel)
-      ringPos.current.x += (targetX - ringPos.current.x) * 0.18;
-      ringPos.current.y += (targetY - ringPos.current.y) * 0.18;
-
-      const diffX = Math.abs(ringPos.current.x - lastX);
-      const diffY = Math.abs(ringPos.current.y - lastY);
-
-      if (ringRef.current && (diffX > 0.05 || diffY > 0.05)) {
-        ringRef.current.style.transform = `translate3d(${ringPos.current.x}px, ${ringPos.current.y}px, 0)`;
-        lastX = ringPos.current.x;
-        lastY = ringPos.current.y;
-      }
-
-      rafId.current = safeRaf(render);
-    };
-
     window.addEventListener("mousemove", onMouseMove, { passive: true });
     window.addEventListener("mousedown", onMouseDown, { passive: true });
     window.addEventListener("mouseup", onMouseUp, { passive: true });
     document.addEventListener("mouseleave", onMouseLeave);
     document.addEventListener("mouseenter", onMouseEnter);
-
-    rafId.current = safeRaf(render);
 
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
@@ -136,75 +108,162 @@ export default function CustomCursor(): React.JSX.Element | null {
   return (
     <div
       aria-hidden="true"
-      className={`fixed inset-0 pointer-events-none z-[9999] transition-opacity duration-300 ${
-        isVisible ? "opacity-100" : "opacity-0"
+      className={`fixed inset-0 pointer-events-none z-[9999] transition-opacity duration-200 ${
+        isVisible && !isTextInput ? "opacity-100" : "opacity-0"
       }`}
     >
-      {/* 1. Outer Metallic Blue Gyroscopic Ring / HUD Reticle */}
+      {/* 3D Faceted Metallic Blue Pointer Cursor */}
       <div
-        ref={ringRef}
-        className="absolute top-0 left-0 -ml-5 -mt-5 w-10 h-10 will-change-transform"
+        ref={cursorRef}
+        className="absolute top-0 left-0 will-change-transform"
         style={{ transform: "translate3d(-100px, -100px, 0)" }}
       >
         <div
-          className={`w-full h-full rounded-full transition-all duration-200 ease-out flex items-center justify-center relative ${
+          className={`relative transition-transform duration-100 ease-out origin-top-left ${
             isClicking
-              ? "scale-75 border-cyan-300 bg-cyan-400/20 shadow-[0_0_20px_rgba(56,189,248,0.8)]"
+              ? "scale-90 translate-x-[1px] translate-y-[1px]"
               : isPointer
-              ? "scale-140 border-cyan-400 bg-sky-500/10 shadow-[0_0_25px_rgba(56,189,248,0.5),inset_0_0_12px_rgba(56,189,248,0.25)]"
-              : isTextInput
-              ? "scale-90 opacity-40 border-indigo-400/40"
-              : "scale-100 border-cyan-400/50 bg-gradient-to-tr from-cyan-500/5 via-blue-600/5 to-indigo-500/5 shadow-[0_0_12px_rgba(14,165,233,0.35)]"
-          }`}
-          style={{
-            borderWidth: isPointer ? "1.75px" : "1.25px",
-            borderStyle: "solid",
-          }}
-        >
-          {/* 4 Metallic Crosshair Reticle Notches */}
-          <span className="absolute -top-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-cyan-300 rounded-full shadow-[0_0_4px_#38bdf8]" />
-          <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-cyan-300 rounded-full shadow-[0_0_4px_#38bdf8]" />
-          <span className="absolute top-1/2 -left-1 -translate-y-1/2 w-1 h-1 bg-cyan-300 rounded-full shadow-[0_0_4px_#38bdf8]" />
-          <span className="absolute top-1/2 -right-1 -translate-y-1/2 w-1 h-1 bg-cyan-300 rounded-full shadow-[0_0_4px_#38bdf8]" />
-
-          {/* Micro Orbit Shimmer on Hover */}
-          {isPointer && (
-            <div className="absolute inset-[-4px] rounded-full border border-dashed border-cyan-300/40 animate-spin-slow pointer-events-none" />
-          )}
-
-          {/* Click Shockwave Ring */}
-          <div
-            ref={shockwaveRef}
-            className="absolute inset-0 rounded-full border-2 border-cyan-300 opacity-0 pointer-events-none"
-          />
-        </div>
-      </div>
-
-      {/* 2. Core Metallic Cobalt-Cyan Specular Dot */}
-      <div
-        ref={dotRef}
-        className="absolute top-0 left-0 -ml-1 -mt-1 w-2 h-2 will-change-transform"
-        style={{ transform: "translate3d(-100px, -100px, 0)" }}
-      >
-        <div
-          className={`w-full h-full rounded-full transition-transform duration-150 ease-out relative ${
-            isClicking
-              ? "scale-150"
-              : isPointer
-              ? "scale-125"
-              : isTextInput
-              ? "scale-75"
+              ? "scale-115"
               : "scale-100"
           }`}
-          style={{
-            background:
-              "radial-gradient(circle at 35% 35%, #ffffff 0%, #38bdf8 35%, #1d4ed8 75%, #0f172a 100%)",
-            boxShadow:
-              "0 0 8px rgba(56, 189, 248, 0.9), 0 0 16px rgba(14, 165, 233, 0.4)",
-          }}
         >
-          {/* Diamond Chrome Highlight */}
-          <span className="absolute top-[1px] left-[1px] w-[2px] h-[2px] bg-white rounded-full shadow-[0_0_3px_#fff]" />
+          {/* Click Shockwave Ring radiating from tip */}
+          <div
+            ref={shockwaveRef}
+            className="absolute -top-2 -left-2 w-5 h-5 rounded-full border border-cyan-400 opacity-0 pointer-events-none"
+          />
+
+          {/* SVG 3D Beveled Metallic Blue Arrow */}
+          <svg
+            width="22"
+            height="32"
+            viewBox="0 0 22 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className={`transition-all duration-150 ${
+              isPointer
+                ? "drop-shadow-[0_0_12px_rgba(56,189,248,0.95)] drop-shadow-[0_3px_6px_rgba(2,132,199,0.7)]"
+                : "drop-shadow-[0_0_7px_rgba(56,189,248,0.65)] drop-shadow-[0_2px_4px_rgba(2,132,199,0.45)]"
+            }`}
+          >
+            <defs>
+              {/* Left Facet Metallic Chrome Blue Gradient */}
+              <linearGradient id="facetBlueLeft" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#ffffff" />
+                <stop offset="20%" stopColor="#e0f2fe" />
+                <stop offset="48%" stopColor="#38bdf8" />
+                <stop offset="78%" stopColor="#0284c7" />
+                <stop offset="100%" stopColor="#0369a1" />
+              </linearGradient>
+
+              {/* Right Facet Deep Metallic Sapphire Gradient */}
+              <linearGradient id="facetBlueRight" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#38bdf8" />
+                <stop offset="25%" stopColor="#2563eb" />
+                <stop offset="60%" stopColor="#1d4ed8" />
+                <stop offset="85%" stopColor="#1e3a8a" />
+                <stop offset="100%" stopColor="#0f172a" />
+              </linearGradient>
+
+              {/* Tail Left Facet Gradient */}
+              <linearGradient id="tailFacetLeft" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#7dd3fc" />
+                <stop offset="50%" stopColor="#0284c7" />
+                <stop offset="100%" stopColor="#075985" />
+              </linearGradient>
+
+              {/* Tail Right Facet Gradient */}
+              <linearGradient id="tailFacetRight" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#1e40af" />
+                <stop offset="60%" stopColor="#172554" />
+                <stop offset="100%" stopColor="#0b0f19" />
+              </linearGradient>
+            </defs>
+
+            {/* 1. Crisp Dark Obsidian Base Outline (Ensures high-contrast edges) */}
+            <path
+              d="M 1 1 L 1 24.5 L 6 21.5 L 11.2 29.2 L 13.6 27.6 L 8.4 19.9 L 16.8 20.8 Z"
+              fill="#020617"
+              stroke="#020617"
+              strokeWidth="1.8"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+            />
+
+            {/* 2. Left Head Facet (Brilliant Specular Metallic Blue) */}
+            <path
+              d="M 1 1 L 1 24.5 L 6 21.5 Z"
+              fill="url(#facetBlueLeft)"
+            />
+
+            {/* 3. Right Head Facet (Rich Metallic Sapphire Shadow) */}
+            <path
+              d="M 1 1 L 6 21.5 L 8.4 19.9 L 16.8 20.8 Z"
+              fill="url(#facetBlueRight)"
+            />
+
+            {/* 4. Tail Left Facet (Light Stem) */}
+            <path
+              d="M 6 21.5 L 11.2 29.2 L 12.4 28.4 L 7.2 20.7 Z"
+              fill="url(#tailFacetLeft)"
+            />
+
+            {/* 5. Tail Right Facet (Dark Stem) */}
+            <path
+              d="M 7.2 20.7 L 12.4 28.4 L 13.6 27.6 L 8.4 19.9 Z"
+              fill="url(#tailFacetRight)"
+            />
+
+            {/* 6. Central Ridge / 3D Spine (Pure Specular Reflection along the center) */}
+            <line
+              x1="1"
+              y1="1"
+              x2="6"
+              y2="21.5"
+              stroke="#ffffff"
+              strokeWidth="0.8"
+              strokeLinecap="round"
+              opacity="0.95"
+            />
+            <line
+              x1="7.2"
+              y1="20.7"
+              x2="12.4"
+              y2="28.4"
+              stroke="#bae6fd"
+              strokeWidth="0.75"
+              strokeLinecap="round"
+              opacity="0.85"
+            />
+
+            {/* 7. Left Edge Specular Highlight (Light Glint) */}
+            <line
+              x1="1.3"
+              y1="2"
+              x2="1.3"
+              y2="23.5"
+              stroke="#ffffff"
+              strokeWidth="0.65"
+              strokeLinecap="round"
+              opacity="0.8"
+            />
+
+            {/* 8. Tip Diamond Specular Highlight */}
+            <circle
+              cx="1.2"
+              cy="1.2"
+              r="0.75"
+              fill="#ffffff"
+              opacity="0.95"
+            />
+          </svg>
+
+          {/* Interactive Sparkle Node (Appears only on pointer hover) */}
+          {isPointer && (
+            <span
+              className="absolute -top-1 -left-1 w-2.5 h-2.5 bg-cyan-300 rounded-full blur-[1px] animate-pulse pointer-events-none opacity-80"
+            />
+          )}
         </div>
       </div>
     </div>
