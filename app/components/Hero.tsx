@@ -32,7 +32,7 @@ const TAGLINES = [
   "Distributed Lua & Backend Architect",
 ];
 
-export default function Hero(): React.JSX.Element {
+function AnimatedTagline(): React.JSX.Element {
   const [tagIndex, setTagIndex] = useState(0);
 
   useEffect(() => {
@@ -42,6 +42,25 @@ export default function Hero(): React.JSX.Element {
     return () => clearInterval(timer);
   }, []);
 
+  return (
+    <div className="h-8 flex items-center">
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={TAGLINES[tagIndex]}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.3 }}
+          className="text-lg sm:text-xl font-semibold gradient-accent-text"
+        >
+          {TAGLINES[tagIndex]}
+        </motion.span>
+      </AnimatePresence>
+    </div>
+  );
+}
+
+export default function Hero(): React.JSX.Element {
   return (
     <section id="about" className="relative min-h-[92vh] pt-32 pb-20 flex items-center overflow-hidden">
       {/* Background Ambient Glows */}
@@ -82,20 +101,7 @@ export default function Hero(): React.JSX.Element {
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-2">
                   Soham Vyas
                 </h1>
-                <div className="h-8 flex items-center">
-                  <AnimatePresence mode="wait">
-                    <motion.span
-                      key={TAGLINES[tagIndex]}
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -8 }}
-                      transition={{ duration: 0.3 }}
-                      className="text-lg sm:text-xl font-semibold gradient-accent-text"
-                    >
-                      {TAGLINES[tagIndex]}
-                    </motion.span>
-                  </AnimatePresence>
-                </div>
+                <AnimatedTagline />
               </div>
             </div>
 

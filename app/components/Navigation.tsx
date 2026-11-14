@@ -22,19 +22,29 @@ export default function Navigation(): React.JSX.Element {
   const [activeSection, setActiveSection] = useState("about");
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+    let ticking = false;
+    const sections = ["about", "projects", "lab", "opensource", "research", "skills", "contact"];
 
-      // Scrollspy calculation
-      const sections = ["about", "projects", "lab", "opensource", "research", "skills", "contact"];
+    const updateScroll = () => {
+      const isScrolled = window.scrollY > 20;
+      setScrolled((prev) => (prev !== isScrolled ? isScrolled : prev));
+
       const scrollPos = window.scrollY + 200;
-
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
         if (el && el.offsetTop <= scrollPos) {
-          setActiveSection(sections[i]);
+          const id = sections[i];
+          setActiveSection((prev) => (prev !== id ? id : prev));
           break;
         }
+      }
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(updateScroll);
       }
     };
 
@@ -43,7 +53,11 @@ export default function Navigation(): React.JSX.Element {
   }, []);
 
   const copyEmail = () => {
-    navigator.clipboard.writeText("hello@soham.lol");
+    try {
+      if (typeof navigator !== "undefined" && navigator.clipboard?.writeText) {
+        navigator.clipboard.writeText("hello@soham.lol").catch(() => {});
+      }
+    } catch {}
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -54,7 +68,9 @@ export default function Navigation(): React.JSX.Element {
       const target = document.querySelector(href);
       if (target) {
         e.preventDefault();
-        target.scrollIntoView({ behavior: "smooth" });
+        const navHeight = 72;
+        const targetY = target.getBoundingClientRect().top + window.scrollY - navHeight;
+        window.scrollTo({ top: Math.max(0, targetY), behavior: "smooth" });
       } else {
         window.location.href = "/" + href;
       }

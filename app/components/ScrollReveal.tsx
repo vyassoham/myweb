@@ -61,7 +61,7 @@ export default function ScrollReveal({
         rotateX: 0,
         scale: 1,
       }}
-      viewport={{ once: true, margin: "-50px" }}
+      viewport={{ once: true, margin: "0px 0px -10px 0px", amount: 0.1 }}
       transition={{
         duration,
         delay,

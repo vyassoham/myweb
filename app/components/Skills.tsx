@@ -67,7 +67,7 @@ const SKILL_CATEGORIES: SkillCategory[] = [
 
 export default function Skills(): React.JSX.Element {
   return (
-    <section id="skills" className="py-24 px-6 max-w-7xl mx-auto">
+    <section id="skills" className="pt-10 pb-20 px-6 max-w-7xl mx-auto scroll-mt-20">
       {/* Header */}
       <div className="mb-12">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-medium mb-3">

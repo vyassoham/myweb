@@ -11,6 +11,8 @@ export default function CustomCursor(): React.JSX.Element | null {
 
   // Position tracking using refs to avoid re-renders on every mouse move
   const mousePos = useRef({ x: -100, y: -100 });
+  const isPointerRef = useRef(false);
+  const isTextInputRef = useRef(false);
   const cursorRef = useRef<HTMLDivElement | null>(null);
   const shockwaveRef = useRef<HTMLDivElement | null>(null);
   const rafId = useRef<number | null>(null);
@@ -50,18 +52,24 @@ export default function CustomCursor(): React.JSX.Element | null {
         cursorRef.current.style.transform = `translate3d(${e.clientX - 1}px, ${e.clientY - 1}px, 0)`;
       }
 
-      // Check hovered element for interactive feedback
+      // Check hovered element for interactive feedback only on state transitions
       const target = e.target as HTMLElement | null;
       if (target) {
         const isClickable = Boolean(
           target.closest("a, button, [role='button'], input[type='submit'], .cursor-pointer, .glass-card, [data-cursor-interactive]")
         );
-        setIsPointer(isClickable);
+        if (isClickable !== isPointerRef.current) {
+          isPointerRef.current = isClickable;
+          setIsPointer(isClickable);
+        }
 
         const isInput = Boolean(
           target.closest("input:not([type='submit']):not([type='checkbox']):not([type='radio']), textarea, [contenteditable='true']")
         );
-        setIsTextInput(isInput);
+        if (isInput !== isTextInputRef.current) {
+          isTextInputRef.current = isInput;
+          setIsTextInput(isInput);
+        }
       }
     };
 
@@ -107,19 +115,20 @@ export default function CustomCursor(): React.JSX.Element | null {
 
   return (
     <div
+      id="custom-cursor"
       aria-hidden="true"
-      className={`fixed inset-0 pointer-events-none z-[9999] transition-opacity duration-200 ${
+      className={`fixed inset-0 pointer-events-none select-none z-[9999] transition-opacity duration-200 ${
         isVisible && !isTextInput ? "opacity-100" : "opacity-0"
       }`}
     >
       {/* 3D Faceted Metallic Blue Pointer Cursor */}
       <div
         ref={cursorRef}
-        className="absolute top-0 left-0 will-change-transform"
+        className="absolute top-0 left-0 will-change-transform pointer-events-none select-none"
         style={{ transform: "translate3d(-100px, -100px, 0)" }}
       >
         <div
-          className={`relative transition-transform duration-100 ease-out origin-top-left ${
+          className={`relative transition-transform duration-100 ease-out origin-top-left pointer-events-none select-none ${
             isClicking
               ? "scale-90 translate-x-[1px] translate-y-[1px]"
               : isPointer
@@ -130,7 +139,7 @@ export default function CustomCursor(): React.JSX.Element | null {
           {/* Click Shockwave Ring radiating from tip */}
           <div
             ref={shockwaveRef}
-            className="absolute -top-2 -left-2 w-5 h-5 rounded-full border border-cyan-400 opacity-0 pointer-events-none"
+            className="absolute -top-2 -left-2 w-5 h-5 rounded-full border border-cyan-400 opacity-0 pointer-events-none select-none"
           />
 
           {/* SVG 3D Beveled Metallic Blue Arrow */}

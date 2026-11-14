@@ -467,13 +467,25 @@ html.light ::-webkit-scrollbar-thumb:hover {
   will-change: transform;
 }
 
+/* Strict clickability guard: custom cursor & decorative elements never intercept events */
+#custom-cursor,
+#custom-cursor * {
+  pointer-events: none !important;
+  user-select: none !important;
+}
+
 /* Hide default cursor on desktop when precision metallic cursor is active */
 @media (hover: hover) and (pointer: fine) {
-  body, a, button, [role="button"], input[type="submit"] {
+  body, a, button, [role="button"], input[type="submit"], .cursor-pointer {
     cursor: none !important;
   }
   input:not([type="submit"]), textarea, [contenteditable="true"] {
     cursor: text;
   }
+}
+
+/* Smooth anchor target scrolling offset clearance */
+section[id], div[id] {
+  scroll-margin-top: 5rem;
 }
 

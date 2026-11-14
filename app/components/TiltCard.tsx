@@ -62,6 +62,11 @@ export default function TiltCard({
 
   const handleMouseEnter = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
+      if (typeof window !== "undefined") {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || window.matchMedia("(hover: none)").matches) {
+          return;
+        }
+      }
       const card = cardRef.current;
       if (!card) return;
 
@@ -168,11 +173,11 @@ export default function TiltCard({
       className={`relative overflow-hidden will-change-transform ${className}`}
       {...props}
     >
-      {/* 3D Holographic Spotlight Glare */}
+      {/* 3D Holographic Spotlight Glare (Decorative Layer) */}
       {glare && (
         <div
           ref={glareRef}
-          className="pointer-events-none absolute inset-0 z-20 opacity-0 transition-opacity duration-300"
+          className="pointer-events-none select-none absolute inset-0 z-0 opacity-0 transition-opacity duration-300"
           aria-hidden="true"
         />
       )}
