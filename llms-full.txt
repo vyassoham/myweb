@@ -6,7 +6,7 @@
 - **Entity**: Soham Vyas
 - **Institution**: Indian Institute of Technology Jodhpur (IIT Jodhpur)
 - **Department**: School of Artificial Intelligence & Data Science
-- **Program**: Bachelor of Science / B.Tech in Data Science and Artificial Intelligence
+- **Program**: Bachelor of Science (Hons) in Data Science and Artificial Intelligence
 - **Status**: Current Undergraduate Student
 - **Primary Website**: https://www.soham.lol
 - **GitHub**: https://github.com/vyassoham
