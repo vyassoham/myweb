@@ -1,63 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Core Entity & Portfolio Landing -->
   <url>
-    <loc>https://soham.lol/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <loc>https://www.soham.lol/</loc>
+    <lastmod>2026-11-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://soham.lol/blog/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <loc>https://www.soham.lol/about/</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Technical Publications & Deep-Dives -->
+  <url>
+    <loc>https://www.soham.lol/blog/</loc>
+    <lastmod>2026-11-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://soham.lol/blog/sympy-kronecker-trace/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <loc>https://www.soham.lol/blog/sympy-kronecker-trace/</loc>
+    <lastmod>2026-11-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://soham.lol/blog/redis-lua-rate-limiter/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <loc>https://www.soham.lol/blog/redis-lua-rate-limiter/</loc>
+    <lastmod>2026-11-14</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://soham.lol/blog/shannon-entropy-cybersecurity/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <loc>https://www.soham.lol/blog/shannon-entropy-cybersecurity/</loc>
+    <lastmod>2026-11-14</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
+
+  <!-- Projects Index & Dedicated Landing Pages -->
   <url>
-    <loc>https://soham.lol/projects/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <loc>https://www.soham.lol/projects/</loc>
+    <lastmod>2026-11-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://soham.lol/opensource/</loc>
-    <lastmod>2026-11-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://www.soham.lol/projects/cybersecurity-risk-analyzer/</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://soham.lol/labs/</loc>
-    <lastmod>2026-11-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://www.soham.lol/projects/ai-rate-limiter-shield/</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://soham.lol/about/</loc>
-    <lastmod>2026-11-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://soham.lol/contact/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <loc>https://www.soham.lol/projects/soham-crypto-tracker/</loc>
+    <lastmod>2026-11-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.soham.lol/projects/sociallogger/</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Systems, Labs & Open Source -->
+  <url>
+    <loc>https://www.soham.lol/opensource/</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.soham.lol/labs/</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.soham.lol/contact/</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
   </url>
 </urlset>
