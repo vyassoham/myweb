@@ -112,7 +112,7 @@ export default function InteractivePlayground(): React.JSX.Element {
   };
 
   return (
-    <section id="lab" className="py-24 px-6 max-w-7xl mx-auto">
+    <section id="lab" className="pt-10 pb-10 px-6 max-w-7xl mx-auto scroll-mt-20">
       {/* Header */}
       <div className="mb-12">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-xs font-medium mb-3">

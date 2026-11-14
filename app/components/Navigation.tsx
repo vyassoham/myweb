@@ -22,34 +22,51 @@ export default function Navigation(): React.JSX.Element {
   const [activeSection, setActiveSection] = useState("about");
 
   useEffect(() => {
+    // 1. High-efficiency passive RAF check for header backdrop
     let ticking = false;
-    const sections = ["about", "projects", "lab", "opensource", "research", "skills", "contact"];
-
-    const updateScroll = () => {
-      const isScrolled = window.scrollY > 20;
-      setScrolled((prev) => (prev !== isScrolled ? isScrolled : prev));
-
-      const scrollPos = window.scrollY + 200;
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el && el.offsetTop <= scrollPos) {
-          const id = sections[i];
-          setActiveSection((prev) => (prev !== id ? id : prev));
-          break;
-        }
-      }
-      ticking = false;
-    };
-
     const handleScroll = () => {
       if (!ticking) {
         ticking = true;
-        window.requestAnimationFrame(updateScroll);
+        window.requestAnimationFrame(() => {
+          const isScrolled = window.scrollY > 20;
+          setScrolled((prev) => (prev !== isScrolled ? isScrolled : prev));
+          ticking = false;
+        });
       }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    // 2. High-performance IntersectionObserver for scrollspy (zero DOM layout reads)
+    const sections = ["about", "projects", "lab", "opensource", "research", "skills", "contact"];
+    let observer: IntersectionObserver | null = null;
+
+    if (typeof window !== "undefined" && "IntersectionObserver" in window) {
+      observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((e) => e.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+          if (visible.length > 0) {
+            setActiveSection(visible[0].target.id);
+          }
+        },
+        {
+          rootMargin: "-15% 0px -45% 0px",
+          threshold: [0, 0.2, 0.4],
+        }
+      );
+
+      sections.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) observer?.observe(el);
+      });
+    }
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (observer) observer.disconnect();
+    };
   }, []);
 
   const copyEmail = () => {

@@ -39,8 +39,8 @@
   --border-accent: rgba(99, 102, 241, 0.4);
 
   /* Component Surfaces */
-  --card-bg: rgba(19, 19, 30, 0.65);
-  --card-bg-hover: rgba(26, 26, 40, 0.85);
+  --card-bg: rgba(19, 19, 30, 0.82);
+  --card-bg-hover: rgba(26, 26, 40, 0.92);
 
   /* Typography */
   --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -172,11 +172,18 @@ p, span, a, button, input, textarea, label {
 
 .glass-card {
   background: var(--card-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--border-default);
   border-radius: 16px;
   transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .glass-card {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
 }
 
 .glass-card:hover {

@@ -4,18 +4,19 @@ import React, { useEffect, useState, useRef } from "react";
 
 export default function CustomCursor(): React.JSX.Element | null {
   const [mounted, setMounted] = useState(false);
-  const [isPointer, setIsPointer] = useState(false);
-  const [isClicking, setIsClicking] = useState(false);
-  const [isTextInput, setIsTextInput] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
 
-  // Position tracking using refs to avoid re-renders on every mouse move
+  // High-performance DOM refs (zero React re-renders on mousemove or clicks)
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const cursorRef = useRef<HTMLDivElement | null>(null);
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
+  const shockwaveRef = useRef<HTMLDivElement | null>(null);
+  const sparkleRef = useRef<HTMLSpanElement | null>(null);
+
+  // Position & interaction tracking via refs
   const mousePos = useRef({ x: -100, y: -100 });
   const isPointerRef = useRef(false);
   const isTextInputRef = useRef(false);
-  const cursorRef = useRef<HTMLDivElement | null>(null);
-  const shockwaveRef = useRef<HTMLDivElement | null>(null);
-  const rafId = useRef<number | null>(null);
+  const isVisibleRef = useRef(false);
 
   useEffect(() => {
     // Disable on touch devices or reduced motion
@@ -29,30 +30,23 @@ export default function CustomCursor(): React.JSX.Element | null {
 
     setMounted(true);
 
-    const safeRaf = (cb: FrameRequestCallback): number => {
-      if (typeof window !== "undefined" && typeof window.requestAnimationFrame === "function") {
-        return window.requestAnimationFrame(cb);
-      }
-      return 0;
-    };
-
-    const safeCancelRaf = (id: number) => {
-      if (typeof window !== "undefined" && typeof window.cancelAnimationFrame === "function") {
-        window.cancelAnimationFrame(id);
-      }
-    };
-
     const onMouseMove = (e: MouseEvent) => {
       mousePos.current.x = e.clientX;
       mousePos.current.y = e.clientY;
-      if (!isVisible) setIsVisible(true);
 
-      // Instant 1:1 hardware-accelerated tracking at tip (0, 0)
+      if (!isVisibleRef.current) {
+        isVisibleRef.current = true;
+        if (containerRef.current) {
+          containerRef.current.style.opacity = isTextInputRef.current ? "0" : "1";
+        }
+      }
+
+      // Direct hardware-accelerated 3D positioning (zero React reconciliations)
       if (cursorRef.current) {
         cursorRef.current.style.transform = `translate3d(${e.clientX - 1}px, ${e.clientY - 1}px, 0)`;
       }
 
-      // Check hovered element for interactive feedback only on state transitions
+      // Target evaluation with fast early exits
       const target = e.target as HTMLElement | null;
       if (target) {
         const isClickable = Boolean(
@@ -60,7 +54,12 @@ export default function CustomCursor(): React.JSX.Element | null {
         );
         if (isClickable !== isPointerRef.current) {
           isPointerRef.current = isClickable;
-          setIsPointer(isClickable);
+          if (wrapperRef.current) {
+            wrapperRef.current.setAttribute("data-pointer", isClickable ? "true" : "false");
+          }
+          if (sparkleRef.current) {
+            sparkleRef.current.style.opacity = isClickable ? "0.9" : "0";
+          }
         }
 
         const isInput = Boolean(
@@ -68,31 +67,53 @@ export default function CustomCursor(): React.JSX.Element | null {
         );
         if (isInput !== isTextInputRef.current) {
           isTextInputRef.current = isInput;
-          setIsTextInput(isInput);
+          if (containerRef.current) {
+            containerRef.current.style.opacity = isInput ? "0" : "1";
+          }
         }
       }
     };
 
     const onMouseDown = () => {
-      setIsClicking(true);
-      if (shockwaveRef.current) {
-        shockwaveRef.current.classList.remove("animate-cursor-shockwave");
-        // Force reflow
-        void shockwaveRef.current.offsetWidth;
-        shockwaveRef.current.classList.add("animate-cursor-shockwave");
+      if (wrapperRef.current) {
+        wrapperRef.current.setAttribute("data-clicking", "true");
+      }
+
+      // Hardware-accelerated shockwave pulse via Web Animations API (zero forced reflow / offsetWidth)
+      const shockwave = shockwaveRef.current;
+      if (shockwave && typeof shockwave.animate === "function") {
+        shockwave.animate(
+          [
+            { transform: "scale(0.4)", opacity: 0.95, borderColor: "#38bdf8" },
+            { transform: "scale(2.4)", opacity: 0, borderColor: "#0284c7" },
+          ],
+          {
+            duration: 360,
+            easing: "cubic-bezier(0.16, 1, 0.3, 1)",
+            fill: "forwards",
+          }
+        );
       }
     };
 
     const onMouseUp = () => {
-      setIsClicking(false);
+      if (wrapperRef.current) {
+        wrapperRef.current.setAttribute("data-clicking", "false");
+      }
     };
 
     const onMouseLeave = () => {
-      setIsVisible(false);
+      isVisibleRef.current = false;
+      if (containerRef.current) {
+        containerRef.current.style.opacity = "0";
+      }
     };
 
     const onMouseEnter = () => {
-      setIsVisible(true);
+      isVisibleRef.current = true;
+      if (containerRef.current && !isTextInputRef.current) {
+        containerRef.current.style.opacity = "1";
+      }
     };
 
     window.addEventListener("mousemove", onMouseMove, { passive: true });
@@ -107,19 +128,17 @@ export default function CustomCursor(): React.JSX.Element | null {
       window.removeEventListener("mouseup", onMouseUp);
       document.removeEventListener("mouseleave", onMouseLeave);
       document.removeEventListener("mouseenter", onMouseEnter);
-      if (rafId.current) safeCancelRaf(rafId.current);
     };
-  }, [isVisible]);
+  }, []); // Strictly empty dependency array: listeners registered once, zero teardown churn
 
   if (!mounted) return null;
 
   return (
     <div
       id="custom-cursor"
+      ref={containerRef}
       aria-hidden="true"
-      className={`fixed inset-0 pointer-events-none select-none z-[9999] transition-opacity duration-200 ${
-        isVisible && !isTextInput ? "opacity-100" : "opacity-0"
-      }`}
+      className="fixed inset-0 pointer-events-none select-none z-[9999] opacity-0 transition-opacity duration-200"
     >
       {/* 3D Faceted Metallic Blue Pointer Cursor */}
       <div
@@ -128,13 +147,10 @@ export default function CustomCursor(): React.JSX.Element | null {
         style={{ transform: "translate3d(-100px, -100px, 0)" }}
       >
         <div
-          className={`relative transition-transform duration-100 ease-out origin-top-left pointer-events-none select-none ${
-            isClicking
-              ? "scale-90 translate-x-[1px] translate-y-[1px]"
-              : isPointer
-              ? "scale-115"
-              : "scale-100"
-          }`}
+          ref={wrapperRef}
+          data-pointer="false"
+          data-clicking="false"
+          className="relative transition-transform duration-100 ease-out origin-top-left pointer-events-none select-none data-[clicking=true]:scale-90 data-[clicking=true]:translate-x-[1px] data-[clicking=true]:translate-y-[1px] data-[pointer=true]:scale-115 scale-100"
         >
           {/* Click Shockwave Ring radiating from tip */}
           <div
@@ -149,11 +165,7 @@ export default function CustomCursor(): React.JSX.Element | null {
             viewBox="0 0 22 32"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className={`transition-all duration-150 ${
-              isPointer
-                ? "drop-shadow-[0_0_12px_rgba(56,189,248,0.95)] drop-shadow-[0_3px_6px_rgba(2,132,199,0.7)]"
-                : "drop-shadow-[0_0_7px_rgba(56,189,248,0.65)] drop-shadow-[0_2px_4px_rgba(2,132,199,0.45)]"
-            }`}
+            className="pointer-events-none select-none transition-all duration-150 drop-shadow-[0_2px_6px_rgba(56,189,248,0.7)] drop-shadow-[0_1px_3px_rgba(2,132,199,0.5)]"
           >
             <defs>
               {/* Left Facet Metallic Chrome Blue Gradient */}
@@ -189,9 +201,9 @@ export default function CustomCursor(): React.JSX.Element | null {
               </linearGradient>
             </defs>
 
-            {/* 1. Crisp Dark Obsidian Base Outline (Ensures high-contrast edges) */}
+            {/* 1. Crisp Dark Obsidian Base Outline */}
             <path
-              d="M 1 1 L 1 24.5 L 6 21.5 L 11.2 29.2 L 13.6 27.6 L 8.4 19.9 L 16.8 20.8 Z"
+              d="M 1 1 L 1 24 L 8 16.5 L 11 25.5 L 14.8 23.2 L 11.8 17.5 L 17.5 18.5 Z"
               fill="#020617"
               stroke="#020617"
               strokeWidth="1.8"
@@ -199,58 +211,58 @@ export default function CustomCursor(): React.JSX.Element | null {
               strokeLinecap="round"
             />
 
-            {/* 2. Left Head Facet (Brilliant Specular Metallic Blue) */}
+            {/* 2. Left Head Facet (Specular Chrome Blue) */}
             <path
-              d="M 1 1 L 1 24.5 L 6 21.5 Z"
+              d="M 1 1 L 1 24 L 8 16.5 Z"
               fill="url(#facetBlueLeft)"
             />
 
-            {/* 3. Right Head Facet (Rich Metallic Sapphire Shadow) */}
+            {/* 3. Right Head Facet (Metallic Sapphire Shadow) */}
             <path
-              d="M 1 1 L 6 21.5 L 8.4 19.9 L 16.8 20.8 Z"
+              d="M 1 1 L 8 16.5 L 11.8 17.5 L 17.5 18.5 Z"
               fill="url(#facetBlueRight)"
             />
 
-            {/* 4. Tail Left Facet (Light Stem) */}
+            {/* 4. Tail Left Facet */}
             <path
-              d="M 6 21.5 L 11.2 29.2 L 12.4 28.4 L 7.2 20.7 Z"
+              d="M 8 16.5 L 11 25.5 L 12.9 24.35 L 9.9 17.0 Z"
               fill="url(#tailFacetLeft)"
             />
 
-            {/* 5. Tail Right Facet (Dark Stem) */}
+            {/* 5. Tail Right Facet */}
             <path
-              d="M 7.2 20.7 L 12.4 28.4 L 13.6 27.6 L 8.4 19.9 Z"
+              d="M 9.9 17.0 L 12.9 24.35 L 14.8 23.2 L 11.8 17.5 Z"
               fill="url(#tailFacetRight)"
             />
 
-            {/* 6. Central Ridge / 3D Spine (Pure Specular Reflection along the center) */}
+            {/* 6. Central Ridge / 3D Spine */}
             <line
               x1="1"
               y1="1"
-              x2="6"
-              y2="21.5"
+              x2="8"
+              y2="16.5"
               stroke="#ffffff"
-              strokeWidth="0.8"
+              strokeWidth="0.85"
               strokeLinecap="round"
               opacity="0.95"
             />
             <line
-              x1="7.2"
-              y1="20.7"
-              x2="12.4"
-              y2="28.4"
+              x1="9.9"
+              y1="17.0"
+              x2="12.9"
+              y2="24.35"
               stroke="#bae6fd"
               strokeWidth="0.75"
               strokeLinecap="round"
               opacity="0.85"
             />
 
-            {/* 7. Left Edge Specular Highlight (Light Glint) */}
+            {/* 7. Left Edge Specular Highlight */}
             <line
               x1="1.3"
               y1="2"
               x2="1.3"
-              y2="23.5"
+              y2="23.2"
               stroke="#ffffff"
               strokeWidth="0.65"
               strokeLinecap="round"
@@ -267,12 +279,11 @@ export default function CustomCursor(): React.JSX.Element | null {
             />
           </svg>
 
-          {/* Interactive Sparkle Node (Appears only on pointer hover) */}
-          {isPointer && (
-            <span
-              className="absolute -top-1 -left-1 w-2.5 h-2.5 bg-cyan-300 rounded-full blur-[1px] animate-pulse pointer-events-none opacity-80"
-            />
-          )}
+          {/* Interactive Sparkle Node (Controlled via opacity) */}
+          <span
+            ref={sparkleRef}
+            className="absolute -top-1 -left-1 w-2.5 h-2.5 bg-cyan-300 rounded-full blur-[1px] pointer-events-none opacity-0 transition-opacity duration-150"
+          />
         </div>
       </div>
     </div>

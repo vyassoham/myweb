@@ -61,7 +61,7 @@ export default function OpenSource(): React.JSX.Element {
     CONTRIBUTIONS.find((c) => c.id === selectedContrib) || CONTRIBUTIONS[0];
 
   return (
-    <section id="opensource" className="py-24 px-6 max-w-7xl mx-auto">
+    <section id="opensource" className="pt-10 pb-10 px-6 max-w-7xl mx-auto scroll-mt-20">
       {/* Header */}
       <div className="mb-12">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs font-medium mb-3">

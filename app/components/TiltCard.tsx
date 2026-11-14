@@ -63,7 +63,10 @@ export default function TiltCard({
   const handleMouseEnter = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       if (typeof window !== "undefined") {
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || window.matchMedia("(hover: none)").matches) {
+        if (
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+          window.matchMedia("(hover: none)").matches
+        ) {
           return;
         }
       }
@@ -72,6 +75,8 @@ export default function TiltCard({
 
       isHovered.current = true;
       card.style.transition = "none";
+      // Dynamic layer promotion: only promote to GPU composite layer while actively hovered
+      card.style.willChange = "transform";
 
       // Cache the untransformed bounding rect on entry to prevent coordinate feedback jitter
       rectRef.current = card.getBoundingClientRect();
@@ -87,7 +92,7 @@ export default function TiltCard({
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       const card = cardRef.current;
-      if (!card) return;
+      if (!card || !isHovered.current) return;
 
       // Use cached static rect captured on mouseEnter
       const rect = rectRef.current || card.getBoundingClientRect();
@@ -137,6 +142,13 @@ export default function TiltCard({
     card.style.transition = "transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)";
     card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
 
+    // Clean up GPU composite layer on exit
+    setTimeout(() => {
+      if (!isHovered.current && cardRef.current) {
+        cardRef.current.style.willChange = "auto";
+      }
+    }, 450);
+
     const glareEl = glareRef.current;
     if (glareEl) {
       glareEl.style.opacity = "0";
@@ -165,12 +177,11 @@ export default function TiltCard({
       style={{
         transformStyle: "preserve-3d",
         transform: "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)",
-        willChange: "transform",
         backfaceVisibility: "hidden",
         WebkitBackfaceVisibility: "hidden",
         ...style,
       }}
-      className={`relative overflow-hidden will-change-transform ${className}`}
+      className={`relative overflow-hidden ${className}`}
       {...props}
     >
       {/* 3D Holographic Spotlight Glare (Decorative Layer) */}
@@ -181,7 +192,9 @@ export default function TiltCard({
           aria-hidden="true"
         />
       )}
-      {children}
+      <div className="relative z-10 w-full h-full flex flex-col justify-between pointer-events-auto">
+        {children}
+      </div>
     </div>
   );
 }
