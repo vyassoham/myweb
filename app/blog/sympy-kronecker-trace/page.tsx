@@ -18,14 +18,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "How I Eliminated O(n³) Matrix Expansion in SymPy Kronecker Traces",
     description:
-      "Deep-dive engineering post: Reducing Kronecker product trace complexity from O(n³) to O(1) in SymPy computer algebra library.",
+      "Deep-dive engineering post: Reducing Kronecker product trace evaluation from O(n³) explicit tensor expansion to O(1) symbolic rewrite steps in SymPy computer algebra library.",
     url: "https://www.soham.lol/blog/sympy-kronecker-trace/",
     images: [{ url: "https://www.soham.lol/assets/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "How I Eliminated O(n³) Matrix Expansion in SymPy Kronecker Traces",
-    description: "SymPy Kronecker product trace complexity optimization from O(n³) to O(1) by Soham Vyas.",
+    description: "SymPy Kronecker product trace optimization: reducing evaluation from O(n³) explicit tensor expansion to O(1) symbolic rewrite steps by Soham Vyas.",
     images: ["https://www.soham.lol/assets/og-image.png"],
     creator: "@Soham_Vyas_",
   },
@@ -219,8 +219,11 @@ export default function SymPyKroneckerBlog(): React.JSX.Element {
             </div>
 
             <p>
-              Instead of an O((n · m)³) explicit matrix computation, the exact trace can be evaluated in O(1) symbolic steps by delegating directly to the scalar product of the traces of the factors!
+              Instead of an O((n &middot; m)&sup3;) explicit matrix computation, the exact trace can be evaluated in O(1) symbolic rewrite steps by delegating directly to the scalar product of the traces of the factors!
             </p>
+            <div className="p-4 rounded-xl bg-indigo-950/30 border border-indigo-500/20 text-indigo-200 text-xs sm:text-sm my-4 leading-relaxed">
+              <strong>Crucial Scope &amp; Complexity Note:</strong> It is essential to distinguish between symbolic expression tree evaluation in a Computer Algebra System (CAS) and dense numerical linear algebra. In SymPy, this optimization applies directly to symbolic expression trees: rather than expanding and instantiating a dense (n &middot; m) &times; (n &middot; m) tensor block matrix (which previously consumed O(n&sup3;m&sup3;) explicit expansion operations and gigabytes of memory), SymPy now rewrites the expression node <code>Trace(KroneckerProduct(A, B))</code> into <code>Mul(Trace(A), Trace(B))</code> in <strong>O(1) symbolic rewrite steps</strong>. For concrete numerical matrices, subsequently calculating the individual factor traces tr(A) and tr(B) takes O(n) and O(m) arithmetic additions respectively—preserving mathematical exactness while completely avoiding the catastrophic O(n&sup2;m&sup2;) memory footprint of the expanded tensor product.
+            </div>
 
             <h2 className="text-2xl font-bold text-white border-l-4 border-violet-400 pl-4 my-8">
               4. Implementation in SymPy: Inside `kronecker.py`

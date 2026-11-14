@@ -232,7 +232,7 @@ export default function InteractivePlayground(): React.JSX.Element {
               <div className="md:col-span-5 p-5 rounded-xl bg-black/40 border border-white/[0.08] flex flex-col justify-between">
                 <div>
                   <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 block mb-3">
-                    Calculated Metrics (100 GH/s Hashcat Rig)
+                    Calculated Metrics (~100 GH/s GPU Benchmark Model)
                   </span>
 
                   <div className="space-y-4">
