@@ -38,5 +38,5 @@ jobs:
         with:
           folder: out
           branch: gh-pages
-          cname: soham.lol
+          cname: www.soham.lol
           clean: true
