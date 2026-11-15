@@ -19,13 +19,13 @@ export const metadata: Metadata = {
     description:
       "Direct communication channels to reach Soham Vyas at IIT Jodhpur for systems engineering, GSoC 2027 collaboration, and AI research.",
     url: "https://www.soham.lol/contact/",
-    images: [{ url: "https://www.soham.lol/assets/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "https://www.soham.lol/assets/og/og-contact.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Contact Soham Vyas | AI Systems Engineer @ IIT Jodhpur",
     description: "Get in touch with Soham Vyas at IIT Jodhpur.",
-    images: ["https://www.soham.lol/assets/og-image.png"],
+    images: ["https://www.soham.lol/assets/og/og-contact.png"],
     creator: "@Soham_Vyas_",
   },
 };

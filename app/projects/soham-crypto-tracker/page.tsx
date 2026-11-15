@@ -19,13 +19,13 @@ export const metadata: Metadata = {
     description:
       "Public API resilience architecture, transient caching middleware, and automated AppTest suites.",
     url: "https://www.soham.lol/projects/soham-crypto-tracker/",
-    images: [{ url: "https://www.soham.lol/assets/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "https://www.soham.lol/assets/og/og-crypto-tracker.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Resilient Crypto Tracker | Architecture & Telemetry",
     description: "API resilience architecture with exponential retry interceptors by Soham Vyas.",
-    images: ["https://www.soham.lol/assets/og-image.png"],
+    images: ["https://www.soham.lol/assets/og/og-crypto-tracker.png"],
     creator: "@Soham_Vyas_",
   },
 };

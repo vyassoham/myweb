@@ -19,13 +19,13 @@ export const metadata: Metadata = {
     description:
       "Mathematical entropy modeling, NIST compliance checks, and real-time GPU brute-force estimation in Python. 22+ GitHub Stars.",
     url: "https://www.soham.lol/projects/cybersecurity-risk-analyzer/",
-    images: [{ url: "https://www.soham.lol/assets/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "https://www.soham.lol/assets/og/og-entropy.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Cybersecurity Risk Analyzer | Architecture & Entropy Math",
     description: "Shannon Information Entropy and NIST password defense engine by Soham Vyas.",
-    images: ["https://www.soham.lol/assets/og-image.png"],
+    images: ["https://www.soham.lol/assets/og/og-entropy.png"],
     creator: "@Soham_Vyas_",
   },
 };

@@ -19,13 +19,13 @@ export const metadata: Metadata = {
     description:
       "Automated multi-platform social management architecture with Google Gemini AI copy generation.",
     url: "https://www.soham.lol/projects/sociallogger/",
-    images: [{ url: "https://www.soham.lol/assets/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "https://www.soham.lol/assets/og/og-sociallogger.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "SocialLogger | SaaS Architecture & Gemini AI",
     description: "Multi-platform social distribution SaaS with Google Gemini AI by Soham Vyas.",
-    images: ["https://www.soham.lol/assets/og-image.png"],
+    images: ["https://www.soham.lol/assets/og/og-sociallogger.png"],
     creator: "@Soham_Vyas_",
   },
 };

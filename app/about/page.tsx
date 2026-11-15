@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     siteName: "Soham Vyas | IIT Jodhpur",
     images: [
       {
-        url: "https://www.soham.lol/assets/og-image.png",
+        url: "https://www.soham.lol/assets/og/og-about.png",
         width: 1200,
         height: 630,
         alt: "Soham Vyas — IIT Jodhpur | Academic & Engineering Profile",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     title: "About Soham Vyas — IIT Jodhpur | Academic & Engineering Profile",
     description:
       "Undergraduate researcher in Data Science & AI at IIT Jodhpur. Contributing to SymPy ahead of GSoC 2027.",
-    images: ["https://www.soham.lol/assets/og-image.png"],
+    images: ["https://www.soham.lol/assets/og/og-about.png"],
     creator: "@Soham_Vyas_",
   },
 };

@@ -19,13 +19,13 @@ export const metadata: Metadata = {
     description:
       "Mathematical entropy calculation, NIST guidelines, and GPU brute force estimation by Soham Vyas.",
     url: "https://www.soham.lol/blog/shannon-entropy-cybersecurity/",
-    images: [{ url: "https://www.soham.lol/assets/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "https://www.soham.lol/assets/og/og-entropy.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Shannon Information Entropy & NIST 800-63B Defense",
     description: "Cryptographic entropy calculation and NIST defense by Soham Vyas.",
-    images: ["https://www.soham.lol/assets/og-image.png"],
+    images: ["https://www.soham.lol/assets/og/og-entropy.png"],
     creator: "@Soham_Vyas_",
   },
 };

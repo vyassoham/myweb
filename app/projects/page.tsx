@@ -20,14 +20,14 @@ export const metadata: Metadata = {
     description:
       "Explore production-grade AI systems, atomic Lua rate limiters, and cybersecurity analyzers built by Soham Vyas.",
     url: "https://www.soham.lol/projects/",
-    images: [{ url: "https://www.soham.lol/assets/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "https://www.soham.lol/assets/og/og-projects.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Featured Engineering Projects | Soham Vyas — IIT Jodhpur",
     description:
       "Production-grade systems, rate limiters, and cybersecurity tools by Soham Vyas.",
-    images: ["https://www.soham.lol/assets/og-image.png"],
+    images: ["https://www.soham.lol/assets/og/og-projects.png"],
     creator: "@Soham_Vyas_",
   },
 };

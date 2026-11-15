@@ -19,13 +19,13 @@ export const metadata: Metadata = {
     description:
       "Engineering deep dive into race-condition-free distributed rate limiters, Redis ZSET sliding windows, and microsecond atomic Lua execution by Soham Vyas.",
     url: "https://www.soham.lol/blog/redis-lua-rate-limiter/",
-    images: [{ url: "https://www.soham.lol/assets/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "https://www.soham.lol/assets/og/og-rate-limiter.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Distributed Sliding-Window Rate Limiting with Atomic Redis Lua",
     description: "Atomic Redis Lua rate limiting and microsecond concurrency defense by Soham Vyas.",
-    images: ["https://www.soham.lol/assets/og-image.png"],
+    images: ["https://www.soham.lol/assets/og/og-rate-limiter.png"],
     creator: "@Soham_Vyas_",
   },
 };

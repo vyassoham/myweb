@@ -20,13 +20,13 @@ export const metadata: Metadata = {
     description:
       "Mathematical and systems engineering deep dives by Soham Vyas at IIT Jodhpur.",
     url: "https://www.soham.lol/blog/",
-    images: [{ url: "https://www.soham.lol/assets/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "https://www.soham.lol/assets/og/og-blog.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Engineering Blog | Soham Vyas — IIT Jodhpur",
     description: "Mathematical and systems engineering deep dives by Soham Vyas.",
-    images: ["https://www.soham.lol/assets/og-image.png"],
+    images: ["https://www.soham.lol/assets/og/og-blog.png"],
     creator: "@Soham_Vyas_",
   },
 };

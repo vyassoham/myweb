@@ -139,18 +139,6 @@ const jsonLd = {
         "alternateName": "IIT Jodhpur",
         "url": "https://www.iitj.ac.in/",
       },
-      "hasCredential": [
-        {
-          "@type": "EducationalOccupationalCredential",
-          "name": "Bachelor of Science (Hons) in Data Science & Artificial Intelligence (In Progress)",
-          "credentialCategory": "degree",
-          "recognizedBy": {
-            "@type": "CollegeOrUniversity",
-            "name": "Indian Institute of Technology Jodhpur",
-            "url": "https://www.iitj.ac.in/",
-          },
-        },
-      ],
       "knowsAbout": [
         "Artificial Intelligence",
         "Machine Learning",
@@ -245,7 +233,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
       <head>
-        <meta name="google-site-verification" content="google787667f481678cdc" />
         <script
           dangerouslySetInnerHTML={{
             __html: `

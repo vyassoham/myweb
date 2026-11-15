@@ -20,13 +20,13 @@ export const metadata: Metadata = {
     description:
       "Upstream contributions to SymPy computer algebra system by Soham Vyas at IIT Jodhpur. Officially merged PRs #31010 and #31011.",
     url: "https://www.soham.lol/opensource/",
-    images: [{ url: "https://www.soham.lol/assets/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "https://www.soham.lol/assets/og/og-opensource.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "SymPy Open Source & GSoC 2027 | Soham Vyas — IIT Jodhpur",
     description: "Upstream SymPy symbolic mathematics contributions by Soham Vyas.",
-    images: ["https://www.soham.lol/assets/og-image.png"],
+    images: ["https://www.soham.lol/assets/og/og-opensource.png"],
     creator: "@Soham_Vyas_",
   },
 };

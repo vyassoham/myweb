@@ -20,13 +20,13 @@ export const metadata: Metadata = {
     description:
       "Deep-dive engineering post: Reducing Kronecker product trace evaluation from O(n³) explicit tensor expansion to O(1) symbolic rewrite steps in SymPy computer algebra library.",
     url: "https://www.soham.lol/blog/sympy-kronecker-trace/",
-    images: [{ url: "https://www.soham.lol/assets/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "https://www.soham.lol/assets/og/og-sympy.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "How I Eliminated O(n³) Matrix Expansion in SymPy Kronecker Traces",
     description: "SymPy Kronecker product trace optimization: reducing evaluation from O(n³) explicit tensor expansion to O(1) symbolic rewrite steps by Soham Vyas.",
-    images: ["https://www.soham.lol/assets/og-image.png"],
+    images: ["https://www.soham.lol/assets/og/og-sympy.png"],
     creator: "@Soham_Vyas_",
   },
 };

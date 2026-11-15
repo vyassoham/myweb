@@ -20,13 +20,13 @@ export const metadata: Metadata = {
     description:
       "Live client-side engineering simulators for Cybersecurity and Distributed Rate Limiting by Soham Vyas.",
     url: "https://www.soham.lol/labs/",
-    images: [{ url: "https://www.soham.lol/assets/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "https://www.soham.lol/assets/og/og-labs.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Interactive Engineering Labs | Soham Vyas — IIT Jodhpur",
     description: "In-browser simulators for cybersecurity and distributed rate limiting by Soham Vyas.",
-    images: ["https://www.soham.lol/assets/og-image.png"],
+    images: ["https://www.soham.lol/assets/og/og-labs.png"],
     creator: "@Soham_Vyas_",
   },
 };

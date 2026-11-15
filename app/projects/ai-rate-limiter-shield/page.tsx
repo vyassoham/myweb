@@ -19,13 +19,13 @@ export const metadata: Metadata = {
     description:
       "Sub-millisecond sliding-window rate limiting, atomic Lua transactions in Redis, and ML anomaly detection.",
     url: "https://www.soham.lol/projects/ai-rate-limiter-shield/",
-    images: [{ url: "https://www.soham.lol/assets/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "https://www.soham.lol/assets/og/og-rate-limiter.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "AI Rate Limiter Shield | Distributed Systems Architecture",
     description: "Atomic Redis Lua rate limiter with ML anomaly detection by Soham Vyas.",
-    images: ["https://www.soham.lol/assets/og-image.png"],
+    images: ["https://www.soham.lol/assets/og/og-rate-limiter.png"],
     creator: "@Soham_Vyas_",
   },
 };
