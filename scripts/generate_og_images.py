@@ -90,7 +90,16 @@ cards = [
         "badge": "DISTRIBUTED AUDIT TELEMETRY",
         "title": "SocialLogger Analytics",
         "subtitle": "High-Throughput Social Interaction Logger & Telemetry Pipeline",
+        "cta": "Inspect Telemetry Pipeline →",
         "footer": "Structured Event Logging · Audit Trails · Scalable Backend"
+    },
+    {
+        "filename": "../og-image.png",
+        "badge": "AI SYSTEMS & COMPUTER ALGEBRA",
+        "title": "Soham Vyas — IIT Jodhpur",
+        "subtitle": "Production Systems, Atomic Lua Limiters & SymPy Core",
+        "cta": "Explore Systems & Publications →",
+        "footer": "Bachelor of Science (Hons) · Upstream Contributor · www.soham.lol"
     }
 ]
 
@@ -134,6 +143,12 @@ def generate_card(card):
     # 6. Main Title & Subtitle
     draw.text((80, 225), card["title"], fill=TEXT_WHITE, font=font_title)
     draw.text((80, 315), card["subtitle"], fill=TEXT_MUTED, font=font_sub)
+
+    # 6.5 Call-To-Action (CTA) Pill
+    cta_text = card.get("cta", "Explore Systems & Publications →")
+    cta_width = len(cta_text) * 12 + 36
+    draw.rounded_rectangle([80, 385, 80 + cta_width, 430], radius=14, fill=(99, 102, 241, 50), outline=(129, 140, 248), width=2)
+    draw.text((98, 397), cta_text, fill=(248, 250, 252), font=font_badge)
 
     # 7. Divider Line
     draw.line([(80, 470), (w - 80, 470)], fill=(255, 255, 255, 30), width=1)

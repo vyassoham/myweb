@@ -20,11 +20,11 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.soham.lol"),
   title: {
-    default: "Soham Vyas — IIT Jodhpur | AI Systems Engineer & Open Source Contributor",
-    template: "%s | Soham Vyas — IIT Jodhpur",
+    default: "Soham Vyas — IIT Jodhpur | AI Systems Engineer",
+    template: "%s | Soham Vyas",
   },
   description:
-    "Official portfolio of Soham Vyas, Bachelor of Science (Hons) in Data Science & AI at IIT Jodhpur. Building production AI systems and SymPy matrix logic.",
+    "Undergraduate in Data Science & AI at IIT Jodhpur. Building production AI systems, atomic Redis rate limiters, and upstream SymPy computer algebra.",
   keywords: [
     "Soham Vyas",
     "Soham Vyas IIT",
@@ -59,24 +59,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://www.soham.lol/",
-    title: "Soham Vyas — IIT Jodhpur | AI Systems Engineer & Open Source Contributor",
+    title: "Soham Vyas — IIT Jodhpur | AI Systems Engineer",
     description:
-      "Official portfolio of Soham Vyas, Bachelor of Science (Hons) in Data Science & AI at IIT Jodhpur. Building production AI systems, rate limiters, neural speech pipelines, and SymPy computer algebra contributions.",
-    siteName: "Soham Vyas | IIT Jodhpur Portfolio",
+      "Data Science & AI at IIT Jodhpur. Building production systems, atomic Redis rate limiters, and upstream SymPy computer algebra.",
+    siteName: "Soham Vyas | IIT Jodhpur",
     images: [
       {
         url: "https://www.soham.lol/assets/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Soham Vyas — IIT Jodhpur | AI Systems Engineer & Open Source Contributor",
+        alt: "Soham Vyas — IIT Jodhpur | AI Systems Engineer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Soham Vyas — IIT Jodhpur | AI Systems Engineer & Open Source Contributor",
+    title: "Soham Vyas — IIT Jodhpur | AI Systems Engineer",
     description:
-      "Bachelor of Science (Hons) in Data Science & AI @ IIT Jodhpur. Building production-grade systems and contributing to SymPy.",
+      "Data Science & AI at IIT Jodhpur. Building production systems, atomic Redis rate limiters, and upstream SymPy computer algebra.",
     images: ["https://www.soham.lol/assets/og-image.png"],
     creator: "@Soham_Vyas_",
   },

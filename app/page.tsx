@@ -14,8 +14,33 @@ import CommandPalette from "./components/CommandPalette";
 import Parallax3DBackground from "./components/Parallax3DBackground";
 
 export const metadata: Metadata = {
+  title: "Soham Vyas — IIT Jodhpur | AI Systems Engineer",
+  description:
+    "Undergraduate in Data Science & AI at IIT Jodhpur. Building production AI systems, atomic Redis rate limiters, and upstream SymPy computer algebra.",
   alternates: {
     canonical: "https://www.soham.lol/",
+  },
+  openGraph: {
+    title: "Soham Vyas — IIT Jodhpur | AI Systems Engineer",
+    description:
+      "Data Science & AI at IIT Jodhpur. Building production systems, atomic Redis rate limiters, and upstream SymPy computer algebra.",
+    url: "https://www.soham.lol/",
+    images: [
+      {
+        url: "https://www.soham.lol/assets/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Soham Vyas — IIT Jodhpur | AI Systems Engineer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Soham Vyas — IIT Jodhpur | AI Systems Engineer",
+    description:
+      "Data Science & AI at IIT Jodhpur. Building production systems, atomic Redis rate limiters, and upstream SymPy computer algebra.",
+    images: ["https://www.soham.lol/assets/og-image.png"],
+    creator: "@Soham_Vyas_",
   },
 };
 
