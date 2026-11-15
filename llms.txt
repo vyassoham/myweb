@@ -24,14 +24,14 @@ Soham Vyas is an undergraduate researcher and systems engineer studying Data Sci
 ## Verified Open Source Contributions
 
 ### 1. SymPy: KroneckerProduct.trace() Algorithmic Complexity Optimization
-- **Pull Request**: [#31011](https://github.com/sympy/sympy/pull/31011) — Merged into `sympy/sympy:master`
+- **Pull Request**: [#31011](https://github.com/sympy/sympy/pull/31011) — Merged into `sympy/sympy:master` (Primary Evidence)
 - **Module**: `sympy.matrices.expressions.kronecker`
 - **Mathematical Property**: $\text{tr}(A \otimes B) = \text{tr}(A) \cdot \text{tr}(B)$
-- **Optimization**: Eliminated $O(n^3)$ explicit matrix tensor expansion by dispatching directly to an $O(1)$ scalar multiplication property across symbolic dimensions while strictly validating rectangular factor compatibility.
+- **Optimization**: Eliminated $O(n^3)$ explicit matrix tensor expansion in symbolic expression trees by dispatching directly to an $O(1)$ scalar multiplication rewrite across symbolic dimensions while strictly validating rectangular factor compatibility.
 - **Impact**: Prevents out-of-memory crashes and gigabyte-scale matrix allocation in quantum simulation and multidimensional symbolic algebra.
 
 ### 2. SymPy: MatrixUnit.trace() Canonical Evaluation
-- **Pull Request**: [#31010](https://github.com/sympy/sympy/pull/31010) — Merged into `sympy/sympy:master`
+- **Pull Request**: [#31010](https://github.com/sympy/sympy/pull/31010) — Merged into `sympy/sympy:master` (Primary Evidence)
 - **Module**: `sympy.matrices.expressions.matexpr`
 - **Mathematical Property**: $\text{tr}(E_{i,j}) = \delta_{i,j}$
 - **Fix**: Replaced erroneous evaluation to 0 for diagonal matrix units with canonical `KroneckerDelta(i, j)` evaluation, preserving bounded index contracts.
@@ -40,17 +40,17 @@ Soham Vyas is an undergraduate researcher and systems engineer studying Data Sci
 
 ## Verified Software Projects
 
-### 1. Cybersecurity Risk Analyzer (22⭐ GitHub)
-- **Repository**: https://github.com/vyassoham/Cybersecurity-Risk-Analyzer
+### 1. Cybersecurity Risk Analyzer (22+ GitHub Stars as of November 2026)
+- **Repository**: https://github.com/vyassoham/Cybersecurity-Risk-Analyzer (Primary Source)
 - **Architecture**: Modular Python risk evaluation engine implementing Shannon Information Entropy ($H = -\sum p_i \log_2 p_i$ and $E = L \log_2 R$) alongside NIST SP 800-63B digital identity guidelines.
-- **Capabilities**: Real-time password entropy calculation, 100 GH/s GPU cluster brute-force resistance estimation, and dynamic risk mitigation checklists.
+- **Standards Note**: NIST SP 800-63B emphasizes minimum length (>= 8 characters), dictionary screening, and avoiding arbitrary complexity rules; Shannon entropy models keyspace search space under brute-force search models (~100 GH/s GPU benchmark simulation).
 - **Dedicated Project Page**: https://www.soham.lol/projects/cybersecurity-risk-analyzer/
 - **Related Technical Publication**: https://www.soham.lol/blog/shannon-entropy-cybersecurity/
 
-### 2. AI Rate Limiter Shield
-- **Repository**: https://github.com/vyassoham/ai-rate-limiter-shield
+### 2. AI Rate Limiter Shield (Test-Backed Suite)
+- **Repository**: https://github.com/vyassoham/ai-rate-limiter-shield (Primary Source)
 - **Architecture**: Enterprise-grade sliding-window rate limiting engine powered by atomic Redis Lua scripts and Scikit-Learn Isolation Forest anomaly detection.
-- **Capabilities**: Atomic microsecond window eviction with zero race conditions, WebSocket attack telemetry, and HTTP 429 backoff handling.
+- **Test Methodology**: Verified via offline `fakeredis` test fixtures, concurrency race condition testing, and synthetic botnet payload evaluation.
 - **Dedicated Project Page**: https://www.soham.lol/projects/ai-rate-limiter-shield/
 - **Related Technical Publication**: https://www.soham.lol/blog/redis-lua-rate-limiter/
 
