@@ -1,5 +1,4 @@
-"use client";
-
+import type { Metadata } from "next";
 import React from "react";
 import Navigation from "./components/Navigation";
 import Hero from "./components/Hero";
@@ -13,6 +12,12 @@ import Footer from "./components/Footer";
 import InteractiveBackground from "./components/InteractiveBackground";
 import CommandPalette from "./components/CommandPalette";
 import Parallax3DBackground from "./components/Parallax3DBackground";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://www.soham.lol/",
+  },
+};
 
 export default function Home(): React.JSX.Element {
   return (

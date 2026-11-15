@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { Mail, Github, Linkedin, MapPin, Check, Copy, ArrowUpRight, MessageSquare, Send } from "lucide-react";
 import TiltCard from "./TiltCard";
 import ScrollReveal from "./ScrollReveal";
@@ -138,6 +139,10 @@ export default function Contact(): React.JSX.Element {
 
             <div className="pt-3 border-t border-white/[0.05] flex items-center justify-between text-[11px] text-zinc-400">
               <span>Timezone: Asia/Kolkata (IST)</span>
+              <Link href="/contact/" className="text-amber-400 hover:text-amber-300 font-medium inline-flex items-center gap-1 transition-colors">
+                <span>All Channels</span>
+                <ArrowUpRight className="w-3 h-3" />
+              </Link>
             </div>
           </TiltCard>
         </ScrollReveal>

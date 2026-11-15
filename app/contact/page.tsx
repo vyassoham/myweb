@@ -8,7 +8,7 @@ import InteractiveBackground from "../components/InteractiveBackground";
 import CommandPalette from "../components/CommandPalette";
 
 export const metadata: Metadata = {
-  title: "Contact & Connect | Soham Vyas — IIT Jodhpur",
+  title: "Contact & Connect Channels",
   description:
     "Get in touch with Soham Vyas for AI systems roles, open source collaboration, and research discussions. Direct email, GitHub, LinkedIn, and X.",
   alternates: {

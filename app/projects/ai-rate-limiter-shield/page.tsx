@@ -8,9 +8,9 @@ import CommandPalette from "../../components/CommandPalette";
 import TiltCard from "../../components/TiltCard";
 
 export const metadata: Metadata = {
-  title: "AI Rate Limiter Shield — Distributed Architecture & Atomic Redis Lua | Soham Vyas",
+  title: "AI Rate Limiter Shield",
   description:
-    "Enterprise-grade distributed sliding-window rate limiter powered by atomic Redis Lua scripts and Isolation Forest ML anomaly detection by Soham Vyas (IIT Jodhpur).",
+    "Distributed sliding-window rate limiter powered by atomic Redis Lua scripts and Isolation Forest ML anomaly detection by Soham Vyas (IIT Jodhpur).",
   alternates: {
     canonical: "https://www.soham.lol/projects/ai-rate-limiter-shield/",
   },

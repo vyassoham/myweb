@@ -8,9 +8,9 @@ import CommandPalette from "../../components/CommandPalette";
 import TiltCard from "../../components/TiltCard";
 
 export const metadata: Metadata = {
-  title: "SocialLogger — Multi-Platform SaaS Architecture & Gemini AI Integration | Soham Vyas",
+  title: "SocialLogger SaaS Architecture",
   description:
-    "Engineering architecture of SocialLogger: a multi-platform content distribution SaaS leveraging Google Gemini AI for tone-adaptive copy generation by Soham Vyas (IIT Jodhpur).",
+    "Architecture of SocialLogger: a multi-platform content distribution SaaS leveraging Google Gemini AI for tone-adaptive copy generation by Soham Vyas (IIT Jodhpur).",
   alternates: {
     canonical: "https://www.soham.lol/projects/sociallogger/",
   },

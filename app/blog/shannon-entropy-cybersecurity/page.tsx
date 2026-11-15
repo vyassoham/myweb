@@ -8,9 +8,9 @@ import CommandPalette from "../../components/CommandPalette";
 import ArticleShareAndCite from "../../components/ArticleShareAndCite";
 
 export const metadata: Metadata = {
-  title: "Shannon Information Entropy & NIST 800-63B Defense | Soham Vyas",
+  title: "Shannon Entropy & NIST Security",
   description:
-    "Mathematical and cryptographic deep dive into calculating information entropy, estimating GPU cluster brute-force time, and automated secret auditing by Soham Vyas (IIT Jodhpur).",
+    "Cryptographic deep dive into calculating Shannon entropy, estimating GPU cluster brute-force time, and automated secret auditing by Soham Vyas (IIT Jodhpur).",
   alternates: {
     canonical: "https://www.soham.lol/blog/shannon-entropy-cybersecurity/",
   },

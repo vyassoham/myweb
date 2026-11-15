@@ -9,7 +9,7 @@ import InteractiveBackground from "../components/InteractiveBackground";
 import CommandPalette from "../components/CommandPalette";
 
 export const metadata: Metadata = {
-  title: "Interactive Engineering Labs | Soham Vyas — IIT Jodhpur",
+  title: "Interactive Engineering Labs",
   description:
     "Live client-side engineering simulators: Shannon Information Entropy & NIST crack-time calculator, and atomic Lua sliding-window rate limiter by Soham Vyas.",
   alternates: {

@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s | Soham Vyas — IIT Jodhpur",
   },
   description:
-    "Official portfolio of Soham Vyas, Bachelor of Science (Hons) in Data Science & Artificial Intelligence student at the Indian Institute of Technology (IIT) Jodhpur. Building production-grade AI systems, atomic rate limiters, cybersecurity analyzers, and SymPy (GSoC 2027) matrix logic.",
+    "Official portfolio of Soham Vyas, Bachelor of Science (Hons) in Data Science & AI at IIT Jodhpur. Building production AI systems and SymPy matrix logic.",
   keywords: [
     "Soham Vyas",
     "Soham Vyas IIT",
@@ -50,9 +50,6 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Soham Vyas", url: "https://www.soham.lol" }],
   creator: "Soham Vyas",
-  alternates: {
-    canonical: "https://www.soham.lol/",
-  },
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",

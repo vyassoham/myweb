@@ -8,9 +8,9 @@ import CommandPalette from "../../components/CommandPalette";
 import ArticleShareAndCite from "../../components/ArticleShareAndCite";
 
 export const metadata: Metadata = {
-  title: "Distributed Sliding-Window Rate Limiting with Atomic Redis Lua | Soham Vyas",
+  title: "Atomic Redis Lua Rate Limiting",
   description:
-    "Engineering deep dive into race-condition-free distributed rate limiters, Redis ZSET sliding windows, and microsecond atomic Lua execution by Soham Vyas (IIT Jodhpur).",
+    "Engineering deep dive into race-condition-free distributed rate limiters, Redis sliding windows, and microsecond atomic Lua execution by Soham Vyas (IIT Jodhpur).",
   alternates: {
     canonical: "https://www.soham.lol/blog/redis-lua-rate-limiter/",
   },

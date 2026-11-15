@@ -9,9 +9,9 @@ import InteractiveBackground from "../components/InteractiveBackground";
 import CommandPalette from "../components/CommandPalette";
 
 export const metadata: Metadata = {
-  title: "Featured Engineering Projects | Soham Vyas — IIT Jodhpur",
+  title: "Featured Engineering Projects",
   description:
-    "Explore production-grade AI systems, atomic Lua rate limiters, cybersecurity analyzers, and resilient financial telemetry dashboards built by Soham Vyas at IIT Jodhpur.",
+    "Explore production-grade AI systems, atomic Lua rate limiters, cybersecurity analyzers, and telemetry dashboards by Soham Vyas at IIT Jodhpur.",
   alternates: {
     canonical: "https://www.soham.lol/projects/",
   },

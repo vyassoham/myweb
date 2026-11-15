@@ -9,9 +9,9 @@ import TiltCard from "../components/TiltCard";
 import ScrollReveal from "../components/ScrollReveal";
 
 export const metadata: Metadata = {
-  title: "Engineering Blog & Technical Deep-Dives | Soham Vyas — IIT Jodhpur",
+  title: "Engineering Blog & Technical Publications",
   description:
-    "In-depth engineering articles on computer algebra optimization, SymPy Kronecker traces, distributed Redis Lua rate limiters, and cryptographic Shannon entropy by Soham Vyas.",
+    "In-depth engineering publications on computer algebra, SymPy Kronecker traces, distributed Redis rate limiters, and Shannon entropy by Soham Vyas.",
   alternates: {
     canonical: "https://www.soham.lol/blog/",
   },

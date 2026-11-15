@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Download, Mail, ArrowUpRight, GraduationCap, Briefcase, GitPullRequest, ShieldCheck, Sparkles, Code2 } from "lucide-react";
 import TiltCard from "./TiltCard";
@@ -248,6 +249,15 @@ export default function Hero(): React.JSX.Element {
                       <span>Machine Learning Foundations</span>
                     </li>
                   </ul>
+                  <div className="pt-2.5 border-t border-white/[0.06] mt-3">
+                    <Link
+                      href="/about/"
+                      className="inline-flex items-center gap-1.5 text-xs text-indigo-400 hover:text-indigo-300 font-medium transition-colors"
+                    >
+                      <span>Read Full Academic Profile</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
                 </div>
               </div>
             </TiltCard>

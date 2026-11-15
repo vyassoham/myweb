@@ -9,7 +9,7 @@ import InteractiveBackground from "../components/InteractiveBackground";
 import CommandPalette from "../components/CommandPalette";
 
 export const metadata: Metadata = {
-  title: "SymPy Open Source & GSoC 2027 | Soham Vyas — IIT Jodhpur",
+  title: "SymPy Open Source & GSoC '27",
   description:
     "Upstream contributions to SymPy computer algebra system by Soham Vyas at IIT Jodhpur. KroneckerProduct and MatrixUnit trace symbolic logic optimizations.",
   alternates: {

@@ -8,9 +8,9 @@ import CommandPalette from "../../components/CommandPalette";
 import TiltCard from "../../components/TiltCard";
 
 export const metadata: Metadata = {
-  title: "Cybersecurity Risk Analyzer — Architecture & Shannon Entropy Engine | Soham Vyas",
+  title: "Cybersecurity Risk Analyzer",
   description:
-    "Technical architectural breakdown, Shannon Information Entropy implementation, and NIST SP 800-63B password risk modeling in Python by Soham Vyas (IIT Jodhpur).",
+    "Technical breakdown, Shannon Information Entropy implementation, and NIST SP 800-63B password risk modeling in Python by Soham Vyas (IIT Jodhpur).",
   alternates: {
     canonical: "https://www.soham.lol/projects/cybersecurity-risk-analyzer/",
   },

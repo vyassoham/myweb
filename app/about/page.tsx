@@ -11,9 +11,9 @@ import TiltCard from "../components/TiltCard";
 import ScrollReveal from "../components/ScrollReveal";
 
 export const metadata: Metadata = {
-  title: "About Soham Vyas — IIT Jodhpur | Academic & Engineering Profile",
+  title: "Academic & Engineering Profile",
   description:
-    "Undergraduate profile of Soham Vyas studying Data Science & Artificial Intelligence at the Indian Institute of Technology (IIT) Jodhpur. Researching symbolic computing, SymPy matrix algebra, and distributed systems.",
+    "Academic and research profile of Soham Vyas at IIT Jodhpur. Specializing in symbolic computing, upstream SymPy matrix algebra, and distributed AI systems.",
   alternates: {
     canonical: "https://www.soham.lol/about/",
   },

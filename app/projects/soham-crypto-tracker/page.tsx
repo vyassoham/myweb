@@ -8,9 +8,9 @@ import CommandPalette from "../../components/CommandPalette";
 import TiltCard from "../../components/TiltCard";
 
 export const metadata: Metadata = {
-  title: "Resilient Crypto Tracker — Telemetry & Rate-Limit Resilience Architecture | Soham Vyas",
+  title: "Crypto Telemetry Dashboard",
   description:
-    "Architectural writeup of a resilient real-time crypto telemetry dashboard with transient caching, exponential backoff interceptors, and automated AppTest verification by Soham Vyas (IIT Jodhpur).",
+    "Real-time crypto telemetry dashboard with transient caching, exponential backoff interceptors, and automated AppTest verification by Soham Vyas (IIT Jodhpur).",
   alternates: {
     canonical: "https://www.soham.lol/projects/soham-crypto-tracker/",
   },

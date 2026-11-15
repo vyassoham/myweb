@@ -60,7 +60,7 @@ def test_html_files():
             # check alternate attribute order
             canon_matches = re.findall(r'<link[^>]*href=["\']([^"\']+)["\'][^>]*rel=["\']canonical["\']', html)
             
-        if rel_path not in ["404.html", "_not-found/index.html", "google787667f481678cdc.html"]:
+        if rel_path not in ["404.html", "404/index.html", "_not-found/index.html", "google787667f481678cdc.html"]:
             assert len(canon_matches) == 1, f"Expected 1 canonical tag in {rel_path}, found {len(canon_matches)}: {canon_matches}"
             canon_url = canon_matches[0]
             assert canon_url.startswith(CANONICAL_DOMAIN), f"Canonical in {rel_path} does not use canonical domain: {canon_url}"
@@ -68,7 +68,7 @@ def test_html_files():
             passed_canonicals += 1
 
         # 2. Open Graph & Twitter checks
-        if rel_path not in ["404.html", "_not-found/index.html", "google787667f481678cdc.html"]:
+        if rel_path not in ["404.html", "404/index.html", "_not-found/index.html", "google787667f481678cdc.html"]:
             assert '<meta property="og:title"' in html or '<meta name="og:title"' in html, f"Missing og:title in {rel_path}"
             assert '<meta property="og:image"' in html or '<meta name="og:image"' in html, f"Missing og:image in {rel_path}"
             assert '<meta name="twitter:card"' in html, f"Missing twitter:card in {rel_path}"
