@@ -64,6 +64,7 @@ export default function ContactPage(): React.JSX.Element {
       <CommandPalette />
       <Navigation />
       <main className="flex-1 pt-32">
+        <h1 className="sr-only">Contact Soham Vyas — AI Systems Engineer &amp; Open Source Contributor</h1>
         <div className="max-w-7xl mx-auto px-6 py-2">
           <nav aria-label="Breadcrumb" className="flex items-center gap-3 text-xs font-medium text-zinc-400">
             <Link

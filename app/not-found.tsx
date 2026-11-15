@@ -122,6 +122,9 @@ export default function NotFound(): React.JSX.Element {
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center bg-[#07070a] text-slate-100 relative px-6 py-16 overflow-hidden">
+      <title>Page Not Found | Soham Vyas — IIT Jodhpur</title>
+      <meta name="description" content="The requested route could not be found. Explore Soham Vyas's engineering portfolio, featured projects, and technical publications." />
+      <meta name="robots" content="noindex, nofollow" />
       {/* 60 FPS Ambient Background */}
       <InteractiveBackground />
 
@@ -184,7 +187,7 @@ export default function NotFound(): React.JSX.Element {
 
           {/* Terminal Console */}
           <div className="p-4 font-mono text-xs text-zinc-300 space-y-1.5 max-h-48 overflow-y-auto">
-            <p className="text-zinc-500">$ curl -I https://soham.lol/missing-path</p>
+            <p className="text-zinc-500">$ curl -I https://www.soham.lol/missing-path</p>
             <p className="text-amber-400">HTTP/2 404 Route Not Registered</p>
             <p className="text-zinc-400">status: coffee_hot, brain_active</p>
             <p className="text-zinc-400">tip: type &apos;home&apos; or &apos;projects&apos; below</p>

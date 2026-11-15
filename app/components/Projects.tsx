@@ -20,11 +20,15 @@ interface Project {
   featured?: boolean;
   highlights: string[];
   architectureDetails: string;
+  hasDeepDive?: boolean;
+  slug?: string;
 }
 
 const PROJECTS: Project[] = [
   {
     id: "cybersecurity-risk-analyzer",
+    slug: "cybersecurity-risk-analyzer",
+    hasDeepDive: true,
     title: "Cybersecurity Risk Analyzer",
     description:
       "Advanced cybersecurity risk evaluation engine that assesses digital habits, computes actionable risk posture scores, and estimates real-time password crack times with entropy calculation.",
@@ -43,6 +47,8 @@ const PROJECTS: Project[] = [
   },
   {
     id: "ai-rate-limiter-shield",
+    slug: "ai-rate-limiter-shield",
+    hasDeepDive: true,
     title: "AI Rate Limiter Shield",
     description:
       "Enterprise-grade API security shield and high-throughput rate limiter. Employs an atomic Lua-powered sliding window in Redis, Isolation Forest ML anomaly detection, and a live WebSocket attack telemetry feed.",
@@ -61,6 +67,7 @@ const PROJECTS: Project[] = [
   },
   {
     id: "schemaguard",
+    hasDeepDive: false,
     title: "SchemaGuard",
     description:
       "Universal automated data schema and quality validation engine. Validates multi-format datasets (CSV, Excel, JSON, and PDF) with automated structural anomaly detection and comprehensive error diagnostics.",
@@ -79,6 +86,7 @@ const PROJECTS: Project[] = [
   },
   {
     id: "neural-tts",
+    hasDeepDive: false,
     title: "Neural TTS",
     description:
       "Modular Python speech synthesis pipeline providing ultra-clear, real-time voice generation. Features phoneme processing, fast acoustic modeling, a neural vocoder, and parametric control over pitch, speed, and timbre.",
@@ -96,6 +104,7 @@ const PROJECTS: Project[] = [
   },
   {
     id: "medipro",
+    hasDeepDive: false,
     title: "MediPro",
     description:
       "Smart desktop medical intelligence suite providing offline database access to medicine compositions, dosages, side effects, and drug-drug interactions, with integrated Tesseract OCR prescription scanning.",
@@ -113,6 +122,8 @@ const PROJECTS: Project[] = [
   },
   {
     id: "crypto-tracker",
+    slug: "soham-crypto-tracker",
+    hasDeepDive: true,
     title: "Soham Crypto Tracker",
     description:
       "Real-time cryptocurrency analytics dashboard built with Streamlit. Provides live price feeds, comparative multi-token analysis, and interactive historical charting via CoinGecko API and Plotly.",
@@ -130,6 +141,8 @@ const PROJECTS: Project[] = [
   },
   {
     id: "sociallogger",
+    slug: "sociallogger",
+    hasDeepDive: true,
     title: "SocialLogger",
     description:
       "AI-powered social media management SaaS with glassmorphic dashboard, automated content scheduling, multi-platform publishing (Twitter, LinkedIn, Instagram), and Gemini AI analytics.",
@@ -221,9 +234,20 @@ export default function Projects(): React.JSX.Element {
             <div>
               {/* Header: Title & Stars / Links */}
               <div className="flex items-start justify-between gap-3 mb-3">
-                <Link href={`/projects/${project.id}/`} className="font-bold text-lg text-white hover:text-indigo-300 transition-colors">
-                  {project.title}
-                </Link>
+                {project.hasDeepDive && project.slug ? (
+                  <Link href={`/projects/${project.slug}/`} className="font-bold text-lg text-white hover:text-indigo-300 transition-colors">
+                    {project.title}
+                  </Link>
+                ) : (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-bold text-lg text-white hover:text-indigo-300 transition-colors"
+                  >
+                    {project.title}
+                  </a>
+                )}
 
                 <div className="flex items-center gap-2 shrink-0">
                   {project.stars !== undefined && project.stars > 0 && (
@@ -298,13 +322,15 @@ export default function Projects(): React.JSX.Element {
                     <Github className="w-3.5 h-3.5" />
                     <span>Repo</span>
                   </a>
-                  <Link
-                    href={`/projects/${project.id}/`}
-                    className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-zinc-300 hover:text-white text-[11px] font-mono transition-all"
-                  >
-                    <span>Deep Dive</span>
-                    <ArrowUpRight className="w-3 h-3 text-indigo-400" />
-                  </Link>
+                  {project.hasDeepDive && project.slug && (
+                    <Link
+                      href={`/projects/${project.slug}/`}
+                      className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-zinc-300 hover:text-white text-[11px] font-mono transition-all"
+                    >
+                      <span>Deep Dive</span>
+                      <ArrowUpRight className="w-3 h-3 text-indigo-400" />
+                    </Link>
+                  )}
                   {(project.id === "cybersecurity-risk-analyzer" || project.id === "ai-rate-limiter-shield") && (
                     <a
                       href="#lab"

@@ -352,7 +352,7 @@ def _eval_trace(self):
                   </a>
                   <span className="text-zinc-600">·</span>
                   <a
-                    href="https://soham.lol"
+                    href="https://www.soham.lol"
                     className="text-xs text-emerald-400 hover:text-emerald-300 transition-colors font-mono"
                   >
                     soham.lol

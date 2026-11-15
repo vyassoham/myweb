@@ -65,6 +65,7 @@ export default function LabsPage(): React.JSX.Element {
       <CommandPalette />
       <Navigation />
       <main className="flex-1 pt-28">
+        <h1 className="sr-only">Interactive Engineering Labs — Cybersecurity &amp; Rate Limiting Simulators</h1>
         <div className="max-w-7xl mx-auto px-6 py-2">
           <nav aria-label="Breadcrumb" className="flex items-center gap-3 text-xs font-medium text-zinc-400">
             <Link
