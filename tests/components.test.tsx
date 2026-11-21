@@ -8,6 +8,7 @@ import Navigation from '../app/components/Navigation';
 import Hero from '../app/components/Hero';
 import Projects from '../app/components/Projects';
 import OpenSource from '../app/components/OpenSource';
+import LiveTelemetry from '../app/components/LiveTelemetry';
 import FeaturedResearch from '../app/components/FeaturedResearch';
 import Skills from '../app/components/Skills';
 import Contact from '../app/components/Contact';
@@ -262,6 +263,21 @@ describe('myweb Top 1% Portfolio Test Suite', () => {
             });
 
             expect(screen.getByPlaceholderText(/Type a command/i)).not.toBeNull();
+        });
+    });
+
+    // =====================================================================
+    // 📡 Test LiveTelemetry Component
+    // =====================================================================
+    describe('LiveTelemetry component', () => {
+        test('renders live engineering telemetry, metrics radar, and maintainer commendation', () => {
+            render(<LiveTelemetry />);
+            
+            expect(screen.getByText(/Live Engineering Telemetry/i)).not.toBeNull();
+            expect(screen.getByText('SymPy Merged PRs')).not.toBeNull();
+            expect(screen.getByText('GSoC 2027')).not.toBeNull();
+            expect(screen.getByText('@smichr')).not.toBeNull();
+            expect(screen.getByTitle('Fetch latest GitHub events in real time')).not.toBeNull();
         });
     });
 

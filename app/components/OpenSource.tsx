@@ -21,6 +21,22 @@ interface ContributionItem {
 
 const CONTRIBUTIONS: ContributionItem[] = [
   {
+    id: "zeromatrix",
+    title: "KroneckerProduct ZeroMatrix Canonicalization",
+    module: "sympy.matrices.expressions.kronecker",
+    prNumber: 31207,
+    prUrl: "https://github.com/sympy/sympy/pull/31207",
+    branch: "vyassoham:fix-kronecker-zeromatrix-simplification",
+    mathExpression: "A ⊗ 0_{m×n} = 0_{rows×cols}",
+    beforeFix: "KroneckerProduct(ZeroMatrix(n, n), A) -> retained unsimplified tensor blocks and failed fuzzy bool checks",
+    afterFix: "KroneckerProduct(ZeroMatrix(n, n), A) -> canonicalizes to exact ZeroMatrix with post-flattening extraction",
+    description:
+      "Fixed ZeroMatrix canonicalization and fuzzy-boolean evaluation in Kronecker products. Streamlined nested factor extraction after flattening, merged by S.Y. Lee.",
+    impact:
+      "Officially merged into SymPy master (commit 004d908). Cleanses zero tensor blowup in symbolic linear algebra.",
+    verification: "PR #31207 Merged into sympy:master",
+  },
+  {
     id: "kronecker",
     title: "KroneckerProduct.trace() Complexity Fix",
     module: "sympy.matrices.expressions.kronecker",

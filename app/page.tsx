@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import React from "react";
 import Navigation from "./components/Navigation";
 import Hero from "./components/Hero";
+import LiveTelemetry from "./components/LiveTelemetry";
 import Projects from "./components/Projects";
 import InteractivePlayground from "./components/InteractivePlayground";
 import OpenSource from "./components/OpenSource";
@@ -62,6 +63,7 @@ export default function Home(): React.JSX.Element {
       {/* Main Experience Flow */}
       <main className="flex-1">
         <Hero />
+        <LiveTelemetry />
         <Projects />
         <InteractivePlayground />
         <OpenSource />
