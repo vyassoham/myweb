@@ -90,7 +90,7 @@ export default function Hero(): React.JSX.Element {
             <div className="flex items-center gap-6 mb-6">
               <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-2xl overflow-hidden border-2 border-indigo-500/40 shadow-xl shadow-indigo-500/10 shrink-0">
                 <Image
-                  src="/assets/hero.png"
+                  src="/assets/hero.webp"
                   alt="Soham Vyas"
                   width={128}
                   height={128}
