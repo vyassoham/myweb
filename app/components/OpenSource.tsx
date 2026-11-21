@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { GitPullRequest, GitBranch, CheckCircle2, ArrowUpRight, Code, ShieldCheck, Terminal, Calculator, ExternalLink } from "lucide-react";
+import { GitPullRequest, GitBranch, CheckCircle2, ArrowUpRight, Calculator, ExternalLink } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 
 interface ContributionItem {

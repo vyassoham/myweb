@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Mail, Github, Linkedin, MapPin, Check, Copy, ArrowUpRight, MessageSquare, Send } from "lucide-react";
+import { Mail, Github, Linkedin, MapPin, Check, Copy, ArrowUpRight, MessageSquare } from "lucide-react";
 import TiltCard from "./TiltCard";
 import ScrollReveal from "./ScrollReveal";
 import QuickNoteBox from "./QuickNoteBox";

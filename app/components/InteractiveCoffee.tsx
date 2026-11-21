@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Coffee, Sparkles, Zap } from "lucide-react";
+import { Coffee, Zap } from "lucide-react";
 
 const COFFEE_QUOTES = [
   "“A mathematician is a machine for turning coffee into theorems.” — Alfréd Rényi / Paul Erdős",

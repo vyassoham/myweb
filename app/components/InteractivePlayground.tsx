@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { Shield, Zap, Sparkles, RefreshCw, AlertTriangle, CheckCircle, Lock, Play, Activity } from "lucide-react";
+import React, { useState, useMemo } from "react";
+import { analyzePassword } from "../../lib/entropy";
+import { Zap, RefreshCw, CheckCircle, Lock, Play, Activity } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 
 export default function InteractivePlayground(): React.JSX.Element {
@@ -9,53 +10,7 @@ export default function InteractivePlayground(): React.JSX.Element {
 
   // --- LAB 1: Cybersecurity Entropy & Crack Time Simulator State ---
   const [testPassword, setTestPassword] = useState("Soham#IITJ@2027_Quantum");
-  const [entropy, setEntropy] = useState(0);
-  const [crackTime, setCrackTime] = useState("");
-  const [strengthColor, setStrengthColor] = useState("text-emerald-400");
-  const [strengthLevel, setStrengthLevel] = useState("Quantum-Resistant");
-
-  useEffect(() => {
-    // Calculate Shannon entropy bits: L * log2(R)
-    let poolSize = 0;
-    if (/[a-z]/.test(testPassword)) poolSize += 26;
-    if (/[A-Z]/.test(testPassword)) poolSize += 26;
-    if (/[0-9]/.test(testPassword)) poolSize += 10;
-    if (/[^a-zA-Z0-9]/.test(testPassword)) poolSize += 32;
-
-    const length = testPassword.length;
-    if (length === 0 || poolSize === 0) {
-      setEntropy(0);
-      setCrackTime("Instant");
-      setStrengthLevel("None");
-      setStrengthColor("text-zinc-500");
-      return;
-    }
-
-    const calculatedEntropy = Math.round(length * (Math.log(poolSize) / Math.log(2)));
-    setEntropy(calculatedEntropy);
-
-    // Crack time assuming 100 Billion hashes/sec (modern GPU cluster)
-    const combinations = Math.pow(poolSize, length);
-    const seconds = combinations / 1e11;
-
-    if (calculatedEntropy < 35) {
-      setCrackTime("< 0.001 seconds (Instant crack)");
-      setStrengthLevel("Critical Vulnerability");
-      setStrengthColor("text-red-400");
-    } else if (calculatedEntropy < 55) {
-      setCrackTime("~ 12 minutes");
-      setStrengthLevel("Weak");
-      setStrengthColor("text-amber-400");
-    } else if (calculatedEntropy < 75) {
-      setCrackTime("~ 4.8 centuries");
-      setStrengthLevel("Strong Enterprise Grade");
-      setStrengthColor("text-indigo-400");
-    } else {
-      setCrackTime("> 1.2 Quadrillion Years");
-      setStrengthLevel("Quantum-Resistant");
-      setStrengthColor("text-emerald-400");
-    }
-  }, [testPassword]);
+  const analysis = useMemo(() => analyzePassword(testPassword), [testPassword]);
 
   // --- LAB 2: Atomic Rate Limiter Simulator State ---
   const [requestTimestamps, setRequestTimestamps] = useState<number[]>([]);
@@ -84,7 +39,7 @@ export default function InteractivePlayground(): React.JSX.Element {
       setAllowedCount((prev) => prev + 1);
       setLastResponse({
         status: 200,
-        message: `200 OK — Tokens in window: ${updated.length}/${RATE_LIMIT_CAPACITY}. Redis ZSET timestamp recorded.`,
+        message: `200 OK — Requests in window: ${updated.length}/${RATE_LIMIT_CAPACITY}. Redis ZSET timestamp recorded.`,
         timestamp: new Date().toLocaleTimeString(),
       });
     } else {
@@ -106,7 +61,7 @@ export default function InteractivePlayground(): React.JSX.Element {
     setAllowedCount(0);
     setLastResponse({
       status: 200,
-      message: "Rate limiter state flushed. Bucket capacity reset to 5 tokens.",
+      message: "Rate limiter state flushed. Sliding window cleared (limit: 5 requests per 6 s).",
       timestamp: new Date().toLocaleTimeString(),
     });
   };
@@ -195,6 +150,7 @@ export default function InteractivePlayground(): React.JSX.Element {
                   </label>
                   <input
                     type="text"
+                    aria-label="Sample string to evaluate"
                     value={testPassword}
                     onChange={(e) => setTestPassword(e.target.value)}
                     className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/15 text-sm font-mono text-white focus:outline-none focus:border-indigo-500 transition-colors"
@@ -202,7 +158,7 @@ export default function InteractivePlayground(): React.JSX.Element {
                   />
                   <div className="flex items-center justify-between text-[11px] text-zinc-500 mt-2">
                     <span>Length: {testPassword.length} characters</span>
-                    <span>Pool Diversity: {testPassword.length > 0 ? "Uppercase + Lowercase + Digits + Symbols" : "Empty"}</span>
+                    <span>Pool Diversity: {analysis.poolLabels.length > 0 ? analysis.poolLabels.join(" + ") : "Empty"}</span>
                   </div>
                 </div>
 
@@ -210,19 +166,11 @@ export default function InteractivePlayground(): React.JSX.Element {
                 <div className="mt-6 pt-4 border-t border-white/[0.06]">
                   <div className="flex items-center justify-between text-xs font-semibold mb-1.5">
                     <span className="text-zinc-300">Entropy Strength:</span>
-                    <span className={strengthColor}>{strengthLevel}</span>
+                    <span className={analysis.color}>{analysis.level}</span>
                   </div>
                   <div className="w-full h-2 rounded-full bg-white/[0.08] overflow-hidden">
                     <div
-                      className={`h-full transition-all duration-300 ${
-                        entropy < 35
-                          ? "bg-red-500 w-[20%]"
-                          : entropy < 55
-                          ? "bg-amber-500 w-[50%]"
-                          : entropy < 75
-                          ? "bg-indigo-500 w-[80%]"
-                          : "bg-emerald-500 w-[100%]"
-                      }`}
+                      className={`h-full transition-all duration-300 ${analysis.barClass}`}
                     />
                   </div>
                 </div>
@@ -237,17 +185,20 @@ export default function InteractivePlayground(): React.JSX.Element {
 
                   <div className="space-y-4">
                     <div>
-                      <span className="text-xs text-zinc-400 block">Shannon Information Entropy:</span>
+                      <span className="text-xs text-zinc-400 block">Estimated Entropy (L · log₂R):</span>
                       <span className="text-2xl font-extrabold font-mono text-white">
-                        {entropy} <span className="text-xs font-normal text-indigo-400">bits</span>
+                        {analysis.entropyBits} <span className="text-xs font-normal text-indigo-400">bits</span>
                       </span>
                     </div>
 
                     <div>
                       <span className="text-xs text-zinc-400 block">Estimated Brute-Force Crack Time:</span>
-                      <span className={`text-base font-bold font-mono ${strengthColor}`}>
-                        {crackTime}
+                      <span className={`text-base font-bold font-mono ${analysis.color}`}>
+                        {analysis.crackTime}
                       </span>
+                      {analysis.commonPattern && (
+                        <span className="block text-[11px] text-red-300 mt-1">Matches a common-password pattern — a dictionary attack skips brute force.</span>
+                      )}
                     </div>
                   </div>
                 </div>

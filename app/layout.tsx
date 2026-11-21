@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Outfit } from "next/font/google";
-import { Analytics } from "@vercel/analytics/next";
 import ScrollProgress from "./components/ScrollProgress";
 import CustomCursor from "./components/CustomCursor";
 import "./globals.css";
@@ -266,7 +265,6 @@ export default function RootLayout({
         <CustomCursor />
         <ScrollProgress />
         {children}
-        <Analytics />
       </body>
     </html>
   );

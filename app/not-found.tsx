@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Terminal, Home, Sparkles, BookOpen, Quote, ShieldAlert } from "lucide-react";
+import { Terminal, Home, Sparkles, BookOpen, Quote, ShieldAlert } from "lucide-react";
 import InteractiveBackground from "./components/InteractiveBackground";
 import CommandPalette from "./components/CommandPalette";
 import InteractiveCoffee from "./components/InteractiveCoffee";
@@ -212,6 +212,7 @@ export default function NotFound(): React.JSX.Element {
               <span className="text-zinc-500">soham@iitj:~$</span>
               <input
                 type="text"
+                aria-label="Terminal command"
                 value={terminalInput}
                 onChange={(e) => setTerminalInput(e.target.value)}
                 placeholder="type 'home', 'projects', 'coffee', or 'help'..."

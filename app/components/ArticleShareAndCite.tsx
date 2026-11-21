@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Share2, Copy, Check, Quote, FileCode, ExternalLink, Sparkles } from "lucide-react";
+import { Share2, Copy, Check, Quote, FileCode } from "lucide-react";
 
 interface ArticleShareAndCiteProps {
   title: string;
@@ -13,8 +13,6 @@ interface ArticleShareAndCiteProps {
 export default function ArticleShareAndCite({
   title,
   slug,
-  date = "Nov 2026",
-  description = "",
 }: ArticleShareAndCiteProps): React.JSX.Element {
   const [copiedLink, setCopiedLink] = useState(false);
   const [copiedBibtex, setCopiedBibtex] = useState(false);
@@ -41,7 +39,7 @@ export default function ArticleShareAndCite({
       if (typeof navigator !== "undefined" && navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text).catch(() => {});
       }
-    } catch (e) {}
+    } catch {}
 
     if (type === "link") {
       setCopiedLink(true);

@@ -2,24 +2,25 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { Mail, Github, Check, Copy, Menu, X, FileText, Sparkles } from "lucide-react";
+import Link from "next/link";
+import { Github, Check, Copy, Menu, X, FileText } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
 const NAV_LINKS = [
-  { name: "About", href: "#about" },
-  { name: "Projects", href: "#projects" },
-  { name: "Labs", href: "#lab" },
-  { name: "Open Source", href: "#opensource" },
-  { name: "Research", href: "#research" },
-  { name: "Skills", href: "#skills" },
-  { name: "Contact", href: "#contact" },
+  { name: "About", href: "/#about" },
+  { name: "Projects", href: "/#projects" },
+  { name: "Labs", href: "/#lab" },
+  { name: "Open Source", href: "/#opensource" },
+  { name: "Research", href: "/#research" },
+  { name: "Skills", href: "/#skills" },
+  { name: "Contact", href: "/#contact" },
 ];
 
 export default function Navigation(): React.JSX.Element {
   const [copied, setCopied] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("about");
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
     // 1. High-efficiency passive RAF check for header backdrop
@@ -81,16 +82,18 @@ export default function Navigation(): React.JSX.Element {
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     setMobileMenuOpen(false);
-    if (href.startsWith("#")) {
-      const target = document.querySelector(href);
-      if (target) {
-        e.preventDefault();
-        const navHeight = 72;
-        const targetY = target.getBoundingClientRect().top + window.scrollY - navHeight;
-        window.scrollTo({ top: Math.max(0, targetY), behavior: "smooth" });
-      } else {
-        window.location.href = "/" + href;
-      }
+    // Links are real "/#section" URLs, so they also work without JavaScript and
+    // from other pages. On the homepage we upgrade them to an offset smooth scroll.
+    if (!href.startsWith("/#")) return;
+    if (window.location.pathname !== "/" && window.location.pathname !== "") return;
+    const hash = href.slice(1);
+    const target = document.querySelector(hash);
+    if (target) {
+      e.preventDefault();
+      const navHeight = 72;
+      const targetY = target.getBoundingClientRect().top + window.scrollY - navHeight;
+      window.scrollTo({ top: Math.max(0, targetY), behavior: "smooth" });
+      window.history.replaceState(null, "", hash);
     }
   };
 
@@ -104,7 +107,7 @@ export default function Navigation(): React.JSX.Element {
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Brand Logo & Name */}
-        <a
+        <Link
           href="/"
           onClick={(e) => {
             if (typeof window !== "undefined" && (window.location.pathname === "/" || window.location.pathname === "")) {
@@ -132,12 +135,12 @@ export default function Navigation(): React.JSX.Element {
               soham.lol
             </span>
           </div>
-        </a>
+        </Link>
 
         {/* Desktop Navigation Links with Active Scrollspy Glow */}
         <nav className="hidden md:flex items-center gap-1 bg-white/[0.03] border border-white/[0.06] rounded-full px-3.5 py-1.5 backdrop-blur-md">
           {NAV_LINKS.map((link) => {
-            const sectionKey = link.href.replace("#", "");
+            const sectionKey = link.href.replace("/#", "");
             const isActive = activeSection === sectionKey;
             return (
               <a

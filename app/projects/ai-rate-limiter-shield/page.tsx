@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, Github, Zap, Terminal, ArrowUpRight, ShieldAlert, Cpu, BookOpen, Layers, Activity } from "lucide-react";
+import { ArrowLeft, Github, ArrowUpRight, BookOpen, Activity } from "lucide-react";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
 import InteractiveBackground from "../../components/InteractiveBackground";
 import CommandPalette from "../../components/CommandPalette";
-import TiltCard from "../../components/TiltCard";
 
 export const metadata: Metadata = {
   title: "AI Rate Limiter Shield",

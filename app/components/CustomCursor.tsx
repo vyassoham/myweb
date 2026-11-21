@@ -28,6 +28,8 @@ export default function CustomCursor(): React.JSX.Element | null {
       return;
     }
 
+    // Intentional: render the cursor only after hydration, on fine-pointer devices.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
 
     const onMouseMove = (e: MouseEvent) => {

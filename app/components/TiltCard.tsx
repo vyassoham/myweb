@@ -33,6 +33,8 @@ export default function TiltCard({
   const targetScale = useRef(1);
   const isHovered = useRef(false);
 
+  const animateRef = useRef<() => void>(() => {});
+
   const animate = useCallback(() => {
     const card = cardRef.current;
     if (!card) return;
@@ -54,14 +56,18 @@ export default function TiltCard({
     const diffS = Math.abs(targetScale.current - currentScale.current);
 
     if (diffX > 0.02 || diffY > 0.02 || diffS > 0.001) {
-      rafRef.current = requestAnimationFrame(animate);
+      rafRef.current = requestAnimationFrame(animateRef.current);
     } else {
       rafRef.current = 0;
     }
   }, []);
 
+  useEffect(() => {
+    animateRef.current = animate;
+  }, [animate]);
+
   const handleMouseEnter = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
+    () => {
       if (typeof window !== "undefined") {
         if (
           window.matchMedia("(prefers-reduced-motion: reduce)").matches ||

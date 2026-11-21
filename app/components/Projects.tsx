@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Github, ArrowUpRight, Star, Sparkles, ChevronDown, ChevronUp, Layers, CheckCircle, BookOpen } from "lucide-react";
+import { Github, ArrowUpRight, Star, Sparkles, ChevronDown, ChevronUp, Layers } from "lucide-react";
 import TiltCard from "./TiltCard";
 import ScrollReveal from "./ScrollReveal";
 import NeuralAudioPreview from "./NeuralAudioPreview";
@@ -332,13 +332,13 @@ export default function Projects(): React.JSX.Element {
                     </Link>
                   )}
                   {(project.id === "cybersecurity-risk-analyzer" || project.id === "ai-rate-limiter-shield") && (
-                    <a
-                      href="#lab"
+                    <Link
+                      href="/#lab"
                       className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20 text-emerald-400 text-[11px] font-mono font-semibold transition-all"
                     >
                       <Sparkles className="w-3 h-3" />
                       <span>Lab</span>
-                    </a>
+                    </Link>
                   )}
                 </div>
 

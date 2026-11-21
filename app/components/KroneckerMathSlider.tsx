@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { Sliders } from "lucide-react";
 
 export default function KroneckerMathSlider(): React.JSX.Element {
   const [dimN, setDimN] = useState<number>(50);
@@ -104,6 +103,7 @@ export default function KroneckerMathSlider(): React.JSX.Element {
             type="range"
             min="2"
             max="500"
+            aria-label="Matrix A dimension n"
             value={dimN}
             onChange={(e) => setDimN(parseInt(e.target.value))}
             className="w-full h-2 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-500"
@@ -129,6 +129,7 @@ export default function KroneckerMathSlider(): React.JSX.Element {
             type="range"
             min="2"
             max="500"
+            aria-label="Matrix B dimension m"
             value={dimM}
             onChange={(e) => setDimM(parseInt(e.target.value))}
             className="w-full h-2 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-cyan-500"
@@ -148,10 +149,10 @@ export default function KroneckerMathSlider(): React.JSX.Element {
             Kronecker Matrix Size
           </span>
           <span className="text-xl font-bold font-mono text-white">
-            {totalDim.toLocaleString()} × {totalDim.toLocaleString()}
+            {totalDim.toLocaleString("en-US")} × {totalDim.toLocaleString("en-US")}
           </span>
           <span className="text-[11px] text-zinc-400 block mt-1">
-            ({totalElements.toLocaleString()} cells)
+            ({totalElements.toLocaleString("en-US")} cells)
           </span>
         </div>
 
@@ -178,7 +179,7 @@ export default function KroneckerMathSlider(): React.JSX.Element {
               ? `${(naiveOps / 1e9).toFixed(2)} Giga-ops`
               : naiveOps > 1e6
               ? `${(naiveOps / 1e6).toFixed(2)} Mega-ops`
-              : naiveOps.toLocaleString()}
+              : naiveOps.toLocaleString("en-US")}
           </span>
           <span className="text-[11px] text-rose-300/70 block mt-1">
             O((N · M)³) computation
@@ -205,7 +206,7 @@ export default function KroneckerMathSlider(): React.JSX.Element {
             Algorithmic Reduction Ratio
           </span>
           <span className="text-emerald-400 font-bold">
-            {(naiveOps / Math.max(1, optimizedOps)).toLocaleString(undefined, {
+            {(naiveOps / Math.max(1, optimizedOps)).toLocaleString("en-US", {
               maximumFractionDigits: 0,
             })}
             × Faster

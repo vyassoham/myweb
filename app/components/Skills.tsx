@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Code2, Cpu, Server, Database, Layout, Terminal, CheckCircle } from "lucide-react";
+import { Code2, Cpu, Server, Database, Layout, Terminal } from "lucide-react";
 import TiltCard from "./TiltCard";
 import ScrollReveal from "./ScrollReveal";
 

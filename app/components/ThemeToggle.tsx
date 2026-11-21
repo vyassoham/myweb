@@ -35,8 +35,7 @@ export function applyTheme(theme: "dark" | "light"): void {
 
   if (typeof window !== "undefined" && typeof window.dispatchEvent === "function") {
     try {
-      const CustomEventCtor = (window as any).CustomEvent || CustomEvent;
-      window.dispatchEvent(new CustomEventCtor("theme-change", { detail: { theme } }));
+      window.dispatchEvent(new CustomEvent("theme-change", { detail: { theme } }));
     } catch {}
   }
 }
@@ -50,6 +49,8 @@ export default function ThemeToggle({ className = "" }: ThemeToggleProps): React
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // Intentional: flips after hydration so server and first client render match.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     const initial = document.documentElement.classList.contains("light") ? "light" : "dark";
     setTheme(initial);

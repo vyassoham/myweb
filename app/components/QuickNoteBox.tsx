@@ -15,7 +15,7 @@ import {
   Tag,
   AlertCircle,
 } from "lucide-react";
-import TiltCard from "./TiltCard";
+
 import ScrollReveal from "./ScrollReveal";
 
 const TOPICS = [
@@ -74,7 +74,7 @@ export default function QuickNoteBox(): React.JSX.Element {
         if (typeof window !== "undefined") {
           window.location.href = `mailto:hello@soham.lol?subject=${mailSubject}&body=${mailBody}`;
         }
-      } catch (err) {}
+      } catch {}
     }, 450);
   };
 
@@ -84,7 +84,7 @@ export default function QuickNoteBox(): React.JSX.Element {
       if (typeof navigator !== "undefined" && navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(draftText);
       }
-    } catch (e) {}
+    } catch {}
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -116,13 +116,13 @@ export default function QuickNoteBox(): React.JSX.Element {
                   Send a Direct Quick Note
                 </h3>
                 <p className="text-xs sm:text-sm text-zinc-400 mt-1">
-                  No mail app required. Draft and dispatch directly to <code className="text-emerald-400 font-mono text-xs">hello@soham.lol</code>.
+                  Fill this in and it opens a pre-written email to <code className="text-emerald-400 font-mono text-xs">hello@soham.lol</code> in your mail app. No mail app? You can copy the draft instead.
                 </p>
               </div>
 
               <div className="flex items-center gap-2 text-xs font-medium text-zinc-400 bg-white/[0.03] border border-white/[0.06] px-3 py-1.5 rounded-xl w-fit">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>Checker</span>
+                <span>Replies within 24h</span>
               </div>
             </div>
 
@@ -252,10 +252,10 @@ export default function QuickNoteBox(): React.JSX.Element {
 
             <div>
               <h3 className="text-2xl font-bold text-white mb-1">
-                Note Dispatched Successfully!
+                Your Email Draft Is Ready
               </h3>
               <p className="text-zinc-300 text-xs sm:text-sm max-w-md mx-auto leading-relaxed font-normal">
-                Thank you, <strong>{name}</strong>. Your note regarding <em>&ldquo;{topic}&rdquo;</em> has been routed directly to <code className="text-emerald-400 font-mono text-xs">hello@soham.lol</code>.
+                Thanks, <strong>{name}</strong>. Your mail app should have opened with a pre-filled draft about <em>&ldquo;{topic}&rdquo;</em> — press send there to deliver it to <code className="text-emerald-400 font-mono text-xs">hello@soham.lol</code>. Nothing opened? Copy the draft below and email it directly.
               </p>
             </div>
 

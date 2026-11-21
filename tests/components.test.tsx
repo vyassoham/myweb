@@ -160,13 +160,13 @@ describe('myweb Top 1% Portfolio Test Suite', () => {
             expect(screen.getByText('MediPro')).not.toBeNull();
             expect(screen.getByText('Soham Crypto Tracker')).not.toBeNull();
             expect(screen.getByText('SocialLogger')).not.toBeNull();
-            expect(screen.getByText('Interactive Neural Speech Demo')).not.toBeNull();
+            expect(screen.getByText('Voice Pipeline Preview')).not.toBeNull();
         });
 
         test('NeuralAudioPreview renders and toggles playback state', () => {
             render(<NeuralAudioPreview />);
-            expect(screen.getByText('Interactive Neural Speech Demo')).not.toBeNull();
-            expect(screen.getByText('24kHz HiFi-GAN')).not.toBeNull();
+            expect(screen.getByText('Voice Pipeline Preview')).not.toBeNull();
+            expect(screen.getByText('Browser voice + 24kHz chime')).not.toBeNull();
             const playBtn = screen.getByLabelText(/Play voice sample/i);
             expect(playBtn).not.toBeNull();
             fireEvent.click(playBtn);
@@ -206,7 +206,51 @@ describe('myweb Top 1% Portfolio Test Suite', () => {
     // =====================================================================
     // 🔍 Test CommandPalette Component (Ctrl+K)
     // =====================================================================
+    // =====================================================================
+    // 🧭 Navigation: real URLs (work from any page and without JavaScript)
+    // =====================================================================
+    describe('Navigation links', () => {
+        test('section links are absolute "/#section" URLs and none starts highlighted', () => {
+            const { container } = render(<Navigation />);
+            const hrefs = Array.from(container.querySelectorAll('nav a')).map((a) => a.getAttribute('href'));
+            expect(hrefs).toContain('/#about');
+            expect(hrefs).toContain('/#contact');
+            expect(hrefs.every((h) => h === null || !h.startsWith('#'))).toBe(true);
+            // No section is in view on a fresh render, so no pill may claim to be active.
+            expect(container.querySelectorAll('nav a.bg-indigo-600\\/90').length).toBe(0);
+        });
+    });
+
+    describe('Projects Lab shortcut', () => {
+        test('Lab buttons link to the homepage lab section so they work on /projects/ too', () => {
+            const { container } = render(<Projects />);
+            const labLinks = Array.from(container.querySelectorAll('a')).filter((a) => a.textContent?.trim() === 'Lab');
+            expect(labLinks.length).toBeGreaterThan(0);
+            for (const a of labLinks) expect(a.getAttribute('href')).toBe('/#lab');
+        });
+    });
+
     describe('CommandPalette component', () => {
+        test('supports arrow-key navigation and resets search on reopen', () => {
+            render(<CommandPalette />);
+            fireEvent.click(screen.getByTitle('Open Command Palette (Ctrl+K)'));
+
+            const input = screen.getByLabelText('Search commands');
+            const options = screen.getAllByRole('option');
+            expect(options[0].getAttribute('aria-selected')).toBe('true');
+
+            fireEvent.keyDown(input, { key: 'ArrowDown' });
+            expect(screen.getAllByRole('option')[1].getAttribute('aria-selected')).toBe('true');
+
+            fireEvent.change(input, { target: { value: 'zzzz-no-match' } });
+            expect(screen.getByText(/No matching commands found/)).not.toBeNull();
+
+            // Close, reopen: the stale query must be gone.
+            fireEvent.click(screen.getByLabelText('Close Command Palette'));
+            fireEvent.click(screen.getByTitle('Open Command Palette (Ctrl+K)'));
+            expect((screen.getByLabelText('Search commands') as HTMLInputElement).value).toBe('');
+        });
+
         test('renders trigger button and opens modal on click', () => {
             render(<CommandPalette />);
             

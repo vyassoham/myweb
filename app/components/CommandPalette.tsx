@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Search, X, ArrowRight, ExternalLink, FileText, Mail, Github, Terminal, Calculator, ShieldCheck, Sparkles, Code2, Sun, Moon } from "lucide-react";
+import { Search, X, ArrowRight, FileText, Mail, Github, Terminal, Calculator, ShieldCheck, Sparkles, Code2, Sun } from "lucide-react";
 import { applyTheme } from "./ThemeToggle";
 
 interface CommandItem {
@@ -23,7 +23,13 @@ export default function CommandPalette(): React.JSX.Element | null {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
-        setIsOpen((prev) => !prev);
+        if (isOpen) {
+          setIsOpen(false);
+        } else {
+          setSearch("");
+          setSelectedIndex(0);
+          setIsOpen(true);
+        }
       }
       if (e.key === "Escape" && isOpen) {
         e.preventDefault();
@@ -35,20 +41,36 @@ export default function CommandPalette(): React.JSX.Element | null {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen]);
 
+  useEffect(() => {
+    if (!isOpen) return;
+    document
+      .querySelector<HTMLElement>(`[data-cmd-index="${selectedIndex}"]`)
+      ?.scrollIntoView({ block: "nearest" });
+  }, [selectedIndex, isOpen]);
+
   const scrollToSection = (id: string) => {
     setIsOpen(false);
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
     } else {
-      window.location.href = `/#${id}`;
+      window.location.assign(`/#${id}`);
     }
   };
 
   const copyEmail = () => {
     setIsOpen(false);
-    navigator.clipboard.writeText("hello@soham.lol");
-    alert("Email copied to clipboard: hello@soham.lol");
+    const done = () => alert("Email copied to clipboard: hello@soham.lol");
+    const fail = () => alert("Couldn't access the clipboard. Email: hello@soham.lol");
+    try {
+      if (navigator.clipboard?.writeText) {
+        navigator.clipboard.writeText("hello@soham.lol").then(done, fail);
+      } else {
+        fail();
+      }
+    } catch {
+      fail();
+    }
   };
 
   const commands: CommandItem[] = [
@@ -92,7 +114,7 @@ export default function CommandPalette(): React.JSX.Element | null {
       icon: FileText,
       action: () => {
         setIsOpen(false);
-        window.location.href = "/blog/";
+        window.location.assign("/blog/");
       },
     },
     {
@@ -103,7 +125,7 @@ export default function CommandPalette(): React.JSX.Element | null {
       icon: Calculator,
       action: () => {
         setIsOpen(false);
-        window.location.href = "/blog/sympy-kronecker-trace/";
+        window.location.assign("/blog/sympy-kronecker-trace/");
       },
     },
     {
@@ -161,7 +183,7 @@ export default function CommandPalette(): React.JSX.Element | null {
       icon: Github,
       action: () => {
         setIsOpen(false);
-        window.open("https://github.com/vyassoham", "_blank");
+        window.open("https://github.com/vyassoham", "_blank", "noopener,noreferrer");
       },
     },
   ];
@@ -177,7 +199,11 @@ export default function CommandPalette(): React.JSX.Element | null {
     <>
       {/* Floating Action Trigger Button on bottom-right */}
       <button
-        onClick={() => setIsOpen(true)}
+        onClick={() => {
+          setSearch("");
+          setSelectedIndex(0);
+          setIsOpen(true);
+        }}
         className="fixed bottom-6 right-6 z-40 flex items-center gap-2 px-3.5 py-2 rounded-full bg-[#13131e]/90 hover:bg-[#1a1a28] border border-white/10 hover:border-indigo-500/40 text-xs font-mono text-zinc-300 shadow-xl shadow-black/50 backdrop-blur-md transition-all group cursor-pointer"
         title="Open Command Palette (Ctrl+K)"
         aria-label="Open Command Palette"
@@ -193,6 +219,9 @@ export default function CommandPalette(): React.JSX.Element | null {
       {isOpen && (
         <div
           className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 bg-black/75 backdrop-blur-sm animate-fade-in-up"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Command palette"
           onClick={() => setIsOpen(false)}
         >
           <div
@@ -205,7 +234,23 @@ export default function CommandPalette(): React.JSX.Element | null {
               <input
                 type="text"
                 value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                  setSelectedIndex(0);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "ArrowDown") {
+                    e.preventDefault();
+                    setSelectedIndex((i) => Math.min(i + 1, Math.max(0, filteredCommands.length - 1)));
+                  } else if (e.key === "ArrowUp") {
+                    e.preventDefault();
+                    setSelectedIndex((i) => Math.max(i - 1, 0));
+                  } else if (e.key === "Enter") {
+                    e.preventDefault();
+                    filteredCommands[selectedIndex]?.action();
+                  }
+                }}
+                aria-label="Search commands"
                 placeholder="Type a command, project, or section (or Esc to close)..."
                 className="w-full bg-transparent text-sm text-white placeholder-zinc-500 focus:outline-none"
                 autoFocus
@@ -220,19 +265,26 @@ export default function CommandPalette(): React.JSX.Element | null {
             </div>
 
             {/* Commands List */}
-            <div className="max-h-80 overflow-y-auto p-2 divide-y divide-white/[0.03]">
+            <div className="max-h-80 overflow-y-auto p-2 divide-y divide-white/[0.03]" role="listbox" aria-label="Commands">
               {filteredCommands.length === 0 ? (
                 <div className="py-8 text-center text-xs text-zinc-500">
                   No matching commands found.
                 </div>
               ) : (
-                filteredCommands.map((cmd) => {
+                filteredCommands.map((cmd, index) => {
                   const Icon = cmd.icon;
+                  const isSelected = index === selectedIndex;
                   return (
                     <button
                       key={cmd.id}
+                      role="option"
+                      aria-selected={isSelected}
+                      data-cmd-index={index}
                       onClick={cmd.action}
-                      className="w-full flex items-center justify-between p-3 rounded-xl hover:bg-white/[0.06] text-left transition-colors cursor-pointer group"
+                      onMouseEnter={() => setSelectedIndex(index)}
+                      className={`w-full flex items-center justify-between p-3 rounded-xl hover:bg-white/[0.06] text-left transition-colors cursor-pointer group ${
+                        isSelected ? "bg-white/[0.06]" : ""
+                      }`}
                     >
                       <div className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white transition-all shrink-0">
@@ -262,7 +314,9 @@ export default function CommandPalette(): React.JSX.Element | null {
             {/* Footer shortcuts */}
             <div className="px-4 py-2.5 bg-white/[0.02] border-t border-white/[0.06] flex items-center justify-between text-[11px] text-zinc-500">
               <span className="flex items-center gap-1.5">
-                <kbd className="px-1 py-0.5 rounded bg-white/10 text-[9px] text-zinc-400">Esc</kbd> to close
+                <kbd className="px-1 py-0.5 rounded bg-white/10 text-[9px] text-zinc-400">↑↓</kbd> navigate
+                <kbd className="px-1 py-0.5 rounded bg-white/10 text-[9px] text-zinc-400">↵</kbd> select
+                <kbd className="px-1 py-0.5 rounded bg-white/10 text-[9px] text-zinc-400">Esc</kbd> close
               </span>
               <span>Soham Vyas · soham.lol</span>
             </div>

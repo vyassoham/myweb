@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, GraduationCap, Code2, GitPullRequest, ShieldCheck, Cpu, ArrowUpRight, BookOpen, Terminal, Sparkles } from "lucide-react";
+import { ArrowLeft, GraduationCap, GitPullRequest, ShieldCheck, Cpu, ArrowUpRight, Terminal } from "lucide-react";
 import Navigation from "../components/Navigation";
 import Skills from "../components/Skills";
 import Contact from "../components/Contact";
@@ -8,7 +8,6 @@ import Footer from "../components/Footer";
 import InteractiveBackground from "../components/InteractiveBackground";
 import CommandPalette from "../components/CommandPalette";
 import TiltCard from "../components/TiltCard";
-import ScrollReveal from "../components/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "Academic & Engineering Profile",

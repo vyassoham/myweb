@@ -8,6 +8,9 @@ export default function NeuralAudioPreview(): React.JSX.Element {
   const [progress, setProgress] = useState(0);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
+  // Spoken phrase takes ~6-7 s; the bundled chime alone is 2.5 s.
+  const [durationSec, setDurationSec] = useState(7);
 
   const phrase =
     "Neural TTS acoustic pipeline initialized. Synthesized for Soham Vyas, Indian Institute of Technology Jodhpur.";
@@ -26,14 +29,22 @@ export default function NeuralAudioPreview(): React.JSX.Element {
         audioRef.current.pause();
         audioRef.current.currentTime = 0;
       }
-    } catch (e) {}
+    } catch {}
 
+    if (utteranceRef.current) {
+      utteranceRef.current.onend = null;
+      utteranceRef.current.onerror = null;
+      utteranceRef.current = null;
+    }
     if (typeof window !== "undefined" && "speechSynthesis" in window) {
       window.speechSynthesis.cancel();
     }
   };
 
   const startAudio = () => {
+    const hasSpeech = typeof window !== "undefined" && "speechSynthesis" in window;
+    const totalDuration = hasSpeech ? 7000 : 2500;
+    setDurationSec(Math.round(totalDuration / 1000));
     setIsPlaying(true);
     setProgress(0);
 
@@ -47,7 +58,7 @@ export default function NeuralAudioPreview(): React.JSX.Element {
         audioRef.current.currentTime = 0;
         audioRef.current.play().catch(() => {});
       }
-    } catch (e) {}
+    } catch {}
 
     // 2. Play Neural Speech Synthesis
     if (typeof window !== "undefined" && "speechSynthesis" in window) {
@@ -77,19 +88,21 @@ export default function NeuralAudioPreview(): React.JSX.Element {
         stopAudio();
       };
 
+      utteranceRef.current = utterance;
       window.speechSynthesis.speak(utterance);
     }
 
-    // 3. Update Progress Bar
+    // 3. Update Progress Bar. With speech, playback ends on the utterance's own
+    // "end" event (never cut off early); the timer only drives the visuals and
+    // a hard cap guards against browsers that never fire "end".
     const startTime = Date.now();
-    const totalDuration = 3500; // 3.5s
 
     intervalRef.current = setInterval(() => {
       const elapsed = Date.now() - startTime;
-      const pct = Math.min(100, (elapsed / totalDuration) * 100);
+      const pct = Math.min(hasSpeech ? 95 : 100, (elapsed / totalDuration) * 100);
       setProgress(pct);
 
-      if (elapsed >= totalDuration) {
+      if ((!hasSpeech && elapsed >= totalDuration) || elapsed >= 15000) {
         stopAudio();
       }
     }, 50);
@@ -114,10 +127,10 @@ export default function NeuralAudioPreview(): React.JSX.Element {
       <div className="flex items-center justify-between gap-2 mb-2.5">
         <div className="flex items-center gap-1.5 text-violet-300 font-semibold font-mono text-[11px]">
           <Volume2 className="w-3.5 h-3.5 text-violet-400" />
-          <span>Interactive Neural Speech Demo</span>
+          <span>Voice Pipeline Preview</span>
         </div>
         <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-violet-500/15 text-violet-300 border border-violet-500/25">
-          24kHz HiFi-GAN
+          Browser voice + 24kHz chime
         </span>
       </div>
 
@@ -163,7 +176,7 @@ export default function NeuralAudioPreview(): React.JSX.Element {
 
         {/* Time counter */}
         <span className="text-[10px] font-mono text-zinc-400 shrink-0">
-          {isPlaying ? `0:0${Math.floor((progress / 100) * 3)}` : "0:00"} / 0:03
+          {isPlaying ? `0:0${Math.min(9, Math.floor((progress / 100) * durationSec))}` : "0:00"} / 0:0{durationSec}
         </span>
       </div>
 
@@ -178,6 +191,9 @@ export default function NeuralAudioPreview(): React.JSX.Element {
       {/* Synthesized Phrase Preview */}
       <p className="mt-2 text-[11px] text-zinc-400 italic font-sans leading-tight">
         &ldquo;{phrase}&rdquo;
+      </p>
+      <p className="mt-1.5 text-[10px] text-zinc-500 leading-tight">
+        Preview only: plays your browser&apos;s built-in voice plus a sample chime. Run the repo locally to hear the actual acoustic model and HiFi-GAN vocoder output.
       </p>
     </div>
   );

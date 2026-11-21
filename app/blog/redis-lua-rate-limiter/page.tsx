@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight, Calendar, Clock, BookOpen, CheckCircle2, ShieldAlert, Cpu, ExternalLink } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Calendar, Clock, BookOpen, CheckCircle2, Cpu } from "lucide-react";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
 import InteractiveBackground from "../../components/InteractiveBackground";
