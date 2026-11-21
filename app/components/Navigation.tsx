@@ -120,7 +120,7 @@ export default function Navigation(): React.JSX.Element {
           <div className="w-10 h-10 rounded-xl overflow-hidden border border-indigo-500/30 ring-2 ring-indigo-500/10 group-hover:border-indigo-400 transition-all">
             <Image
               src="/assets/logo.webp"
-              alt="Soham Vyas"
+              alt="Soham Vyas (sohamvyas) Logo"
               width={40}
               height={40}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform"
