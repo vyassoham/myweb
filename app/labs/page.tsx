@@ -9,23 +9,23 @@ import InteractiveBackground from "../components/InteractiveBackground";
 import CommandPalette from "../components/CommandPalette";
 
 export const metadata: Metadata = {
-  title: "Interactive Engineering Labs",
+  title: "Interactive Engineering Labs | SymPy & Systems Simulators",
   description:
-    "Live client-side engineering simulators: Shannon Information Entropy & NIST crack-time calculator, and atomic Lua sliding-window rate limiter by Soham Vyas.",
+    "Live client-side computational engineering laboratories: SymPy Kronecker tensor product & power proof engine, atomic Lua sliding-window rate limiter, and Shannon cryptographic entropy calculator by Soham Vyas at IIT Jodhpur.",
   alternates: {
     canonical: "https://www.soham.lol/labs/",
   },
   openGraph: {
     title: "Interactive Engineering Labs | Soham Vyas — IIT Jodhpur",
     description:
-      "Live client-side engineering simulators for Cybersecurity and Distributed Rate Limiting by Soham Vyas.",
+      "Interactive scientific simulators: SymPy symbolic tensor engine, atomic Redis sliding window, and NIST 800-63B cryptographic crack-time physics by Soham Vyas.",
     url: "https://www.soham.lol/labs/",
     images: [{ url: "https://www.soham.lol/assets/og/og-labs.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Interactive Engineering Labs | Soham Vyas — IIT Jodhpur",
-    description: "In-browser simulators for cybersecurity and distributed rate limiting by Soham Vyas.",
+    description: "In-browser research simulators for symbolic algebra, distributed rate limiting, and cryptographic entropy.",
     images: ["https://www.soham.lol/assets/og/og-labs.png"],
     creator: "@Soham_Vyas_",
   },

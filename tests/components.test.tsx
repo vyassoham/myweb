@@ -180,12 +180,17 @@ describe('myweb Top 1% Portfolio Test Suite', () => {
     // 🧪 Test InteractivePlayground Component (Live Simulators)
     // =====================================================================
     describe('InteractivePlayground component', () => {
-        test('renders simulators and performs real-time calculations', () => {
+        test('renders simulators and performs real-time calculations across research benches', () => {
             render(<InteractivePlayground />);
             
             expect(screen.getByText('Live In-Browser System Simulators')).not.toBeNull();
+            expect(screen.getByText(/SymPy Tensor & CAS Engine/)).not.toBeNull();
             expect(screen.getByText(/Cybersecurity Entropy Lab/)).not.toBeNull();
             expect(screen.getByText(/Atomic Rate Limiter/)).not.toBeNull();
+
+            // Verify SymPy CAS Engine default bench
+            expect(screen.getByText(/Kronecker Tensor Product & Algebraic Proof Engine/)).not.toBeNull();
+            expect(screen.getByText(/Trace Product Theorem Verified/)).not.toBeNull();
 
             // Switch to rate limiter lab
             const rateLimitTab = screen.getByText(/Atomic Rate Limiter/);
