@@ -244,7 +244,7 @@ export default function Projects(): React.JSX.Element {
             <span>Real Code · Verified Architecture · Test Suites</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-            Featured Engineering Systems
+            Featured Engineering Projects
           </h2>
           <p className="text-zinc-400 text-sm sm:text-base mt-2 max-w-2xl font-normal">
             Every repository here is test-backed, actively maintained, and open on GitHub. No dummy mockups, toy templates, or dead links.
