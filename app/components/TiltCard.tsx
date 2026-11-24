@@ -120,8 +120,8 @@ export default function TiltCard({
       if (glareEl && glare) {
         const glareX = ((x / rect.width) * 100).toFixed(1);
         const glareY = ((y / rect.height) * 100).toFixed(1);
-        glareEl.style.opacity = "0.22";
-        glareEl.style.background = `radial-gradient(circle 320px at ${glareX}% ${glareY}%, rgba(99, 102, 241, 0.35), transparent 75%)`;
+        glareEl.style.opacity = "0.45";
+        glareEl.style.background = `radial-gradient(circle 380px at ${glareX}% ${glareY}%, rgba(255, 255, 255, 0.22), rgba(99, 102, 241, 0.2) 35%, transparent 70%)`;
       }
 
       if (!rafRef.current) {
@@ -187,18 +187,18 @@ export default function TiltCard({
         WebkitBackfaceVisibility: "hidden",
         ...style,
       }}
-      className={`relative overflow-hidden ${className}`}
+      className={`relative ${className}`}
       {...props}
     >
       {/* 3D Holographic Spotlight Glare (Decorative Layer) */}
       {glare && (
         <div
           ref={glareRef}
-          className="pointer-events-none select-none absolute inset-0 z-0 opacity-0 transition-opacity duration-300"
+          className="pointer-events-none select-none absolute inset-0 z-0 opacity-0 transition-opacity duration-300 rounded-[inherit] overflow-hidden"
           aria-hidden="true"
         />
       )}
-      <div className="relative z-10 w-full h-full flex flex-col justify-between pointer-events-auto">
+      <div className="relative z-10 w-full h-full flex flex-col justify-between pointer-events-auto [transform-style:preserve-3d]">
         {children}
       </div>
     </div>
