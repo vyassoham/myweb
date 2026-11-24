@@ -33,7 +33,55 @@ interface ParsedActivity {
 
 const FALLBACK_EVENTS: ParsedActivity[] = [
   {
+    id: "fb-0",
+    type: "pr",
+    badge: "PR Merged",
+    badgeColor: "bg-purple-500/15 text-purple-300 border-purple-500/30",
+    title: "Merged PR #31284 in sympy/sympy",
+    repoName: "sympy/sympy",
+    repoUrl: "https://github.com/sympy/sympy",
+    detail: "kronecker: power distribution over square factors (fixes #31272, Merged by S.Y. Lee)",
+    linkUrl: "https://github.com/sympy/sympy/pull/31284",
+    timeAgo: "Today",
+  },
+  {
     id: "fb-1",
+    type: "pr",
+    badge: "PR Active (CI Green)",
+    badgeColor: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
+    title: "Submitted PR #31303 in sympy/sympy",
+    repoName: "sympy/sympy",
+    repoUrl: "https://github.com/sympy/sympy",
+    detail: "assumptions: check squareness in MatrixBase hermitian/antihermitian handlers (fixes bug H13 from #31291)",
+    linkUrl: "https://github.com/sympy/sympy/pull/31303",
+    timeAgo: "Today",
+  },
+  {
+    id: "fb-2",
+    type: "pr",
+    badge: "PR Active (29/29 Green)",
+    badgeColor: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
+    title: "Active PR #31232 in sympy/sympy",
+    repoName: "sympy/sympy",
+    repoUrl: "https://github.com/sympy/sympy",
+    detail: "assumptions: register KroneckerProduct in matrix predicate handlers (fuzzy_and dispatch)",
+    linkUrl: "https://github.com/sympy/sympy/pull/31232",
+    timeAgo: "Active",
+  },
+  {
+    id: "fb-3",
+    type: "review",
+    badge: "Strategic Peer Review",
+    badgeColor: "bg-cyan-500/15 text-cyan-300 border-cyan-500/30",
+    title: "Contributor Review on PR #31299",
+    repoName: "sympy/sympy",
+    repoUrl: "https://github.com/sympy/sympy",
+    detail: "Verified transpose distribution for HadamardPower(A, B).T resolving ShapeError with [Contributor] badge",
+    linkUrl: "https://github.com/sympy/sympy/pull/31299#issuecomment-7127426833",
+    timeAgo: "Today",
+  },
+  {
+    id: "fb-4",
     type: "pr",
     badge: "PR Merged",
     badgeColor: "bg-purple-500/15 text-purple-300 border-purple-500/30",
@@ -42,22 +90,10 @@ const FALLBACK_EVENTS: ParsedActivity[] = [
     repoUrl: "https://github.com/sympy/sympy",
     detail: "kronecker: use fuzzy-bool for is_zero_matrix, simplify _is_zero_mat (Merged by S.Y. Lee)",
     linkUrl: "https://github.com/sympy/sympy/pull/31207",
-    timeAgo: "Recently",
+    timeAgo: "Yesterday",
   },
   {
-    id: "fb-2",
-    type: "pr",
-    badge: "PR Opened",
-    badgeColor: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
-    title: "Submitted PR #4 in sympy/sympy",
-    repoName: "sympy/sympy",
-    repoUrl: "https://github.com/sympy/sympy",
-    detail: "assumptions: register KroneckerProduct in matrix predicate handlers (fuzzy_and dispatch)",
-    linkUrl: "https://github.com/sympy/sympy/pulls?q=is%3Apr+author%3Avyassoham",
-    timeAgo: "Today",
-  },
-  {
-    id: "fb-3",
+    id: "fb-5",
     type: "review",
     badge: "Maintainer Commendation",
     badgeColor: "bg-amber-500/15 text-amber-300 border-amber-500/30",
@@ -66,19 +102,19 @@ const FALLBACK_EVENTS: ParsedActivity[] = [
     repoUrl: "https://github.com/sympy/sympy",
     detail: "'Glad you caught the misdirected suggestion on #31189 -- well fielded!' — Chris Smith (@smichr)",
     linkUrl: "https://github.com/sympy/sympy/pull/31189",
-    timeAgo: "Yesterday",
+    timeAgo: "Recent",
   },
   {
-    id: "fb-4",
+    id: "fb-6",
     type: "pr",
     badge: "PR Merged",
     badgeColor: "bg-purple-500/15 text-purple-300 border-purple-500/30",
     title: "Merged PR #31011 in sympy/sympy",
     repoName: "sympy/sympy",
     repoUrl: "https://github.com/sympy/sympy",
-    detail: "O(1) scalar trace evaluation for general rectangular block KroneckerProduct",
+    detail: "O(1) scalar trace evaluation for general rectangular block KroneckerProduct (Merged by S.Y. Lee)",
     linkUrl: "https://github.com/sympy/sympy/pull/31011",
-    timeAgo: "This month",
+    timeAgo: "Earlier",
   },
 ];
 
@@ -240,8 +276,8 @@ export default function LiveTelemetry(): React.JSX.Element {
                 <CheckCircle2 className="w-3.5 h-3.5 text-purple-400" />
               </div>
               <div className="text-2xl font-bold font-mono text-white flex items-baseline gap-1.5">
-                <span>3</span>
-                <span className="text-[11px] font-sans font-normal text-purple-300">100% Merge Rate</span>
+                <span>4</span>
+                <span className="text-[11px] font-sans font-normal text-purple-300">100% S.Y. Lee Merged</span>
               </div>
               <p className="text-[11px] text-zinc-500 mt-0.5">Matrix algebra core</p>
             </div>

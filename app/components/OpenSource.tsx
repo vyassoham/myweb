@@ -21,6 +21,22 @@ interface ContributionItem {
 
 const CONTRIBUTIONS: ContributionItem[] = [
   {
+    id: "kronecker-power",
+    title: "KroneckerProduct Exponentiation & Powers",
+    module: "sympy.matrices.expressions.kronecker",
+    prNumber: 31284,
+    prUrl: "https://github.com/sympy/sympy/pull/31284",
+    branch: "vyassoham:fix-kronecker-power",
+    mathExpression: "(A ⊗ B)^p = A^p ⊗ B^p",
+    beforeFix: "MatPow(KroneckerProduct(A, B), p) -> returned unevaluated generic MatPow even for integer powers",
+    afterFix: "KroneckerProduct._eval_power(exp) -> distributes integer powers over square factors and returns Identity for exp=0",
+    description:
+      "Implemented mixed-product matrix power distribution for Kronecker products across concrete and symbolic integer powers (p ∈ ℤ). Closed author-discovered Issue #31272, merged by S.Y. Lee.",
+    impact:
+      "Officially merged into SymPy master (commit 9f404e5). Solves closed-form tensor exponentiation.",
+    verification: "PR #31284 Merged into sympy:master",
+  },
+  {
     id: "zeromatrix",
     title: "KroneckerProduct ZeroMatrix Canonicalization",
     module: "sympy.matrices.expressions.kronecker",
@@ -71,7 +87,7 @@ const CONTRIBUTIONS: ContributionItem[] = [
 ];
 
 export default function OpenSource(): React.JSX.Element {
-  const [selectedContrib, setSelectedContrib] = useState<string>("kronecker");
+  const [selectedContrib, setSelectedContrib] = useState<string>("kronecker-power");
 
   const activeItem =
     CONTRIBUTIONS.find((c) => c.id === selectedContrib) || CONTRIBUTIONS[0];
