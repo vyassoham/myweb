@@ -21,20 +21,38 @@ Soham Vyas is an undergraduate researcher and systems engineer studying Data Sci
 
 ---
 
-## Verified Open Source Contributions
+## Verified Open Source Contributions (SymPy Upstream)
 
-### 1. SymPy: KroneckerProduct.trace() Algorithmic Complexity Optimization
-- **Pull Request**: [#31011](https://github.com/sympy/sympy/pull/31011) — Merged into `sympy/sympy:master` (Primary Evidence)
+### 1. SymPy: KroneckerProduct Exponentiation & Closed-Form Powers
+- **Pull Request**: [#31284](https://github.com/sympy/sympy/pull/31284) — Merged into `sympy/sympy:master` by S.Y. Lee
+- **Related Issue**: [#31272](https://github.com/sympy/sympy/issues/31272) (Authored by Soham Vyas, solved and closed)
+- **Module**: `sympy.matrices.expressions.kronecker`
+- **Mathematical Property**: $(A \otimes B)^p = A^p \otimes B^p$ for $p \in \mathbb{Z}$
+- **Implementation**: Added `KroneckerProduct._eval_power(exp)` to distribute integer powers over square factors and evaluate identity matrix for $p = 0$.
+- **Impact**: Enables closed-form tensor powers in symbolic quantum and matrix mechanics.
+
+### 2. SymPy: KroneckerProduct ZeroMatrix Canonicalization
+- **Pull Request**: [#31207](https://github.com/sympy/sympy/pull/31207) — Merged into `sympy/sympy:master` by S.Y. Lee
+- **Module**: `sympy.matrices.expressions.kronecker`
+- **Mathematical Property**: $A \otimes 0_{m \times n} = 0_{rows \times cols}$
+- **Fix**: Canonicalized zero-matrix factor products to exact `ZeroMatrix` with post-flattening factor extraction and fuzzy-boolean evaluation.
+
+### 3. SymPy: KroneckerProduct.trace() Algorithmic Complexity Optimization
+- **Pull Request**: [#31011](https://github.com/sympy/sympy/pull/31011) — Merged into `sympy/sympy:master` by S.Y. Lee
 - **Module**: `sympy.matrices.expressions.kronecker`
 - **Mathematical Property**: $\text{tr}(A \otimes B) = \text{tr}(A) \cdot \text{tr}(B)$
 - **Optimization**: Eliminated $O(n^3)$ explicit matrix tensor expansion in symbolic expression trees by dispatching directly to an $O(1)$ scalar multiplication rewrite across symbolic dimensions while strictly validating rectangular factor compatibility.
 - **Impact**: Prevents out-of-memory crashes and gigabyte-scale matrix allocation in quantum simulation and multidimensional symbolic algebra.
 
-### 2. SymPy: MatrixUnit.trace() Canonical Evaluation
-- **Pull Request**: [#31010](https://github.com/sympy/sympy/pull/31010) — Merged into `sympy/sympy:master` (Primary Evidence)
+### 4. SymPy: MatrixUnit.trace() Canonical Evaluation
+- **Pull Request**: [#31010](https://github.com/sympy/sympy/pull/31010) — Merged into `sympy/sympy:master` by S.Y. Lee
 - **Module**: `sympy.matrices.expressions.matexpr`
 - **Mathematical Property**: $\text{tr}(E_{i,j}) = \delta_{i,j}$
 - **Fix**: Replaced erroneous evaluation to 0 for diagonal matrix units with canonical `KroneckerDelta(i, j)` evaluation, preserving bounded index contracts.
+
+### Active Upstream PRs
+- **PR #31232**: `assumptions: register KroneckerProduct in matrix predicate handlers` (29/29 CI checks passing).
+- **PR #31303**: `assumptions: check squareness in MatrixBase hermitian/antihermitian handlers` (Fixes Bug H13 from #31291).
 
 ---
 

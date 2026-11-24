@@ -19,7 +19,23 @@
 ## 1. Computer Algebra & Symbolic Mathematics (SymPy)
 
 ### Background
-SymPy is Python's premier open-source library for symbolic mathematics, used across academic research, quantum physics pipelines, and engineering design.
+SymPy is Python's premier open-source library for symbolic mathematics, used across academic research, quantum physics pipelines, and engineering design. Soham Vyas has 4 officially merged pull requests in the matrix expressions engine, all personally reviewed and merged by core maintainer S.Y. Lee.
+
+### KroneckerProduct Exponentiation & Powers (PR #31284)
+- **Primary Upstream Source**: https://github.com/sympy/sympy/pull/31284
+- **Related Issue**: https://github.com/sympy/sympy/issues/31272 (Authored by Soham Vyas, resolved and closed)
+- **Problem**: In matrix expressions, computing powers of Kronecker products `KroneckerProduct(A, B)**p` produced unevaluated generic `MatPow` objects even when factors were square matrices and powers were concrete or symbolic integers.
+- **Mathematical Solution**: Applied the mixed-product exponentiation identity:
+  $$(A \otimes B)^p = A^p \otimes B^p \quad \forall p \in \mathbb{Z}$$
+- **Implementation**: In `sympy.matrices.expressions.kronecker`, implemented `_eval_power(exp)` to distribute integer exponents across square factor matrices, and evaluate identity matrix for $p = 0$.
+- **Verification**: Verified and merged into `sympy/sympy:master` (commit `9f404e5`).
+
+### KroneckerProduct ZeroMatrix Canonicalization (PR #31207)
+- **Primary Upstream Source**: https://github.com/sympy/sympy/pull/31207
+- **Problem**: ZeroMatrix tensor factors in Kronecker products retained unsimplified tensor blocks and failed fuzzy boolean evaluations.
+- **Mathematical Solution**: $A \otimes 0_{m \times n} = 0_{rows \times cols}$
+- **Implementation**: Canonicalized zero-matrix factor products with post-flattening factor extraction and fuzzy boolean matrix checks.
+- **Verification**: Verified and merged into `sympy/sympy:master` (commit `004d908`).
 
 ### KroneckerProduct.trace() Optimization (PR #31011)
 - **Primary Upstream Source**: https://github.com/sympy/sympy/pull/31011
@@ -36,6 +52,10 @@ SymPy is Python's premier open-source library for symbolic mathematics, used acr
 - **Mathematical Solution**: $\text{tr}(E_{i,j}) = \delta_{i,j}$ (the Kronecker delta).
 - **Implementation**: In `sympy.matrices.expressions.matexpr`, evaluated `MatrixUnit.trace()` as `KroneckerDelta(i, j)`.
 - **Verification**: Verified and merged into `sympy/sympy:master`.
+
+### Active Upstream Pull Requests
+- **PR #31232**: `assumptions: register KroneckerProduct in matrix predicate handlers` (29/29 CI checks passing).
+- **PR #31303**: `assumptions: check squareness in MatrixBase hermitian/antihermitian handlers` (Fixes Bug H13 from #31291).
 
 ---
 
