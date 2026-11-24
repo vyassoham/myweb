@@ -33,6 +33,18 @@ interface ParsedActivity {
 
 const FALLBACK_EVENTS: ParsedActivity[] = [
   {
+    id: "fb-1",
+    type: "pr",
+    badge: "PR Merged",
+    badgeColor: "bg-purple-500/15 text-purple-300 border-purple-500/30",
+    title: "Merged PR #31303 in sympy/sympy",
+    repoName: "sympy/sympy",
+    repoUrl: "https://github.com/sympy/sympy",
+    detail: "assumptions: check squareness in MatrixBase hermitian/antihermitian handlers (Merged by S.Y. Lee)",
+    linkUrl: "https://github.com/sympy/sympy/pull/31303",
+    timeAgo: "Today",
+  },
+  {
     id: "fb-0",
     type: "pr",
     badge: "PR Merged",
@@ -42,18 +54,6 @@ const FALLBACK_EVENTS: ParsedActivity[] = [
     repoUrl: "https://github.com/sympy/sympy",
     detail: "kronecker: power distribution over square factors (fixes #31272, Merged by S.Y. Lee)",
     linkUrl: "https://github.com/sympy/sympy/pull/31284",
-    timeAgo: "Today",
-  },
-  {
-    id: "fb-1",
-    type: "pr",
-    badge: "PR Active (CI Green)",
-    badgeColor: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
-    title: "Submitted PR #31303 in sympy/sympy",
-    repoName: "sympy/sympy",
-    repoUrl: "https://github.com/sympy/sympy",
-    detail: "assumptions: check squareness in MatrixBase hermitian/antihermitian handlers (fixes bug H13 from #31291)",
-    linkUrl: "https://github.com/sympy/sympy/pull/31303",
     timeAgo: "Today",
   },
   {
@@ -276,7 +276,7 @@ export default function LiveTelemetry(): React.JSX.Element {
                 <CheckCircle2 className="w-3.5 h-3.5 text-purple-400" />
               </div>
               <div className="text-2xl font-bold font-mono text-white flex items-baseline gap-1.5">
-                <span>4</span>
+                <span>5</span>
                 <span className="text-[11px] font-sans font-normal text-purple-300">100% S.Y. Lee Merged</span>
               </div>
               <p className="text-[11px] text-zinc-500 mt-0.5">Matrix algebra core</p>

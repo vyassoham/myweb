@@ -53,9 +53,15 @@ SymPy is Python's premier open-source library for symbolic mathematics, used acr
 - **Implementation**: In `sympy.matrices.expressions.matexpr`, evaluated `MatrixUnit.trace()` as `KroneckerDelta(i, j)`.
 - **Verification**: Verified and merged into `sympy/sympy:master`.
 
+### MatrixBase Hermitian/Antihermitian Squareness Guard (PR #31303)
+- **Primary Upstream Source**: https://github.com/sympy/sympy/pull/31303
+- **Related Issue**: Fixes Bug H13 from Maintainer Issue https://github.com/sympy/sympy/issues/31291
+- **Problem**: Non-square matrices in `Q.hermitian` and `Q.antihermitian` queries caused mathematical errors: tall matrices (3x2) erroneously evaluated to `True`, while wide matrices (2x3) crashed with `IndexError`.
+- **Implementation**: In `sympy.assumptions.handlers.sets`, added explicit `if not mat.is_square: return False` to both `HermitianPredicate` and `AntihermitianPredicate`.
+- **Verification**: Verified and merged into `sympy/sympy:master` (commit `081d81e0`).
+
 ### Active Upstream Pull Requests
 - **PR #31232**: `assumptions: register KroneckerProduct in matrix predicate handlers` (29/29 CI checks passing).
-- **PR #31303**: `assumptions: check squareness in MatrixBase hermitian/antihermitian handlers` (Fixes Bug H13 from #31291).
 
 ---
 

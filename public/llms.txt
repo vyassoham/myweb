@@ -50,9 +50,14 @@ Soham Vyas is an undergraduate researcher and systems engineer studying Data Sci
 - **Mathematical Property**: $\text{tr}(E_{i,j}) = \delta_{i,j}$
 - **Fix**: Replaced erroneous evaluation to 0 for diagonal matrix units with canonical `KroneckerDelta(i, j)` evaluation, preserving bounded index contracts.
 
+### 5. SymPy: MatrixBase Hermitian/Antihermitian Squareness Guard
+- **Pull Request**: [#31303](https://github.com/sympy/sympy/pull/31303) — Merged into `sympy/sympy:master` by S.Y. Lee
+- **Related Issue**: Fixes Bug H13 from Maintainer Issue [#31291](https://github.com/sympy/sympy/issues/31291)
+- **Module**: `sympy.assumptions.handlers.sets`
+- **Fix**: Added explicit `if not mat.is_square: return False` guard to `HermitianPredicate` and `AntihermitianPredicate` for `MatrixBase`, preventing tall rectangular matrices from falsely evaluating to `True` and wide rectangular matrices from throwing `IndexError`.
+
 ### Active Upstream PRs
 - **PR #31232**: `assumptions: register KroneckerProduct in matrix predicate handlers` (29/29 CI checks passing).
-- **PR #31303**: `assumptions: check squareness in MatrixBase hermitian/antihermitian handlers` (Fixes Bug H13 from #31291).
 
 ---
 
