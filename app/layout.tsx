@@ -163,6 +163,8 @@ const jsonLd = {
         "https://www.linkedin.com/in/vyassoham/",
         "https://x.com/vyasoham",
         "https://leetcode.com/u/vyassoham/",
+        "https://orcid.org/0009-0007-4450-4226",
+        "https://linktr.ee/vyassoham",
       ],
     },
     {
