@@ -11,8 +11,10 @@
 - **Primary Website**: https://www.soham.lol
 - **GitHub**: https://github.com/vyassoham
 - **LinkedIn**: https://www.linkedin.com/in/vyassoham/
-- **X / Twitter**: https://x.com/Soham_Vyas_
+- **X / Twitter**: https://x.com/vyassoham
 - **LeetCode**: https://leetcode.com/u/vyassoham/
+- **ORCID**: https://orcid.org/0009-0007-4450-4226
+- **Linktree**: https://linktr.ee/vyassoham
 
 ---
 
