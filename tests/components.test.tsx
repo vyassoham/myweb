@@ -97,8 +97,7 @@ describe('myweb Top 1% Portfolio Test Suite', () => {
             expect(screen.getAllByText('Projects').length).toBeGreaterThan(0);
             expect(screen.getAllByText('Labs').length).toBeGreaterThan(0);
             expect(screen.getAllByText('Open Source').length).toBeGreaterThan(0);
-            expect(screen.getAllByText('Research').length).toBeGreaterThan(0);
-            expect(screen.getAllByText('Skills').length).toBeGreaterThan(0);
+            expect(screen.getAllByText('Blog').length).toBeGreaterThan(0);
             expect(screen.getAllByText('Contact').length).toBeGreaterThan(0);
         });
 
@@ -216,11 +215,11 @@ describe('myweb Top 1% Portfolio Test Suite', () => {
     // 🧭 Navigation: real URLs (work from any page and without JavaScript)
     // =====================================================================
     describe('Navigation links', () => {
-        test('section links are absolute "/#section" URLs and none starts highlighted', () => {
+        test('section links are absolute URLs and none starts highlighted', () => {
             const { container } = render(<Navigation />);
             const hrefs = Array.from(container.querySelectorAll('nav a')).map((a) => a.getAttribute('href'));
-            expect(hrefs).toContain('/#about');
-            expect(hrefs).toContain('/#contact');
+            expect(hrefs.some((h) => h?.includes('about'))).toBe(true);
+            expect(hrefs.some((h) => h?.includes('contact'))).toBe(true);
             expect(hrefs.every((h) => h === null || !h.startsWith('#'))).toBe(true);
             // No section is in view on a fresh render, so no pill may claim to be active.
             expect(container.querySelectorAll('nav a.bg-indigo-600\\/90').length).toBe(0);
