@@ -82,7 +82,7 @@ export const metadata: Metadata = {
     description:
       "Data Science & AI at IIT Jodhpur. Building production systems, atomic Redis rate limiters, and upstream SymPy computer algebra.",
     images: ["https://www.soham.lol/assets/og-image.png"],
-    creator: "@Soham_Vyas_",
+    creator: "@vyasoham",
   },
   robots: {
     index: true,
@@ -133,7 +133,7 @@ const jsonLd = {
         "Soham",
       ],
       "url": "https://www.soham.lol/",
-      "image": "https://www.soham.lol/assets/og-image.png",
+      "image": "https://www.soham.lol/assets/soham-vyas.webp",
       "jobTitle": "AI Systems Engineer & Open Source Contributor",
       "description":
         "Undergraduate researcher and engineer in Data Science & Artificial Intelligence at IIT Jodhpur, systems developer, and SymPy open source contributor.",
@@ -161,7 +161,7 @@ const jsonLd = {
       "sameAs": [
         "https://github.com/vyassoham",
         "https://www.linkedin.com/in/vyassoham/",
-        "https://x.com/Soham_Vyas_",
+        "https://x.com/vyasoham",
         "https://leetcode.com/u/vyassoham/",
       ],
     },
