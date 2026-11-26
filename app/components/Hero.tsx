@@ -146,7 +146,7 @@ export default function Hero(): React.JSX.Element {
                 <GithubIcon />
               </a>
               <a
-                href="https://www.linkedin.com/in/cybersoham"
+                href="https://www.linkedin.com/in/vyassoham/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 rounded-xl bg-white/[0.04] border border-white/[0.08] text-zinc-300 hover:text-white hover:border-indigo-500/40 hover:bg-white/[0.08] transition-all"

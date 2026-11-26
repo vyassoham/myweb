@@ -80,6 +80,7 @@ export const metadata: Metadata = {
     description:
       "Data Science & AI student at IIT Jodhpur. Upstream SymPy contributor building production AI systems and atomic Redis rate limiters.",
     images: ["/assets/og-image.png"],
+    creator: "@vyasoham",
   },
   robots: {
     index: true,
@@ -160,7 +161,10 @@ const jsonLd = {
       ],
       "sameAs": [
         "https://github.com/vyassoham",
-        "https://www.linkedin.com/in/cybersoham",
+        "https://www.linkedin.com/in/vyassoham/",
+        "https://x.com/vyasoham",
+        "https://orcid.org/0009-0007-4450-4226",
+        "https://linktr.ee/vyassoham"
       ],
     },
     {

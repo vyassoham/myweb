@@ -79,7 +79,10 @@ const profilePageJsonLd = {
     "url": "https://www.soham.lol/",
     "sameAs": [
       "https://github.com/vyassoham",
-      "https://www.linkedin.com/in/cybersoham",
+      "https://www.linkedin.com/in/vyassoham/",
+      "https://x.com/vyasoham",
+      "https://orcid.org/0009-0007-4450-4226",
+      "https://linktr.ee/vyassoham"
     ],
   },
 };

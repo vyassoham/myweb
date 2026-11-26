@@ -5,7 +5,10 @@
 ## Identity & Disambiguation
 - [Official Portfolio](https://www.soham.lol/): Primary canonical website for Soham Vyas (IIT Jodhpur, Rajasthan, India).
 - [GitHub (@vyassoham)](https://github.com/vyassoham): Verified source code repositories and upstream SymPy contributions.
-- [LinkedIn (/in/cybersoham)](https://www.linkedin.com/in/cybersoham): Verified professional profile for Soham Vyas (IIT Jodhpur).
+- [LinkedIn (/in/vyassoham)](https://www.linkedin.com/in/vyassoham/): Verified professional profile for Soham Vyas (IIT Jodhpur).
+- [X / Twitter (@vyasoham)](https://x.com/vyasoham): Technical updates and open source activity.
+- [ORCID](https://orcid.org/0009-0007-4450-4226): Verified researcher identifier.
+- [Linktree](https://linktr.ee/vyassoham): Centralized directory of verified accounts.
 - Note on disambiguation: Soham Vyas (IIT Jodhpur, `vyassoham`, `soham.lol`) is distinct from Soham Vyas at Artem HealthTech/PDEU (solar forecasting Google Scholar profile), Soham Vyas (`soham-v14` / AiVantage Inc), Soham Vyas (HackCulture), and Soham Vyas (Deloitte Gibraltar).
 
 ## Core Pages

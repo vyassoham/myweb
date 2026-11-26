@@ -65,7 +65,7 @@ export default function Footer(): React.JSX.Element {
               GitHub
             </a>
             <a
-              href="https://www.linkedin.com/in/cybersoham"
+              href="https://www.linkedin.com/in/vyassoham/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white transition-colors"
