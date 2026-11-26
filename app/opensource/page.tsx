@@ -27,7 +27,6 @@ export const metadata: Metadata = {
     title: "SymPy Open Source & GSoC 2027 | Soham Vyas — IIT Jodhpur",
     description: "Upstream SymPy symbolic mathematics contributions by Soham Vyas.",
     images: ["https://www.soham.lol/assets/og/og-opensource.png"],
-    creator: "@Soham_Vyas_",
   },
 };
 

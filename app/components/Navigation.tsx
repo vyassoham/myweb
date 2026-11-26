@@ -3,24 +3,24 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Github, Check, Copy, Menu, X, FileText } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
 const NAV_LINKS = [
-  { name: "About", href: "/#about" },
-  { name: "Projects", href: "/#projects" },
-  { name: "Labs", href: "/#lab" },
-  { name: "Open Source", href: "/#opensource" },
-  { name: "Research", href: "/#research" },
-  { name: "Skills", href: "/#skills" },
-  { name: "Contact", href: "/#contact" },
+  { name: "About", href: "/about/" },
+  { name: "Projects", href: "/projects/" },
+  { name: "Labs", href: "/labs/" },
+  { name: "Open Source", href: "/opensource/" },
+  { name: "Blog", href: "/blog/" },
+  { name: "Contact", href: "/contact/" },
 ];
 
 export default function Navigation(): React.JSX.Element {
+  const pathname = usePathname();
   const [copied, setCopied] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
     // 1. High-efficiency passive RAF check for header backdrop
@@ -37,36 +37,8 @@ export default function Navigation(): React.JSX.Element {
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-
-    // 2. High-performance IntersectionObserver for scrollspy (zero DOM layout reads)
-    const sections = ["about", "projects", "lab", "opensource", "research", "skills", "contact"];
-    let observer: IntersectionObserver | null = null;
-
-    if (typeof window !== "undefined" && "IntersectionObserver" in window) {
-      observer = new IntersectionObserver(
-        (entries) => {
-          const visible = entries
-            .filter((e) => e.isIntersecting)
-            .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-          if (visible.length > 0) {
-            setActiveSection(visible[0].target.id);
-          }
-        },
-        {
-          rootMargin: "-15% 0px -45% 0px",
-          threshold: [0, 0.2, 0.4],
-        }
-      );
-
-      sections.forEach((id) => {
-        const el = document.getElementById(id);
-        if (el) observer?.observe(el);
-      });
-    }
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      if (observer) observer.disconnect();
     };
   }, []);
 
@@ -120,7 +92,7 @@ export default function Navigation(): React.JSX.Element {
           <div className="w-10 h-10 rounded-xl overflow-hidden border border-indigo-500/30 ring-2 ring-indigo-500/10 group-hover:border-indigo-400 transition-all">
             <Image
               src="/assets/logo.webp"
-              alt="Soham Vyas (sohamvyas) Logo"
+              alt="Soham Vyas (@vyassoham) Logo"
               width={40}
               height={40}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform"
@@ -137,13 +109,13 @@ export default function Navigation(): React.JSX.Element {
           </div>
         </Link>
 
-        {/* Desktop Navigation Links with Active Scrollspy Glow */}
+        {/* Desktop Navigation Links */}
         <nav className="hidden md:flex items-center gap-1 bg-white/[0.03] border border-white/[0.06] rounded-full px-3.5 py-1.5 backdrop-blur-md">
           {NAV_LINKS.map((link) => {
-            const sectionKey = link.href.replace("/#", "");
-            const isActive = activeSection === sectionKey;
+            const normalizedPath = pathname?.endsWith("/") ? pathname : `${pathname}/`;
+            const isActive = normalizedPath === link.href;
             return (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.href)}
@@ -154,7 +126,7 @@ export default function Navigation(): React.JSX.Element {
                 }`}
               >
                 {link.name}
-              </a>
+              </Link>
             );
           })}
         </nav>
@@ -217,14 +189,14 @@ export default function Navigation(): React.JSX.Element {
         <div className="md:hidden bg-[#07070a]/98 border-b border-white/[0.1] backdrop-blur-2xl px-6 py-6 flex flex-col gap-4">
           <nav className="flex flex-col gap-2">
             {NAV_LINKS.map((link) => (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.href)}
                 className="py-2.5 text-base font-medium text-zinc-200 hover:text-indigo-400 transition-colors"
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
           </nav>
           <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between gap-3">

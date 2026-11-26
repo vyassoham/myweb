@@ -26,7 +26,6 @@ export const metadata: Metadata = {
     title: "Distributed Sliding-Window Rate Limiting with Atomic Redis Lua",
     description: "Atomic Redis Lua rate limiting and microsecond concurrency defense by Soham Vyas.",
     images: ["https://www.soham.lol/assets/og/og-rate-limiter.png"],
-    creator: "@Soham_Vyas_",
   },
 };
 

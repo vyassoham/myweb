@@ -25,7 +25,6 @@ export const metadata: Metadata = {
     title: "Resilient Crypto Tracker | Architecture & Telemetry",
     description: "API resilience architecture with exponential retry interceptors by Soham Vyas.",
     images: ["https://www.soham.lol/assets/og/og-crypto-tracker.png"],
-    creator: "@Soham_Vyas_",
   },
 };
 

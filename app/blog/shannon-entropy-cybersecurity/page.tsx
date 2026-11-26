@@ -26,7 +26,6 @@ export const metadata: Metadata = {
     title: "Shannon Information Entropy & NIST 800-63B Defense",
     description: "Cryptographic entropy calculation and NIST defense by Soham Vyas.",
     images: ["https://www.soham.lol/assets/og/og-entropy.png"],
-    creator: "@Soham_Vyas_",
   },
 };
 
@@ -121,7 +120,7 @@ export default function ShannonEntropyBlog(): React.JSX.Element {
 
             {/* Quick Answer Summary for Search & AI Answer Engines */}
             <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-200 text-sm leading-relaxed mb-6">
-              <strong>Quick Summary / Direct Answer:</strong> Heuristic password complexity rules (e.g. requiring symbols and digits) fail to measure real resistance against modern 100 GH/s GPU cracking rigs. By applying Shannon&apos;s information entropy $E = L \log_2(R)$ alongside NIST SP 800-63B pattern penalties (repetition, sequences, dictionary terms), the Cybersecurity Risk Analyzer computes an exact bit-metric of randomness and projects realistic offline brute-force attack durations.
+              <strong>Quick Summary / Direct Answer:</strong> Heuristic password complexity rules (e.g. requiring symbols and digits) fail to measure real resistance against modern 100 GH/s GPU cracking rigs. By applying Shannon&apos;s information entropy E = L · log₂(R) alongside NIST SP 800-63B pattern penalties (repetition, sequences, dictionary terms), the Cybersecurity Risk Analyzer computes an exact bit-metric of randomness and projects realistic offline brute-force attack durations.
             </div>
 
             <div className="flex flex-wrap items-center gap-6 text-xs text-zinc-400 font-normal">
@@ -148,7 +147,7 @@ export default function ShannonEntropyBlog(): React.JSX.Element {
               1. The Mathematics of Information Entropy
             </h2>
             <p>
-              Claude Shannon defined information entropy as the average rate at which information is produced by a stochastic source of data. For a string of length $L$ drawn from an alphabet of size $R$:
+              Claude Shannon defined information entropy as the average rate at which information is produced by a stochastic source of data. For a string of length L drawn from an alphabet of size R:
             </p>
 
             <div className="p-5 rounded-xl bg-zinc-950/90 border border-emerald-500/30 text-emerald-300 text-center text-lg font-mono my-4">

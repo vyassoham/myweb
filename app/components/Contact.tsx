@@ -99,7 +99,7 @@ export default function Contact(): React.JSX.Element {
         <ScrollReveal delay={0.19} direction="up" className="h-full">
           <TiltCard maxTilt={6} scale={1.02} className="glass-card p-6 flex flex-col justify-between h-full group">
             <a
-              href="https://linkedin.com/in/vyassoham"
+              href="https://www.linkedin.com/in/cybersoham"
               target="_blank"
               rel="noopener noreferrer"
               className="flex flex-col justify-between h-full"
@@ -111,7 +111,7 @@ export default function Contact(): React.JSX.Element {
                 <h3 className="font-bold text-base text-white group-hover:text-blue-300 transition-colors mb-1">
                   LinkedIn Network
                 </h3>
-                <p className="text-xs text-zinc-400 mb-4">/in/vyassoham</p>
+                <p className="text-xs text-zinc-400 mb-4">/in/cybersoham</p>
               </div>
 
               <div className="pt-3 border-t border-white/[0.05] flex items-center justify-between text-xs font-medium text-blue-400 group-hover:text-blue-300">

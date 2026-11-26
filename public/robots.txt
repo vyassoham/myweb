@@ -1,28 +1,18 @@
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
 
-# Major Web Search Crawlers
+# Search Engines
 User-agent: Googlebot
-Allow: /
-
-User-agent: Googlebot-Image
 Allow: /
 
 User-agent: Bingbot
 Allow: /
 
-User-agent: DuckDuckBot
-Allow: /
-
-User-agent: YandexBot
-Allow: /
-
-# Generative AI, LLM & Answer Engine Crawlers (GEO / Search Optimization)
-User-agent: GPTBot
-Allow: /
-
+# AI Search & Citation Crawlers
 User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: GPTBot
 Allow: /
 
 User-agent: ChatGPT-User
@@ -37,15 +27,4 @@ Allow: /
 User-agent: anthropic-ai
 Allow: /
 
-User-agent: Google-Extended
-Allow: /
-
-User-agent: Applebot-Extended
-Allow: /
-
-User-agent: cohere-ai
-Allow: /
-
-# Canonical Discovery
 Sitemap: https://www.soham.lol/sitemap.xml
-Host: https://www.soham.lol

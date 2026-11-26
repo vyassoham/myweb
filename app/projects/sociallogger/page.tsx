@@ -25,7 +25,6 @@ export const metadata: Metadata = {
     title: "SocialLogger | SaaS Architecture & Gemini AI",
     description: "Multi-platform social distribution SaaS with Google Gemini AI by Soham Vyas.",
     images: ["https://www.soham.lol/assets/og/og-sociallogger.png"],
-    creator: "@Soham_Vyas_",
   },
 };
 

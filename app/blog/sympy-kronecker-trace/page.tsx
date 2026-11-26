@@ -7,6 +7,7 @@ import InteractiveBackground from "../../components/InteractiveBackground";
 import CommandPalette from "../../components/CommandPalette";
 import KroneckerMathSlider from "../../components/KroneckerMathSlider";
 import ArticleShareAndCite from "../../components/ArticleShareAndCite";
+import { SymPyArticleJsonLd } from "../../components/ArticleJsonLd";
 
 export const metadata: Metadata = {
   title: "SymPy Kronecker Trace Optimization",
@@ -27,57 +28,13 @@ export const metadata: Metadata = {
     title: "How I Eliminated O(n³) Matrix Expansion in SymPy Kronecker Traces",
     description: "SymPy Kronecker product trace optimization: reducing evaluation from O(n³) explicit tensor expansion to O(1) symbolic rewrite steps by Soham Vyas.",
     images: ["https://www.soham.lol/assets/og/og-sympy.png"],
-    creator: "@Soham_Vyas_",
   },
-};
-
-const articleSchema = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "TechArticle",
-      "@id": "https://www.soham.lol/blog/sympy-kronecker-trace/#article",
-      "headline": "How I Eliminated O(n³) Matrix Expansion in SymPy Kronecker Traces",
-      "description":
-        "Engineering deep dive into symbolic matrix expressions, Kronecker product tensor algebra, and implementing an exact scalar property in SymPy that avoids catastrophic memory allocation ahead of GSoC 2027.",
-      "author": { "@id": "https://www.soham.lol/#person" },
-      "publisher": { "@id": "https://www.soham.lol/#person" },
-      "datePublished": "2026-11-13",
-      "dateModified": "2026-11-14",
-      "mainEntityOfPage": "https://www.soham.lol/blog/sympy-kronecker-trace/",
-      "url": "https://www.soham.lol/blog/sympy-kronecker-trace/",
-      "inLanguage": "en-US",
-      "keywords": [
-        "SymPy",
-        "Kronecker Product",
-        "Matrix Trace",
-        "Computer Algebra",
-        "Linear Algebra",
-        "Python",
-        "GSoC 2027",
-        "IIT Jodhpur",
-        "Soham Vyas",
-      ],
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://www.soham.lol/blog/sympy-kronecker-trace/#breadcrumb",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Portfolio", "item": "https://www.soham.lol/" },
-        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.soham.lol/blog/" },
-        { "@type": "ListItem", "position": 3, "name": "SymPy Kronecker Trace", "item": "https://www.soham.lol/blog/sympy-kronecker-trace/" },
-      ],
-    },
-  ],
 };
 
 export default function SymPyKroneckerBlog(): React.JSX.Element {
   return (
     <div className="min-h-screen flex flex-col bg-[#07070a] text-slate-100 relative">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-      />
+      <SymPyArticleJsonLd />
       <InteractiveBackground />
       <CommandPalette />
       <Navigation />
@@ -262,7 +219,7 @@ def _eval_trace(self):
               <li className="flex items-start gap-3">
                 <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
                 <span>
-                  <strong>Non-Square Matrix Validation</strong>: If any factor matrix in the Kronecker chain is symbolically known to be non-square ($n \ne m$), attempting to compute a trace must raise <code>NonSquareMatrixError</code> rather than producing garbage outputs.
+                  <strong>Non-Square Matrix Validation</strong>: If any factor matrix in the Kronecker chain is symbolically known to be non-square (n ≠ m), attempting to compute a trace must raise <code>NonSquareMatrixError</code> rather than producing garbage outputs.
                 </span>
               </li>
               <li className="flex items-start gap-3">
@@ -287,9 +244,9 @@ def _eval_trace(self):
             </p>
             <ol className="list-decimal pl-6 space-y-2 text-zinc-300">
               <li>Numerical square matrix Kronecker trace matches <code>numpy.trace(numpy.kron(A, B))</code>.</li>
-              <li>Symbolic $2 \times 2$ and $3 \times 3$ matrices with unassigned variable coefficients.</li>
-              <li>Arbitrary $N$-ary products $(A \otimes B \otimes C \otimes D)$.</li>
-              <li>Exception assertion for rectangular factors $(2 \times 3 \otimes 3 \times 2)$.</li>
+              <li>Symbolic 2 × 2 and 3 × 3 matrices with unassigned variable coefficients.</li>
+              <li>Arbitrary N-ary products (A ⊗ B ⊗ C ⊗ D).</li>
+              <li>Exception assertion for rectangular factors (2 × 3 ⊗ 3 × 2).</li>
             </ol>
 
             <div className="p-4 rounded-xl bg-emerald-950/20 border border-emerald-500/20 text-emerald-300 font-mono text-xs my-6">

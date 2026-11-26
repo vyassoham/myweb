@@ -13,6 +13,7 @@ import Footer from "./components/Footer";
 import InteractiveBackground from "./components/InteractiveBackground";
 import CommandPalette from "./components/CommandPalette";
 import Parallax3DBackground from "./components/Parallax3DBackground";
+import { HomeJsonLd } from "./components/JsonLd";
 
 export const metadata: Metadata = {
   title: "Soham Vyas — IIT Jodhpur | AI Systems Engineer",
@@ -41,13 +42,13 @@ export const metadata: Metadata = {
     description:
       "Data Science & AI at IIT Jodhpur. Building production systems, atomic Redis rate limiters, and upstream SymPy computer algebra.",
     images: ["https://www.soham.lol/assets/og-image.png"],
-    creator: "@Soham_Vyas_",
   },
 };
 
 export default function Home(): React.JSX.Element {
   return (
     <div className="min-h-screen flex flex-col bg-[#07070a] text-slate-100 selection:bg-indigo-500/30 selection:text-white relative overflow-x-hidden">
+      <HomeJsonLd />
       {/* 60 FPS Ambient Neural Constellation Canvas */}
       <InteractiveBackground />
 

@@ -37,7 +37,6 @@ export const metadata: Metadata = {
     description:
       "Undergraduate researcher in Data Science & AI at IIT Jodhpur. Contributing to SymPy ahead of GSoC 2027.",
     images: ["https://www.soham.lol/assets/og/og-about.png"],
-    creator: "@Soham_Vyas_",
   },
 };
 
@@ -80,9 +79,7 @@ const profilePageJsonLd = {
     "url": "https://www.soham.lol/",
     "sameAs": [
       "https://github.com/vyassoham",
-      "https://www.linkedin.com/in/vyassoham/",
-      "https://x.com/Soham_Vyas_",
-      "https://leetcode.com/u/vyassoham/",
+      "https://www.linkedin.com/in/cybersoham",
     ],
   },
 };

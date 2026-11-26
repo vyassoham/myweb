@@ -54,7 +54,7 @@ export default function ArticleShareAndCite({
   };
 
   const tweetUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(
-    `"${title}" by @Soham_Vyas_ (IIT Jodhpur)`
+    `"${title}" by Soham Vyas (IIT Jodhpur)`
   )}&url=${encodeURIComponent(canonicalUrl)}`;
 
   const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(

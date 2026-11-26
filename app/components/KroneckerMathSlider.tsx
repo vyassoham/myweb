@@ -93,7 +93,7 @@ export default function KroneckerMathSlider(): React.JSX.Element {
         <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.05]">
           <div className="flex justify-between items-center mb-2">
             <span className="text-sm font-semibold text-zinc-200">
-              Matrix $A$ Dimension ($N \times N$)
+              Matrix A Dimension (N × N)
             </span>
             <span className="font-mono text-sm px-2.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-bold">
               {dimN} × {dimN}
@@ -119,7 +119,7 @@ export default function KroneckerMathSlider(): React.JSX.Element {
         <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.05]">
           <div className="flex justify-between items-center mb-2">
             <span className="text-sm font-semibold text-zinc-200">
-              Matrix $B$ Dimension ($M \times M$)
+              Matrix B Dimension (M × M)
             </span>
             <span className="font-mono text-sm px-2.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-bold">
               {dimM} × {dimM}

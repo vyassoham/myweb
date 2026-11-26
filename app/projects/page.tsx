@@ -28,7 +28,6 @@ export const metadata: Metadata = {
     description:
       "Production-grade systems, rate limiters, and cybersecurity tools by Soham Vyas.",
     images: ["https://www.soham.lol/assets/og/og-projects.png"],
-    creator: "@Soham_Vyas_",
   },
 };
 

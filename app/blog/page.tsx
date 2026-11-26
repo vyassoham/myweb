@@ -27,7 +27,6 @@ export const metadata: Metadata = {
     title: "Engineering Blog | Soham Vyas — IIT Jodhpur",
     description: "Mathematical and systems engineering deep dives by Soham Vyas.",
     images: ["https://www.soham.lol/assets/og/og-blog.png"],
-    creator: "@Soham_Vyas_",
   },
 };
 

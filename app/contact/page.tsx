@@ -26,7 +26,6 @@ export const metadata: Metadata = {
     title: "Contact Soham Vyas | AI Systems Engineer @ IIT Jodhpur",
     description: "Get in touch with Soham Vyas at IIT Jodhpur.",
     images: ["https://www.soham.lol/assets/og/og-contact.png"],
-    creator: "@Soham_Vyas_",
   },
 };
 

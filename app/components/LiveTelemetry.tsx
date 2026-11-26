@@ -228,7 +228,17 @@ export default function LiveTelemetry(): React.JSX.Element {
   }, []);
 
   useEffect(() => {
-    fetchLiveTelemetry();
+    if (typeof window === "undefined") return;
+    if ("requestIdleCallback" in window) {
+      const id = window.requestIdleCallback(() => {
+        fetchLiveTelemetry();
+      }, { timeout: 2500 });
+      return () => window.cancelIdleCallback(id);
+    }
+    const timer = setTimeout(() => {
+      fetchLiveTelemetry();
+    }, 1500);
+    return () => clearTimeout(timer);
   }, [fetchLiveTelemetry]);
 
   return (
@@ -276,7 +286,7 @@ export default function LiveTelemetry(): React.JSX.Element {
                 <CheckCircle2 className="w-3.5 h-3.5 text-purple-400" />
               </div>
               <div className="text-2xl font-bold font-mono text-white flex items-baseline gap-1.5">
-                <span>5</span>
+                <span>7</span>
                 <span className="text-[11px] font-sans font-normal text-purple-300">100% S.Y. Lee Merged</span>
               </div>
               <p className="text-[11px] text-zinc-500 mt-0.5">Matrix algebra core</p>
@@ -320,10 +330,10 @@ export default function LiveTelemetry(): React.JSX.Element {
 
           {/* Live Activity Feed Stream */}
           <div className="pt-6">
-            <h4 className="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-400 mb-4 flex items-center gap-2">
+            <h2 className="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-400 mb-4 flex items-center gap-2">
               <Cpu className="w-3.5 h-3.5 text-indigo-400" />
-              <span>Real-Time GitHub Stream (Roz Ka Roz Live Feed)</span>
-            </h4>
+              <span>Real-Time GitHub Stream (Live Feed)</span>
+            </h2>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
               {activities.map((item) => (
@@ -344,9 +354,9 @@ export default function LiveTelemetry(): React.JSX.Element {
                       </span>
                     </div>
 
-                    <h5 className="text-xs sm:text-sm font-semibold text-white group-hover:text-indigo-300 transition-colors line-clamp-1 mb-1">
+                    <h3 className="text-xs sm:text-sm font-semibold text-white group-hover:text-indigo-300 transition-colors line-clamp-1 mb-1">
                       {item.title}
-                    </h5>
+                    </h3>
 
                     <p className="text-xs text-zinc-400 leading-relaxed line-clamp-2 mb-3 font-normal">
                       {item.detail}

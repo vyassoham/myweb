@@ -25,7 +25,6 @@ export const metadata: Metadata = {
     title: "Cybersecurity Risk Analyzer | Architecture & Entropy Math",
     description: "Shannon Information Entropy and NIST password defense engine by Soham Vyas.",
     images: ["https://www.soham.lol/assets/og/og-entropy.png"],
-    creator: "@Soham_Vyas_",
   },
 };
 
@@ -120,7 +119,7 @@ export default function CybersecurityProjectPage(): React.JSX.Element {
 
             {/* Quick Answer Summary for AI Answer Engines */}
             <div className="p-4 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-200 text-sm leading-relaxed mb-6">
-              <strong>Architecture Summary:</strong> The Cybersecurity Risk Analyzer evaluates credential security through a two-pass algorithm: first calculating Shannon information entropy ($E = L \cdot \log_2 R$) against character pool cardinalities, and second checking NIST SP 800-63B compliance (repetitive sequences, dictionary substrings, length penalties) to estimate realistic resistance against dedicated GPU cracking clusters.
+              <strong>Architecture Summary:</strong> The Cybersecurity Risk Analyzer evaluates credential security through a two-pass algorithm: first calculating Shannon information entropy (E = L · log₂ R) against character pool cardinalities, and second checking NIST SP 800-63B compliance (repetitive sequences, dictionary substrings, length penalties) to estimate realistic resistance against dedicated GPU cracking clusters.
             </div>
 
             <div className="flex flex-wrap items-center gap-4 text-xs">
@@ -163,7 +162,7 @@ export default function CybersecurityProjectPage(): React.JSX.Element {
                 <div className="p-4 rounded-xl bg-zinc-950/80 border border-white/[0.08]">
                   <div className="text-xs font-mono text-indigo-400 mb-1">MODULE 1</div>
                   <h3 className="font-bold text-white text-sm mb-1">Entropy Engine</h3>
-                  <p className="text-zinc-400 text-xs">Calculates pool cardinality $R$ and theoretical bits $E = L \log_2(R)$ with character frequency penalties.</p>
+                  <p className="text-zinc-400 text-xs">Calculates pool cardinality R and theoretical bits E = L · log₂(R) with character frequency penalties.</p>
                 </div>
                 <div className="p-4 rounded-xl bg-zinc-950/80 border border-white/[0.08]">
                   <div className="text-xs font-mono text-cyan-400 mb-1">MODULE 2</div>
@@ -189,13 +188,13 @@ export default function CybersecurityProjectPage(): React.JSX.Element {
                 H(X) = - ∑ P(xᵢ) · log₂(P(xᵢ))
               </div>
               <p>
-                For a password of length $L$ drawn from an effective character pool of size $R$:
+                For a password of length L drawn from an effective character pool of size R:
               </p>
               <div className="p-4 rounded-xl bg-zinc-950/90 border border-white/[0.08] font-mono text-sm text-emerald-300 text-center my-4">
                 E = L · log₂(R) bits
               </div>
               <p>
-                Where $R$ is determined dynamically by analyzing character classes: lowercase (26), uppercase (26), digits (10), and ASCII punctuation (32), giving a maximum pool size of $R = 94$.
+                Where R is determined dynamically by analyzing character classes: lowercase (26), uppercase (26), digits (10), and ASCII punctuation (32), giving a maximum pool size of R = 94.
               </p>
             </section>
 

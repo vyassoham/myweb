@@ -25,7 +25,6 @@ export const metadata: Metadata = {
     title: "AI Rate Limiter Shield | Distributed Systems Architecture",
     description: "Atomic Redis Lua rate limiter with ML anomaly detection by Soham Vyas.",
     images: ["https://www.soham.lol/assets/og/og-rate-limiter.png"],
-    creator: "@Soham_Vyas_",
   },
 };
 

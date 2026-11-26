@@ -88,7 +88,7 @@ export default function FeaturedResearch(): React.JSX.Element {
               </h3>
 
               <p className="text-zinc-300 text-sm sm:text-base leading-relaxed mb-6">
-                A rigorous mathematical deep dive into symbolic matrix expressions. Discover how we eliminated catastrophic $O(n^3)$ explicit matrix tensor expansions down to an exact $O(1)$ scalar property:
+                A rigorous mathematical deep dive into symbolic matrix expressions. Discover how we eliminated catastrophic O(n³) explicit matrix tensor expansions down to an exact O(1) scalar property:
               </p>
 
               {/* Math Formula Card (keeps code styling for actual algebraic syntax) */}
@@ -134,7 +134,7 @@ export default function FeaturedResearch(): React.JSX.Element {
               <div className="flex items-start gap-3">
                 <span className="w-2 h-2 rounded-full bg-indigo-400 mt-1.5 shrink-0" />
                 <p className="text-xs text-zinc-300">
-                  <strong className="text-white">Interactive Math Slider:</strong> Client-side simulator lets you visually observe $O(n^3)$ vs $O(1)$ scaling in real time.
+                  <strong className="text-white">Interactive Math Slider:</strong> Client-side simulator lets you visually observe O(n³) vs O(1) scaling in real time.
                 </p>
               </div>
             </div>
@@ -160,9 +160,9 @@ export default function FeaturedResearch(): React.JSX.Element {
                 <span>6 min read</span>
               </div>
 
-              <h4 className="text-lg font-bold text-white group-hover:text-amber-300 transition-colors mb-2">
+              <h3 className="text-lg font-bold text-white group-hover:text-amber-300 transition-colors mb-2">
                 High-Throughput Distributed Rate Limiting via Atomic Redis Lua
-              </h4>
+              </h3>
 
               <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed mb-6">
                 Why traditional multi-step Redis rate limiters fail under concurrent traffic, and how single-turn atomic Lua scripts eliminate race conditions with sub-millisecond execution.
@@ -198,9 +198,9 @@ export default function FeaturedResearch(): React.JSX.Element {
                 <span>5 min read</span>
               </div>
 
-              <h4 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors mb-2">
+              <h3 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors mb-2">
                 Quantifying Cryptographic Strength: Shannon Entropy &amp; NIST 800-63B
-              </h4>
+              </h3>
 
               <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed mb-6">
                 Combining Claude Shannon&apos;s 1948 mathematical information theory with NIST password guidelines to detect hardcoded secrets and estimate brute-force recovery against 100 GH/s GPU clusters.

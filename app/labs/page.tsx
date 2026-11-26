@@ -27,7 +27,6 @@ export const metadata: Metadata = {
     title: "Interactive Engineering Labs | Soham Vyas — IIT Jodhpur",
     description: "In-browser research simulators for symbolic algebra, distributed rate limiting, and cryptographic entropy.",
     images: ["https://www.soham.lol/assets/og/og-labs.png"],
-    creator: "@Soham_Vyas_",
   },
 };
 
