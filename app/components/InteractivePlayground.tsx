@@ -10,16 +10,11 @@ import {
   Play,
   Activity,
   Calculator,
-  Terminal,
-  Cpu,
   Layers,
   Copy,
   Check,
   Flame,
   ShieldCheck,
-  AlertTriangle,
-  ArrowUpRight,
-  Database,
   Radio,
   Sliders,
 } from "lucide-react";
@@ -259,10 +254,7 @@ export default function InteractivePlayground(): React.JSX.Element {
   // Mixed power computations
   const aPow = useMemo(() => power2x2(matrixA, powerExp), [matrixA, powerExp]);
   const bPow = useMemo(() => power2x2(matrixB, powerExp), [matrixB, powerExp]);
-  const factoredKroneckerPow = useMemo(
-    () => kroneckerProduct(aPow, bPow),
-    [aPow, bPow]
-  );
+  void kroneckerProduct(aPow, bPow);
 
   const copySymPyCode = () => {
     const code = `# Verified with SymPy 1.14 / Python 3.12

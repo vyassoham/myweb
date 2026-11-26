@@ -1,16 +1,14 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useSyncExternalStore } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+
+const emptySubscribe = () => () => {};
 
 export default function Parallax3DBackground(): React.JSX.Element {
   const shouldReduceMotion = useReducedMotion();
   const { scrollY } = useScroll();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useSyncExternalStore(emptySubscribe, () => true, () => false);
 
   // Spatial scroll-driven depth layers (smooth GPU transforms)
   const yLayer1 = useTransform(scrollY, [0, 3000], [0, -220]);

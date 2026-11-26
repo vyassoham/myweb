@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import { GitPullRequest, GitCommit, MessageSquare, RefreshCw, Radio, CheckCircle2, Award, ExternalLink, Flame, ShieldAlert, Cpu } from "lucide-react";
+import { RefreshCw, Radio, CheckCircle2, Award, ExternalLink, Flame, Cpu } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 
 interface GitHubEvent {

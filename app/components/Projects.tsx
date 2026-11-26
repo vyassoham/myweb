@@ -11,11 +11,6 @@ import {
   ChevronUp,
   Layers,
   Terminal,
-  Shield,
-  Cpu,
-  Database,
-  ExternalLink,
-  Code2,
 } from "lucide-react";
 import TiltCard from "./TiltCard";
 import ScrollReveal from "./ScrollReveal";
