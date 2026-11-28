@@ -49,6 +49,14 @@ export default function Footer(): React.JSX.Element {
           {/* External Social Links */}
           <div className="flex items-center gap-6">
             <a
+              href="https://x.com/vyasoham"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              X (@vyasoham)
+            </a>
+            <a
               href="https://github.com/vyassoham/myweb"
               target="_blank"
               rel="noopener noreferrer"

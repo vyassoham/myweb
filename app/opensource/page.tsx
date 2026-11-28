@@ -11,14 +11,14 @@ import CommandPalette from "../components/CommandPalette";
 export const metadata: Metadata = {
   title: "SymPy Open Source & GSoC '27",
   description:
-    "Upstream contributions to SymPy computer algebra system by Soham Vyas at IIT Jodhpur. 5 officially merged PRs (#31303, #31284, #31207, #31011, #31010) in matrix expressions, assumptions, and tensor algebra.",
+    "Upstream contributions to SymPy computer algebra system by Soham Vyas at IIT Jodhpur. 7 officially merged PRs (#31317, #31311, #31303, #31284, #31207, #31011, #31010) in matrix expressions, assumptions, and tensor algebra.",
   alternates: {
     canonical: "https://www.soham.lol/opensource/",
   },
   openGraph: {
     title: "SymPy Open Source & GSoC 2027 | Soham Vyas — IIT Jodhpur",
     description:
-      "Upstream contributions to SymPy computer algebra system by Soham Vyas at IIT Jodhpur. Officially merged PRs #31303, #31284, #31207, #31011, and #31010 by core maintainer S.Y. Lee.",
+      "Upstream contributions to SymPy computer algebra system by Soham Vyas at IIT Jodhpur. Officially merged PRs #31317, #31311, #31303, #31284, #31207, #31011, and #31010 by core maintainer S.Y. Lee.",
     url: "https://www.soham.lol/opensource/",
     images: [{ url: "https://www.soham.lol/assets/og/og-opensource.png", width: 1200, height: 630 }],
   },

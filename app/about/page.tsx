@@ -136,7 +136,7 @@ export default function AboutPage(): React.JSX.Element {
                 </div>
                 <h2 className="text-lg font-bold text-white mb-2">Symbolic Algebra</h2>
                 <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed">
-                  Active contributor to <strong>SymPy</strong>. Authored 5 core matrix algebra &amp; assumptions PRs (#31303, #31284, #31207, #31011, #31010) across predicate handlers, Kronecker tensor powers, and trace optimizations ahead of GSoC 2027.
+                  Active contributor to <strong>SymPy</strong>. Authored 7 core matrix algebra &amp; assumptions PRs (#31317, #31311, #31303, #31284, #31207, #31011, #31010) across diagonal matrix calculus, multipledispatch handlers, Kronecker tensor powers, and trace optimizations ahead of GSoC 2027.
                 </p>
               </div>
               <Link href="/opensource/" className="mt-4 inline-flex items-center gap-1.5 text-xs text-purple-300 hover:text-purple-200">

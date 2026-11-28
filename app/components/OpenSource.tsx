@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { GitPullRequest, GitBranch, CheckCircle2, ArrowUpRight, Calculator, ExternalLink } from "lucide-react";
+import { GitPullRequest, GitBranch, CheckCircle2, ArrowUpRight, Calculator, ExternalLink, Code2, Users, FileCode } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 
 interface ContributionItem {
@@ -20,6 +20,54 @@ interface ContributionItem {
 }
 
 const CONTRIBUTIONS: ContributionItem[] = [
+  {
+    id: "diagonal-calculus",
+    title: "Diagonal Matrix Invariant Calculus",
+    module: "sympy.matrices.expressions.diagonal",
+    prNumber: 31317,
+    prUrl: "https://github.com/sympy/sympy/pull/31317",
+    branch: "vyassoham:fix-diagonal-calculus",
+    mathExpression: "DiagMatrix(v)^{-1} = DiagMatrix(v^{-1})",
+    beforeFix: "Inverse(DiagMatrix(v)) & powers returned unevaluated generic nodes without evaluating underlying diagonal elements",
+    afterFix: "Implemented closed-form inverse, power, adjoint, and trace algebraic calculus directly on vector elements",
+    description:
+      "Added complete symbolic calculus for DiagMatrix and DiagonalMatrix expressions without forcing explicit array evaluation, reviewed and merged by S.Y. Lee.",
+    impact:
+      "Officially merged into SymPy master (commit dfc66eb). Completes algebraic invariant calculus for diagonal matrix expressions.",
+    verification: "PR #31317 Merged into sympy:master",
+  },
+  {
+    id: "diagonal-predicates",
+    title: "DiagonalMatrix Assumption Dispatchers",
+    module: "sympy.assumptions.handlers.matrices",
+    prNumber: 31311,
+    prUrl: "https://github.com/sympy/sympy/pull/31311",
+    branch: "vyassoham:fix-diagonal-assumptions",
+    mathExpression: "Q.diagonal(DiagMatrix) ↦ True",
+    beforeFix: "ask(Q.diagonal(DiagonalMatrix(...))) and 7 other matrix predicates returned None (undecidable)",
+    afterFix: "Registered multipledispatch handlers across 8 matrix predicates (diagonal, symmetric, invertible, square, etc.)",
+    description:
+      "Integrated multipledispatch assumption handlers for DiagonalMatrix and DiagMatrix under SymPy's modern assumptions system, merged by S.Y. Lee.",
+    impact:
+      "Officially merged into SymPy master (commit 909195b). Provides complete predicate coverage for diagonal structures.",
+    verification: "PR #31311 Merged into sympy:master",
+  },
+  {
+    id: "kronecker-scalar-power",
+    title: "Scalar Kronecker Power Distribution",
+    module: "sympy.matrices.expressions.kronecker",
+    prNumber: 31303,
+    prUrl: "https://github.com/sympy/sympy/pull/31303",
+    branch: "vyassoham:fix-scalar-kronecker-power",
+    mathExpression: "(A ⊗ B)^p with scalar factors",
+    beforeFix: "Powers of Kronecker products with scalar bases diverged or failed shape validation checks",
+    afterFix: "Added squareness verification and scalar factor extraction, avoiding redundant non-square matrix errors",
+    description:
+      "Resolved scalar branch divergence in Kronecker power expansion and hardened shape validation across composite tensors, merged by S.Y. Lee.",
+    impact:
+      "Officially merged into SymPy master (commit d345aa7). Eliminates tensor shape divergence on scalar bases.",
+    verification: "PR #31303 Merged into sympy:master",
+  },
   {
     id: "kronecker-power",
     title: "KroneckerProduct Exponentiation & Powers",
@@ -63,7 +111,7 @@ const CONTRIBUTIONS: ContributionItem[] = [
     beforeFix: "Trace(KroneckerProduct(A, B)) -> crashed with NonSquareMatrixError on rectangular factors",
     afterFix: "Trace(KroneckerProduct(A, B)).doit() -> evaluates to exact scalar Mul(Trace(A), Trace(B))",
     description:
-      "Eliminated O(n³) catastrophic matrix tensor expansion by implementing exact O(1) scalar trace decomposition across symbolic dimensions, guarding rectangular factors cleanly.",
+      "Eliminated O(n³) catastrophic matrix tensor expansion by implementing exact O(1) scalar trace decomposition across symbolic dimensions, guarding rectangular factors cleanly. Merged by S.Y. Lee.",
     impact:
       "Officially merged into SymPy master. Prevents gigabytes of matrix RAM blowup in quantum and multidimensional physics pipelines.",
     verification: "PR #31011 Merged into sympy:master",
@@ -79,15 +127,59 @@ const CONTRIBUTIONS: ContributionItem[] = [
     beforeFix: "Trace(MatrixUnit(n, n, i, j)) -> evaluated erroneously to 0 for diagonal matrix units",
     afterFix: "Trace(MatrixUnit(n, n, i, j)).doit() -> correctly evaluates to canonical KroneckerDelta(i, j)",
     description:
-      "Implemented canonical trace evaluation for MatrixUnit elementary matrices, evaluating to KroneckerDelta(i, j) with bounded ranges and fixed Boolean atom contract for is_square.",
+      "Implemented canonical trace evaluation for MatrixUnit elementary matrices, evaluating to KroneckerDelta(i, j) with bounded ranges and fixed Boolean atom contract for is_square. Merged by S.Y. Lee.",
     impact:
       "Officially merged into SymPy master. Fixes symbolic trace identities and coordinate-free matrix expressions.",
     verification: "PR #31010 Merged into sympy:master",
   },
 ];
 
+const ACTIVE_WORK = [
+  {
+    number: 31336,
+    url: "https://github.com/sympy/sympy/pull/31336",
+    title: "matrices.expressions: evaluate Trace and Determinant for CompanionMatrix",
+    status: "29/29 CI Passing",
+    note: "Resolves authored Issue #31319 via closed-form O(1) polynomial reductions: tr(C) = -c_{n-1}, det(C) = (-1)^{n-1} c_0.",
+  },
+  {
+    number: 31232,
+    url: "https://github.com/sympy/sympy/pull/31232",
+    title: "assumptions: register KroneckerProduct in matrix predicate handlers",
+    status: "29/29 CI Passing",
+    note: "Registers composite multipledispatch assumption handlers across 8 matrix predicates for tensor products.",
+  },
+];
+
+const AUTHORED_ISSUES = [
+  {
+    number: 31366,
+    url: "https://github.com/sympy/sympy/issues/31366",
+    title: "matrices.expressions: BlockMatrix missing _eval_inverse() for block triangular expressions",
+    scope: "Closed-form block triangular inversion without dense matrix flattening",
+  },
+  {
+    number: 31355,
+    url: "https://github.com/sympy/sympy/issues/31355",
+    title: "matrices.expressions: BlockMatrix determinant evaluation for block triangular expressions",
+    scope: "Evaluates det(M) = det(A)det(D) for upper/lower block triangular structures",
+  },
+  {
+    number: 31344,
+    url: "https://github.com/sympy/sympy/issues/31344",
+    title: "matrices.expressions: PermutationMatrix and MatrixPermute lack Trace and Determinant hooks",
+    scope: "O(1) algebraic invariant evaluation via cycle parity sign(π) and fixed points",
+  },
+  {
+    number: 31319,
+    url: "https://github.com/sympy/sympy/issues/31319",
+    title: "matrices.expressions: CompanionMatrix missing Trace and Determinant algebraic evaluation",
+    scope: "Addressed and resolved in PR #31336 (29/29 CI passing)",
+  },
+];
+
 export default function OpenSource(): React.JSX.Element {
-  const [selectedContrib, setSelectedContrib] = useState<string>("kronecker-power");
+  const [selectedContrib, setSelectedContrib] = useState<string>("diagonal-calculus");
 
   const activeItem =
     CONTRIBUTIONS.find((c) => c.id === selectedContrib) || CONTRIBUTIONS[0];
@@ -98,13 +190,13 @@ export default function OpenSource(): React.JSX.Element {
       <div className="mb-12">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs font-medium mb-3">
           <GitPullRequest className="w-3.5 h-3.5" />
-          <span>Open Source Core Contributions</span>
+          <span>7 Merged Core PRs · Reviewed &amp; Merged by @sylee957</span>
         </div>
         <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-          SymPy &amp; Mathematical Systems
+          SymPy &amp; Symbolic Matrix Calculus
         </h2>
         <p className="text-zinc-400 text-sm sm:text-base mt-2 max-w-2xl font-normal">
-          Active contributor to <strong>SymPy</strong> — the foundational Python library for symbolic mathematics used worldwide. Developing upstream algorithmic fixes for <strong>Google Summer of Code (GSoC) 2027</strong>.
+          Active core contributor to <strong>SymPy</strong> — specializing in matrix expressions (<code>sympy.matrices.expressions</code>) and predicate assumption dispatchers (<code>sympy.assumptions</code>) ahead of <strong>Google Summer of Code (GSoC) 2027</strong>.
         </p>
       </div>
 
@@ -120,33 +212,33 @@ export default function OpenSource(): React.JSX.Element {
             </div>
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <h3 className="text-xl font-bold text-white">SymPy Upstream Contributions</h3>
+                <h3 className="text-xl font-bold text-white">SymPy Upstream Track Record</h3>
                 <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-500/15 text-emerald-300 border border-emerald-500/25">
                   <GitBranch className="w-3 h-3" />
-                  GSoC 2027 Candidate
+                  7 Merged Core PRs (+695 lines net math)
                 </span>
               </div>
               <p className="text-xs sm:text-sm text-zinc-400 font-normal">
-                github.com/sympy/sympy · Python Computer Algebra System (CAS)
+                github.com/sympy/sympy · Reviewed &amp; merged by lead matrices maintainer <strong>S.Y. Lee (@sylee957)</strong>
               </p>
             </div>
           </div>
 
           <div className="flex items-center gap-3">
             <a
-              href="https://github.com/sympy/sympy/pulls?q=is%3Apr+author%3Avyassoham"
+              href="https://github.com/sympy/sympy/pulls?q=is%3Apr+author%3Avyassoham+is%3Amerged"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-xs font-medium text-emerald-300 transition-all shadow-sm"
             >
-              <span>View Merged PRs on sympy/sympy</span>
+              <span>View Live Merged PRs (7)</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
           </div>
         </div>
 
         {/* Contribution Details Grid */}
-        <div className="grid md:grid-cols-2 gap-6 pt-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 pt-6">
           {CONTRIBUTIONS.map((item) => (
             <div
               key={item.id}
@@ -177,16 +269,16 @@ export default function OpenSource(): React.JSX.Element {
                   </div>
                 </div>
 
-                <h4 className="text-base font-bold text-white mb-1.5">{item.title}</h4>
-                <p className="text-xs font-mono text-zinc-400 mb-3">{item.module}</p>
-                <p className="text-xs text-zinc-300 leading-relaxed mb-4 font-normal">
+                <h4 className="text-sm font-bold text-white mb-1">{item.title}</h4>
+                <p className="text-[11px] font-mono text-zinc-400 mb-2">{item.module}</p>
+                <p className="text-xs text-zinc-300 leading-relaxed mb-3 font-normal">
                   {item.description}
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-white/[0.05] text-xs text-zinc-400 flex items-center justify-between">
+              <div className="pt-2.5 border-t border-white/[0.05] text-xs text-zinc-400 flex items-center justify-between">
                 <span className="font-mono text-emerald-300 text-[11px]">{item.mathExpression}</span>
-                <span className="text-xs text-indigo-400 hover:underline font-medium">Inspect Proof →</span>
+                <span className="text-xs text-indigo-400 hover:underline font-medium">Inspect →</span>
               </div>
             </div>
           ))}
@@ -228,6 +320,97 @@ export default function OpenSource(): React.JSX.Element {
             </div>
           </div>
         </div>
+
+        {/* Active PRs & Authored Architectural Issues Grid */}
+        <div className="mt-8 pt-8 border-t border-white/[0.08] grid lg:grid-cols-2 gap-6">
+          {/* Active Work */}
+          <div className="p-5 rounded-xl bg-white/[0.02] border border-white/[0.08]">
+            <div className="flex items-center justify-between mb-4 pb-2 border-b border-white/[0.06]">
+              <div className="flex items-center gap-2">
+                <Code2 className="w-4 h-4 text-emerald-400" />
+                <h4 className="text-sm font-bold text-white">Active Pull Requests (In Review)</h4>
+              </div>
+              <span className="text-[11px] font-mono text-emerald-300 bg-emerald-500/10 px-2 py-0.5 rounded">2 Active PRs</span>
+            </div>
+            <div className="space-y-3">
+              {ACTIVE_WORK.map((pr) => (
+                <div key={pr.number} className="p-3 rounded-lg bg-black/30 border border-white/[0.04]">
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <a
+                      href={pr.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-semibold text-emerald-300 hover:underline inline-flex items-center gap-1"
+                    >
+                      <span>PR #{pr.number}</span>
+                      <ArrowUpRight className="w-3 h-3" />
+                    </a>
+                    <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded-full">
+                      {pr.status}
+                    </span>
+                  </div>
+                  <p className="text-xs text-white font-medium mb-1">{pr.title}</p>
+                  <p className="text-[11px] text-zinc-400 leading-relaxed">{pr.note}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Foundational Issues Authored */}
+          <div className="p-5 rounded-xl bg-white/[0.02] border border-white/[0.08]">
+            <div className="flex items-center justify-between mb-4 pb-2 border-b border-white/[0.06]">
+              <div className="flex items-center gap-2">
+                <FileCode className="w-4 h-4 text-indigo-400" />
+                <h4 className="text-sm font-bold text-white">Architectural Issues Authored</h4>
+              </div>
+              <span className="text-[11px] font-mono text-indigo-300 bg-indigo-500/10 px-2 py-0.5 rounded">4 Issues</span>
+            </div>
+            <div className="space-y-3">
+              {AUTHORED_ISSUES.map((issue) => (
+                <div key={issue.number} className="p-3 rounded-lg bg-black/30 border border-white/[0.04]">
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <a
+                      href={issue.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-semibold text-indigo-300 hover:underline inline-flex items-center gap-1"
+                    >
+                      <span>Issue #{issue.number}</span>
+                      <ArrowUpRight className="w-3 h-3" />
+                    </a>
+                  </div>
+                  <p className="text-xs text-white font-medium mb-1">{issue.title}</p>
+                  <p className="text-[11px] text-zinc-400 leading-relaxed">{issue.scope}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Upstream Mentorship & Community Triage Banner */}
+        <div className="mt-6 p-4 rounded-xl bg-indigo-950/20 border border-indigo-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-lg bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-300 shrink-0">
+              <Users className="w-4 h-4" />
+            </div>
+            <div>
+              <h5 className="text-xs font-bold text-white">Upstream Peer Review &amp; Mentorship</h5>
+              <p className="text-[11px] text-zinc-400">
+                Actively auditing matrix expressions PRs (<a href="https://github.com/sympy/sympy/pull/31369" target="_blank" rel="noopener noreferrer" className="text-indigo-300 underline">#31369</a>, <a href="https://github.com/sympy/sympy/pull/31358" target="_blank" rel="noopener noreferrer" className="text-indigo-300 underline">#31358</a>, <a href="https://github.com/sympy/sympy/pull/31348" target="_blank" rel="noopener noreferrer" className="text-indigo-300 underline">#31348</a>) and safeguarding maintainer bandwidth via upstream triage.
+              </p>
+            </div>
+          </div>
+          <a
+            href="https://github.com/sympy/sympy/pulls?q=is%3Apr+author%3Avyassoham"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-600/30 hover:bg-indigo-600/50 border border-indigo-500/30 text-xs font-semibold text-indigo-200 transition-all shrink-0"
+          >
+            <span>Telemetry</span>
+            <ExternalLink className="w-3 h-3" />
+          </a>
+        </div>
+
         </div>
       </ScrollReveal>
     </section>
