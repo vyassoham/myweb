@@ -193,7 +193,7 @@ export default function OpenSource(): React.JSX.Element {
           <span>7 Merged Core PRs · Reviewed &amp; Merged by @sylee957</span>
         </div>
         <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-          SymPy &amp; Symbolic Matrix Calculus
+          SymPy &amp; Mathematical Systems
         </h2>
         <p className="text-zinc-400 text-sm sm:text-base mt-2 max-w-2xl font-normal">
           Active core contributor to <strong>SymPy</strong> — specializing in matrix expressions (<code>sympy.matrices.expressions</code>) and predicate assumption dispatchers (<code>sympy.assumptions</code>) ahead of <strong>Google Summer of Code (GSoC) 2027</strong>.
@@ -215,7 +215,7 @@ export default function OpenSource(): React.JSX.Element {
                 <h3 className="text-xl font-bold text-white">SymPy Upstream Track Record</h3>
                 <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-500/15 text-emerald-300 border border-emerald-500/25">
                   <GitBranch className="w-3 h-3" />
-                  7 Merged Core PRs (+695 lines net math)
+                  GSoC 2027 Candidate
                 </span>
               </div>
               <p className="text-xs sm:text-sm text-zinc-400 font-normal">

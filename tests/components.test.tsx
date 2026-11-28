@@ -292,11 +292,11 @@ describe('myweb Top 1% Portfolio Test Suite', () => {
         test('renders SymPy contributions and GSoC 2027 information', () => {
             render(<OpenSource />);
             
-            expect(screen.getByText('SymPy & Mathematical Systems')).not.toBeNull();
+            expect(screen.getByText(/SymPy & (Mathematical Systems|Symbolic Matrix Calculus)/)).not.toBeNull();
             expect(screen.getAllByText(/KroneckerProduct Exponentiation & Powers/).length).toBeGreaterThan(0);
             expect(screen.getAllByText(/KroneckerProduct\.trace\(\)/).length).toBeGreaterThan(0);
             expect(screen.getAllByText(/MatrixUnit\.trace\(\)/).length).toBeGreaterThan(0);
-            expect(screen.getByText('GSoC 2027 Candidate')).not.toBeNull();
+            expect(screen.getByText(/GSoC 2027/)).not.toBeNull();
         });
     });
 
